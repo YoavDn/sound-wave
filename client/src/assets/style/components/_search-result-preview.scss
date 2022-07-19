@@ -1,0 +1,31 @@
+.result-preview-container {
+    gap: 1rem;
+    width: 100%;
+
+    .track-details {
+        gap: 1rem;
+        width: 50%;
+        overflow: hidden;
+
+        .track-img-container {
+            img {
+                height: 100%;
+                width: 2.5rem;
+            }
+        }
+
+
+    }
+
+    .action-btn {
+        width: .9375rem;
+        cursor: pointer;
+        color: $clr3;
+    }
+
+    .preview-actions {
+        width: 5rem;
+        gap: 1rem;
+
+    }
+}
