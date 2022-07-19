@@ -1,6 +1,4 @@
-//base 
-@import './base/base';
-@import './base/layout';
+
 
 
 //setup
@@ -9,10 +7,17 @@
 @import './setup/functions';
 @import './setup/helpers';
 
+//base 
+@import './base/base';
+@import './base/layout';
+
 //cmps
 @import './components/side-bar';
 @import './components/player';
 @import './components/app-header';
+@import './components/search-bar';
+@import './components/search-result-list';
+@import './components/search-result-preview';
 
 //views 
 @import './view/search'
