@@ -1,0 +1,44 @@
+//flex
+
+.flex {
+    display: flex; // omg
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+//text
+
+.bold {
+    font-weight: 700;
+}
+
+.light {
+    font-weight: 200;
+}
+
+//list 
+
+.clean-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.svg-icon {
+    width: 40px;
+    height: 40px;
+}

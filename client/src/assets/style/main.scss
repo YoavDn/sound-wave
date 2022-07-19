@@ -1,0 +1,18 @@
+//base 
+@import './base/base';
+@import './base/layout';
+
+
+//setup
+@import './setup/typography';
+@import './setup/vars';
+@import './setup/functions';
+@import './setup/helpers';
+
+//cmps
+@import './components/side-bar';
+@import './components/player';
+@import './components/app-header';
+
+//views 
+@import './view/search'
