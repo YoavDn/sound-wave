@@ -1,5 +1,18 @@
 .player-container {
     grid-column: 1/-1;
     grid-row: 3;
-    background: yellow;
+    background: $player-gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $light-gray;
+
+    .player-song-controllers{
+        gap: 5px;
+    }
+
+    .curr-song{
+        height: 56px;
+        width: 56px;
+    }
 }
