@@ -12,20 +12,44 @@
     }
 
     .side-bar-nav {
+        cursor: pointer;
 
         .page-link-btn {
+            cursor: pointer;
             border: none;
             background-color: transparent;
             margin-block: rem(13px);
             line-height: 16px;
             color: $light-gray;
             font-size: rem(14px);
+
+            .page-link-svg {
+                width: 24px;
+                color: $light-gray;
+                margin-inline-end: 1em;
+            }
+
+            &:hover {
+                color: $clr3;
+
+                .page-link-svg {
+                    color: $clr3;
+                }
+            }
         }
 
-        .page-link-svg {
-            width: 24px;
-            color: $light-gray;
-            margin-inline-end: 1em;
+        .active-link {
+            color: $clr3;
+        }
+
+        .create-playlist-link {
+            margin-top: 30px;
+
         }
     }
+
+    .stations-nav {
+        background-color: red;
+    }
+
 }
