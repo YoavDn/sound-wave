@@ -22,6 +22,35 @@
         gap: 5px;
     }
 
+    button{
+        background-color: transparent;
+        padding: 0;
+        border: none;
+    }
+
+    span{
+        filter: invert(89%) sepia(6%) saturate(17%) hue-rotate(315deg) brightness(82%) contrast(84%);
+    }
+    span:hover{
+        filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(116deg) brightness(103%) contrast(100%);
+    }
+    input[type=range]::-ms-thumb{
+        -webkit-thumb-appearance: none;
+    }
+    // input[type=range]::-webkit-thumb {
+    //     -webkit-thumb-appearance: none;
+    // }
+    
+    input[type=range] {
+        -webkit-thumb-appearance: none;
+        height: 5px;
+        border-radius:100px;
+    }
+
+    input[type=range]:hover {
+        -webkit-appearance: auto
+    }
+
     // .progress-bar-container{
     //     width: 100%;
     // }
