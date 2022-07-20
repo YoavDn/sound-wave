@@ -8,6 +8,11 @@
         color: $clr3;
         font-size: 16px;
         margin-block: 24px;
+
+        .logo-svg {
+            font-size: 40px;
+            margin-inline-end: .2em;
+        }
     }
 
     .side-bar-nav {

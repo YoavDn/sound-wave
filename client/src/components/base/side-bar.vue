@@ -3,8 +3,9 @@
 <template>
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
-            <div class="logo">
-                <h2>SoundWave</h2>
+            <div class="logo flex align-center">
+                <i class="bi bi-circle-fill logo-svg"></i>
+                <h2> Sound</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="{ 'active-link': isActive(pageLink.id) }" class=" page-link-btn flex align-center">
@@ -14,13 +15,13 @@
                 {{ pageLink.name }}
             </button>
 
-            <button class="create-playlist-link page-link-btn flex align-center ">
-                <span class="page-link-svg">
+            <button @click="goToPage('station')" class=" create-playlist-link page-link-btn flex align-center ">
+                <span class=" page-link-svg">
                     <i class="bi bi-plus-square-fill"></i>
                 </span>
                 Create Playlist
             </button>
-            <button class=" page-link-btn flex align-center">
+            <button @click="goToPage('station/likedSongs')" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <i class="bi bi-heart-fill"></i>
                 </span>
