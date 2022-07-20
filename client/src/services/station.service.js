@@ -43,15 +43,15 @@ async function save(station) {
     return storageService.query(KEY)
 }
 
-function addTrackToStation(data) {
-    console.log('hello from station serivce');
+async function addTrackToStation(data) {
     const { station, track } = data
     const stationIdx = demoStations.findIndex(s => s._id === station._id)
     demoStations[stationIdx].tracks.push(track)
-    storageService.put(KEY, demoStations[stationIdx])
+    await storageService.put(KEY, demoStations[stationIdx])
     console.log(demoStations);
     // storageService.saveToStorage(KEY, demoStations)
-    return Promise.resolve(demoStations)
+    // return Promise.resolve(demoStations)
+    return storageService.query(KEY)
 }
 
 function getEmptyStation(isLikedSongs = false) {
