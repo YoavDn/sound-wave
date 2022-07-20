@@ -8,8 +8,14 @@
     color: $light-gray;
     padding-inline: $base-padding;
 
+    .track-controllers-container{
+        min-width: 310px;
+        width: 40%;
+    }
+
     .player-track-controllers{
-        gap: 5px;
+        gap: 30px;
+        margin-bottom: 10px;
     }
 
     .curr-track-img{
@@ -20,37 +26,57 @@
 
     .track-details{
         align-items: center;
-        gap: 5px;
+        gap: 10px;
     }
 
     button{
         background-color: transparent;
         padding: 0;
         border: none;
+        cursor: pointer;
     }
 
     span{
-        filter: invert(89%) sepia(6%) saturate(17%) hue-rotate(315deg) brightness(82%) contrast(84%);
+            filter: invert(89%) sepia(6%) saturate(17%) hue-rotate(315deg) brightness(82%) contrast(84%);
     }
     span:hover{
-        filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(116deg) brightness(103%) contrast(100%);
-    }
-    input[type=range]::-ms-thumb{
-        -webkit-thumb-appearance: none;
-    }
-    // input[type=range]::-webkit-thumb {
-    //     -webkit-thumb-appearance: none;
-    // }
-    
-    input[type=range] {
-        -webkit-thumb-appearance: none;
-        height: 5px;
-        border-radius:100px;
+            filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(116deg) brightness(103%) contrast(100%);
     }
 
-    input[type=range]:hover {
-        -webkit-appearance: auto
+    .btn-play{
+        background-color: rgb(255, 255, 255);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+    &:hover{}
+
+        span{
+            filter: invert(0%)
+        }
     }
+
+    .progress-bar{
+        width: 100%
+    }
+
+
+    // input[type=range]::-ms-thumb{
+    //     -webkit-thumb-appearance: none;
+    // }
+    // // input[type=range]::-webkit-thumb {
+    // //     -webkit-thumb-appearance: none;
+    // // }
+    
+    // input[type=range] {
+    //     -webkit-thumb-appearance: none;
+    //     height: 5px;
+    //     border-radius:100px;
+    // }
+
+    // input[type=range]:hover {
+    //     -webkit-appearance: auto
+    // }
 
     // .progress-bar-container{
     //     width: 100%;

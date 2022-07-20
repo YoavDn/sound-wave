@@ -1,0 +1,9 @@
+.library-container{
+    padding-inline: $layout-padding;
+    color: white;
+
+    .library-title{
+        font-size: 26px;
+        margin-block: 20px;
+    }
+}

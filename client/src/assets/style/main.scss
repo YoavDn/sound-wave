@@ -22,8 +22,11 @@
 @import './components/station/station-list';
 @import './components/station/station-card';
 @import './components/track/track-preview';
+@import './components/library/library-card';
+
 
 //views 
 @import './view/search';
 @import './view/station';
 @import './view/home';
+@import './view/library';

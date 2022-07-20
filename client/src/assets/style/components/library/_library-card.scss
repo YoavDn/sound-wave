@@ -1,0 +1,37 @@
+.library-liked-songs-card {
+    cursor: pointer;
+    height: 285px;
+    background: rgba(255, 255, 255, .2);
+    margin-inline-end: 25px;
+    padding: .5em;
+    border-radius: 5px;
+    background: linear-gradient(135deg,#450af5,#c4efd9);
+    background-image: linear-gradient(135deg, rgb(69, 10, 245), rgb(172, 148, 243));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    margin-inline-end: 25px;
+    width:400px; 
+    flex-direction: column;
+    justify-content: end;
+
+    .liked-tracks-names{
+        margin-bottom: 40px;
+    }
+    .liked-tracks-title{
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .liked-tracks-count{
+        margin-bottom: 20px;
+    }
+
+
+    // <h1 class="liked-tracks-title">liked Songs</h1>
+    //             <div class="liked-tracks-count"
+}
