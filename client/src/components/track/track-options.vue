@@ -4,11 +4,11 @@
     <template #dropdown>
       <el-dropdown-menu class="dropdown-menu">
         <el-dropdown-item class="dropdown-item">
-          <el-dropdown>
+          <el-dropdown class="dropdown-item">
             Add to playlist
             <template #dropdown>
               <el-dropdown-menu class="dropdown-menu">
-                <el-dropdown-item v-for="station in stations" @click="addTrackToStation({ track, station })">{{
+                <el-dropdown-item class="dropdown-item" v-for="station in stations" @click="addTrackToStation({ track, station })">{{
                     station.name
                 }}
                 </el-dropdown-item>
