@@ -7,7 +7,7 @@ function loadFromStorage(key) {
     return data ? JSON.parse(data) : undefined;
 }
 
-export const storageService = {
+export const localStorageService = {
     saveToStorage,
     loadFromStorage,
 }

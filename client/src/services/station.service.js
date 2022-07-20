@@ -1,6 +1,7 @@
 import { utilService } from './utils.service.js'
-import { storageService } from './local-storage.js'
-
+// import { storageService } from './local-storage.js'
+import { storageService } from './async-storage.service.js';
+import { localStorageService } from './local-storage.js';
 const KEY = 'stationsDB'
 
 export const stationService = {
@@ -13,9 +14,15 @@ export const stationService = {
 let demoStations;
 
 (() => {
-    if (storageService.loadFromStorage(KEY)) demoStations = storageService.loadFromStorage(KEY)
-    demoStations = _createDemoStations()
-    storageService.saveToStorage(KEY, demoStations)
+    demoStations = localStorageService.loadFromStorage(KEY)
+    if (!demoStations || !demoStations.length) {
+        demoStations = _createDemoStations()
+        const likedSongs = getEmptyStation(true)
+        storageService.post(KEY, likedSongs)
+        storageService.postMany(KEY, demoStations)
+    }
+    return demoStations
+
 })()
 
 
@@ -29,10 +36,11 @@ function getById(stationId) {
     return Promise.resolve(station)
 }
 
-function save(station) {
-    console.log('hello');
-    demoStations.unshift(station)
-    storageService.saveToStorage(KEY, demoStations)
+async function save(station) {
+    // demoStations.unshift(station)
+    // storageService.postMany(KEY, demoStations)
+    await storageService.post(KEY, station)
+    return storageService.query(KEY)
 }
 
 function addTrackToStation(data) {
@@ -40,15 +48,16 @@ function addTrackToStation(data) {
     const { station, track } = data
     const stationIdx = demoStations.findIndex(s => s._id === station._id)
     demoStations[stationIdx].tracks.push(track)
+    storageService.put(KEY, demoStations[stationIdx])
     console.log(demoStations);
-    storageService.saveToStorage(KEY, demoStations)
+    // storageService.saveToStorage(KEY, demoStations)
     return Promise.resolve(demoStations)
 }
 
-function getEmptyStation() {
+function getEmptyStation(isLikedSongs = false) {
     return {
-        _id: utilService.makeId(),
-        name: 'My Playlist #' + demoStations.length,
+        _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
+        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + demoStations.length,
         tags: [],
         createdAt: Date.now(),
         createdBy: null,

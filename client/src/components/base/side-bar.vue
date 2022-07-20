@@ -41,7 +41,7 @@ export default {
         return {
             activePage: null,
             pagesLinks: [
-                { id: 'home', name: 'Home', icon: 'bi bi-house-door-fill' },
+                { id: '', name: 'Home', icon: 'bi bi-house-door-fill' },
                 { id: 'search', name: 'Search', icon: 'bi bi-search' },
                 { id: 'library', name: 'Library', icon: 'bi bi-music-note-list' }
             ]
