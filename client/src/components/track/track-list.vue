@@ -10,7 +10,7 @@
                 </div>
             </li>
             <li v-for="track in tracks" class="flex align-center">
-                <track-preview :track="track" />
+                <track-preview :track="track" @setTrack="$emit('setTrack', track)" />
             </li>
         </ul>
     </div>

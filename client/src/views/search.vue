@@ -1,6 +1,6 @@
 <template>
     <section class="search-page-container">
-        <form >
+        <form>
             <div class="input-container flex align-center">
                 <i class="bi bi-search search-icon"></i>
                 <input type="search" name="title" placeholder="Playlists or songs" v-model="query">
@@ -15,6 +15,7 @@
 </template>
     
 <script>
+import { eventBus } from '../services/event-bus.js'
 import searchResultList from '../components/search/search-result-list.vue'
 
 export default {
@@ -22,6 +23,9 @@ export default {
         return {
             query: '',
         }
+    },
+    created() {
+        eventBus.on('addTrackToStation', this.addTrackToStation)
     },
     computed: {
         tracks() {
@@ -44,7 +48,8 @@ export default {
                     title: "Lionel Richie - Hello ",
                 }
             ]
-        }
+        },
+
     },
     components: {
         searchResultList
@@ -56,6 +61,13 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
         },
+        sayHello(data) {
+            console.log('hellow', data);
+        },
+        addTrackToStation(data) {
+            this.$store.dispatch({ type: 'addTrackToStation', data })
+        }
+
     },
 }
 

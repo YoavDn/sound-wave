@@ -18,7 +18,6 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
-                console.log(stations);
                 commit({ type: 'loadStations', stations })
             } catch {
                 return console.log('cant load stations');
@@ -31,6 +30,13 @@ export default {
                 return station
             } catch {
                 return console.log('cant get current Station');
+            }
+        },
+        async addTrackToStation({ commit }, { data }) {
+            try {
+                stationService.addTrackToStation(data)
+            } catch (err) {
+                return console.log(err);
             }
         }
 

@@ -2,7 +2,7 @@
     <section v-if="station" class="station-container">
         <station-header :station="station" />
         <station-options />
-        <track-list :tracks="station.songs" />
+        <track-list :tracks="station.songs" @setTrack="setTrack" />
     </section>
 
 </template>
@@ -31,6 +31,12 @@ export default {
         console.log(id);
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
             .then(station => this.station = { ...station })
+    },
+
+    methods: {
+        setTrack(track) {
+            this.$store.commit({ type: 'setTrack', track })
+        },
     }
 
 }

@@ -6,11 +6,11 @@
             <div class="track-img-container "><img :src="track.imgUrl"></div>
             <div class="track-title-container">{{ track.title }}</div>
         </div>
-        
+
         <div class="preview-actions flex align-center space-between">
             <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
             <div class="trackTime">{{ track.time }}</div>
-            <track-options />
+            <track-options :track="track" />
         </div>
     </section>
 </template>

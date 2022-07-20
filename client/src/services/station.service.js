@@ -7,6 +7,7 @@ export const stationService = {
     query,
     save,
     getById,
+    addTrackToStation
 }
 
 
@@ -23,6 +24,15 @@ function save() {
     // :TODO
 }
 
+function addTrackToStation(data) {
+    console.log('hello from station serivce');
+    const { station, track } = data
+    const stationIdx = _demoStations.findIndex(s => s._id === station._id)
+    _demoStations[stationIdx].songs.push(track)
+    console.log(_demoStations);
+    return Promise.resolve(_demoStations)
+}
+
 
 
 
@@ -30,8 +40,8 @@ function save() {
 
 const _demoStations = [
     {
-        _id: "5cksxjas89xjsa8xjsa8jxs09",
-        name: "FunkyMonks",
+        _id: "5cksxjas89xjsa8xjsa8jxs01",
+        name: "afik's playlist",
         tags: [
             "Funk",
             "Happy"
@@ -91,7 +101,7 @@ const _demoStations = [
     },
     {
         _id: "5cksxjas89xjsa8xjsa8jxs09",
-        name: "FunkyMonks",
+        name: "Avoya",
         tags: [
             "Funk",
             "Happy"
