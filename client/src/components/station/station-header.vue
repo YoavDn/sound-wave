@@ -1,6 +1,6 @@
 <template>
     <header class='station-header-container'>
-        <h2 class="station-name">Playlist#1</h2>
+        <h2 class="station-name">{{ station.name }}</h2>
     </header>
 </template>
 
@@ -9,5 +9,4 @@ export default {
     name: 'stationHeader',
     props: { station: Object }
 }
-
 </script>

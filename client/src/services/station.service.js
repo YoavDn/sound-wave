@@ -1,7 +1,3 @@
-// import { storageService } from './localStorage';
-
-
-
 
 export const stationService = {
     query,
