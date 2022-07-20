@@ -11,6 +11,7 @@
 import stationHeader from '../components/station/station-header.vue'
 import stationOptions from '../components/station/station-options.vue'
 import trackList from '../components/track/track-list.vue'
+import { stationService } from '../services/station.service'
 
 export default {
     components: {
@@ -27,8 +28,13 @@ export default {
 
     created() {
         const { id } = this.$route.params
-        this.$store.dispatch({ type: 'setCurrStation', stationId: id })
-            .then(station => this.station = { ...station })
+        if (id) {
+            this.$store.dispatch({ type: 'setCurrStation', stationId: id })
+                .then(station => this.station = { ...station })
+
+        } else {
+            this.station = stationService.getEmptyStation()
+        }
     },
 
     methods: {

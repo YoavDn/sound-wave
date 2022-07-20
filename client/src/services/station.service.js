@@ -1,9 +1,12 @@
+import { utilService } from './utils.service.js'
+
 
 export const stationService = {
     query,
     save,
     getById,
-    addTrackToStation
+    addTrackToStation,
+    getEmptyStation
 }
 
 
@@ -29,10 +32,18 @@ function addTrackToStation(data) {
     return Promise.resolve(_demoStations)
 }
 
+function getEmptyStation() {
+    return {
+        _id: utilService.makeId(),
+        name: '',
+        tags: [],
+        createdAt: Date.now(),
+        createdBy: null,
+        likedByUsers: null,
+        tracks: [],
 
-
-
-
+    }
+}
 
 const _demoStations = [
     {
