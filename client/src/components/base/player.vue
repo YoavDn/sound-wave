@@ -63,7 +63,9 @@ export default defineComponent({
             console.log(ev)
         },
         toggleSongPlay() {
+        clearInterval(this.trackInterval)
         if(this.playOrPause === '▶'){
+        
           this.$refs.youtube.playVideo()
           this.playOrPause = '⏸'
           this.trackDuration = this.$refs.youtube.getDuration()

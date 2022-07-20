@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { HeartIcon, PlayIcon } from '@heroicons/vue/outline'
 
 export default {
     name: 'search-result-preview',
@@ -24,8 +23,7 @@ export default {
         },
     },
     components: {
-        HeartIcon,
-        PlayIcon
+
     }
 }
 </script>
