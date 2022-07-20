@@ -21,7 +21,35 @@
         font-size: 1rem;
     }
 
-    .search-icon{
+    .search-icon {
+        background-color: transparent;
+        width: 8%;
+        cursor: pointer;
+    }
+}
+
+
+.search-container {
+    z-index: 3;
+    top: 14px;
+
+    border-radius: 2rem;
+    background-color: #fff;
+    padding-inline: 1rem;
+
+    input {
+        width: 100%;
+        height: inherit;
+        border-radius: inherit;
+        background: transparent;
+        outline: none;
+        -webkit-margin-start: 7px;
+        margin-inline-start: 7px;
+        border: none;
+        font-size: 1rem;
+    }
+
+    .search-icon {
         background-color: transparent;
         width: 8%;
         cursor: pointer;
