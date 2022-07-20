@@ -1,6 +1,3 @@
-
-
-
 //setup
 @import './setup/typography';
 @import './setup/vars';
@@ -18,6 +15,8 @@
 @import './components/search-bar';
 @import './components/search-result-list';
 @import './components/search-result-preview';
+@import './components/hero-list';
+@import './components/hero-preview';
 
 //views 
 @import './view/search'
