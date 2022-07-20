@@ -2,4 +2,11 @@
     grid-column: 2;
     grid-row: 2;
     padding-inline: $layout-padding;
+    background: linear-gradient(#570e69, $dark-gray 80%);
+
+    .hero-title {
+        font-size: 26px;
+        color: $clr3;
+        margin-block: 20px;
+    }
 }

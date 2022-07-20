@@ -7,12 +7,9 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "@heroicons/vue": "^1.0.6",
-    "@vue-hero-icons/outline": "^1.7.2",
     "axios": "^0.27.2",
-    "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",
-    "vue": "^3.2.37",
+    "element-plus": "^2.2.9",
     "vue-router": "^4.1.2",
     "vue-slider-component": "^3.2.18",
     "vue3-youtube": "^0.1.9",

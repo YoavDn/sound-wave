@@ -19,7 +19,6 @@ export default {
       state.searchResults = tracks
     },
     setTrack(state, { track }) {
-      // state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
       state.track = track
 
     }

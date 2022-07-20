@@ -1,26 +1,45 @@
-<template>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+<template class="track-options-dropdown">
+  <el-dropdown trigger="click">
+    <i class="bi bi-three-dots action-btn"></i>
+    <template #dropdown>
+      <el-dropdown-menu class="dropdown-menu">
+        <el-dropdown-item class="dropdown-item">
+          <el-dropdown>
+            Add to playlist
+            <template #dropdown>
+              <el-dropdown-menu class="dropdown-menu">
+                <el-dropdown-item v-for="station in stations" @click="addTrackToStation({ track, station })">{{
+                    station.name
+                }}
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </el-dropdown-item>
+        <el-dropdown-item class="dropdown-item">Share</el-dropdown-item>
+        <el-dropdown-item class="dropdown-item">Add to liked songs</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
+
 <script>
+import { eventBus } from '../../services/event-bus.js'
 export default {
+  props: { track: Object },
+
+  computed: {
+    stations() {
+      return this.$store.getters.getStations
+    }
+  },
+
+  methods: {
+    addTrackToStation(data) {
+      eventBus.emit('addTrackToStation', data)
+    }
+  }
 
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

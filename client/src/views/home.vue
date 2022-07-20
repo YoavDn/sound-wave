@@ -1,25 +1,30 @@
 
 <template>
     <main class="home-container">
-        <h2 class="hero-title">Good morning Afik you bitch</h2>
+        <h2 class="hero-title">Good morning Afik and Aviya</h2>
         <section class="hero-list">
-            <article v-for="station in stations" :key="station.id" class="hero-card">
+            <article v-for="station in heroStations" :key="station.id" class="hero-card">
                 <hero-preview :station="station" />
             </article>
+        </section>
+        <section class="station-list-container flex">
+            <stations-list :stations="stations" />
         </section>
     </main>
 </template>
 
 <script >
 import heroPreview from '../components/home/hero-preview.vue'
+import stationsList from '../components/station/stations-list.vue'
 export default {
     name: 'home',
     components: {
         heroPreview,
+        stationsList
     },
     data() {
         return {
-            stations: [ // demo for now
+            heroStations: [ // demo for now
                 { id: 1, title: 'hello' },
                 { id: 2, title: 'hello' },
                 { id: 3, title: 'hello' },
@@ -29,5 +34,12 @@ export default {
             ]
         }
     },
+
+    computed: {
+        stations() {
+            // JSON.parse(JSON.stringify())
+            return this.$store.getters.getStations
+        }
+    }
 }
 </script>

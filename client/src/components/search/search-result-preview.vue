@@ -6,17 +6,20 @@
             <div class="track-img-container "><img :src="track.imgUrl"></div>
             <div class="track-title-container">{{ track.title }}</div>
         </div>
+
         <div class="preview-actions flex align-center space-between">
             <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
             <div class="trackTime">{{ track.time }}</div>
-            <i class="bi bi-three-dots action-btn"></i>
+            <track-options :track="track" />
         </div>
     </section>
 </template>
 
 <script>
+import trackOptions from '../track/track-options.vue'
 
 export default {
+
     name: 'search-result-preview',
     props: {
         track: {
@@ -25,7 +28,7 @@ export default {
         },
     },
     components: {
-
+        trackOptions
     }
 }
 </script>

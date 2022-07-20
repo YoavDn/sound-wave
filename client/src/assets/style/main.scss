@@ -9,18 +9,21 @@
 @import './base/layout';
 
 //cmps
-@import './components/side-bar';
-@import './components/player';
-@import './components/app-header';
-@import './components/search-bar';
-@import './components/search-result-list';
-@import './components/search-result-preview';
-@import './components/hero-list';
-@import './components/hero-preview';
-@import './components/station-header';
-@import './components/station-option';
-@import './components/track-preview';
+@import './components/base-cmps/side-bar';
+@import './components/base-cmps/player';
+@import './components/base-cmps/app-header';
+@import './components/search/search-bar';
+@import './components/search/search-result-list';
+@import './components/search/search-result-preview';
+@import './components/home/hero-list';
+@import './components/home/hero-preview';
+@import './components/station/station-header';
+@import './components/station/station-option';
+@import './components/station/station-list';
+@import './components/station/station-card';
+@import './components/track/track-preview';
 
 //views 
 @import './view/search';
-@import './view/station'
+@import './view/station';
+@import './view/home';

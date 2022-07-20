@@ -35,10 +35,24 @@
 
 
     &:hover {
-        background: rgba(255, 255, 255, 0.213);
+        background: $opacityWhite;
 
         .action-btn {
             visibility: visible;
+        }
+    }
+}
+
+.dropdown-menu {
+    background-color: $clr4;
+
+    .dropdown-item {
+        color: $clr3;
+
+        &:hover {
+            background-color: $opacityWhite;
+            color: $clr3;
+
         }
     }
 }

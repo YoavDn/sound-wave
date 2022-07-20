@@ -11,11 +11,13 @@ export default {
         setCurrStation: (state, { station }) => state.currStation = station,
 
     },
+    getters: {
+        getStations: (state) => state.stations
+    },
     actions: {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
-                console.log(stations);
                 commit({ type: 'loadStations', stations })
             } catch {
                 return console.log('cant load stations');
@@ -28,6 +30,15 @@ export default {
                 return station
             } catch {
                 return console.log('cant get current Station');
+            }
+        },
+        async addTrackToStation({ commit }, { data }) {
+            try {
+                const { station, track } = data
+                if (station.tracks.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
+                stationService.addTrackToStation(data)
+            } catch (err) {
+                return console.log(err);
             }
         }
 
