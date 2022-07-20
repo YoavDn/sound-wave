@@ -1,7 +1,9 @@
 .result-preview-container {
     gap: 1rem;
     width: 100%;
-
+    border-radius: 5px;
+    padding: .5rem;
+    
     .track-details {
         gap: 1rem;
         width: 50%;
@@ -18,7 +20,9 @@
     }
 
     .action-btn {
+        visibility: hidden;
         width: .9375rem;
+        font-size: 1rem;
         cursor: pointer;
         color: $clr3;
     }
@@ -27,5 +31,13 @@
         width: 5rem;
         gap: 1rem;
 
+    }
+
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.213) ;
+        .action-btn {
+            visibility: visible;
+        }
     }
 }
