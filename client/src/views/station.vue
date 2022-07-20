@@ -12,8 +12,6 @@ import stationHeader from '../components/station/station-header.vue'
 import stationOptions from '../components/station/station-options.vue'
 import trackList from '../components/track/track-list.vue'
 
-
-
 export default {
     components: {
         stationHeader,
@@ -26,9 +24,9 @@ export default {
             station: null
         }
     },
+
     created() {
         const { id } = this.$route.params
-        console.log(id);
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
             .then(station => this.station = { ...station })
     },
@@ -41,6 +39,5 @@ export default {
 
 }
 </script>
-    
 <style>
 </style>
