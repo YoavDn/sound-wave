@@ -11,6 +11,7 @@
 import appHeader from './components/base/app-header.vue'
 import sideBar from './components/base/side-bar.vue'
 import player from './components/base/player.vue'
+
 export default {
 
   name: 'app',

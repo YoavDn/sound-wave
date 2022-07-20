@@ -27,7 +27,7 @@ function addTrackToStation(data) {
     console.log('hello from station serivce');
     const { station, track } = data
     const stationIdx = _demoStations.findIndex(s => s._id === station._id)
-    _demoStations[stationIdx].songs.push(track)
+    _demoStations[stationIdx].tracks.push(track)
     console.log(_demoStations);
     return Promise.resolve(_demoStations)
 }
@@ -63,7 +63,7 @@ const _demoStations = [
             "{minimal-user}",
             "{minimal-user}"
         ],
-        songs: [
+        tracks: [
             {
                 id: "s1001",
                 videoId: 'patwm5DXFrE',
@@ -104,7 +104,8 @@ const _demoStations = [
                 from: "{mini-user}",
                 txt: "Manish?"
             }
-        ]
+        ],
+        
     },
     {
         _id: "5cksxjas89xjsa8xjsa8jxs09",
@@ -123,7 +124,7 @@ const _demoStations = [
             "{minimal-user}",
             "{minimal-user}"
         ],
-        songs: [
+        tracks: [
             {
                 id: "s1001",
                 title: "Baby ",

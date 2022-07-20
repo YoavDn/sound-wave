@@ -22,10 +22,14 @@ export default {
     data() {
         return {
             query: '',
+            unsubscribe: null,
         }
     },
     created() {
-        eventBus.on('addTrackToStation', this.addTrackToStation)
+        this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+    },
+    unmounted(){
+        this.unsubscribe()
     },
     computed: {
         tracks() {
@@ -61,9 +65,7 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
         },
-        sayHello(data) {
-            console.log('hellow', data);
-        },
+
         addTrackToStation(data) {
             this.$store.dispatch({ type: 'addTrackToStation', data })
         }
