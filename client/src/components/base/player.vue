@@ -41,14 +41,7 @@ export default defineComponent({
             trackInterval:null,
         }
     },
-    created(){
-        // CurrTime(){
-            // this.currTime = this.$refs.youtube.getCurrentTime()
-        // },
-        // TrackDuration(){
-        //     this.truckDuration = this.$refs.youtube.getDuration()
-        // }
-    },
+    created(){},
     computed:{
         vidSrc() {
             return this.$store.getters.currSong
@@ -63,18 +56,22 @@ export default defineComponent({
             console.log(ev)
         },
         toggleSongPlay() {
+        clearInterval(this.trackInterval)
         if(this.playOrPause === '▶'){
           this.$refs.youtube.playVideo()
           this.playOrPause = '⏸'
-          this.trackDuration = this.$refs.youtube.getDuration()
-          this.trackInterval = setInterval(() => {
-          this.currTime = this.$refs.youtube.getCurrentTime()
-          }, 100);
+          this.intervalForTrack()
           console.log('this.$refs.youtube',this.$refs.youtube)
         } else {
           this.$refs.youtube.pauseVideo()
           this.playOrPause = '▶'
         }
+    },
+    intervalForTrack(){
+        this.trackDuration = this.$refs.youtube.getDuration()
+          this.trackInterval = setInterval(() => {
+          this.currTime = this.$refs.youtube.getCurrentTime()
+          }, 100);
     },
     changeVolume(){
       this.$refs.youtube.setVolume(this.volume)
