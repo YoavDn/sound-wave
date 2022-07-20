@@ -9,20 +9,20 @@
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="{ 'active-link': isActive(pageLink.id) }" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <component :is='pageLink.icon' />
+                    <i :class="pageLink.icon"></i>
                 </span>
                 {{ pageLink.name }}
             </button>
 
             <button class="create-playlist-link page-link-btn flex align-center ">
                 <span class="page-link-svg">
-                    <plus-icon />
+                    <i class="bi bi-plus-square-fill"></i>
                 </span>
-                Create Songs
+                Create Playlist
             </button>
             <button class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <heart-icon />
+                    <i class="bi bi-heart-fill"></i>
                 </span>
                 Liked Songs
             </button>
@@ -35,23 +35,14 @@
 </template>
     
 <script >
-import { SearchIcon, HomeIcon, ViewBoardsIcon, PlusIcon, HeartIcon } from '@heroicons/vue/outline'
 export default {
-    components: {
-        SearchIcon,
-        HomeIcon,
-        ViewBoardsIcon,
-        PlusIcon,
-        HeartIcon,
-    },
-
     data() {
         return {
             activePage: null,
             pagesLinks: [
-                { id: 'home', name: 'Home', icon: 'HomeIcon' },
-                { id: 'search', name: 'Search', icon: 'SearchIcon' },
-                { id: 'library', name: 'Library', icon: 'ViewBoardsIcon' }
+                { id: 'home', name: 'Home', icon: 'bi bi-house-door-fill' },
+                { id: 'search', name: 'Search', icon: 'bi bi-search' },
+                { id: 'library', name: 'Library', icon: 'bi bi-music-note-list' }
             ]
         }
     },
