@@ -37,7 +37,7 @@ export default {
             return [
                 {
                     description: "Listen to \"Easy On Me\" here: http://Adele.lnk.to/EOM Pre-order Adele's new album \"30\" before its release on November 19: ...",
-                    id: "YQHsXMglC9A",
+                    videoId: "YQHsXMglC9A",
                     imgUrl: "https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg",
                     publishedAt: "2015-10-23T06:54:18Z",
                     time: "6:07",
@@ -45,7 +45,7 @@ export default {
                 },
                 {
                     description: "REMASTERED IN HD! Explore the music of Lionel Richie: https://lnk.to/LionelBestOf Watch more Lionel videos: ...",
-                    id: "mHONNcZbwDY",
+                    videoId: "mHONNcZbwDY",
                     imgUrl: "https://i.ytimg.com/vi/mHONNcZbwDY/hqdefault.jpg",
                     publishedAt: "2020-11-20T17:00:16Z",
                     time: "5:27",
