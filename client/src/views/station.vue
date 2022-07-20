@@ -2,7 +2,7 @@
     <section v-if="station" class="station-container">
         <station-header :station="station" />
         <station-options />
-        <track-list :tracks="station.songs" @setTrack="setTrack" />
+        <track-list :tracks="station.tracks" @setTrack="setTrack" />
     </section>
 
 </template>

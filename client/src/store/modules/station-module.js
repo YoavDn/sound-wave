@@ -34,6 +34,8 @@ export default {
         },
         async addTrackToStation({ commit }, { data }) {
             try {
+                const { station, track } = data
+                if (station.tracks.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
                 stationService.addTrackToStation(data)
             } catch (err) {
                 return console.log(err);
