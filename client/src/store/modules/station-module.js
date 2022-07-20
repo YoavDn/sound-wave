@@ -32,6 +32,15 @@ export default {
                 return console.log('cant get current Station');
             }
         },
+
+        async saveStation({ commit }, { station }) {
+            try {
+                stationService.save(station)
+            } catch (err) {
+                return console.log(err);
+            }
+        },
+
         async addTrackToStation({ commit }, { data }) {
             try {
                 const { station, track } = data
