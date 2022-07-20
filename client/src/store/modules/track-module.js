@@ -3,12 +3,13 @@ import { youtubeService } from '../../services/youtube.service'
 export default {
 
   state: {
-    videoSrc: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    // videoSrc: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    track: null,
     searchResults: null,
   },
   getters: {
-    currSong(state) {
-      return state.videoSrc
+    currTrack(state) {
+      return state.track
     },
     searchResults(state) {
       return state.searchResults
@@ -18,8 +19,11 @@ export default {
     setSearchResults(state, { tracks }) {
       state.searchResults = tracks
     },
-    setVideoSrc(state, { videoId }) {
-      state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
+    setTrack(state, { track }) {
+      // state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
+      console.log('track = ', track)
+      state.track = track
+
     }
   },
   actions: {

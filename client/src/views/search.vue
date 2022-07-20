@@ -8,7 +8,7 @@
         </form>
 
         <div v-if="tracks">
-            <search-result-list :tracks="tracks" />
+            <search-result-list @setTrack="setTrack" :tracks="tracks" />
         </div>
 
     </section>
@@ -35,8 +35,8 @@ export default {
         async searchTrack() {  
             await this.$store.dispatch({ type: 'searchTracks', query: this.query })
         },
-        playVideoSrc(videoId){
-
+        setTrack(track){
+            this.$store.commit({type: 'setTrack', track})
         },
     },
 }

@@ -1,6 +1,6 @@
 <template>
-    <section v-if="vidSrc" class="player-container">
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" ref="youtube" />
+    <section v-if="track" class="player-container">
+        <YouTube hidden v-if="track" @stateChange="state" :src="track" ref="youtube" />
         <div>
             <img class="curr-song" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fe529a64193929.5aca8500ba9ab.jpg">
         </div>
@@ -43,8 +43,9 @@ export default defineComponent({
     },
     created(){},
     computed:{
-        vidSrc() {
-            return this.$store.getters.currSong
+        track() {
+            console.log('this.$store.getters.currTrack = ', this.$store.getters.currTrack)
+            return this.$store.getters.currTrack
         },
     },
     methods: {

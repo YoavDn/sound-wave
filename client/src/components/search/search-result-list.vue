@@ -2,7 +2,7 @@
     <div class="search-result-list-container">
         <ul class="clean-list flex flex-column result-list">
             <li v-for="track in tracks" class="flex align-center">
-                <search-result-preview :track="track" />
+                <search-result-preview @setTrack="$emit('setTrack', track)" :track="track" />
             </li>
         </ul>
     </div>
