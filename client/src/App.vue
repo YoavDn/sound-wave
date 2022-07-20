@@ -19,7 +19,12 @@ export default {
     appHeader,
     player,
     sideBar,
+  },
+
+  created() {
+    this.$store.dispatch({ type: 'loadStations' })
   }
+
 }
 </script>
 
