@@ -3,7 +3,6 @@ import { youtubeService } from '../../services/youtube.service'
 export default {
 
   state: {
-    // videoSrc: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
     track: null,
     searchResults: null,
   },
@@ -20,8 +19,6 @@ export default {
       state.searchResults = tracks
     },
     setTrack(state, { track }) {
-      // state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
-      console.log('track = ', track)
       state.track = track
 
     }
