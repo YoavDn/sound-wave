@@ -1,4 +1,5 @@
-import { createStore } from 'vuex';
+import { createStore } from 'vuex'
+import trackStore from './modules/track-module.js'
 
 const store = createStore({
     strict: true,
@@ -7,7 +8,7 @@ const store = createStore({
     },
 
     modules: {
-
+        trackStore
     }
 })
 
