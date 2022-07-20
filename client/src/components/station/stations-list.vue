@@ -1,5 +1,6 @@
 <template>
-    <article v-if="stations" v-for="station in stations" :key="station._id" class="station-card">
+    <article v-if="stations" v-for="station in stations" :key="station._id" class="station-card"
+        @click="goToStation(station._id)">
         <station-preview :station="station" />
     </article>
 </template >
@@ -12,6 +13,12 @@ export default {
 
     created() {
         console.log(this.stations);
+    },
+
+    methods: {
+        goToStation(stationId) {
+            this.$router.push(`/station/${stationId}`)
+        }
     }
 }
 
