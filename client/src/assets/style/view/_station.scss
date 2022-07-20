@@ -1,0 +1,21 @@
+.station-container {
+
+    .station-tracks-container {
+        color: white;
+        padding-inline: $layout-padding;
+
+    }
+
+    .track-list-head {
+        border-bottom: solid .4px $light-gray;
+        margin-bottom: 2rem;
+
+        h2,
+        p {
+            font-size: 1rem;
+            color: $light-gray;
+            font-weight: 300;
+        }
+    }
+
+}

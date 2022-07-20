@@ -49,18 +49,36 @@ const _demoStations = [
         songs: [
             {
                 id: "s1001",
+                videoId: 'patwm5DXFrE',
                 title: "Baby ",
                 url: "youtube/song.mp4",
                 imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
                 addedBy: "yoav",
-                addedAt: 162521765262
+                addedAt: 162521765262,
+                time: '4:03'
+
             },
             {
                 id: "mUkfiLjooxs",
+                videoId: 'jNQXAC9IVRw',
                 title: "song",
                 url: "youtube/song.mp4",
                 imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                addedBy: {}
+                addedBy: {},
+                addedAt: 162521765262,
+                time: '4:03'
+
+            },
+            {
+                id: "mUkfiLjooxs",
+                videoId: 'JXRN_LkCa_o',
+                title: "song",
+                url: "youtube/song.mp4",
+                imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
+                addedBy: {},
+                addedAt: 162521765262,
+                time: '4:03'
+
             }
         ],
         msgs: [
@@ -102,7 +120,9 @@ const _demoStations = [
                 title: "song",
                 url: "youtube/song.mp4",
                 imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                addedBy: {}
+                addedBy: {},
+                addedAt: 162521765262
+
             }
         ],
         msgs: [

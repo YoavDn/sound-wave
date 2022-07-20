@@ -1,0 +1,23 @@
+.station-option-container {
+    padding-inline: $layout-padding;
+    margin-block: 1.3rem;
+
+    button {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .play-btn {
+        font-size: 56px;
+        color: $clr1;
+        margin-inline-end: .5em;
+
+    }
+
+    .heart-btn {
+        font-size: 30px;
+        align-self: center;
+        color: $clr1;
+    }
+}

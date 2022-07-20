@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(270px, 1fr));
     grid-template-rows: repeat(auto-fill, 80px);
-    // background-color: red;
+    background-color: red;
     height: 270px;
 
     .station-name {

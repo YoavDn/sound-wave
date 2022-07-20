@@ -1,9 +1,8 @@
 <template>
-    <section class="station-container">
+    <section v-if="station" class="station-container">
         <station-header :station="station" />
         <station-options />
         <track-list :tracks="station.songs" />
-        <pre style="color: white"> {{ station }}</pre>
     </section>
 
 </template>
