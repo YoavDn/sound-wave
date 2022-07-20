@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     color: $light-gray;
+    padding-inline: $base-padding;
 
     .player-song-controllers{
         gap: 5px;

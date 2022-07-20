@@ -2,8 +2,7 @@
     grid-column: 1;
     grid-row: 1/span 2;
     background-color: $clr2;
-    // display: flex;
-    padding-inline: $side-bar-padding;
+    padding-inline: $base-padding;
 
     .logo {
         color: $clr3;

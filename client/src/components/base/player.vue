@@ -1,21 +1,21 @@
 <template>
-    <section class="player-container">
-        <YouTube hidden v-if="vidSrc" :src="vidSrc" ref="youtube" />
+    <section v-if="vidSrc" class="player-container">
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" ref="youtube" />
         <div>
             <img class="curr-song" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fe529a64193929.5aca8500ba9ab.jpg">
         </div>
         <div>
             <div class="flex center player-song-controllers">
-                <button>🔀</button>
+                <button @click="shuffle">🔀</button>
                 <button>⏪</button>
                 <button @click="toggleSongPlay">{{ playOrPause }}</button>
                 <button>⏩</button>
                 <button>🔁</button>
             </div>
-            <div>
-            0:00
-                <progress @change="changeTime" id="file" value="50" max="100"></progress>
-            0:19
+            <div class="flex">
+            <div >{{currTime}}</div> 
+                <progress id="file" :value="currTime" :max="trackDuration"></progress>
+            <div>{{trackDuration}}</div>
             </div>
         </div>
         <div>
@@ -36,8 +36,18 @@ export default defineComponent({
             playOrPause: '▶',
             soundIcon: '🔊',
             volume: 50,
-            songDuration: 0,
+            currTime: 0,
+            trackDuration:0,
+            trackInterval:null,
         }
+    },
+    created(){
+        // CurrTime(){
+            // this.currTime = this.$refs.youtube.getCurrentTime()
+        // },
+        // TrackDuration(){
+        //     this.truckDuration = this.$refs.youtube.getDuration()
+        // }
     },
     computed:{
         vidSrc() {
@@ -45,16 +55,26 @@ export default defineComponent({
         },
     },
     methods: {
+        state(ev){
+            if(ev.data === 0){
+                this.currTime = 0
+                return clearInterval(this.trackInterval)
+            } 
+            console.log(ev)
+        },
         toggleSongPlay() {
         if(this.playOrPause === '▶'){
           this.$refs.youtube.playVideo()
           this.playOrPause = '⏸'
+          this.trackDuration = this.$refs.youtube.getDuration()
+          this.trackInterval = setInterval(() => {
+          this.currTime = this.$refs.youtube.getCurrentTime()
+          }, 100);
           console.log('this.$refs.youtube',this.$refs.youtube)
         } else {
           this.$refs.youtube.pauseVideo()
           this.playOrPause = '▶'
         }
-        console.log(this.playOrPause)
     },
     changeVolume(){
       this.$refs.youtube.setVolume(this.volume)
@@ -72,6 +92,9 @@ export default defineComponent({
         this.$refs.youtube.setVolume(0)
       }
     },
+    shuffle() {{
+        this.$refs.youtube.setShuffle(true)
+    }}
     },
 })
 </script>
