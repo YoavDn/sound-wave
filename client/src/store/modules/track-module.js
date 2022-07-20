@@ -1,12 +1,37 @@
+import { youtubeService } from '../../services/youtube.service'
+
 export default {
+
   state: {
-    srcVideo: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    // videoSrc: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    track: null,
+    searchResults: null,
   },
   getters: {
-    currSong(state) {
-      return state.srcVideo
+    currTrack(state) {
+      return state.track
     },
+    searchResults(state) {
+      return state.searchResults
+    }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setSearchResults(state, { tracks }) {
+      state.searchResults = tracks
+    },
+    setTrack(state, { track }) {
+      // state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
+      state.track = track
+
+    }
+  },
+  actions: {
+    async searchTracks({ commit }, { query }) {
+      if (!query || !query.length) return commit({ type: "setSearchResults", tracks: null })
+      const tracks = await youtubeService.searchTracks(query)
+      console.log('tracks = ', tracks)
+      commit({ type: "setSearchResults", tracks })
+    }
+  },
+
 }

@@ -1,6 +1,6 @@
 <template>
-    <section v-if="vidSrc" class="player-container">
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" ref="youtube" />
+    <section v-if="track" class="player-container">
+        <YouTube hidden v-if="track" @stateChange="state" :src="track" ref="youtube" />
         <div>
             <img class="curr-song" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fe529a64193929.5aca8500ba9ab.jpg">
         </div>
@@ -41,17 +41,11 @@ export default defineComponent({
             trackInterval:null,
         }
     },
-    created(){
-        // CurrTime(){
-            // this.currTime = this.$refs.youtube.getCurrentTime()
-        // },
-        // TrackDuration(){
-        //     this.truckDuration = this.$refs.youtube.getDuration()
-        // }
-    },
+    created(){},
     computed:{
-        vidSrc() {
-            return this.$store.getters.currSong
+        track() {
+            console.log('this.$store.getters.currTrack = ', this.$store.getters.currTrack)
+            return this.$store.getters.currTrack
         },
     },
     methods: {
@@ -63,18 +57,23 @@ export default defineComponent({
             console.log(ev)
         },
         toggleSongPlay() {
+        clearInterval(this.trackInterval)
         if(this.playOrPause === '▶'){
+        
           this.$refs.youtube.playVideo()
           this.playOrPause = '⏸'
-          this.trackDuration = this.$refs.youtube.getDuration()
-          this.trackInterval = setInterval(() => {
-          this.currTime = this.$refs.youtube.getCurrentTime()
-          }, 100);
+          this.intervalForTrack()
           console.log('this.$refs.youtube',this.$refs.youtube)
         } else {
           this.$refs.youtube.pauseVideo()
           this.playOrPause = '▶'
         }
+    },
+    intervalForTrack(){
+        this.trackDuration = this.$refs.youtube.getDuration()
+          this.trackInterval = setInterval(() => {
+          this.currTime = this.$refs.youtube.getCurrentTime()
+          }, 100);
     },
     changeVolume(){
       this.$refs.youtube.setVolume(this.volume)

@@ -3,6 +3,7 @@
     width: 100%;
     border-radius: 5px;
     padding: .5rem;
+    cursor: pointer;
 
     .track-details {
         gap: 1rem;
@@ -28,7 +29,7 @@
     }
 
     .preview-actions {
-        width: 5rem;
+        width: 6rem;
         gap: 1rem;
 
     }
@@ -40,5 +41,9 @@
         .action-btn {
             visibility: visible;
         }
+    }
+
+    .options-modal {
+        background: black;
     }
 }
