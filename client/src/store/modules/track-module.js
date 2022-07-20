@@ -21,7 +21,6 @@ export default {
     },
     setTrack(state, { track }) {
       // state.videoSrc = `https://www.youtube.com/watch?v=${videoId}`
-      console.log('track = ', track)
       state.track = track
 
     }
