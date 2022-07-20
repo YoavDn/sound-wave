@@ -1,11 +1,12 @@
-import { storageService } from './localStorage';
+// import { storageService } from './localStorage';
 
 
 
 
-export const stationsService = {
+export const stationService = {
     query,
     save,
+    getById,
 }
 
 
@@ -13,6 +14,10 @@ function query() {
     return Promise.resolve(_demoStations)
 }
 
+function getById(stationId) {
+    const station = _demoStations.find(s => s._id === stationId)
+    return Promise.resolve(station)
+}
 
 function save() {
     // :TODO

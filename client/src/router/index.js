@@ -17,7 +17,7 @@ const router = createRouter({
       component: search
     },
     {
-      path: '/station/:id?',
+      path: '/station/:id',
       name: 'station',
       component: station
     },
