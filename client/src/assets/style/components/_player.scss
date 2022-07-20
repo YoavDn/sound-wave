@@ -8,12 +8,26 @@
     color: $light-gray;
     padding-inline: $base-padding;
 
-    .player-song-controllers{
+    .player-track-controllers{
         gap: 5px;
     }
 
-    .curr-song{
+    .curr-track-img{
         height: 56px;
         width: 56px;
     }
+
+    .track-details{
+        align-items: center;
+        gap: 5px;
+    }
+
+    // .progress-bar-container{
+    //     width: 100%;
+    // }
+
+    // .progress-bar{
+    //     width: 200%;
+    //     min-width: 130px;
+    // }
 }
