@@ -34,6 +34,7 @@ export default {
 
         } else {
             this.station = stationService.getEmptyStation()
+            this.$store.dispatch({ type: 'saveStation', station: this.station })
         }
     },
 
