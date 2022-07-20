@@ -11,6 +11,9 @@ export default {
         setCurrStation: (state, { station }) => state.currStation = station,
 
     },
+    getters: {
+        getStations: (state) => state.stations
+    },
     actions: {
         async loadStations({ commit }) {
             try {

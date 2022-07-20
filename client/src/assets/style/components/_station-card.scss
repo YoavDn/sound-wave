@@ -1,0 +1,21 @@
+.station-card {
+    height: 285px;
+    background: rgba(255, 255, 255, .2);
+    margin-inline-end: 25px;
+    padding: .5em;
+    border-radius: 5px;
+
+    img {
+        height: 200px;
+        width: 200px;
+        border-radius: 5px;
+        padding: 6px;
+        object-fit: cover;
+    }
+
+    .station-name {
+        padding-inline-start: 6px;
+        color: $clr3;
+        font-weight: 200;
+    }
+}
