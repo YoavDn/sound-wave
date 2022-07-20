@@ -3,12 +3,12 @@
     <main class="home-container">
         <h2 class="hero-title">Good morning Afik and Aviya</h2>
         <section class="hero-list">
-            <article v-for="station in heroStations" :key="station.id" class="hero-card">
+            <article v-for="station in heroStations" :key="station._id" class="hero-card">
                 <hero-preview :station="station" />
             </article>
         </section>
         <section class="station-list-container flex">
-            <stations-list :stations="stations" />
+            <stations-list v-if="stations" :stations="stations" />
         </section>
     </main>
 </template>

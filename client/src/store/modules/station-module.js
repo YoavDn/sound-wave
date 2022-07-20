@@ -35,7 +35,9 @@ export default {
 
         async saveStation({ commit }, { station }) {
             try {
-                stationService.save(station)
+                const stations = await stationService.save(station)
+                console.log('stations = ', stations)
+                commit({type: 'loadStations', stations})
             } catch (err) {
                 return console.log(err);
             }
