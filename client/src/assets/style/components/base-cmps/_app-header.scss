@@ -1,11 +1,12 @@
 .app-header-container {
     position: sticky;
+    height: 60px;
+    top: 0;
     grid-column: 2;
     top: 0;
     grid-row: 1;
-    // background-color: $dark-gray;
-    background-color: transparent;
-    padding-inline: $base-padding;
+    z-index: 3;
+    background: rgba($clr3, 0);
 
     .page-btn-container {
         gap: 1rem;
@@ -18,7 +19,7 @@
             height: 2rem;
             justify-content: center;
             color: white;
-            background: #050505;
+            background: rgba($clr2, $alpha: .6);
             border: 0;
             font-weight: 800;
             font-size: 1.2rem;

@@ -1,13 +1,6 @@
 .home-container {
     overflow: scroll;
     overflow-x: hidden;
-    grid-column: 2;
     grid-row: 2;
-    padding-inline: $layout-padding;
-
-    .hero-title {
-        font-size: 26px;
-        color: $clr3;
-        margin-block: 20px;
-    }
+    grid-column: 2;
 }

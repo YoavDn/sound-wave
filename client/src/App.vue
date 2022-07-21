@@ -1,8 +1,8 @@
 <template>
   <main class="main-layout">
     <appHeader />
-    <side-bar />
     <router-view />
+    <side-bar />
     <player />
   </main>
 </template>

@@ -183,7 +183,66 @@ function _createDemoStations() {
                     txt: "Manish?"
                 }
             ]
-        }
+        },
+        // Trending now
+
+        // Hits
+
+        //Mood
+
+        //Focus
+        {
+            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            name: "לומדים באיזי",
+            tags: [
+                "Funk",
+                "Happy"
+            ],
+            createdAt: 1541652422,
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "s1001",
+                    title: "Baby ",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
+                    addedBy: "yoav",
+                    addedAt: 162521765262
+                },
+                {
+                    id: "mUkfiLjooxs",
+                    title: "song",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262
+
+                }
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        //Pop
+
+        //Rock
+
+        //Party
+
+        //Jazz
+
     ]
 }
 

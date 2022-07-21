@@ -2,11 +2,12 @@
     display: grid;
     grid-template-columns: 300px repeat(2, minmax(270px, 1fr));
     // grid-template-rows: repeat(auto-fill, 80px);
-    height: 270px;
-    margin-top: 20px;
+    height: 340px;
+    padding-top: 10px;
 
     img {
-        grid-row: 1 /span 3;
+        grid-row: 3;
+        height: 190px;
         align-self: center;
         padding-inline-start: $layout-padding;
     }
@@ -15,12 +16,18 @@
 
     .station-name {
         grid-column: 2/4;
-        grid-row: 2;
+        grid-row: 3;
         justify-content: end;
         transform: translateY(50%);
         color: $clr3;
         font-size: 70px;
         font-weight: 700;
         // padding-inline-start: $layout-padding;
+    }
+
+    @media screen and (min-width: 1320px) {
+        img {
+            height: 230px;
+        }
     }
 }
