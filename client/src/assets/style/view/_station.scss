@@ -1,5 +1,6 @@
 .station-container {
-
+    overflow: scroll;
+    overflow-x: hidden;
     background: linear-gradient(#893232, $dark-gray 80%);
 
 

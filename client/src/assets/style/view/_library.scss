@@ -1,8 +1,10 @@
-.library-container{
+.library-container {
+    overflow: scroll;
+    overflow-x: hidden;
     padding-inline: $layout-padding;
     color: white;
 
-    .library-title{
+    .library-title {
         font-size: 26px;
         margin-block: 20px;
     }

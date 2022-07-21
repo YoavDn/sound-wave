@@ -1,7 +1,7 @@
 
 <template>
     <main class="home-container">
-        <h2 class="hero-title">Good morning Afik and Aviya</h2>
+        <h2 class="hero-title">Final Sprint day 3 !</h2>
         <section class="hero-list">
             <article v-for="station in heroStations" :key="station._id" class="hero-card">
                 <hero-preview :station="station" />

@@ -1,12 +1,15 @@
 .app-header-container {
+    position: fix;
     grid-column: 2;
     grid-row: 1;
-    background-color: $dark-gray;
+    // background-color: $dark-gray;
+    background-color: transparent;
     padding-inline: $base-padding;
 
     .page-btn-container {
         gap: 1rem;
         padding-inline: 2rem;
+
         .pages-btn {
             cursor: pointer;
             border-radius: 3rem;
