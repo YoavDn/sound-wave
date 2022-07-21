@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-.station-list-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
-    grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
-    padding-inline: $layout-padding;
-    gap: 20px
-}
-
-.station-tracks-container {
-    color: white;
-    display: grid;
-
-=======
 .station-list {
     // display: grid;
     width: 100%;
@@ -22,6 +8,7 @@
     display: grid;
     grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
 }
+
 // .track-list-head {
 //     padding-inline: $base-padding;
 //     display: grid;
@@ -39,7 +26,6 @@
 //     // &:nth-child(2) {
 //     //     grid-column: 2;
 //     // }
->>>>>>> 4cdabb7802852e13aeb6759422a8f08060b36741
 
 //     // &:nth-child(3) {
 //     //     grid-column: 3;

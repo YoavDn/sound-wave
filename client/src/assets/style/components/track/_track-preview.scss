@@ -1,14 +1,7 @@
 .track-preview {
-<<<<<<< HEAD
-    padding-inline: $base-padding;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 40px 40px 1fr 1fr 1;
-    padding: .5rem;
-    gap: 5px;
-=======
     gap: 5px;
     font-size: 16px;
+
     .track-play {
         // flex-basis: 5%;
         grid-column: 1;
@@ -58,7 +51,6 @@
         overflow: hidden;
 
     }
->>>>>>> 4cdabb7802852e13aeb6759422a8f08060b36741
 
     .track-idx {
         color: $light-gray;
