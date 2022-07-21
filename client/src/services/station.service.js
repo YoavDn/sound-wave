@@ -18,7 +18,7 @@ let demoStations;
     if (!demoStations || !demoStations.length) {
         demoStations = _createDemoStations()
         const likedSongs = getEmptyStation(true)
-        // storageService.post(KEY, likedSongs)
+        demoStations.unshift(likedSongs)
         storageService.postMany(KEY, demoStations)
     }
     return demoStations
@@ -39,6 +39,11 @@ function getById(stationId) {
 
 async function save(station) {
     await storageService.post(KEY, station)
+    return await query()
+}
+
+async function remove(station) {
+    await storageService.remove(KEY, station)
     return storageService.query(KEY)
 }
 
@@ -46,12 +51,13 @@ async function addTrackToStation(data) {
     const { station, track } = data
     const stations = await storageService.query(KEY)
     const stationIdx = stations.findIndex(s => s._id === station._id)
-    stations[stationIdx].tracks.push(track)
+    console.log('statstationIdx = ', stationIdx)
+    stations[stationIdx].tracks.unshift(track)
     await storageService.put(KEY, stations[stationIdx])
-    return storageService.query(KEY)
+    return stations
 }
 
-async function removeTrackFromStation({station, track}){
+async function removeTrackFromStation({ station, track }) {
     const stationIdx = demoStations.findIndex(s => s._id === station._id)
 
 }
@@ -59,7 +65,7 @@ async function removeTrackFromStation({station, track}){
 function getEmptyStation(isLikedSongs = false) {
     return {
         _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
-        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + demoStations.length,
+        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (demoStations.length ++),
         tags: [],
         createdAt: Date.now(),
         createdBy: null,

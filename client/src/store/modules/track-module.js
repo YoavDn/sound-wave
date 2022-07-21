@@ -27,7 +27,6 @@ export default {
     async searchTracks({ commit }, { query }) {
       if (!query || !query.length) return commit({ type: "setSearchResults", tracks: null })
       const tracks = await youtubeService.searchTracks(query)
-      console.log('tracks = ', tracks)
       commit({ type: "setSearchResults", tracks })
     }
   },
