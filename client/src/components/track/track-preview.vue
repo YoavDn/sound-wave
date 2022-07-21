@@ -43,7 +43,6 @@
         },
     
         created() {
-            console.log(this.trackIdx);
         }
     }
     </script>

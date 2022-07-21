@@ -8,7 +8,6 @@
 export default {
     props: { station: Object },
     created() {
-        console.log(this.station);
     },
     data() {
         return {

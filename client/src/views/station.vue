@@ -39,8 +39,10 @@ export default {
 
     created() {
     },
-    async unmounted(){
-        await this.$store.dispatch({type:'saveStation', station: this.station})
+    async beforeRouteLeave(to, from, next){
+        const { id } = this.$route.params 
+        if (!id) await this.$store.dispatch({type: 'saveStation', station: this.station})
+        next()
     },
     methods: {
         setTrack(track) {
@@ -56,7 +58,6 @@ export default {
     computed: {
         searchResults() {
             const tracks = this.$store.getters.searchResults
-            console.log('tracks!!!', tracks);
             return tracks
         },
         station() {

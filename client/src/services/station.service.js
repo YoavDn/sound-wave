@@ -13,7 +13,7 @@ export const stationService = {
 }
 let demoStations;
 
-(() => {
+(async () => {
     demoStations = localStorageService.loadFromStorage(KEY)
     if (!demoStations || !demoStations.length) {
         demoStations = _createDemoStations()
@@ -63,9 +63,11 @@ async function removeTrackFromStation({ station, track }) {
 }
 
 function getEmptyStation(isLikedSongs = false) {
+    // const stations = await query()
+    console.log('demoStations = ', demoStations)
     return {
         _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
-        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (demoStations.length ++),
+        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (demoStations.length + 1),
         tags: [],
         createdAt: Date.now(),
         createdBy: null,
