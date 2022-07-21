@@ -3,7 +3,7 @@
         <YouTube hidden @stateChange="state" :src="vidSrc" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
-            <div class="curr-track-name">{{trackName}}</div>
+            <div class="curr-track-name">{{ trackName }}</div>
         </div>
 
         <div class="track-controllers-container">
@@ -22,12 +22,13 @@
             </div>
             <div class="flex progress-bar-container">
                 <div>{{ convertSecToMin(currTime.toFixed(0)) }}</div>
-                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime" :max="trackDuration"/>
-                <div>{{ convertSecToMin(trackDuration)}}</div>
-            </div>     
+                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
+                    :max="trackDuration" />
+                <div>{{ convertSecToMin(trackDuration) }}</div>
+            </div>
         </div>
         <div>
-            <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg "></span></button>
+            <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <input @change="changeVolume" type="range" v-model="volume" />
         </div>
     </section>
@@ -50,7 +51,7 @@ export default defineComponent({
             trackInterval: null,
         };
     },
-    created() {},
+    created() { },
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -116,6 +117,7 @@ export default defineComponent({
             console.log(ev);
         },
         toggleSongPlay() {
+            console.log(this.$refs.youtube);
             if (!this.isPlayOrPause) {
                 console.log('on play', this.vidSrc);
                 this.play();
@@ -166,4 +168,5 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+</style>
