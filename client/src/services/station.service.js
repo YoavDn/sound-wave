@@ -2,6 +2,7 @@ import { utilService } from './utils.service.js'
 // import { storageService } from './local-storage.js'
 import { storageService } from './async-storage.service.js';
 import { localStorageService } from './local-storage.js';
+import {stationsData} from '../data/data.js'
 const KEY = 'stationsDB'
 
 export const stationService = {
@@ -16,7 +17,7 @@ let demoStations;
 (async () => {
     demoStations = localStorageService.loadFromStorage(KEY)
     if (!demoStations || !demoStations.length) {
-        demoStations = _createDemoStations()
+        demoStations = stationsData.demoStations
         const likedSongs = await getEmptyStation(true)
         demoStations.unshift(likedSongs)
         storageService.postMany(KEY, demoStations)
@@ -24,8 +25,6 @@ let demoStations;
     return demoStations
 
 })()
-
-
 
 async function query() {
     // return Promise.resolve(demoStations)
@@ -76,174 +75,4 @@ async function getEmptyStation(isLikedSongs = false) {
 
     }
 }
-
-function _createDemoStations() {
-    return [
-        {
-            _id: "5cksxjas89xjsa8xjsa8jxs01",
-            name: "Afik's playlist",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
-            createdAt: 1541652422,
-            createdBy: {
-                _id: "u101",
-                fullname: "Afik Zehavi",
-                imgUrl: "http://some-photo/"
-            },
-            likedByUsers: [
-                "{minimal-user}",
-                "{minimal-user}"
-            ],
-            tracks: [
-                {
-                    id: "s1001",
-                    videoId: 'patwm5DXFrE',
-                    title: "Baby ",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
-                    addedBy: "yoav",
-                    addedAt: 162521765262,
-                    time: '4:03'
-
-                },
-                // {
-                //     id: "mUkfiLjooxs",
-                //     videoId: 'jNQXAC9IVRw',
-                //     title: "song",
-                //     url: "youtube/song.mp4",
-                //     imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                //     addedBy: {},
-                //     addedAt: 162521765262,
-                //     time: '4:03'
-
-                // },
-                // {
-                //     id: "mUkfiLjooxs",
-                //     videoId: 'JXRN_LkCa_o',
-                //     title: "song",
-                //     url: "youtube/song.mp4",
-                //     imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                //     addedBy: {},
-                //     addedAt: 162521765262,
-                //     time: '4:03'
-
-                // }
-            ],
-            msgs: [
-                {
-                    id: "m101",
-                    from: "{mini-user}",
-                    txt: "Manish?"
-                }
-            ],
-
-        },
-        {
-            _id: "5cksxjas89xjsa8xjsa8jxs09",
-            name: "Avoya",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
-            createdAt: 1541652422,
-            createdBy: {
-                _id: "u101",
-                fullname: "Puki Ben David",
-                imgUrl: "http://some-photo/"
-            },
-            likedByUsers: [
-                "{minimal-user}",
-                "{minimal-user}"
-            ],
-            tracks: [
-                {
-                    id: "s1001",
-                    title: "Baby ",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
-                    addedBy: "yoav",
-                    addedAt: 162521765262
-                },
-                {
-                    id: "mUkfiLjooxs",
-                    title: "song",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                    addedBy: {},
-                    addedAt: 162521765262
-
-                }
-            ],
-            msgs: [
-                {
-                    id: "m101",
-                    from: "{mini-user}",
-                    txt: "Manish?"
-                }
-            ]
-        },
-        // Trending now
-
-        // Hits
-
-        //Mood
-
-        //Focus
-        {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
-            name: "לומדים באיזי",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
-            createdAt: 1541652422,
-            createdBy: {
-                _id: "u101",
-                fullname: "Puki Ben David",
-                imgUrl: "http://some-photo/"
-            },
-            likedByUsers: [
-                "{minimal-user}",
-                "{minimal-user}"
-            ],
-            tracks: [
-                {
-                    id: "s1001",
-                    title: "Baby ",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
-                    addedBy: "yoav",
-                    addedAt: 162521765262
-                },
-                {
-                    id: "mUkfiLjooxs",
-                    title: "song",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                    addedBy: {},
-                    addedAt: 162521765262
-
-                }
-            ],
-            msgs: [
-                {
-                    id: "m101",
-                    from: "{mini-user}",
-                    txt: "Manish?"
-                }
-            ]
-        },
-        //Pop
-
-        //Rock
-
-        //Party
-
-        //Jazz
-
-    ]
-}
-
 
