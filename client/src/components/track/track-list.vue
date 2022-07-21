@@ -9,8 +9,8 @@
                     </div>
                 </div>
             </li>
-            <li v-for="track in tracks" class="flex align-center">
-                <track-preview :track="track" @setTrack="$emit('setTrack', track)" />
+            <li v-for="(track, idx) in tracks" class="flex align-center">
+                <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" />
             </li>
         </ul>
     </div>
