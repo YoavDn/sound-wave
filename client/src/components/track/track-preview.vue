@@ -1,28 +1,42 @@
 <template>
-    <section class="track-preview flex align-center space-between">
-        <div class="track-details flex align-center ">
+    <section class="track-preview flex align-center">
+        <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
             <p class="track-idx light">{{ trackIdx }}</p>
-            <div class="track-img-container "><img :src="track.imgUrl"></div>
-            <div class="track-title-container">{{ track.title }}</div>
         </div>
-        <div class="preview-actions flex align-center space-between">
+        <div class="track-img">
+            <img :src="track.imgUrl" />
+        </div>
+        <div class="track-title">
+            <h2>{{ track.title }}</h2>
+        </div>
+        <div class="track-added-by sub-text">
+            <p>John Smith</p>
+        </div>
+        <div class="track-date-added sub-text">
+            <p>Dec 25, 2019 </p>
+        </div>
+        <div class="track-like">
             <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
-            <div class="trackTime">{{ track.time }}</div>
+        </div>
+        <div class="track-time sub-text">
+            <p>{{ track.time }}</p>
+        </div>
+        <div class="track-options">
+            <track-options :track="track" />
         </div>
     </section>
-    <!-- 
-    <section class="track-preview flex align-center">
-   
-    </section> -->
-    <!-- <pre style="color: white">{{ track }}</pre> -->
 </template>
 
+
+
     <script>
-    
-    
+    import trackOptions from '../track/track-options.vue'
     export default {
+        components: {
+            trackOptions
+        },
         props: {
             'track': Object,
             'trackIdx': Number
