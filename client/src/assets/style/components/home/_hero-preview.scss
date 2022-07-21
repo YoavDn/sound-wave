@@ -1,12 +1,12 @@
 .hero-card {
     border-radius: 3px;
     transition: background .3s;
-
+    cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
 
     .hero-img {
         img {
-            height: 80px;
+            height: 75px;
 
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
@@ -28,5 +28,14 @@
 
     &:hover {
         background: rgba($clr3, .3);
+    }
+
+
+    @media screen and(min-width: 1150px) {
+        .hero-img {
+            img {
+                height: 80px;
+            }
+        }
     }
 }
