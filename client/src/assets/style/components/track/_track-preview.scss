@@ -1,10 +1,64 @@
 .track-preview {
+<<<<<<< HEAD
     padding-inline: $base-padding;
     width: 100%;
     display: grid;
     grid-template-columns: 40px 40px 1fr 1fr 1;
     padding: .5rem;
     gap: 5px;
+=======
+    gap: 5px;
+    font-size: 16px;
+    .track-play {
+        // flex-basis: 5%;
+        grid-column: 1;
+    }
+
+    .track-img {
+        // flex-basis: 5%;
+        grid-column: 2;
+
+        img {
+            height: 100%;
+            height: 40px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+    }
+
+
+    .track-added-by {
+        grid-column: 3;
+    }
+
+    .track-date-added {
+        grid-column: 4;
+    }
+
+    .track-time {
+        grid-column: 5;
+        width: 100%;
+        gap: 1rem;
+        margin-right: 32px;
+        justify-content: center;
+
+        button {
+            margin-right: 16px;
+        }
+    }
+
+    .track-like {
+        gap: 1rem;
+        visibility: hidden;
+    }
+
+    .track-details {
+        gap: 1rem;
+        width: 50%;
+        overflow: hidden;
+
+    }
+>>>>>>> 4cdabb7802852e13aeb6759422a8f08060b36741
 
     .track-idx {
         color: $light-gray;
@@ -12,8 +66,7 @@
     }
 
     .action-btn {
-        display: none;
-        // width: 20px;
+        visibility: hidden;
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
@@ -30,7 +83,7 @@
         background: $opacityWhite;
 
         .action-btn {
-            display: block;
+            visibility: visible;
         }
 
         .track-like {
@@ -45,7 +98,7 @@
     }
 
     .sub-text {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: $light-gray;
     }
 }
