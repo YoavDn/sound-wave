@@ -4,7 +4,7 @@
         <main class="station-main-container">
             <station-options />
             <track-list :tracks="station.tracks" @setTrack="setTrack" />
-            <div v-if="!station?.tracks.length > 0" class="station-search">
+            <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
                 <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
             </div>
@@ -33,17 +33,17 @@ export default {
 
     data() {
         return {
-            newStation: null
+            newStation: null,
+            station: null,
         }
     },
 
-    created() {
+    async created() {
+        const { id } = this.$route.params
+        this.station = await this.$store.getters.getStation(id)
+        if (!id) await this.$store.dispatch({ type: 'saveStation', station: this.station })
     },
-    async beforeRouteLeave(to, from, next){
-        const { id } = this.$route.params 
-        if (!id) await this.$store.dispatch({type: 'saveStation', station: this.station})
-        next()
-    },
+
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
@@ -60,10 +60,6 @@ export default {
             const tracks = this.$store.getters.searchResults
             return tracks
         },
-        station() {
-            const { id } = this.$route.params
-            return this.$store.getters.getStation(id)
-        }
     }
 
 }
