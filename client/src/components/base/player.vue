@@ -29,11 +29,13 @@
                     </button>
             </div>
             <div class="flex progress-bar-container">
-                <div>{{ convertSecToMin(currTime.toFixed(0)) }}</div>
-                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime" :max="trackDuration"/>
-                <div>{{ convertSecToMin(trackDuration.toFixed(0))}}</div>
-            </div>     
+                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
+                    :max="trackDuration" />
+                <div>{{ convertSecToMin(trackDuration.toFixed(0)) }}</div>
+            </div>
         </div>
+
+
         <div>
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <input @change="changeVolume" type="range" v-model="volume" />
@@ -121,7 +123,7 @@ export default defineComponent({
             console.log('player is ready');
         },
         toggleSongPlay() {
-            console.log('{...this.station}',{...this.station})
+            console.log('{...this.station}', { ...this.station })
             if (!this.isPlayOrPause) {
                 this.play();
             } else {
@@ -135,7 +137,7 @@ export default defineComponent({
         },
         play() {
             clearInterval(this.trackInterval);
-            console.log('this.vidSrc = ', this.vidSrc)
+
             this.$refs.youtube.playVideo();
             this.intervalForTrack();
             this.isPlayOrPause = true;
@@ -161,24 +163,24 @@ export default defineComponent({
             }
         },
         onChangeSong(diff) {
-            let currStation = {...this.station}
+            let currStation = { ...this.station }
             let currTrack = this.track
             let currTrackIdx = currStation.tracks.indexOf(currTrack)
             let currTrackInStationIdx = currStation.tracks[currTrackIdx]
 
             currTrackInStationIdx = currTrackInStationIdx + diff
 
-             if (currTrackInStationIdx < 0) {
-            this.$refs.youtube.seekTo(0)
-            return
+            if (currTrackInStationIdx < 0) {
+                this.$refs.youtube.seekTo(0)
+                return
             } else if (currTrackInStationIdx >= currStation.tracks.length) {
                 this.$refs.youtube.seekTo(0)
                 return
-            } 
+            }
 
             let changedTrack = currStation.tracks[currTrackInStationIdx]
             this.setTrack(changedTrack)
-    },
+        },
         shuffle() {
             {
                 this.$refs.youtube.setShuffle(true);

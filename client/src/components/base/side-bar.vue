@@ -28,9 +28,9 @@
                 Liked Songs
             </button>
         </nav>
-        <hr>
-        <div v-if="stations" style="color:white;" v-for="station in stations" :key="station?._id">
-            <p @click="goToStation(station._id)">{{ station.name }}</p>
+        <div class="side-bar-station-list" v-if="stations" style="color:white;">
+            <p class="station-side-link" v-for="station in stations" :key="station?._id"
+                @click="goToStation(station._id)">{{ station.name }}</p>
         </div>
     </section>
 </template>
@@ -67,7 +67,7 @@ export default {
             this.$router.push(`/${page}`)
         },
         goToStation(stationId) {
-                this.$router.push(`/station/${stationId}`)
+            this.$router.push(`/station/${stationId}`)
         },
         isActive(pageId) {
             return this.activePage === pageId ? true : false
