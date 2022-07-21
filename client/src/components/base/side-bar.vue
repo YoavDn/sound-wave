@@ -50,8 +50,6 @@ export default {
     },
 
     created() {
-        console.log('stations' ,this.$store.getters.getStations);
-        console.log(this.$route);
         this.activePage = () => this.$route.name
     },
 
@@ -66,11 +64,9 @@ export default {
 
     methods: {
         goToPage(page) {
-            console.log(page);
             this.$router.push(`/${page}`)
         },
         goToStation(stationId) {
-                console.log('stationId',stationId)
                 this.$router.push(`/station/${stationId}`)
         },
         isActive(pageId) {

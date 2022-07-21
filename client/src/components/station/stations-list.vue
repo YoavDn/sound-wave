@@ -12,7 +12,6 @@ export default {
     props: { stations: Array },
 
     created() {
-        console.log(this.stations);
     },
     methods: {
         goToStation(stationId) {
