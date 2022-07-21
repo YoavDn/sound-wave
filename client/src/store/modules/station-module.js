@@ -18,6 +18,7 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
+                console.log('stations = ', stations)
                 commit({ type: 'loadStations', stations })
             } catch {
                 return console.log('cant load stations');
@@ -26,6 +27,7 @@ export default {
         async setCurrStation({ commit }, { stationId }) {
             try {
                 const station = await stationService.getById(stationId)
+                console.log('station = ', station)
                 commit({ type: 'setCurrStation', station })
                 return station
             } catch {
@@ -46,8 +48,11 @@ export default {
         async addTrackToStation({ commit }, { data }) {
             try {
                 const { station, track } = data
+                console.log('data = ', data)
                 if (station.tracks.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
-                stationService.addTrackToStation(data)
+                const stations = await stationService.addTrackToStation(data)
+                commit({type: 'loadStations', stations})
+                // commit()
             } catch (err) {
                 return console.log(err);
             }

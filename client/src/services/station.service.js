@@ -18,7 +18,7 @@ let demoStations;
     if (!demoStations || !demoStations.length) {
         demoStations = _createDemoStations()
         const likedSongs = getEmptyStation(true)
-        storageService.post(KEY, likedSongs)
+        // storageService.post(KEY, likedSongs)
         storageService.postMany(KEY, demoStations)
     }
     return demoStations
@@ -27,8 +27,9 @@ let demoStations;
 
 
 
-function query() {
-    return Promise.resolve(demoStations)
+async function query() {
+    // return Promise.resolve(demoStations)
+    return await storageService.query(KEY)
 }
 
 function getById(stationId) {
@@ -37,21 +38,22 @@ function getById(stationId) {
 }
 
 async function save(station) {
-    // demoStations.unshift(station)
-    // storageService.postMany(KEY, demoStations)
     await storageService.post(KEY, station)
     return storageService.query(KEY)
 }
 
 async function addTrackToStation(data) {
     const { station, track } = data
-    const stationIdx = demoStations.findIndex(s => s._id === station._id)
-    demoStations[stationIdx].tracks.push(track)
-    await storageService.put(KEY, demoStations[stationIdx])
-    console.log(demoStations);
-    // storageService.saveToStorage(KEY, demoStations)
-    // return Promise.resolve(demoStations)
+    const stations = await storageService.query(KEY)
+    const stationIdx = stations.findIndex(s => s._id === station._id)
+    stations[stationIdx].tracks.push(track)
+    await storageService.put(KEY, stations[stationIdx])
     return storageService.query(KEY)
+}
+
+async function removeTrackFromStation({station, track}){
+    const stationIdx = demoStations.findIndex(s => s._id === station._id)
+
 }
 
 function getEmptyStation(isLikedSongs = false) {
@@ -71,7 +73,7 @@ function _createDemoStations() {
     return [
         {
             _id: "5cksxjas89xjsa8xjsa8jxs01",
-            name: "afik's playlist",
+            name: "Afik's playlist",
             tags: [
                 "Funk",
                 "Happy"
@@ -79,7 +81,7 @@ function _createDemoStations() {
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
-                fullname: "Puki Ben David",
+                fullname: "Afik Zehavi",
                 imgUrl: "http://some-photo/"
             },
             likedByUsers: [

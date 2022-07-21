@@ -39,7 +39,8 @@ export default {
         const { id } = this.$route.params
         if (id) {
             this.$store.dispatch({ type: 'setCurrStation', stationId: id })
-                .then(station => this.station = { ...station })
+                // .then(station => this.station = { ...station })
+                .then(station => this.station = station)
 
         } else {
             this.station = stationService.getEmptyStation()
