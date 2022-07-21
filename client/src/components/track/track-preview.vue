@@ -1,15 +1,14 @@
 <template>
-    <section class="track-preview flex align-center">
+    <section class="track-preview track-list-row align-center">
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
             <p class="track-idx light">{{ trackIdx }}</p>
         </div>
-        <div class="track-img">
+        <div class="track-img flex">
             <img :src="track.imgUrl" />
-        </div>
-        <div class="track-title">
             <h2>{{ track.title }}</h2>
+            
         </div>
         <div class="track-added-by sub-text">
             <p>John Smith</p>
@@ -17,13 +16,10 @@
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
         </div>
-        <div class="track-like">
+    
+        <div class="track-time flex align-center sub-text">
             <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
-        </div>
-        <div class="track-time sub-text">
             <p>{{ track.time }}</p>
-        </div>
-        <div class="track-options">
             <track-options :track="track" />
         </div>
     </section>

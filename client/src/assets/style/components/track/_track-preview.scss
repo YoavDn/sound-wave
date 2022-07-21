@@ -1,19 +1,14 @@
 .track-preview {
-    padding-inline: $base-padding;
-    width: 100%;
-    border-radius: 3px;
-    padding: .5rem;
-
     gap: 5px;
-
-
-
+    font-size: 16px;
     .track-play {
-        flex-basis: 5%;
+        // flex-basis: 5%;
+        grid-column: 1;
     }
 
     .track-img {
-        flex-basis: 5%;
+        // flex-basis: 5%;
+        grid-column: 2;
 
         img {
             height: 100%;
@@ -23,34 +18,29 @@
         }
     }
 
-    .track-options {
-        flex-basis: 5%;
-    }
-
-    .track-title {
-        flex-basis: 30%;
-        font-size: 12px;
-        margin-inline-start: 10px;
-
-        h2 {
-            font-weight: 300;
-        }
-    }
 
     .track-added-by {
-        flex-basis: 20%;
+        grid-column: 3;
     }
 
     .track-date-added {
-        flex-basis: 20%;
+        grid-column: 4;
     }
 
     .track-time {
-        flex-basis: 5%;
+        grid-column: 5;
+        width: 100%;
+        gap: 1rem;
+        margin-right: 32px;
+        justify-content: center;
+
+        button {
+            margin-right: 16px;
+        }
     }
 
     .track-like {
-        flex-basis: 5%;
+        gap: 1rem;
         visibility: hidden;
     }
 
@@ -67,8 +57,7 @@
     }
 
     .action-btn {
-        display: none;
-        // width: 20px;
+        visibility: hidden;
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
@@ -85,7 +74,7 @@
         background: $opacityWhite;
 
         .action-btn {
-            display: block;
+            visibility: visible;
         }
 
         .track-like {
@@ -100,7 +89,7 @@
     }
 
     .sub-text {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: $light-gray;
     }
 }

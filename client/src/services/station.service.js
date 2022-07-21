@@ -108,28 +108,28 @@ function _createDemoStations() {
                     time: '4:03'
 
                 },
-                {
-                    id: "mUkfiLjooxs",
-                    videoId: 'jNQXAC9IVRw',
-                    title: "song",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                    addedBy: {},
-                    addedAt: 162521765262,
-                    time: '4:03'
+                // {
+                //     id: "mUkfiLjooxs",
+                //     videoId: 'jNQXAC9IVRw',
+                //     title: "song",
+                //     url: "youtube/song.mp4",
+                //     imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
+                //     addedBy: {},
+                //     addedAt: 162521765262,
+                //     time: '4:03'
 
-                },
-                {
-                    id: "mUkfiLjooxs",
-                    videoId: 'JXRN_LkCa_o',
-                    title: "song",
-                    url: "youtube/song.mp4",
-                    imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                    addedBy: {},
-                    addedAt: 162521765262,
-                    time: '4:03'
+                // },
+                // {
+                //     id: "mUkfiLjooxs",
+                //     videoId: 'JXRN_LkCa_o',
+                //     title: "song",
+                //     url: "youtube/song.mp4",
+                //     imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
+                //     addedBy: {},
+                //     addedAt: 162521765262,
+                //     time: '4:03'
 
-                }
+                // }
             ],
             msgs: [
                 {
