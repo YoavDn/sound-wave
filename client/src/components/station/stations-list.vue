@@ -17,7 +17,6 @@ export default {
     created() {
         console.log(this.stations);
     },
-
     methods: {
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)

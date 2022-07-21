@@ -13,15 +13,15 @@ function query(entityType) {
     return Promise.resolve(entities);
 }
 
-//get an item by id
+//get an item by _id
 function get(entityType, entityId) {
     return query(entityType)
-        .then(entities => entities.find(entity => entity.id === entityId))
+        .then(entities => entities.find(entity => entity._id === entityId))
 }
 
 //create new item
 function post(entityType, newEntity) {
-    newEntity.id = _makeId()
+    newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
             entities.unshift(newEntity);
@@ -44,7 +44,7 @@ function postMany(entityType, newEntities) {
 function put(entityType, updatedEntity) {
     return query(entityType)
         .then(entities => {
-            const idx = entities.findIndex(entity => entity.id === updatedEntity.id);
+            const idx = entities.findIndex(entity => entity._id === updatedEntity._id);
             entities.splice(idx, 1, updatedEntity)
             _save(entityType, entities)
             return updatedEntity;
@@ -54,7 +54,7 @@ function put(entityType, updatedEntity) {
 function remove(entityType, entityId) {
     return query(entityType)
         .then(entities => {
-            const idx = entities.findIndex(entity => entity.id === entityId);
+            const idx = entities.findIndex(entity => entity._id === entityId);
             entities.splice(idx, 1)
             _save(entityType, entities)
         })

@@ -1,6 +1,6 @@
 .library-liked-songs-card {
     cursor: pointer;
-    height: 285px;
+    height: 300px;
     background: rgba(255, 255, 255, .2);
     margin-inline-end: 25px;
     padding: .5em;
@@ -15,7 +15,7 @@
     background-clip: initial;
     background-color: initial;
     margin-inline-end: 25px;
-    width:400px; 
+    width:439px; 
     flex-direction: column;
     justify-content: end;
 
@@ -30,8 +30,4 @@
     .liked-tracks-count{
         margin-bottom: 20px;
     }
-
-
-    // <h1 class="liked-tracks-title">liked Songs</h1>
-    //             <div class="liked-tracks-count"
 }

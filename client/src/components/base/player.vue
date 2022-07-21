@@ -132,6 +132,7 @@ export default defineComponent({
         play() {
             clearInterval(this.trackInterval);
             this.$refs.youtube.playVideo();
+            console.log('this.$refs.youtube.playVideo(); = ', this.$refs.youtube.playVideo())
             this.intervalForTrack();
             this.isPlayOrPause = true;
         },

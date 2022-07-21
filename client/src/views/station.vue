@@ -39,7 +39,9 @@ export default {
 
     created() {
     },
-
+    async unmounted(){
+        await this.$store.dispatch({type:'saveStation', station: this.station})
+    },
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })

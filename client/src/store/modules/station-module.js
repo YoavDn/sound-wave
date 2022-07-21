@@ -1,3 +1,4 @@
+import { storageService } from '../../services/async-storage.service'
 import { stationService } from '../../services/station.service'
 
 export default {
@@ -41,6 +42,7 @@ export default {
         async saveStation({ commit }, { station }) {
             try {
                 const stations = await stationService.save(station)
+                console.log('stations = ', stations)
                 commit({ type: 'loadStations', stations })
             } catch (err) {
                 return console.log(err);
@@ -49,13 +51,15 @@ export default {
 
         async addTrackToStation({ commit }, { data }) {
             try {
-                const { station, track } = data
+                let { station, track } = data
                 if (station.tracks.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
-                stationService.addTrackToStation(data)
+                const stations = await stationService.addTrackToStation(data)
+                commit({ type: 'loadStations', stations })
+                // commit()
             } catch (err) {
                 return console.log(err);
             }
-        }
+        },
 
     }
 }

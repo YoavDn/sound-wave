@@ -8,16 +8,16 @@
             Add to playlist
             <template #dropdown>
               <el-dropdown-menu class="dropdown-menu">
-                <el-dropdown-item class="dropdown-item" v-for="station in stations" @click="addTrackToStation({ track, station })">{{
-                    station.name
-                }}
+                <el-dropdown-item class="dropdown-item" v-for="station in stations"
+                  @click="addTrackToStation({ track, station })">{{
+                      station.name
+                  }}
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
         </el-dropdown-item>
         <el-dropdown-item class="dropdown-item">Share</el-dropdown-item>
-        <el-dropdown-item class="dropdown-item">Add to liked songs</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -38,7 +38,7 @@ export default {
   methods: {
     addTrackToStation(data) {
       eventBus.emit('addTrackToStation', data)
-    }
+    },
   }
 
 }
