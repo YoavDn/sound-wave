@@ -11,14 +11,10 @@
                 </article>
             </div>
         </section>
-        <section class="station-list-container">
-            <stations-list v-if="stations" :stations="stations" />
-        </section>
-        <!-- test render demo data -->
-        <article style="color:white;" v-for="tag in tags">
+        <article style="color:white;" v-if="stations" v-for="tag in tags">
             <h1>{{ tag }}</h1>
             <section class="station-list-container">
-                <stations-list v-if="stations" :stations="stations" :tag="tag" />
+                <stations-list :stations="getFilterStations(tag)" />
             </section>
         </article>
     </main>
@@ -46,7 +42,10 @@ export default {
     methods: {
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
-        }
+        },
+        getFilterStations(tag) {
+            return this.stations.filter(s => s.tags.some(t => t === tag))
+        },
     },
     computed: {
         stations() {
@@ -56,13 +55,6 @@ export default {
         heroStations() {
             return this.$store.getters.getStations.slice(-6)
         }
-    },
-
-    demoDataRender() {
-        this.tags.map((tag) => {
-            const stationsByTag = this.stations.filter(station => station.tags?.includes(tag))
-            return stationsByTag
-        })
     },
 }
 

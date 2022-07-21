@@ -1,7 +1,7 @@
 <template>
     <article v-if="stations" v-for="station in stations" :key="station?._id" class="station-card"
         @click="goToStation(station._id)">
-        <station-preview v-if="station.tags === tag" :station="station" />
+        <station-preview :station="station" />
     </article>
 </template >
             
@@ -22,7 +22,7 @@ export default {
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
         }
-    }
+    },
 }
 
 </script>
