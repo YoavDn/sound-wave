@@ -1,6 +1,6 @@
 <template>
     <section v-if="track" class="player-container">
-        <YouTube hidden @stateChange="state" :src="vidSrc" ref="youtube" />
+        <YouTube hidden @stateChange="state" @ready="play" :src="vidSrc" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
             <div class="curr-track-name">{{ trackName }}</div>
@@ -21,18 +21,14 @@
                 <button><span v-html="repeatSvg"></span></button>
             </div>
             <div class="flex progress-bar-container">
-                <div>{{ convertSecToMin(currTime.toFixed(0)) }}</div>
-                <<<<<<< HEAD <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
+
+                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
-                <div>{{ convertSecToMin(trackDuration) }}</div>
+                <div>{{ convertSecToMin(trackDuration.toFixed(0)) }}</div>
             </div>
-            =======
-            <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
-                :max="trackDuration" />
-            <div>{{ convertSecToMin(trackDuration.toFixed(0)) }}</div>
         </div>
-        >>>>>>> be3aaedbf8ac0a2a161f53583a06be6efedac1ee
-        </div>
+
+
         <div>
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <input @change="changeVolume" type="range" v-model="volume" />
@@ -85,7 +81,6 @@ export default defineComponent({
             return `<svg role="presentation" height="16" width="16" aria-label="Volume off" id="volume-icon" viewBox="0 0 16 16" ><path d="M13.86 5.47a.75.75 0 00-1.061 0l-1.47 1.47-1.47-1.47A.75.75 0 008.8 6.53L10.269 8l-1.47 1.47a.75.75 0 101.06 1.06l1.47-1.47 1.47 1.47a.75.75 0 001.06-1.06L12.39 8l1.47-1.47a.75.75 0 000-1.06z"></path><path d="M10.116 1.5A.75.75 0 008.991.85l-6.925 4a3.642 3.642 0 00-1.33 4.967 3.639 3.639 0 001.33 1.332l6.925 4a.75.75 0 001.125-.649v-1.906a4.73 4.73 0 01-1.5-.694v1.3L2.817 9.852a2.141 2.141 0 01-.781-2.92c.187-.324.456-.594.78-.782l5.8-3.35v1.3c.45-.313.956-.55 1.5-.694V1.5z"></path></svg>`;
         },
         track() {
-
             return this.$store.getters.currTrack;
         },
         vidSrc() {
@@ -124,11 +119,7 @@ export default defineComponent({
             }
         },
         toggleSongPlay() {
-<<<<<<< HEAD
-            console.log(this.$refs.youtube);
-=======
-            console.log('{...this.station}',{...this.station})
->>>>>>> be3aaedbf8ac0a2a161f53583a06be6efedac1ee
+            console.log('{...this.station}', { ...this.station })
             if (!this.isPlayOrPause) {
                 this.play();
             } else {
@@ -142,6 +133,7 @@ export default defineComponent({
         },
         play() {
             clearInterval(this.trackInterval);
+            console.log(this.$refs.youtube);
             this.$refs.youtube.playVideo();
             this.intervalForTrack();
             this.isPlayOrPause = true;
