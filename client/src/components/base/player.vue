@@ -1,6 +1,6 @@
 <template>
     <section v-if="track" class="player-container">
-        <YouTube hidden @stateChange="state" @ready="play" :src="vidSrc" ref="youtube" />
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
             <div class="curr-track-name">{{ trackName }}</div>
@@ -118,6 +118,9 @@ export default defineComponent({
                 return clearInterval(this.trackInterval);
             }
         },
+        onReady() {
+            console.log('player is ready');
+        },
         toggleSongPlay() {
             console.log('{...this.station}', { ...this.station })
             if (!this.isPlayOrPause) {
@@ -133,7 +136,7 @@ export default defineComponent({
         },
         play() {
             clearInterval(this.trackInterval);
-            console.log(this.$refs.youtube);
+
             this.$refs.youtube.playVideo();
             this.intervalForTrack();
             this.isPlayOrPause = true;

@@ -1,64 +1,12 @@
 .track-preview {
     padding-inline: $base-padding;
     width: 100%;
-    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 40px 40px 1fr 1fr 1;
+
     padding: .5rem;
 
     gap: 5px;
-
-
-
-    .track-play {
-        flex-basis: 5%;
-    }
-
-    .track-img {
-        flex-basis: 5%;
-
-        img {
-            height: 100%;
-            height: 40px;
-            aspect-ratio: 1;
-            object-fit: cover;
-        }
-    }
-
-    .track-options {
-        flex-basis: 5%;
-    }
-
-    .track-title {
-        flex-basis: 30%;
-        font-size: 12px;
-
-        h2 {
-            font-weight: 300;
-        }
-    }
-
-    .track-added-by {
-        flex-basis: 20%;
-    }
-
-    .track-date-added {
-        flex-basis: 20%;
-    }
-
-    .track-time {
-        flex-basis: 5%;
-    }
-
-    .track-like {
-        flex-basis: 5%;
-        visibility: hidden;
-    }
-
-    .track-details {
-        gap: 1rem;
-        width: 50%;
-        overflow: hidden;
-
-    }
 
     .track-idx {
         color: $light-gray;

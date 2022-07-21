@@ -14,8 +14,8 @@ export default {
     },
     getters: {
         getStations: (state) => state.stations,
-        getStation: ({ stations }) => (id) => {
-            if (!id) return  stationService.getEmptyStation()
+        getStation: ({ stations }) => async (id) => {
+            if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
         },
     },
