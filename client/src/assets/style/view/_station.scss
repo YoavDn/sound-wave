@@ -1,7 +1,9 @@
 .station-container {
     overflow: scroll;
     overflow-x: hidden;
-    background: linear-gradient(#e03f3f, $dark-gray 80%);
+    grid-column: 2;
+    grid-row: 2;
+    background: linear-gradient(#e03f3f, $dark-gray 60%);
 
     .station-main-container {
         background: rgba($dark-gray, 0.2);

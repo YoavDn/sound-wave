@@ -16,16 +16,17 @@
     }
 
     .side-bar-nav {
-        cursor: pointer;
+        height: 350px;
+        border-bottom: solid 1px rgba($clr3, .3);
 
         .page-link-btn {
             cursor: pointer;
             border: none;
+            width: 100%;
             background-color: transparent;
-            margin-block: rem(13px);
-            line-height: 16px;
+            height: 40px;
             color: $light-gray;
-            font-size: rem(14px);
+            font-size: 1rem;
 
             .page-link-svg {
                 width: 24px;
@@ -48,14 +49,27 @@
         }
 
         .create-playlist-link {
-            margin-top: 30px;
+            margin-top: 20px;
 
         }
     }
 
-    .stations-nav {
-        border-top: .3px solid $clr3;
+    .side-bar-station-list {
         flex-basis: 50%;
-    }
+        border-top: .5px solid rgba($clr3, 0.3);
 
+        .station-side-link {
+            cursor: pointer;
+            width: fit-content;
+            font-size: 14px;
+            line-height: 32px;
+            font-weight: 200;
+
+            color: $light-gray;
+
+            &:hover {
+                color: $clr3;
+            }
+        }
+    }
 }

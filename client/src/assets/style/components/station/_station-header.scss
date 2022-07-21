@@ -1,7 +1,7 @@
 .station-header-container {
     display: grid;
     grid-template-columns: 300px repeat(2, minmax(270px, 1fr));
-    grid-template-rows: repeat(auto-fill, 80px);
+    // grid-template-rows: repeat(auto-fill, 80px);
     height: 270px;
     margin-top: 20px;
 
