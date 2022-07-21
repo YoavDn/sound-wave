@@ -3,29 +3,22 @@
     overflow-x: hidden;
     grid-column: 2;
     grid-row: 2;
-    background: linear-gradient(#e03f3f, $dark-gray 500px);
 
     .station-main-container {
         background: rgba($dark-gray, 0.2);
     }
 
 
-
-
-    .track-list-head {
-        border-bottom: solid 1px rgba($clr3, 0.2);
-        margin-bottom: 24px;
-
-        h2,
-        p {
-            font-size: 1rem;
-            color: $light-gray;
-            font-weight: 300;
-        }
-    }
-
     .station-search {
         padding-inline: $layout-padding;
     }
+}
 
+
+.station-list-container {
+    padding-inline: $layout-padding;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
+    grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
+    gap: 20px
 }

@@ -1,14 +1,11 @@
 .track-preview {
-    gap: 5px;
     font-size: 16px;
 
     .track-play {
-        // flex-basis: 5%;
         grid-column: 1;
     }
 
-    .track-img {
-        // flex-basis: 5%;
+    .track-img-title {
         grid-column: 2;
 
         img {
@@ -16,6 +13,16 @@
             height: 40px;
             aspect-ratio: 1;
             object-fit: cover;
+            margin-right: 16px;
+        }
+
+        h2 {
+            font-size: 1rem;
+            line-height: 1.5rem;
+            text-transform: none;
+            letter-spacing: normal;
+            font-weight: 400;
+            color: $clr3;
         }
     }
 
@@ -30,13 +37,25 @@
 
     .track-time {
         grid-column: 5;
-        width: 100%;
-        gap: 1rem;
-        margin-right: 32px;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 35px 53px 27px;
+
 
         button {
             margin-right: 16px;
+            grid-column: 1;
+        }
+
+        p {
+            grid-column: 2;
+            // align-self: flex-end;
+            justify-self: flex-end;
+        }
+
+        .el-dropdown {
+            grid-column: 3;
+            justify-self: flex-end;
+
         }
     }
 
@@ -58,7 +77,8 @@
     }
 
     .action-btn {
-        visibility: hidden;
+        // visibility: hidden;
+        display: none;
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
@@ -75,7 +95,8 @@
         background: $opacityWhite;
 
         .action-btn {
-            visibility: visible;
+            // visibility: visible;
+            display: flex;
         }
 
         .track-like {
@@ -110,4 +131,15 @@
 
         }
     }
+}
+
+.track-list-row {
+    display: grid;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
+    grid-gap: 16px;
+    height: 56px;
+    position: relative;
+    padding: 0 16px;
 }
