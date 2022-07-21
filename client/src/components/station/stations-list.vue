@@ -7,12 +7,14 @@
             
 <script>
 import stationPreview from './station-preview.vue'
+
 export default {
-    components: { stationPreview },
+    components: {
+        stationPreview,
+    },
     props: { stations: Array },
 
     created() {
-        console.log(this.stations);
     },
     methods: {
         goToStation(stationId) {

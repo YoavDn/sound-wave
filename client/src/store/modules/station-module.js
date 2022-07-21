@@ -14,8 +14,8 @@ export default {
     },
     getters: {
         getStations: (state) => state.stations,
-        getStation: ({ stations }) => id => {
-            if (!id) return stationService.getEmptyStation()
+        getStation: ({ stations }) => (id) => {
+            if (!id) return  stationService.getEmptyStation()
             return stations.find(station => station._id === id)
         },
     },
@@ -42,7 +42,6 @@ export default {
         async saveStation({ commit }, { station }) {
             try {
                 const stations = await stationService.save(station)
-                console.log('stations = ', stations)
                 commit({ type: 'loadStations', stations })
             } catch (err) {
                 return console.log(err);
@@ -52,10 +51,10 @@ export default {
         async addTrackToStation({ commit }, { data }) {
             try {
                 let { station, track } = data
-                if (station.tracks.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
+                if (station._id === 'likedSongs') station = stationService.getById(station._id)
+                if (station.tracks?.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
                 const stations = await stationService.addTrackToStation(data)
                 commit({ type: 'loadStations', stations })
-                // commit()
             } catch (err) {
                 return console.log(err);
             }

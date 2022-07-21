@@ -1,31 +1,34 @@
 <template>
     <section v-if="station" class="station-container">
         <station-header :station="station" />
-        <station-options />
-        <track-list :tracks="station.tracks" @setTrack="setTrack" />
-        <div v-if="!station?.tracks.length > 0" class="station-search">
-            <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
-            <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
-        </div>
+        <main class="station-main-container">
+            <station-options />
+            <track-list :tracks="station.tracks" @setTrack="setTrack" />
+            <div v-if="!station?.tracks.length > 0" class="station-search">
+                <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
+                <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
+            </div>
+        </main>
     </section>
 
 </template>
     
 <script>
 import stationHeader from '../components/station/station-header.vue'
-import stationOptions from '../components/station/station-options.vue'
 import searchBar from '../components/search/search-bar.vue'
 import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
+import stationOptions from '../components/station/station-options.vue'
 import { stationService } from '../services/station.service'
 
 export default {
     components: {
         stationHeader,
-        stationOptions,
         trackList,
         searchResultList,
-        searchBar
+        searchBar,
+        stationOptions
+
     },
 
     data() {
@@ -36,8 +39,10 @@ export default {
 
     created() {
     },
-    async unmounted(){
-        await this.$store.dispatch({type:'saveStation', station: this.station})
+    async beforeRouteLeave(to, from, next){
+        const { id } = this.$route.params 
+        if (!id) await this.$store.dispatch({type: 'saveStation', station: this.station})
+        next()
     },
     methods: {
         setTrack(track) {
@@ -53,7 +58,6 @@ export default {
     computed: {
         searchResults() {
             const tracks = this.$store.getters.searchResults
-            console.log('tracks!!!', tracks);
             return tracks
         },
         station() {
