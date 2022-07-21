@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 240px 1fr;
     grid-template-rows: 64px 1fr 90px;
-    background: $dark-gray;
+    background: linear-gradient(#570e69, #121212 80%);
     height: 100vh;
     overflow: hidden;
 }

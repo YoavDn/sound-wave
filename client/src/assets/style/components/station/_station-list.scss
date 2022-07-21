@@ -6,8 +6,23 @@
 
 .track-list-row {
     display: grid;
+    border: 1px solid transparent;
+    border-radius: 4px;
     grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
+    grid-gap: 16px;
+    height: 56px;
+    position: relative;
+    padding: 0 16px;
 }
+// .track-list-head {
+//     height: 100%;
+//     font-size: 0.75rem;
+//     line-height: 1rem;
+//     text-transform: uppercase;
+//     letter-spacing: 0.1em;
+//     font-weight: 800 !important;
+//     color: #b3b3b3;
+// }
 // .track-list-head {
 //     padding-inline: $base-padding;
 //     display: grid;

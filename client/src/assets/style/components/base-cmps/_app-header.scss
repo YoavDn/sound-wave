@@ -1,6 +1,7 @@
 .app-header-container {
-    position: fix;
+    position: sticky;
     grid-column: 2;
+    top: 0;
     grid-row: 1;
     // background-color: $dark-gray;
     background-color: transparent;
