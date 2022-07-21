@@ -11,19 +11,19 @@
                 <button @click="shuffle">
                     <span v-html="shuffleSvg"></span>
                 </button>
-                <button><span v-html="prevSvg"></span></button>
+                <button @click="onChangeSong(-1)" ><span v-html="prevSvg"></span></button>
                 <button class="btn-play" @click="toggleSongPlay">
                     <span v-html="isPlayOrPause ? pauseSvg : playSvg"></span>
                 </button>
                 <button>
-                    <button><span v-html="nextSvg"></span></button>
+                    <button @click="onChangeSong(1)" ><span v-html="nextSvg"></span></button>
                 </button>
                 <button><span v-html="repeatSvg"></span></button>
             </div>
             <div class="flex progress-bar-container">
                 <div>{{ convertSecToMin(currTime.toFixed(0)) }}</div>
                 <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime" :max="trackDuration"/>
-                <div>{{ convertSecToMin(trackDuration)}}</div>
+                <div>{{ convertSecToMin(trackDuration.toFixed(0))}}</div>
             </div>     
         </div>
         <div>
@@ -91,8 +91,15 @@ export default defineComponent({
             return this.track.title
             // console.log('this.track.title',this.track.title)
         },
+        station() {
+            const { id } = this.$route.params
+            return this.$store.getters.getStation(id)
+        },
     },
     methods: {
+        setTrack(track) {
+            this.$store.commit({ type: 'setTrack', track })
+        },
         // move to util
         convertSecToMin(totalSeconds) {
             const minutes = Math.floor(totalSeconds / 60);
@@ -116,6 +123,7 @@ export default defineComponent({
             console.log(ev);
         },
         toggleSongPlay() {
+            console.log('{...this.station}',{...this.station})
             if (!this.isPlayOrPause) {
                 console.log('on play', this.vidSrc);
                 this.play();
@@ -157,6 +165,25 @@ export default defineComponent({
                 this.$refs.youtube.setVolume(0);
             }
         },
+        onChangeSong(diff) {
+            let currStation = {...this.station}
+            let currTrack = this.track
+            let currTrackIdx = currStation.tracks.indexOf(currTrack)
+            let currTrackInStationIdx = currStation.tracks[currTrackIdx]
+
+            currTrackInStationIdx = currTrackInStationIdx + diff
+
+             if (currTrackInStationIdx < 0) {
+            this.$refs.youtube.seekTo(0)
+            return
+            } else if (currTrackInStationIdx >= currStation.tracks.length) {
+                this.$refs.youtube.seekTo(0)
+                return
+            } 
+
+            let changedTrack = currStation.tracks[currTrackInStationIdx]
+            this.setTrack(changedTrack)
+    },
         shuffle() {
             {
                 this.$refs.youtube.setShuffle(true);
