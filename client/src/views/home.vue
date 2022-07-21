@@ -14,8 +14,13 @@
         <section class="station-list-container">
             <stations-list v-if="stations" :stations="stations" />
         </section>
-
-
+        <!-- test render demo data -->
+        <article style="color:white;" v-for="tag in tags">
+            <h1>{{ tag }}</h1>
+            <section class="station-list-container">
+                <stations-list v-if="stations" :stations="stations" :tag="tag" />
+            </section>
+        </article>
     </main>
 </template>
 
@@ -32,13 +37,17 @@ export default {
         dropDown
     },
 
+
+    data() {
+        return {
+            tags: ['test', 'party', 'rock', 'pop', 'focus', 'jazz', 'album', 'mood']
+        }
+    },
     methods: {
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
         }
     },
-
-
     computed: {
         stations() {
             return this.$store.getters.getStations
@@ -49,5 +58,12 @@ export default {
         }
     },
 
+    demoDataRender() {
+        this.tags.map((tag) => {
+            const stationsByTag = this.stations.filter(station => station.tags?.includes(tag))
+            return stationsByTag
+        })
+    },
 }
+
 </script>
