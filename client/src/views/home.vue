@@ -1,11 +1,13 @@
 
 <template>
     <main class="home-container">
-        <h2 class="hero-title">Final Sprint day 3 !</h2>
-        <section class="hero-list">
-            <article v-for="station in heroStations" :key="station._id" class="hero-card">
-                <hero-preview :station="station" />
-            </article>
+        <section class="hero-container">
+            <h2 class="hero-title">Final Sprint day 3 !</h2>
+            <div class="hero-list">
+                <article v-for="station in heroStations" :key="station._id" class="hero-card">
+                    <hero-preview :station="station" />
+                </article>
+            </div>
         </section>
         <section class="station-list-container">
             <stations-list v-if="stations" :stations="stations" />

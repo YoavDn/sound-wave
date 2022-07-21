@@ -5,10 +5,12 @@
                     class="bi bi-play-fill"></i></button>
             <p class="track-idx light">{{ trackIdx }}</p>
         </div>
-        <div class="track-img flex">
+        <div class="track-img-title flex">
             <img :src="track.imgUrl" />
-            <h2>{{ track.title }}</h2>
-            
+            <div class="div">
+                <h2>{{ track.title }}</h2>
+                <p class="sub-text">singer</p>
+            </div>
         </div>
         <div class="track-added-by sub-text">
             <p>John Smith</p>
@@ -16,8 +18,8 @@
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
         </div>
-    
-        <div class="track-time flex align-center sub-text">
+
+        <div class="track-time align-center sub-text">
             <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
             <p>{{ track.time }}</p>
             <track-options :track="track" />

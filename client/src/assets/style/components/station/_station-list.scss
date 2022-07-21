@@ -1,42 +1,7 @@
+.station-tracks-container {
+    padding-inline: $layout-padding;
+}
+
 .station-list {
-    // display: grid;
     width: 100%;
-    // grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
 }
-
-.track-list-row {
-    display: grid;
-    grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
-}
-// .track-list-head {
-//     padding-inline: $base-padding;
-//     display: grid;
-//     padding: .5em;
-//     grid-column: 1 / -1;
-//     // p {
-//     //     display: block;
-//     //     text-align: start;
-//     // }
-
-//     // &:nth-child(1) {
-//     //     grid-column: 1;
-//     // }
-
-//     // &:nth-child(2) {
-//     //     grid-column: 2;
-//     // }
-
-//     // &:nth-child(3) {
-//     //     grid-column: 3;
-//     // }
-
-//     // &:nth-child(4) {
-//     //     grid-column: 4;
-//     // }
-
-//     // &:nth-child(5) {
-//     //     // flex-basis: 10%;
-//     //     // text-align: center;
-//     //     grid-column: 5;
-//     // }
-// }
