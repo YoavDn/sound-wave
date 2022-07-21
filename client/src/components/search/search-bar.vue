@@ -1,6 +1,6 @@
 <template>
-    <form @submit.prevent="$emit('setSearch', query)">
-        <div class=" search-container flex align-center">
+    <form @submit.prevent="$emit('searchTrack', query)">
+        <div class="search-container flex align-center">
             <i class="bi bi-search search-icon"></i>
             <input type="search" name="title" v-model="query" placeholder="Playlists or songs">
         </div>

@@ -1,11 +1,12 @@
 <template>
     <section class="search-page-container">
-        <form>
+        <!-- <form>
             <div class="input-container flex align-center">
                 <i class="bi bi-search search-icon"></i>
                 <input type="search" name="title" placeholder="Playlists or songs" v-model="query">
             </div>
-        </form>
+        </form> -->
+        <search-bar class="input-container flex align-center" @searchTrack="searchTrack"/>
 
         <div v-if="tracks">
             <search-result-list @setTrack="setTrack" :tracks="searchTrack" />
@@ -17,11 +18,10 @@
 <script>
 import { eventBus } from '../services/event-bus.js'
 import searchResultList from '../components/search/search-result-list.vue'
-
+import searchBar from '../components/search/search-bar.vue'
 export default {
     data() {
         return {
-            query: '',
             unsubscribe: null,
         }
     },
@@ -33,34 +33,35 @@ export default {
     },
     computed: {
         tracks() {
-            // return this.$store.getters.searchResults
-            return [
-                {
-                    description: "Listen to \"Easy On Me\" here: http://Adele.lnk.to/EOM Pre-order Adele's new album \"30\" before its release on November 19: ...",
-                    videoId: "YQHsXMglC9A",
-                    imgUrl: "https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg",
-                    publishedAt: "2015-10-23T06:54:18Z",
-                    time: "6:07",
-                    title: "Adele - Hello",
-                },
-                {
-                    description: "REMASTERED IN HD! Explore the music of Lionel Richie: https://lnk.to/LionelBestOf Watch more Lionel videos: ...",
-                    videoId: "mHONNcZbwDY",
-                    imgUrl: "https://i.ytimg.com/vi/mHONNcZbwDY/hqdefault.jpg",
-                    publishedAt: "2020-11-20T17:00:16Z",
-                    time: "5:27",
-                    title: "Lionel Richie - Hello ",
-                }
-            ]
+            return this.$store.getters.searchResults
+            // return [
+            //     {
+            //         description: "Listen to \"Easy On Me\" here: http://Adele.lnk.to/EOM Pre-order Adele's new album \"30\" before its release on November 19: ...",
+            //         videoId: "YQHsXMglC9A",
+            //         imgUrl: "https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg",
+            //         publishedAt: "2015-10-23T06:54:18Z",
+            //         time: "6:07",
+            //         title: "Adele - Hello",
+            //     },
+            //     {
+            //         description: "REMASTERED IN HD! Explore the music of Lionel Richie: https://lnk.to/LionelBestOf Watch more Lionel videos: ...",
+            //         videoId: "mHONNcZbwDY",
+            //         imgUrl: "https://i.ytimg.com/vi/mHONNcZbwDY/hqdefault.jpg",
+            //         publishedAt: "2020-11-20T17:00:16Z",
+            //         time: "5:27",
+            //         title: "Lionel Richie - Hello ",
+            //     }
+            // ]
         },
 
     },
     components: {
-        searchResultList
+        searchResultList,
+        searchBar
     },
     methods: {
-        async searchTrack() {
-            await this.$store.dispatch({ type: 'searchTracks', query: this.query })
+        async searchTrack(query) {
+            await this.$store.dispatch({ type: 'searchTracks', query })
         },
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
