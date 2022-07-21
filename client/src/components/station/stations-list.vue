@@ -7,8 +7,11 @@
             
 <script>
 import stationPreview from './station-preview.vue'
+
 export default {
-    components: { stationPreview },
+    components: {
+        stationPreview,
+    },
     props: { stations: Array },
 
     created() {

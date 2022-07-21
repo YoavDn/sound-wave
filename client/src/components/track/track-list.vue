@@ -1,14 +1,8 @@
 <template>
+
     <div class="station-tracks-container">
         <ul class="clean-list flex flex-column result-list">
-            <li class="track-list-head flex space-between">
-                <div class="track-preview flex align-center space-between">
-                    <div class="track-details flex align-center">
-                        <p>#</p>
-                        <h2>Title</h2>
-                    </div>
-                </div>
-            </li>
+            <track-list-head />
             <li v-for="(track, idx) in tracks" class="flex align-center">
                 <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" />
             </li>
@@ -18,11 +12,16 @@
 
 <script>
 import trackPreview from './track-preview.vue'
+import trackListHead from '../custom/track-list-head.vue'
+import TrackListHead from '../custom/track-list-head.vue'
+
 
 
 export default {
     components: {
         trackPreview,
+        trackListHead,
+        TrackListHead
     },
     props: { 'tracks': Array }
 }

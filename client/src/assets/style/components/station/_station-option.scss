@@ -1,6 +1,6 @@
 .station-option-container {
     padding-inline: $layout-padding;
-    margin-block: 1.3rem;
+    padding-block: 20px;
 
     button {
         cursor: pointer;
@@ -9,9 +9,15 @@
     }
 
     .play-btn {
-        font-size: 56px;
-        color: $clr1;
-        margin-inline-end: .5em;
+        font-size: 30px;
+        height: 56px;
+        text-align: center;
+        width: 56px;
+        background: $clr1;
+        border-radius: 50%;
+
+        color: black;
+        margin-inline-end: 32px;
 
     }
 
