@@ -1,14 +1,14 @@
-// .station-list-container {
-//     display: grid;
-//     grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
-//     grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
-
-//     gap: 20px
-// }
+.station-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
+    grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
+    padding-inline: $layout-padding;
+    gap: 20px
+}
 
 .station-tracks-container {
     color: white;
     display: grid;
-    padding-inline: $layout-padding;
+
 
 }
