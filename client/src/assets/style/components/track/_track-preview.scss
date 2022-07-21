@@ -17,13 +17,16 @@
                 object-fit: cover;
             }
         }
+    }
 
-
+    .track-idx {
+        color: $light-gray;
+        width: 20px;
     }
 
     .action-btn {
-        visibility: hidden;
-        width: .9375rem;
+        display: none;
+        width: 20px;
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
@@ -40,7 +43,12 @@
         background: $opacityWhite;
 
         .action-btn {
-            visibility: visible;
+            display: block;
+        }
+
+
+        .track-idx {
+            display: none;
         }
     }
 }

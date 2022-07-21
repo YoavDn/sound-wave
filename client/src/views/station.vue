@@ -3,10 +3,9 @@
         <station-header :station="station" />
         <station-options />
         <track-list :tracks="station.tracks" @setTrack="setTrack" />
-        <div class="station-search">
-            <search-bar @setSearch="searchTrack" />
-
-            <search-result-list v-if="tracks" @setTrack="setTrack" :tracks="searchTrack" />
+        <div v-if="!station?.tracks.length > 0" class="station-search">
+            <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
+            <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
         </div>
     </section>
 
@@ -31,21 +30,11 @@ export default {
 
     data() {
         return {
-            station: null
+            newStation: null
         }
     },
 
     created() {
-        const { id } = this.$route.params
-        if (id) {
-            this.$store.dispatch({ type: 'setCurrStation', stationId: id })
-                // .then(station => this.station = { ...station })
-                .then(station => this.station = station)
-
-        } else {
-            this.station = stationService.getEmptyStation()
-            this.$store.dispatch({ type: 'saveStation', station: this.station })
-        }
     },
 
     methods: {
@@ -61,8 +50,14 @@ export default {
     },
     computed: {
         searchResults() {
-            return this.$store.getters.searchResults
+            const tracks = this.$store.getters.searchResults
+            console.log('tracks!!!', tracks);
+            return tracks
         },
+        station() {
+            const { id } = this.$route.params
+            return this.$store.getters.getStation(id)
+        }
     }
 
 }

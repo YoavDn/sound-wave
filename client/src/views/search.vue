@@ -1,11 +1,6 @@
 <template>
     <section class="search-page-container">
-        <!-- <form>
-            <div class="input-container flex align-center">
-                <i class="bi bi-search search-icon"></i>
-                <input type="search" name="title" placeholder="Playlists or songs" v-model="query">
-            </div>
-        </form> -->
+
         <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack"/>
 
         <div v-if="tracks">

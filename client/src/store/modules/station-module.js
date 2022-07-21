@@ -12,8 +12,13 @@ export default {
 
     },
     getters: {
-        getStations: (state) => state.stations
+        getStations: (state) => state.stations,
+        getStation: ({ stations }) => id => {
+            if (!id) return stationService.getEmptyStation()
+            return stations.find(station => station._id === id)
+        },
     },
+
     actions: {
         async loadStations({ commit }) {
             try {
@@ -38,8 +43,7 @@ export default {
         async saveStation({ commit }, { station }) {
             try {
                 const stations = await stationService.save(station)
-                console.log('stations = ', stations)
-                commit({type: 'loadStations', stations})
+                commit({ type: 'loadStations', stations })
             } catch (err) {
                 return console.log(err);
             }
