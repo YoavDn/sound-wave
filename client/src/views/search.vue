@@ -1,7 +1,7 @@
 <template>
     <section class="search-page-container">
 
-        <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack"/>
+        <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack" />
 
         <div v-if="tracks">
             <search-result-list @setTrack="setTrack" :tracks="tracks" />

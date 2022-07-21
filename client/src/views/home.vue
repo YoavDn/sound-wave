@@ -1,10 +1,11 @@
 
 <template>
+
     <main class="home-container">
         <section class="hero-container">
             <h2 class="hero-title">Final Sprint day 3 !</h2>
             <div class="hero-list">
-                <article v-for="station in heroStations" :key="station._id" class="hero-card">
+                <article v-for="station in heroStations" :key="station._id" class="hero-card flex">
                     <hero-preview :station="station" />
                 </article>
             </div>
@@ -12,35 +13,32 @@
         <section class="station-list-container">
             <stations-list v-if="stations" :stations="stations" />
         </section>
+
+
     </main>
 </template>
 
 <script >
+import dropDown from '../components/custom/drop-down.vue'
 import heroPreview from '../components/home/hero-preview.vue'
 import stationsList from '../components/station/stations-list.vue'
+
 export default {
     name: 'home',
     components: {
         heroPreview,
-        stationsList
+        stationsList,
+        dropDown
     },
-    data() {
-        return {
-            heroStations: [ // demo for now
-                { id: 1, title: 'hello' },
-                { id: 2, title: 'hello' },
-                { id: 3, title: 'hello' },
-                { id: 4, title: 'hello' },
-                { id: 5, title: 'hello' },
-                { id: 6, title: 'hello' },
-            ]
-        }
-    },
+
 
     computed: {
         stations() {
-            // JSON.parse(JSON.stringify())
             return this.$store.getters.getStations
+        },
+
+        heroStations() {
+            return this.$store.getters.getStations.slice(-6)
         }
     }
 }

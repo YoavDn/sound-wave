@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 300px repeat(2, minmax(270px, 1fr));
     // grid-template-rows: repeat(auto-fill, 80px);
-    height: 340px;
+    height: 270px;
     padding-top: 10px;
 
     img {
@@ -11,8 +11,6 @@
         align-self: center;
         padding-inline-start: $layout-padding;
     }
-
-
 
     .station-name {
         grid-column: 2/4;

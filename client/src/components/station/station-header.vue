@@ -9,6 +9,6 @@
 <script>
 export default {
     name: 'stationHeader',
-    props: { station: Object }
+    props: { 'station': Object },
 }
 </script>
