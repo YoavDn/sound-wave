@@ -5,7 +5,8 @@
         <track-list :tracks="station.tracks" @setTrack="setTrack" />
         <div class="station-search">
             <search-bar @setSearch="searchTrack" />
-            <search-result-list :searchResults="searchResults" />
+
+            <search-result-list v-if="tracks" @setTrack="setTrack" :tracks="searchTrack" />
         </div>
     </section>
 

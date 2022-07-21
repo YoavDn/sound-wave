@@ -7,7 +7,7 @@
                 <hero-preview :station="station" />
             </article>
         </section>
-        <section class="station-list-container flex">
+        <section class="station-list-container">
             <stations-list v-if="stations" :stations="stations" />
         </section>
     </main>

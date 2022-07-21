@@ -3,6 +3,7 @@
         <div class="track-details flex align-center ">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
+            <p>1</p>
             <div class="track-img-container "><img :src="track.imgUrl"></div>
             <div class="track-title-container">{{ track.title }}</div>
         </div>

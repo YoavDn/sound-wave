@@ -12,7 +12,9 @@
         .track-img-container {
             img {
                 height: 100%;
-                width: 40px;
+                height: 40px;
+                aspect-ratio: 1;
+                object-fit: cover;
             }
         }
 
@@ -45,6 +47,7 @@
 
 .dropdown-menu {
     background-color: $clr4;
+    border: none;
 
     .dropdown-item {
         color: $clr3;

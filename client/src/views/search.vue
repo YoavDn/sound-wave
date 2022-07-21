@@ -8,7 +8,7 @@
         </form>
 
         <div v-if="tracks">
-            <search-result-list @setTrack="setTrack" :tracks="tracks" />
+            <search-result-list @setTrack="setTrack" :tracks="searchTrack" />
         </div>
 
     </section>
@@ -28,7 +28,7 @@ export default {
     created() {
         this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
     },
-    unmounted(){
+    unmounted() {
         this.unsubscribe()
     },
     computed: {
