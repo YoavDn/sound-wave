@@ -1,7 +1,7 @@
 <template>
     <article v-if="stations" v-for="station in stations" :key="station?._id" class="station-card"
         @click="goToStation(station._id)">
-        <station-preview :station="station" />
+        <station-preview v-if="station.tags === tag" :station="station" />
     </article>
 </template >
             
@@ -12,7 +12,9 @@ export default {
     components: {
         stationPreview,
     },
-    props: { stations: Array },
+    props: { stations: Array, 
+                tag:String,
+     },
 
     created() {
     },

@@ -7,10 +7,7 @@ function demoStations() {
         {
             _id: "5cksxjas89xjsa8xjsa8jxs01",
             name: "Afik's playlist",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['test'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -68,10 +65,7 @@ function demoStations() {
         {
             _id: "5cksxjas89xjsa8xjsa8jxs09",
             name: "Avoya",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['test'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -109,14 +103,11 @@ function demoStations() {
                 }
             ]
         },
-        // Albums
+        /*ALBUMS 1-------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8rergxjsa8jxs09",
             name: "צעירים לנצח",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['album'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -185,14 +176,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in trending now - fix
+        /*FIX ALBUM 2------------------------------------------------------------------ */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5ceregjas8lpqsa8xjsa8jxs09",
             name: "Gemini Rights",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['album'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -263,14 +251,11 @@ function demoStations() {
         },
         // Hits
         
-        //Mood
+        /*MOOD 1----------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lpqerrggjxs09",
             name: "Feeling myself",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['mood'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -323,14 +308,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in mood
+        /*MOOD 2------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5ckgrerglpqsa8xjsa8jxs09",
             name: "You&Me",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['mood'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -399,14 +381,11 @@ function demoStations() {
                 }
             ]
         },
-        //Focus
+        /*FOCUS 1------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksgergbsa8xjsa8jxs09",
             name: "לומדים באיזי",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['focus'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -491,14 +470,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in foucus
+        /*FOCUS 2------------------------------------------------------------------------ */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "gerrg8lpqsa8xjsa8jxs09",
             name: "Coding Mode",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['focus'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -559,14 +535,11 @@ function demoStations() {
                 }
             ]
         },
-        //Pop
+        /*POP 1--------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lpqrgbrjxs09",
             name: "Mega Hit Mix",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['pop'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -643,14 +616,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in pop
+        /*POP 2-------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "gbjy568lpqsa8xjsa8jxs09",
             name: "Guilty Pleasures",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['pop'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -711,14 +681,11 @@ function demoStations() {
                 }
             ]
         },
-        //Rock
+        /*ROCK 1------------------------------------------------------------------*/
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lpqsakbfsd88jxs09",
             name: "Soft Rock",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['rock'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -787,14 +754,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in rock
+        /*ROCK 2-------------------------------------------------------------------------*/
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lgdsyg3jsa8jxs09",
             name: "Rock Classics",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['rock'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -855,14 +819,11 @@ function demoStations() {
                 }
             ]
         },
-        //Party
+        /*PARTY 1------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lpqskdsgfisyd9",
             name: "Party Songs",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['party'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -931,14 +892,11 @@ function demoStations() {
                 }
             ]
         },
-        //second in party
+        /*PARTY 2------------------------------------------------------------------------ */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5ckshjgdsuhsdgy8xjsa8jxs09",
             name: "Summer 2022",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['party'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -1023,14 +981,11 @@ function demoStations() {
                 }
             ]
         },
-        //Jazz
+        /*JAZZ 1------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cksxjas8lpqsa8jigs32209",
             name: "Late Night Jazz",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['jazz'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",
@@ -1099,14 +1054,11 @@ function demoStations() {
                 }
             ]
         },
-        // second in jazz
+        /*WAIT FOR KEY TO BE READY !!!! JAZZ 2---------------------------------------------------------------------------- */
         {
-            _id: "5cksxjas8lpqsa8xjsa8jxs09",
+            _id: "5cshdfytd3328xjsa8jxs09",
             name: "Jazz Vibes",
-            tags: [
-                "Funk",
-                "Happy"
-            ],
+            tags: ['jazz'],
             createdAt: 1541652422,
             createdBy: {
                 _id: "u101",

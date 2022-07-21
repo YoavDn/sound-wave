@@ -12,6 +12,13 @@
         <section class="station-list-container">
             <stations-list v-if="stations" :stations="stations" />
         </section>
+        <!-- test render demo data -->
+        <article style="color:white;" v-for="tag in tags" >
+            <h1>{{tag}}</h1>
+            <section class="station-list-container">
+                <stations-list v-if="stations" :stations="stations" :tag="tag" />
+            </section>
+        </article>
     </main>
 </template>
 
@@ -33,7 +40,8 @@ export default {
                 { id: 4, title: 'hello' },
                 { id: 5, title: 'hello' },
                 { id: 6, title: 'hello' },
-            ]
+            ],
+            tags:['test', 'party', 'rock', 'pop', 'focus', 'jazz', 'album', 'mood']
         }
     },
 
@@ -41,7 +49,14 @@ export default {
         stations() {
             // JSON.parse(JSON.stringify())
             return this.$store.getters.getStations
-        }
-    }
+        },
+        demoDataRender() {
+            this.tags.map((tag) =>{
+                const stationsByTag = this.stations.filter(station => station.tags?.includes(tag))
+                return stationsByTag
+            })
+        },
+    },
+    methods: {},
 }
 </script>

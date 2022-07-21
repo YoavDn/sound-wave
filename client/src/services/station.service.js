@@ -17,7 +17,7 @@ let demoStations;
 (async () => {
     demoStations = localStorageService.loadFromStorage(KEY)
     if (!demoStations || !demoStations.length) {
-        demoStations = stationsData.demoStations
+        demoStations = stationsData.demoStations()
         const likedSongs = await getEmptyStation(true)
         demoStations.unshift(likedSongs)
         storageService.postMany(KEY, demoStations)
@@ -67,7 +67,7 @@ async function getEmptyStation(isLikedSongs = false) {
     return {
         _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
         name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (stations.length + 1),
-        tags: [],
+        tags: ['test'],
         createdAt: Date.now(),
         createdBy: null,
         likedByUsers: null,
