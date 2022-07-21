@@ -28,12 +28,13 @@
                 Liked Songs
             </button>
         </nav>
-
-        <div class="stations-nav">
-            <h2>list</h2>
+        <hr>
+        <div v-if="stations" style="color:white;" v-for="station in stations" :key="station?._id">
+            <p @click="goToStation(station._id)">{{ station.name }}</p>
         </div>
     </section>
 </template>
+
     
 <script >
 export default {
@@ -49,6 +50,7 @@ export default {
     },
 
     created() {
+        console.log('stations' ,this.$store.getters.getStations);
         console.log(this.$route);
         this.activePage = () => this.$route.name
     },
@@ -56,8 +58,10 @@ export default {
     computed: {
         currPage() {
             return this.$route.name
-        }
-
+        },
+        stations() {
+            return this.$store.getters.getStations
+        },
     },
 
     methods: {
@@ -65,7 +69,10 @@ export default {
             console.log(page);
             this.$router.push(`/${page}`)
         },
-
+        goToStation(stationId) {
+                console.log('stationId',stationId)
+                this.$router.push(`/station/${stationId}`)
+        },
         isActive(pageId) {
             return this.activePage === pageId ? true : false
         }
@@ -73,6 +80,6 @@ export default {
 }
 
 </script>
-    
+     <!-- @click="goToStation(station._id)" -->
 <style>
 </style>
