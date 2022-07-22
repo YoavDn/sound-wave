@@ -24,7 +24,7 @@ export default {
     computed: {
         stationDetails() {
             const timeStamp = this.station.tracks.reduce((sum, track) => {
-                return sum += utilService.strTimeToStamp(track.duration)
+                return sum += utilService.strTimeToStamp(track.time)
             }, 0)
             return `${utilService.timeStampToStr(timeStamp)}`
         },
