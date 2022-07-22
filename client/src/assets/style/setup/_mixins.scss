@@ -28,6 +28,7 @@
 
 @mixin add-to-playlist-btn {
     border: solid rgba($clr3, .4) 1px;
+    cursor: pointer;
     line-height: 30px;
     font-weight: 700;
     padding-inline: 1.2em;
@@ -37,5 +38,26 @@
 
     &:hover {
         border: solid $clr3 1.3px;
+    }
+}
+
+
+@mixin dark-seaerch-bar {
+    border-radius: 5px;
+    background: rgba($light-gray, .4);
+    padding-inline: 1rem;
+    color: $clr3;
+
+    input {
+        color: $clr3;
+        width: 100%;
+        height: inherit;
+        border-radius: inherit;
+        background: transparent;
+        outline: none;
+        -webkit-margin-start: 7px;
+        margin-inline-start: 7px;
+        border: none;
+        font-size: 1rem;
     }
 }
