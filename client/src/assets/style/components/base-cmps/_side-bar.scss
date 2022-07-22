@@ -73,3 +73,58 @@
         }
     }
 }
+
+@media (max-width: $tablet-width) {
+
+    .side-bar-container {
+        grid-column: 1 /span 2;
+        grid-row: 3;
+        background-color: $clr2;
+
+        .logo {
+            display: none;
+        }
+
+        .side-bar-nav {
+            display: flex;
+            height: 100px;
+            align-items: center;
+            padding-inline: $layout-padding;
+
+            .page-link-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                border: none;
+                height: 100%;
+                color: $light-gray;
+
+                .page-link-svg {
+                    font-size: 32px;
+                    margin: 0;
+                    padding-block: 2px;
+                    color: $light-gray;
+                }
+
+                &.create-playlist-link {
+                    display: none;
+                }
+
+                &.liked-songs-link {
+                    display: none;
+                }
+            }
+
+            .active-link {
+                color: $clr3;
+            }
+        }
+
+        .side-bar-station-list {
+            display: none;
+        }
+    }
+
+}

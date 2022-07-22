@@ -740,7 +740,7 @@ function demoStations() {
             name: "Soft Rock",
             tags: ['rock'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67616d0000b273435a19dc7413841e1c72409d",
+            imgUrl: "https://i.scdn.co/image/ab67616d0000b273435a19dc7413841e1c72409d",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",
@@ -820,7 +820,7 @@ function demoStations() {
             name: "Rock Classics",
             tags: ['rock'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67706f000000033b52952432e3a6d3f517eb2e",
+            imgUrl: "https://i.scdn.co/image/ab67706f000000033b52952432e3a6d3f517eb2e",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",
@@ -889,9 +889,9 @@ function demoStations() {
         {
             _id: "5cksxjas8lpqskdsgfisyd9",
             name: "Party Songs",
-            tags: ['party'],
+            tags: ['party', 'test'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67706c0000bebb6c5db53da7585761f71553ae",
+            imgUrl: "https://i.scdn.co/image/ab67706c0000bebb6c5db53da7585761f71553ae",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",
@@ -971,7 +971,7 @@ function demoStations() {
             name: "Summer 2022",
             tags: ['party'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67706c0000bebb5c9cf102570b591ad09ee364",
+            imgUrl: "https://i.scdn.co/image/ab67706c0000bebb5c9cf102570b591ad09ee364",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",
@@ -1067,9 +1067,9 @@ function demoStations() {
         {
             _id: "5cksxjas8lpqsa8jigs32209",
             name: "Late Night Jazz",
-            tags: ['jazz'],
+            tags: ['jazz', 'test'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67706f00000003987367cd09caff68b5fa34ec",
+            imgUrl: "https://i.scdn.co/image/ab67706f00000003987367cd09caff68b5fa34ec",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",
@@ -1149,7 +1149,7 @@ function demoStations() {
             name: "Jazz Vibes",
             tags: ['jazz'],
             createdAt: 1541652422,
-            imgUrl:"https://i.scdn.co/image/ab67706f000000035ea54b91b073c2776b966e7b",
+            imgUrl: "https://i.scdn.co/image/ab67706f000000035ea54b91b073c2776b966e7b",
             createdBy: {
                 _id: "u101",
                 fullname: "Puki Ben David",

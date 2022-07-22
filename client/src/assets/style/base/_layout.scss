@@ -12,3 +12,12 @@
     //     // overflow-x: hidden;
     // }
 }
+
+
+@media (max-width: $tablet-width) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 100px 100px;
+    }
+
+}

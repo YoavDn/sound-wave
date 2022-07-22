@@ -21,7 +21,7 @@
                 </span>
                 Create Playlist
             </button>
-            <button @click="goToPage('station/likedSongs')" class=" page-link-btn flex align-center">
+            <button @click="goToPage('station/likedSongs')" class=" liked-songs-link page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <i class="bi bi-heart-fill"></i>
                 </span>
@@ -46,7 +46,7 @@ export default {
             pagesLinks: [
                 { id: '', name: 'Home', icon: 'bi bi-house-door-fill' },
                 { id: 'search', name: 'Search', icon: 'bi bi-search' },
-                { id: 'library', name: 'Library', icon: 'bi bi-music-note-list' }
+                { id: 'library', name: ' Your Library', icon: 'bi bi-music-note-list' }
             ]
         }
     },

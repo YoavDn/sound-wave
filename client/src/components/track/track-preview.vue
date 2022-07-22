@@ -1,9 +1,8 @@
 <template>
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
-            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
-                    class="bi bi-play-fill"></i></button>
-            <p class="track-idx light">{{ trackIdx }}</p>
+            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i :class="playBtn"></i></button>
+            <p class="track-idx light">{{ trackIdx + 1 }}</p>
         </div>
         <div class="track-img-title flex">
             <img :src="track.imgUrl" />
@@ -34,10 +33,22 @@
     export default {
         components: {
             trackOptions
+    
         },
         props: {
             'track': Object,
             'trackIdx': Number
+        },
+    
+        data() {
+            return {
+                isPlaying: true,
+            }
+        },
+        computed: {
+            playBtn() {
+                return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
+            }
         },
     
         created() {

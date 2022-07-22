@@ -9,24 +9,26 @@
         <div class="track-controllers-container">
             <div class="flex center player-track-controllers">
                 <button @click="shuffle">
-                    <span><shuffle></shuffle> </span>
+                    <span>
+                        <shuffle></shuffle>
+                    </span>
                 </button>
-                <button @click="onChangeSong(-1)" >
-                <span>
-                    <prev></prev>
-                </span>
+                <button @click="onChangeSong(-1)">
+                    <span>
+                        <prev></prev>
+                    </span>
                 </button>
                 <button class="btn-play" @click="toggleSongPlay">
                     <span v-html="isPlayOrPause ? pauseSvg : playSvg"></span>
                 </button>
-                            <button>
-                            <span v-html="repeatSvg"></span>
-                            </button>
-                    <button @click="onChangeSong(1)" >
-                        <span>
+                <button>
+                    <span v-html="repeatSvg"></span>
+                </button>
+                <button @click="onChangeSong(1)">
+                    <span>
                         <next></next>
-                        </span>
-                    </button>
+                    </span>
+                </button>
             </div>
             <div class="flex progress-bar-container">
                 <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
@@ -52,7 +54,7 @@ import next from '../icons/next-btn.vue'
 import prev from '../icons/prev-btn.vue'
 
 export default defineComponent({
-    components: { YouTube, shuffle, next, prev},
+    components: { YouTube, shuffle, next, prev },
     data() {
         return {
             isPlayOrPause: false,
@@ -61,9 +63,10 @@ export default defineComponent({
             currTime: 0,
             trackDuration: 0,
             trackInterval: null,
+            player: null
         }
     },
-    created() {},
+
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -95,6 +98,8 @@ export default defineComponent({
             return this.$store.getters.getStation(id)
         },
     },
+
+
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
@@ -121,6 +126,7 @@ export default defineComponent({
         },
         onReady() {
             console.log('player is ready');
+
         },
         toggleSongPlay() {
             console.log('{...this.station}', { ...this.station })
@@ -186,7 +192,10 @@ export default defineComponent({
                 this.$refs.youtube.setShuffle(true);
             }
         },
+
+
     },
+
 });
 </script>
 

@@ -4,7 +4,8 @@ import { stationService } from '../../services/station.service'
 export default {
     state: {
         stations: null,
-        currStation: null
+        currStation: null,
+        player: null
     },
 
     mutations: {

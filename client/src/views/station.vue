@@ -2,7 +2,7 @@
     <section v-if="station" class="station-container">
         <station-header :station="station" />
         <main class="station-main-container">
-            <station-options :station="station" />
+            <station-options :station="station" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
@@ -65,6 +65,9 @@ export default {
             console.log(data);
             this.$store.dispatch({ type: 'addTrackToStation', data })
         },
+        setStation(station) {
+            this.$store.commit({ type: 'setCurrStation', station })
+        }
 
     },
     computed: {

@@ -10,26 +10,39 @@
                 </article>
             </div>
         </section>
-        <article style="color:white;" v-if="stations" v-for="tag in tags">
+        <article class="home-stations-desktop" style="color:white;" v-if="stations" v-for="tag in tags">
             <h1>{{ tag }}</h1>
-            <section class="station-list-container">
+            <section class="station-list-container ">
                 <stations-list :stations="getFilterStations(tag)" />
             </section>
         </article>
+        <article class="home-stations-mobile" style="color:white;" v-if="stations" v-for="tag in tags">
+            <h1>{{ tag }}</h1>
+            <section>
+                <mobile-sliders :stations="getFilterStations(tag)" />
+            </section>
+        </article>
+
+
     </main>
 </template>
 
 <script >
+
 import dropDown from '../components/custom/drop-down.vue'
 import heroPreview from '../components/home/hero-preview.vue'
 import stationsList from '../components/station/stations-list.vue'
+import mobileSliders from '../components/custom/mobile-sliders.vue'
+import MobileSliders from '../components/custom/mobile-sliders.vue'
 
 export default {
     name: 'home',
     components: {
         heroPreview,
         stationsList,
-        dropDown
+        dropDown,
+        mobileSliders,
+        MobileSliders
     },
 
 

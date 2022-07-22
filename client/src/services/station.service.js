@@ -2,7 +2,7 @@ import { utilService } from './utils.service.js'
 // import { storageService } from './local-storage.js'
 import { storageService } from './async-storage.service.js';
 import { localStorageService } from './local-storage.js';
-import {stationsData} from '../data/data.js'
+import { stationsData } from '../data/data.js'
 const KEY = 'stationsDB'
 
 export const stationService = {
