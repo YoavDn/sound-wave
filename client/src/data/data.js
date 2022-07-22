@@ -23,6 +23,7 @@ function demoStations() {
                     id: "s1001",
                     videoId: 'patwm5DXFrE',
                     title: "Baby ",
+                    duration: '2:03',
                     url: "youtube/song.mp4",
                     imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
                     addedBy: "yoav",
@@ -58,6 +59,7 @@ function demoStations() {
                 {
                     id: "s1001",
                     title: "Baby ",
+                    duration: '2:03',
                     url: "youtube/song.mp4",
                     imgUrl: "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
                     addedBy: "yoav",
@@ -67,6 +69,7 @@ function demoStations() {
                 {
                     id: "mUkfiLjooxs",
                     title: "song",
+                    duration: '2:03',
                     url: "youtube/song.mp4",
                     imgUrl: "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
                     addedBy: {},
@@ -259,7 +262,7 @@ function demoStations() {
             ]
         },
         // Hits
-        
+
         /*MOOD 1----------------------------------------------------------------------- */
         {
             _id: "5cksxjas8lpqerrggjxs09",

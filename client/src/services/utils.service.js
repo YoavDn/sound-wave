@@ -2,6 +2,9 @@ export const utilService = {
     randomColor,
     convertSecToMin,
     makeId,
+    timeStampToStr,
+    strTimeToStamp
+
 }
 
 
@@ -31,3 +34,18 @@ function _padTo2Digits(num) {
     return num.toString().padStart(2, '0')
 }
 
+
+
+function strTimeToStamp(strTime) {
+    const timeParts = strTime.split(':')
+    return (+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000)
+}
+
+function timeStampToStr(timestamp) {
+
+    const seconds = timestamp / 60000
+    const minuts = Math.floor(seconds / 60)
+    const secondsRemainder = (seconds % 60);
+    console.log(minuts);
+    return `${minuts} min ${_padTo2Digits(secondsRemainder)} sec`
+}

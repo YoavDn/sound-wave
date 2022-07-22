@@ -1,31 +1,62 @@
 .station-header-container {
-    display: grid;
-    grid-template-columns: 300px repeat(2, minmax(270px, 1fr));
-    // grid-template-rows: repeat(auto-fill, 80px);
+    display: flex;
+    padding-inline-start: $layout-padding;
+    align-items: end;
     height: 270px;
-    padding-top: 10px;
+    padding-bottom: 24px;
 
     img {
-        grid-row: 3;
         height: 190px;
-        align-self: center;
-        padding-inline-start: $layout-padding;
+        aspect-ratio: 1;
+
     }
 
-    .station-name {
-        grid-column: 2/4;
-        grid-row: 3;
-        justify-content: end;
-        transform: translateY(50%);
+    .station-text {
+        margin-inline-start: 2rem;
         color: $clr3;
-        font-size: 70px;
         font-weight: 700;
-        // padding-inline-start: $layout-padding;
+
+        p {
+            font-size: 12px;
+
+        }
+
+        .station-name {
+            font-size: 70px;
+            line-height: 100px;
+        }
+
+        h3 {
+            align-self: flex-end;
+            font-size: 13px;
+            line-height: 30px;
+            font-weight: 300;
+
+        }
+
+        h4 {
+            font-size: 13px;
+            color: $light-gray;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+        span {
+            font-weight: 700;
+        }
     }
 
     @media screen and (min-width: 1320px) {
         img {
             height: 230px;
+        }
+
+        .station-text {
+            .station-name {
+                font-size: 96px;
+                line-height: 130px;
+
+            }
         }
     }
 }
