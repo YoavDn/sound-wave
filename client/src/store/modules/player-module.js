@@ -4,24 +4,11 @@ export default {
     state: {
         currTrack: null,
         currStation: null,
-        // player: {
-        //isPlayin
-        //currTrack
-        //currStation
-        // playVideo()
-        // seekTo()
-        // pauseVideo()
-        // pauseVideo()
-        // setVolume(0)
-        // }
     },
     modules: {
 
     },
     getters: {
-        // isPlaying(state) {
-        //     return state.isPlaying
-        // },
         getTrack(state) {
             return state.currTrack
         }
@@ -29,14 +16,20 @@ export default {
     mutations: {
         loadTrack(state, { track, station = null }) {
             state.currTrack = track
-            state.currStation = station.tracks
-            // state.currStation = stationModule.getters.getStations
-            // state.currStation 
+            if (station) state.currStation = station.tracks
         },
-        
+
         changeTrackInStation(state, { diff }) {
-            console.log('currStation = ',state.currStation)
-            console.log('diff = ', diff)
+            let trackIdx = state.currStation.findIndex(track => track.id === state.currTrack.id)
+            trackIdx += diff
+            if (trackIdx > state.currStation.length - 1) {
+                trackIdx = 0
+            } else if (trackIdx < 0) {
+                trackIdx = state.currStation.length - 1
+            }
+            state.currTrack = state.currStation[trackIdx]
+            // console.log('state.currTrack = ', state.currTrack)
+            console.log('state.currTrack = ', state.currTrack.title)
         }
     },
     actions: {

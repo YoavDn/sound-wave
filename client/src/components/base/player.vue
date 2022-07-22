@@ -15,7 +15,8 @@
                     </span>
                 </button>
 
-                <button @click="onChangeSong(-1)"><span>
+                <button @click="onChangeSong(-1)">
+                    <span>
                         <prev></prev>
                     </span>
                 </button>
@@ -48,7 +49,7 @@
 
         <div>
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-            <input @change="changeVolume" type="range" v-model="volume" />
+            <input @input="changeVolume" type="range" v-model="volume" />
         </div>
 
     </section>
@@ -59,11 +60,10 @@ import { utilService } from '../../services/utils.service'
 import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
-import repeat from '../icons/next-btn.vue'
 import prev from '../icons/prev-btn.vue'
 
 export default defineComponent({
-    components: { YouTube, shuffle, next, prev },
+    components: { YouTube, shuffle, prev },
     data() {
         return {
             isMute: false,
@@ -73,11 +73,10 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
-            // autoplay: 1,
+            // autoplay: 0,
         }
     },
-    created() {
-    },
+
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -99,7 +98,7 @@ export default defineComponent({
             return this.$store.getters.getTrack;
         },
         vidSrc() {
-            return `https://www.youtube.com/watch?v=${this.track.videoId}`;
+            return `https://www.youtube.com/watch?v=${this.track.id}`;
         },
         station() {
             const { id } = this.$route.params
@@ -118,7 +117,13 @@ export default defineComponent({
             this.player.seekTo(this.currTime)
             this.play()
         },
+        
         state(ev) {
+            console.log('foo = ')
+            if (ev.data === 3) {
+                this.pause()
+                this.play()
+            }
             if (ev.data === 0) {
                 this.currTime = 0
                 return clearInterval(this.trackInterval)
@@ -126,6 +131,7 @@ export default defineComponent({
         },
         onReady() {
             this.player = this.$refs.youtube
+            this.play()
             console.log('player is ready')
         },
 
@@ -137,23 +143,27 @@ export default defineComponent({
                 this.pause()
             }
         },
+
         pause() {
             clearInterval(this.trackInterval);
             this.isPlaying = false
             this.player.pauseVideo()
         },
+
         play() {
             clearInterval(this.trackInterval);
             this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
         },
+
         intervalForTrack() {
             this.trackDuration = this.player.getDuration()
             this.trackInterval = setInterval(() => {
                 this.currTime = this.player.getCurrentTime()
             }, 1000);
         },
+
         changeVolume() {
             this.player.setVolume(this.volume)
         },
@@ -168,14 +178,19 @@ export default defineComponent({
                 this.player.setVolume(0)
             }
         },
+
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
+            this.pause()
+            this.play()
         },
+
         shuffle() {
             {
                 this.player.setShuffle(true);
             }
         },
+
     },
 });
 </script>
