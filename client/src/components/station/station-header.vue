@@ -8,8 +8,7 @@
             <p>PLAYIST</p>
             <h2 class="station-name">{{ station.name }}</h2>
             <h4>with singer "singer" shakira and more.. </h4>
-            <h3 classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount }} Songs &#8226 {{ stationDetails
-            }}<span></span>
+            <h3 classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount }} Songs &#8226 {{ stationDetails }}
             </h3>
         </div>
     </header>
@@ -26,6 +25,7 @@ export default {
             const timeStamp = this.station.tracks.reduce((sum, track) => {
                 return sum += utilService.strTimeToStamp(track.time)
             }, 0)
+
             return `${utilService.timeStampToStr(timeStamp)}`
         },
 
