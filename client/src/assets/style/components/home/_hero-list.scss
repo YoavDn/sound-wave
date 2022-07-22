@@ -1,6 +1,5 @@
 .hero-container {
     grid-row: 1;
-    margin-top: 85px;
 
     .hero-title {
         font-size: 26px;
@@ -12,6 +11,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(3, 75px);
+
         grid-gap: 1rem;
 
         //  background-color: red;
@@ -20,8 +20,7 @@
     @media screen and(min-width: 1150px) {
         .hero-list {
             grid-template-columns: repeat(3, minmax(270px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(65px, 80px));
-            margin-top: 85px;
+            grid-template-rows: repeat(2, 75px);
         }
     }
 }

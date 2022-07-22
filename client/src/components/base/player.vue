@@ -39,7 +39,8 @@
 
             <div class="flex progress-bar-container">
                 <div>{{ convertMinStart }}</div>
-                <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
+                <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
+                <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
                 <div>{{ convertMinEnd }}</div>
             </div>

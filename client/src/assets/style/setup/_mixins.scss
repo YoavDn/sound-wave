@@ -1,6 +1,6 @@
 @mixin search-bar-properties {
-    width: 15rem;
-    height: 2rem;
+    width: 350px;
+    height: 40px;
     border-radius: 2rem;
     background-color: #fff;
     padding-inline: 1rem;
@@ -63,5 +63,30 @@
         margin-inline-start: 7px;
         border: none;
         font-size: 1rem;
+    }
+}
+
+@mixin absolote-play-btn {
+
+    position: relative;
+    cursor: pointer;
+    position: absolute;
+    font-size: 40px;
+    color: $clr1;
+    background: none;
+    border: none;
+    text-shadow: 0px 2px 10px rgba($clr2 , .4);
+    z-index: 2;
+
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        width: 20px;
+        height: 20px;
     }
 }

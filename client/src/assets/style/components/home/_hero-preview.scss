@@ -1,13 +1,30 @@
 .hero-card {
+    position: relative;
     border-radius: 3px;
     transition: background .3s;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
 
+
+    .hero-play-btn {
+        @include absolote-play-btn;
+        opacity: 0;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        transition: opacity .3s;
+
+        &:hover {
+            font-size: 44px;
+            cursor: default;
+        }
+
+    }
+
+
     .hero-img {
         img {
             height: 100%;
-
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
             aspect-ratio: 1;
@@ -26,16 +43,12 @@
 
     &:hover {
         background: rgba($clr3, .3);
-    }
 
-
-    @media screen and(min-width: 1150px) {
-        .hero-img {
-            img {
-                height: 80px;
-            }
+        .hero-play-btn {
+            opacity: 1;
         }
     }
+
 }
 
 

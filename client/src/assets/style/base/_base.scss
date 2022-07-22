@@ -40,3 +40,19 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba($clr3, 0.5);
 }
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    /* Set a specific slider handle width */
+    /* Slider handle height */
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ffffff;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+}

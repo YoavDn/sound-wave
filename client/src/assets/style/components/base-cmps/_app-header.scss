@@ -1,6 +1,6 @@
 .app-header-container {
     position: sticky;
-    height: 60px;
+    height: 64px;
     top: 0;
     // grid-column: 2;
     top: 0;
@@ -16,8 +16,8 @@
         .pages-btn {
             cursor: pointer;
             border-radius: 3rem;
-            width: 2rem;
-            height: 2rem;
+            width: 32px;
+            height: 32px;
             justify-content: center;
             color: white;
             background: rgba($clr2, $alpha: .6);

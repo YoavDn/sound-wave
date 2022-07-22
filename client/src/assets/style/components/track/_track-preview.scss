@@ -30,6 +30,7 @@
 
     .track-added-by {
         grid-column: 3;
+        @include dots-when-break
     }
 
     .track-date-added {
