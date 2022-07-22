@@ -3,8 +3,9 @@
         <station-header :station="station" />
         <main class="station-main-container">
             <station-options />
-            <track-list :tracks="station.tracks" @setTrack="setTrack" />
+            <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
+                <h2>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
                 <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
             </div>

@@ -35,6 +35,10 @@
 
     }
 
+    .add-to-playlist-btn {
+        @include add-to-playlist-btn
+    }
+
 
     &:hover {
         background: $opacityWhite;

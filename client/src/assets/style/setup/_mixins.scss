@@ -24,3 +24,18 @@
     }
 }
 
+
+
+@mixin add-to-playlist-btn {
+    border: solid rgba($clr3, .4) 1px;
+    line-height: 30px;
+    font-weight: 700;
+    padding-inline: 1.2em;
+    background-color: transparent;
+    color: $clr3;
+    border-radius: 2em;
+
+    &:hover {
+        border: solid $clr3 1.3px;
+    }
+}
