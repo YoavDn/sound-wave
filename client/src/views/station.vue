@@ -54,7 +54,7 @@ export default {
 
     methods: {
         setTrack(track) {
-            this.$store.commit({ type: 'setTrack', track })
+            this.$store.commit({ type: 'loadTrack', track, station: this.station })
         },
 
         async searchTrack(query) {

@@ -9,11 +9,15 @@ export default {
 
     mutations: {
         loadStations: (state, { stations }) => state.stations = stations,
-        setCurrStation: (state, { station }) => state.currStation = station,
+        setCurrStation: (state, { station }) => {
+            state.currStation = station
+            console.log('station = ', station)
+        }
 
     },
     getters: {
         getStations: (state) => state.stations,
+        getCurrStation(state) { return state.currStation },
         getStation: ({ stations }) => async (id) => {
             if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
