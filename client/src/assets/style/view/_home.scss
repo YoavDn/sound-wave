@@ -1,11 +1,15 @@
 .home-container {
+    position: relative;
     overflow: scroll;
     overflow-x: hidden;
     grid-row: 2;
-    grid-column: 2;
+}
+
+.gradient {
+    background: linear-gradient(#3e48d6, $dark-gray 240px);
+    height: 240px;
+    top: 0;
 }
 
 
 //temp  
-
-.stations-list-title {}

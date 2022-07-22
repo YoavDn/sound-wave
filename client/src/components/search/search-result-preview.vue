@@ -7,11 +7,12 @@
             <div class="track-title-container">{{ track.title }}</div>
         </div>
 
-        <div class="preview-actions flex align-center space-between">
-            <button class="clean-btn action-btn" @click="likeTrack({track})"><i class="bi bi-heart"></i></button>
+        <div v-if="isSearchPage" class="preview-actions flex align-center space-between">
+            <button class="clean-btn action-btn" @click="likeTrack({ track })"><i class="bi bi-heart"></i></button>
             <div class="trackTime">{{ track.time }}</div>
             <track-options :track="track" />
         </div>
+        <button @click="addTrackToStation" class="add-to-playlist-btn" v-else>Add</button>
     </section>
 </template>
 
@@ -27,18 +28,30 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            isSearchPage: true,
+        }
+    },
+    created() {
+        this.$route.name === 'search' ? this.isSearchPage = true : this.isSearchPage = false
+    },
+
     components: {
         trackOptions
     },
     methods: {
         likeTrack({ track }) {
-            console.log('track = ', track)
             const data = {
                 track,
-                station: {
-                    _id: 'likedSongs'
-                }
+                station: { _id: 'likedSongs' }
             }
+            eventBus.emit('addTrackToStation', data)
+        },
+
+        addTrackToStation() {
+            const { id } = this.$route.params
+            const data = { track: this.track, station: { _id: id } }
             eventBus.emit('addTrackToStation', data)
         }
     }

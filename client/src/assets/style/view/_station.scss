@@ -10,6 +10,23 @@
 
     .station-search {
         padding-inline: $layout-padding;
+
+        .station-seaerch-main-txt {
+            font-size: 25px;
+            letter-spacing: -1px;
+            font-weight: 500;
+            color: $clr3;
+            padding-block: 1.4rem;
+        }
+
+
+        .station-search-bar {
+            @include dark-seaerch-bar;
+            height: 40px;
+            width: 350px;
+            margin-bottom: 20px;
+
+        }
     }
 }
 

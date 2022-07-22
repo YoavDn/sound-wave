@@ -5,10 +5,3 @@
     left: 25rem;
     @include search-bar-properties
 }
-
-
-.station-search-bar {
-    @include search-bar-properties;
-    // padding-inline-start: $layout-padding;
-    // margin-left: $layout-padding;
-}

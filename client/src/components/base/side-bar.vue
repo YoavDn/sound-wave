@@ -15,7 +15,7 @@
                 {{ pageLink.name }}
             </button>
 
-            <button @click="goToPage('station')" class=" create-playlist-link page-link-btn flex align-center ">
+            <button @click="createNewPlaylist" class=" create-playlist-link page-link-btn flex align-center ">
                 <span class=" page-link-svg">
                     <i class="bi bi-plus-square-fill"></i>
                 </span>
@@ -37,6 +37,8 @@
 
     
 <script >
+import { stationService } from '../../services/station.service'
+
 export default {
     data() {
         return {
@@ -66,12 +68,21 @@ export default {
         goToPage(page) {
             this.$router.push(`/${page}`)
         },
+
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
         },
+
         isActive(pageId) {
             return this.activePage === pageId ? true : false
+        },
+
+        async createNewPlaylist() {
+            const station = await stationService.getEmptyStation()
+            await stationService.save(station)
+            return this.$router.push(`/station/${station._id}`)
         }
+
     }
 }
 
