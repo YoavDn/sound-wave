@@ -1,6 +1,9 @@
 <template>
     <section v-if="track" class="player-container">
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <YouTube hidden v-if="vidSrc" 
+        @stateChange="state" :src="vidSrc" 
+        @ready="onReady" ref="youtube"/>
+        
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
             <div class="curr-track-name">{{ trackName }}</div>
@@ -11,31 +14,21 @@
                 <button @click="shuffle">
                     <span><shuffle></shuffle> </span>
                 </button>
-                <button @click="onChangeSong(-1)" >
-                <span>
-                    <prev></prev>
-                </span>
-                </button>
+                <button @click="onChangeSong(-1)" ><span><prev></prev></span></button>
                 <button class="btn-play" @click="toggleSongPlay">
                     <span v-html="isPlayOrPause ? pauseSvg : playSvg"></span>
                 </button>
-                            <button>
-                            <span v-html="repeatSvg"></span>
-                            </button>
-                    <button @click="onChangeSong(1)" >
-                        <span>
-                        <next></next>
-                        </span>
+                    <button><span v-html="repeatSvg"></span></button>
+                    <button @click="onChangeSong(1)" ><span><next></next></span>
                     </button>
             </div>
             <div class="flex progress-bar-container">
+                <div>{{ convertMinStart }}</div>
                 <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
-                <div>{{ convertSecToMin(trackDuration.toFixed(0)) }}</div>
+                <div>{{ convertMinEnd }}</div>
             </div>
         </div>
-
-
         <div>
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <input @change="changeVolume" type="range" v-model="volume" />
@@ -44,7 +37,7 @@
 </template>
 
 <script>
-// import {utilService} from '../../services/utils.service'
+import {utilService} from '../../services/utils.service'
 import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
@@ -61,9 +54,12 @@ export default defineComponent({
             currTime: 0,
             trackDuration: 0,
             trackInterval: null,
+            player: null,
         }
     },
-    created() {},
+    created() {
+        console.log('this.$store.getters.getPlayer',this.$store.getters.getPlayer)
+    },
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -94,72 +90,68 @@ export default defineComponent({
             const { id } = this.$route.params
             return this.$store.getters.getStation(id)
         },
+        convertMinStart(){
+            return utilService.convertSecToMin(this.currTime.toFixed(0))
+        },
+        convertMinEnd(){
+            return utilService.convertSecToMin(this.trackDuration.toFixed(0))
+        }
     },
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'setTrack', track })
         },
-        // move to util
-        convertSecToMin(totalSeconds) {
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            return `${minutes}:${this.padTo2Digits(seconds)}`;
-        },
-
-        padTo2Digits(num) {
-            return num.toString().padStart(2, '0');
-        },
         handleTime() {
-            this.isPlayOrPause ? this.play() : this.pause();
-            this.$refs.youtube.seekTo(this.currTime);
+            this.isPlayOrPause ? this.play() : this.pause()
+            this.player.seekTo(this.currTime)
         },
         state(ev) {
             if (ev.data === 0) {
-                this.currTime = 0;
-                return clearInterval(this.trackInterval);
+                this.currTime = 0
+                return clearInterval(this.trackInterval)
             }
         },
         onReady() {
-            console.log('player is ready');
+            this.player = this.$refs.youtube
+            this.play()
+            console.log('player is ready')
         },
         toggleSongPlay() {
-            console.log('{...this.station}', { ...this.station })
             if (!this.isPlayOrPause) {
-                this.play();
+                this.play()
             } else {
-                this.pause();
+                this.pause()
             }
         },
         pause() {
             clearInterval(this.trackInterval);
-            this.$refs.youtube.pauseVideo();
+            this.player.pauseVideo()
             this.isPlayOrPause = false;
         },
         play() {
             clearInterval(this.trackInterval);
-
-            this.$refs.youtube.playVideo();
-            this.intervalForTrack();
+            this.player.playVideo()
+            this.intervalForTrack()
             this.isPlayOrPause = true;
         },
         intervalForTrack() {
-            this.trackDuration = this.$refs.youtube.getDuration();
+            this.trackDuration = this.player.getDuration()
             this.trackInterval = setInterval(() => {
-                this.currTime = this.$refs.youtube.getCurrentTime();
+                this.currTime = this.player.getCurrentTime()
             }, 1000);
         },
         changeVolume() {
-            this.$refs.youtube.setVolume(this.volume);
+            this.player.setVolume(this.volume)
         },
         mute() {
             if (this.isMute) {
                 this.isMute = false
                 this.volume = 50;
-                this.$refs.youtube.setVolume(50);
+                this.player.setVolume(50)
             } else {
                 this.isMute = true
                 this.volume = 0;
-                this.$refs.youtube.setVolume(0);
+                this.player.setVolume(0)
             }
         },
         onChangeSong(diff) {
@@ -171,10 +163,10 @@ export default defineComponent({
             currTrackInStationIdx = currTrackInStationIdx + diff
 
             if (currTrackInStationIdx < 0) {
-                this.$refs.youtube.seekTo(0)
+                this.player.seekTo(0)
                 return
             } else if (currTrackInStationIdx >= currStation.tracks.length) {
-                this.$refs.youtube.seekTo(0)
+                this.player.seekTo(0)
                 return
             }
 
@@ -183,7 +175,7 @@ export default defineComponent({
         },
         shuffle() {
             {
-                this.$refs.youtube.setShuffle(true);
+                this.player.setShuffle(true);
             }
         },
     },
