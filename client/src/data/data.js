@@ -20,8 +20,7 @@ function demoStations() {
             ],
             tracks: [
                 {
-                    id: "s1001",
-                    videoId: 'patwm5DXFrE',
+                    id: 'patwm5DXFrE',
                     title: "Baby ",
                     duration: '2:03',
                     url: "youtube/song.mp4",
@@ -57,7 +56,6 @@ function demoStations() {
             ],
             tracks: [
                 {
-                    id: "s1001",
                     title: "Baby ",
                     duration: '2:03',
                     url: "youtube/song.mp4",

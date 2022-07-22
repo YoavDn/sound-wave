@@ -22,6 +22,7 @@ import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
 import stationOptions from '../components/station/station-options.vue'
 import { stationService } from '../services/station.service'
+import { utilService } from '../services/utils.service'
 
 export default {
     components: {
@@ -53,7 +54,7 @@ export default {
 
     methods: {
         setTrack(track) {
-            this.$store.commit({ type: 'setTrack', track })
+            this.$store.commit({ type: 'loadTrack', track, station: this.station })
         },
 
         async searchTrack(query) {

@@ -1,7 +1,8 @@
 <template>
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
-            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i :class="playBtn"></i></button>
+            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
+                    class="bi bi-play-fill"></i></button>
             <p class="track-idx light">{{ trackIdx + 1 }}</p>
         </div>
         <div class="track-img-title flex">
@@ -12,7 +13,8 @@
             </div>
         </div>
         <div class="track-added-by sub-text">
-            <p>John Smith</p>
+            <!-- <p>John Smith</p> -->
+            <p>{{ track.addedBy }}</p>
         </div>
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>

@@ -1,7 +1,11 @@
 <template>
   <main class="main-layout">
-    <appHeader />
-    <router-view />
+
+    <div class="main-view">
+
+      <appHeader />
+      <router-view />
+    </div>
     <side-bar />
     <player />
   </main>
