@@ -21,7 +21,7 @@
     justify-content: space-between;
 }
 
-.center{
+.center {
     justify-content: center;
 }
 
@@ -49,9 +49,32 @@
 }
 
 // Buttons
- 
+
 .clean-btn {
     background-color: transparent;
     padding: 0;
     border: none;
+}
+
+// BACKGROUNDS
+
+.background-color,
+.background-shadow {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.background-shadow {
+    background: linear-gradient(transparent, rgba(0, 0, 0, .5));
+}
+
+.background-fade {
+    background-image: linear-gradient(rgba(0, 0, 0, .6), #121212);
+    height: 232px;
+    position: absolute;
+    width: 100%;
 }

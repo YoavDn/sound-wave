@@ -125,7 +125,8 @@ function demoStations() {
                     url: "youtube/song.mp4",
                     imgUrl: "https://i.ytimg.com/vi/lYfrKmEYpdA/hqdefault.jpg",
                     addedBy: "aviya",
-                    addedAt: 162521765262
+                    addedAt: 162521765262,
+                    time: '4:03'
                 },
                 {
                     id: "zhOAhJ_r1ec",
