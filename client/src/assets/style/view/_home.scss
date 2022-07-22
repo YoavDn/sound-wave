@@ -1,5 +1,5 @@
 .home-container {
-    position: relative;
+    // position: relative;
     overflow: scroll;
     overflow-x: hidden;
     grid-row: 2;
@@ -12,10 +12,8 @@
             margin-block: 20px;
         }
 
-        &.mobile {
-            display: none
-        }
     }
+
 }
 
 .gradient {
