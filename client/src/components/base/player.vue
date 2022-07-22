@@ -48,7 +48,7 @@
         </div>
         <div class="volume-container">
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-            <input @input="changeVolume" type="range" v-model="volume" />
+            <input class="volume-bar" @input="changeVolume" type="range" v-model="volume" />
         </div>
 
     </section>
