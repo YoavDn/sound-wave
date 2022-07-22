@@ -12,7 +12,7 @@
             <div class="trackTime">{{ track.time }}</div>
             <track-options :track="track" />
         </div>
-        <button class="add-to-playlist-btn" v-else>Add</button>
+        <button @click="addTrackToStation" class="add-to-playlist-btn" v-else>Add</button>
     </section>
 </template>
 
@@ -46,6 +46,12 @@ export default {
                 track,
                 station: { _id: 'likedSongs' }
             }
+            eventBus.emit('addTrackToStation', data)
+        },
+
+        addTrackToStation() {
+            const { id } = this.$route.params
+            const data = { track: this.track, station: { _id: id } }
             eventBus.emit('addTrackToStation', data)
         }
     }

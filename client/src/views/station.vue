@@ -16,6 +16,7 @@
     
 <script>
 import stationHeader from '../components/station/station-header.vue'
+import { eventBus } from '../services/event-bus.js'
 import searchBar from '../components/search/search-bar.vue'
 import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
@@ -36,13 +37,18 @@ export default {
         return {
             newStation: null,
             station: null,
+            unsubscribe: null,
         }
+    },
+    unmounted() {
+        this.unsubscribe()
     },
 
     async created() {
         const { id } = this.$route.params
         this.station = await this.$store.getters.getStation(id)
-        if (!id) await this.$store.dispatch({ type: 'saveStation', station: this.station })
+        // if (!id) await this.$store.dispatch({ type: 'saveStation', station: this.station })
+        this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
     },
 
     methods: {
@@ -53,6 +59,11 @@ export default {
         async searchTrack(query) {
             console.log(query);
             await this.$store.dispatch({ type: 'searchTracks', query })
+        },
+
+        addTrackToStation(data) {
+            console.log(data);
+            this.$store.dispatch({ type: 'addTrackToStation', data })
         },
 
     },

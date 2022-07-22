@@ -1,9 +1,8 @@
 
 <template>
-
     <main class="home-container">
         <section class="hero-container">
-            <h2 class="hero-title">Final Sprint day 3 !</h2>
+            <h2 class="hero-title">Final Sprint day 4 !</h2>
             <div class="hero-list">
                 <article v-for="station in heroStations" :key="station._id" @click="goToStation(station._id)"
                     class="hero-card flex">
