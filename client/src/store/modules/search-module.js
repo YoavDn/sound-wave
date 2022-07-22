@@ -7,9 +7,6 @@ export default {
     searchResults: null,
   },
   getters: {
-    currTrack(state) {
-      return state.track
-    },
     searchResults(state) {
       return state.searchResults
     }
@@ -18,10 +15,6 @@ export default {
     setSearchResults(state, { tracks }) {
       state.searchResults = tracks
     },
-    setTrack(state, { track }) {
-      state.track = track
-
-    }
   },
   actions: {
     async searchTracks({ commit }, { query }) {

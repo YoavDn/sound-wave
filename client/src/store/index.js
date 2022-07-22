@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import trackStore from './modules/track-module.js'
+import searchStore from './modules/search-module.js'
 import stationStore from './modules/station-module.js'
 import playerStore from './modules/player-module'
 
@@ -11,7 +11,7 @@ const store = createStore({
     },
 
     modules: {
-        trackStore,
+        searchStore,
         stationStore,
         playerStore
     }
