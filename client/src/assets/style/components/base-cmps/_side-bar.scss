@@ -8,10 +8,16 @@
         color: $clr3;
         font-size: 16px;
         margin-block: 24px;
+        align-items: center;
+
+        h2 {
+
+            font-weight: 700;
+        }
 
         .logo-svg {
-            font-size: 40px;
-            margin-inline-end: .2em;
+            height: 40px;
+            margin-inline-end: .6em;
         }
     }
 

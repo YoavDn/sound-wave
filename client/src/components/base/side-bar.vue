@@ -3,9 +3,9 @@
 <template>
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
-            <div class="logo flex align-center">
-                <i class="bi bi-circle-fill logo-svg"></i>
-                <h2> Sound</h2>
+            <div class="logo flex">
+                <img class="logo-svg" src="../../assets/imgs/soundWave.svg" alt="logo">
+                <h2> hello</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="{ 'active-link': isActive(pageLink.id) }" class=" page-link-btn flex align-center">

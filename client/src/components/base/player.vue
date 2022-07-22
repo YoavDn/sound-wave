@@ -135,7 +135,7 @@ export default defineComponent({
         onReady() {
             this.player = this.$refs.youtube
             this.play()
-            console.log('player is ready')
+            console.log(this.player)
         },
 
         toggleSongPlay() {
