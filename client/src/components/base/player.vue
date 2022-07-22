@@ -26,15 +26,14 @@
                 </button>
 
                 <button @click="onChangeSong(1)">
-                    <!-- <span v-html="next">
-                    </span> -->
+                    <span v-html="next">
+                    </span>
                 </button>
 
-                <!-- <button>
+                <button>
                     <span v-html="repeatSvg">
-                        repeat
                     </span>
-                </button> -->
+                </button>
 
 
             </div>
@@ -92,6 +91,9 @@ export default defineComponent({
         },
         next() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16"><path d="M12.7 1a.7.7 0 00-.7.7v5.15L2.05 1.107A.7.7 0 001 1.712v12.575a.7.7 0 001.05.607L12 9.149V14.3a.7.7 0 00.7.7h1.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-1.6z"></path></svg>`;
+        },
+        repeatSvg() {
+            return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M0 4.75A3.75 3.75 0 013.75 1h8.5A3.75 3.75 0 0116 4.75v5a3.75 3.75 0 01-3.75 3.75H9.81l1.018 1.018a.75.75 0 11-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 111.06 1.06L9.811 12h2.439a2.25 2.25 0 002.25-2.25v-5a2.25 2.25 0 00-2.25-2.25h-8.5A2.25 2.25 0 001.5 4.75v5A2.25 2.25 0 003.75 12H5v1.5H3.75A3.75 3.75 0 010 9.75v-5z"></path></svg>`;
         },
         track() {
             return this.$store.getters.getTrack;
