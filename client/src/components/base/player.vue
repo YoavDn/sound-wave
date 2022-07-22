@@ -105,6 +105,7 @@ export default defineComponent({
             this.isPlayOrPause ? this.play() : this.pause()
             this.player.seekTo(this.currTime)
         },
+        //test
         state(ev) {
             if (ev.data === 0) {
                 this.currTime = 0

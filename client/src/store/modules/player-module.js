@@ -27,7 +27,7 @@ export default {
             state.player = false
         },
         setTrack(state, {track}){
-            
+
         },
     },
         actions: {
