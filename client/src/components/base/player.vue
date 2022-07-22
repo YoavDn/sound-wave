@@ -29,9 +29,9 @@
                 <div>{{ convertMinEnd }}</div>
             </div>
         </div>
-        <div>
+        <div class="volume-container">
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-            <input @change="changeVolume" type="range" v-model="volume" />
+            <input class="volume-bar" @change="changeVolume" type="range" v-model="volume" />
         </div>
     </section>
 </template>
