@@ -17,6 +17,10 @@ html {
     right: 0;
 }
 
+::-webkit-scrollbar-corner {
+    display: none;
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
     background: none;

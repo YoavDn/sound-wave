@@ -1,27 +1,43 @@
 <template>
     <section v-if="track" class="player-container">
-        <YouTube hidden v-if="vidSrc" 
-        @stateChange="state" :src="vidSrc" 
-        @ready="onReady" ref="youtube"/>
-        
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
-            <div class="curr-track-name">{{ trackName }}</div>
+            <div class="curr-track-name">{{ track.title }}</div>
         </div>
 
         <div class="track-controllers-container">
             <div class="flex center player-track-controllers">
                 <button @click="shuffle">
-                    <span><shuffle></shuffle> </span>
+                    <span>
+                        <shuffle></shuffle>
+                    </span>
                 </button>
-                <button @click="onChangeSong(-1)" ><span><prev></prev></span></button>
+
+                <button @click="onChangeSong(-1)"><span>
+                        <prev></prev>
+                    </span>
+                </button>
+
                 <button class="btn-play" @click="toggleSongPlay">
-                    <span v-html="isPlayOrPause ? pauseSvg : playSvg"></span>
+                    <span v-html="isPlaying ? pauseSvg : playSvg"></span>
                 </button>
-                    <button><span v-html="repeatSvg"></span></button>
-                    <button @click="onChangeSong(1)" ><span><next></next></span>
-                    </button>
+
+                <button @click="onChangeSong(1)">
+                    <span v-html="next">
+                    </span>
+                </button>
+
+                <!-- <button>
+                    <span v-html="repeatSvg">
+                        repeat
+                    </span>
+                </button> -->
+
+
             </div>
+
             <div class="flex progress-bar-container">
                 <div>{{ convertMinStart }}</div>
                 <input class="progress-bar" @change.prevent="handleTime" type="range" v-model="currTime"
@@ -33,32 +49,33 @@
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <input class="volume-bar" @change="changeVolume" type="range" v-model="volume" />
         </div>
+
     </section>
 </template>
 
 <script>
-import {utilService} from '../../services/utils.service'
+import { utilService } from '../../services/utils.service'
 import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
-import next from '../icons/next-btn.vue'
+import repeat from '../icons/next-btn.vue'
 import prev from '../icons/prev-btn.vue'
 
 export default defineComponent({
-    components: { YouTube, shuffle, next, prev},
+    components: { YouTube, shuffle, next, prev },
     data() {
         return {
-            isPlayOrPause: false,
             isMute: false,
             volume: 50,
             currTime: 0,
             trackDuration: 0,
             trackInterval: null,
             player: null,
+            isPlaying: false,
+            // autoplay: 1,
         }
     },
     created() {
-        console.log('this.$store.getters.getPlayer',this.$store.getters.getPlayer)
     },
     computed: {
         // make svgs work not from here
@@ -74,38 +91,32 @@ export default defineComponent({
         muteSvg() {
             return `<svg role="presentation" height="16" width="16" aria-label="Volume off" id="volume-icon" viewBox="0 0 16 16" ><path d="M13.86 5.47a.75.75 0 00-1.061 0l-1.47 1.47-1.47-1.47A.75.75 0 008.8 6.53L10.269 8l-1.47 1.47a.75.75 0 101.06 1.06l1.47-1.47 1.47 1.47a.75.75 0 001.06-1.06L12.39 8l1.47-1.47a.75.75 0 000-1.06z"></path><path d="M10.116 1.5A.75.75 0 008.991.85l-6.925 4a3.642 3.642 0 00-1.33 4.967 3.639 3.639 0 001.33 1.332l6.925 4a.75.75 0 001.125-.649v-1.906a4.73 4.73 0 01-1.5-.694v1.3L2.817 9.852a2.141 2.141 0 01-.781-2.92c.187-.324.456-.594.78-.782l5.8-3.35v1.3c.45-.313.956-.55 1.5-.694V1.5z"></path></svg>`;
         },
-        repeatSvg() {
+        next() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16"><path d="M12.7 1a.7.7 0 00-.7.7v5.15L2.05 1.107A.7.7 0 001 1.712v12.575a.7.7 0 001.05.607L12 9.149V14.3a.7.7 0 00.7.7h1.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-1.6z"></path></svg>`;
         },
         track() {
-            return this.$store.getters.currTrack;
+            return this.$store.getters.getTrack;
         },
         vidSrc() {
-            return `https://www.youtube.com/watch?v=${this.track.id}`;
-        },
-        trackName() {
-            return this.track.title
+            return `https://www.youtube.com/watch?v=${this.track.videoId}`;
         },
         station() {
             const { id } = this.$route.params
             return this.$store.getters.getStation(id)
         },
-        convertMinStart(){
+        convertMinStart() {
             return utilService.convertSecToMin(this.currTime.toFixed(0))
         },
-        convertMinEnd(){
+        convertMinEnd() {
             return utilService.convertSecToMin(this.trackDuration.toFixed(0))
         }
     },
     methods: {
-        setTrack(track) {
-            this.$store.commit({ type: 'setTrack', track })
-        },
         handleTime() {
-            this.isPlayOrPause ? this.play() : this.pause()
+            this.isPlaying ? this.play() : this.pause()
             this.player.seekTo(this.currTime)
+            this.play()
         },
-        //test
         state(ev) {
             if (ev.data === 0) {
                 this.currTime = 0
@@ -114,26 +125,27 @@ export default defineComponent({
         },
         onReady() {
             this.player = this.$refs.youtube
-            this.play()
             console.log('player is ready')
         },
+
         toggleSongPlay() {
-            if (!this.isPlayOrPause) {
+            if (!this.isPlaying) {
                 this.play()
+                console.log('this.isPlaying = ', this.isPlaying)
             } else {
                 this.pause()
             }
         },
         pause() {
             clearInterval(this.trackInterval);
+            this.isPlaying = false
             this.player.pauseVideo()
-            this.isPlayOrPause = false;
         },
         play() {
             clearInterval(this.trackInterval);
+            this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
-            this.isPlayOrPause = true;
         },
         intervalForTrack() {
             this.trackDuration = this.player.getDuration()
@@ -156,23 +168,7 @@ export default defineComponent({
             }
         },
         onChangeSong(diff) {
-            let currStation = { ...this.station }
-            let currTrack = this.track
-            let currTrackIdx = currStation.tracks.indexOf(currTrack)
-            let currTrackInStationIdx = currStation.tracks[currTrackIdx]
-
-            currTrackInStationIdx = currTrackInStationIdx + diff
-
-            if (currTrackInStationIdx < 0) {
-                this.player.seekTo(0)
-                return
-            } else if (currTrackInStationIdx >= currStation.tracks.length) {
-                this.player.seekTo(0)
-                return
-            }
-
-            let changedTrack = currStation.tracks[currTrackInStationIdx]
-            this.setTrack(changedTrack)
+            this.$store.commit({ type: 'changeTrackInStation', diff })
         },
         shuffle() {
             {

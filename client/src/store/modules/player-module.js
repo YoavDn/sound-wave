@@ -1,41 +1,44 @@
+import stationModule from "./station-module"
 
 export default {
     state: {
-        isPlaying: null,
+        currTrack: null,
+        currStation: null,
         // player: {
-                //isPlayin
-                //currTrack
-                //currStation
-                // playVideo()
-                // seekTo()
-                // pauseVideo()
-                // pauseVideo()
-                // setVolume(0)
+        //isPlayin
+        //currTrack
+        //currStation
+        // playVideo()
+        // seekTo()
+        // pauseVideo()
+        // pauseVideo()
+        // setVolume(0)
         // }
     },
-    modules: {},
+    modules: {
+
+    },
     getters: {
-       isPlaying(state){
-            return state.isPlaying
-       }
+        // isPlaying(state) {
+        //     return state.isPlaying
+        // },
+        getTrack(state) {
+            return state.currTrack
+        }
     },
     mutations: {
-        playVideo(state) {
-            state.isPlaying = true
+        loadTrack(state, { track, station = null }) {
+            state.currTrack = track
+            state.currStation = station.tracks
+            // state.currStation = stationModule.getters.getStations
+            // state.currStation 
         },
-        pauseVideo(state) {
-            state.player = false
-        },
-        setTrack(state, {track}){
-
-        },
-    },
-        actions: {
-            playerState(){
-
-            },
-            updatePlayerState(){
-
-            }
+        
+        changeTrackInStation(state, { diff }) {
+            console.log('currStation = ',state.currStation)
+            console.log('diff = ', diff)
         }
+    },
+    actions: {
+    }
 }

@@ -1,8 +1,7 @@
 .station-container {
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     grid-column: 2;
-    grid-row: 2;
+    // grid-row: 2;
 
     .station-main-container {
         background: rgba($dark-gray, 0.2);
