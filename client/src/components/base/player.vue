@@ -48,11 +48,7 @@
         </div>
         <div class="volume-container">
             <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-<<<<<<< HEAD
             <input @input="changeVolume" type="range" v-model="volume" />
-=======
-            <input class="volume-bar" @change="changeVolume" type="range" v-model="volume" />
->>>>>>> 1a417947c797ab5fbc9dc2fa5aebaa9dc4491937
         </div>
 
     </section>
@@ -120,7 +116,7 @@ export default defineComponent({
             this.player.seekTo(this.currTime)
             this.play()
         },
-        
+
         state(ev) {
             console.log('foo = ')
             if (ev.data === 3) {
