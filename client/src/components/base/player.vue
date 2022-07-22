@@ -25,8 +25,8 @@
                 </button>
 
                 <button @click="onChangeSong(1)">
-                    <span v-html="next">
-                    </span>
+                    <!-- <span v-html="next">
+                    </span> -->
                 </button>
 
                 <!-- <button>
@@ -62,7 +62,7 @@ import repeat from '../icons/next-btn.vue'
 import prev from '../icons/prev-btn.vue'
 
 export default defineComponent({
-    components: { YouTube, shuffle, next, prev },
+    components: { YouTube, shuffle, prev },
     data() {
         return {
             isMute: false,
