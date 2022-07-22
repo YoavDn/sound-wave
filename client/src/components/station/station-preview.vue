@@ -11,12 +11,7 @@
 <script >
 export default {
     props: { station: Object },
-    created() {
-    },
-    data() {
-        return {
-        }
-    }
+
 }
 </script>
     

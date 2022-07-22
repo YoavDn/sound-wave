@@ -1,24 +1,20 @@
 <template>
-    <swiper :slidesPerView="3" :spaceBetween="20" :freeMode="true" @swiper="onSwiper" :modules="modules"
-        class="mySwiper">
-        <swiper-slide v-for="station in stations">
-            <station-preview class="station-card" :station="station" />
+    <swiper :slidesPerView="3" :spaceBetween="20" :freeMode="true" :modules="modules" class="mySwiper">
+        <swiper-slide v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
+            <station-preview :station="station" class="station-card" />
         </swiper-slide>
     </swiper>
 </template>
+
+
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 import stationPreview from "../station/station-preview.vue";
-
+import { useRouter } from "vue-router";
 
 import 'swiper/css';
-
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
-
-// import required modules
 import { FreeMode, Pagination } from "swiper";
 
 export default {
@@ -27,17 +23,17 @@ export default {
         SwiperSlide,
         stationPreview
     },
-    props: { 'stations': Array },
+
+    props: ['stations'],
+    // props: ['stations'],
     setup(props) {
-
-        const onSwiper = (swiper) => {
-            console.log(swiper);
-        }
-
+        const router = useRouter()
+        const goToStation = (stationId) => router.push(`/station/${stationId}`)
         console.log(props.stations);
+
         return {
-            onSwiper,
             props,
+            goToStation,
             modules: [FreeMode, Pagination],
         };
     },

@@ -16,7 +16,8 @@
                 <stations-list :stations="getFilterStations(tag)" />
             </section>
         </article>
-        <article class="home-stations-mobile" style="color:white;" v-if="stations" v-for="tag in tags">
+
+        <article class="home-stations-mobile" style="color:white;" v-if="stations" v-for="tag in tags" :key="tag">
             <h1>{{ tag }}</h1>
             <section>
                 <mobile-sliders :stations="getFilterStations(tag)" />
