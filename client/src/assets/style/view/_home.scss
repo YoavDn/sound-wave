@@ -1,11 +1,10 @@
 .home-container {
-    // position: relative;
-    overflow: scroll;
+
+    padding-inline: $layout-padding;
     overflow-x: hidden;
     grid-row: 2;
 
     .home-stations-desktop {
-        padding-inline-start: $layout-padding;
 
         h1 {
             text-transform: capitalize;
@@ -33,8 +32,7 @@
 @media (max-width: $tablet-width) {
 
     .home-container {
-        grid-row: 1;
-        grid-column: 1 /sapn 2;
+        padding-inline: 10px;
 
         .home-stations-desktop {
             display: none;
@@ -42,7 +40,7 @@
 
         .home-stations-mobile {
             display: block;
-            padding-inline-start: $layout-padding;
+            // padding-inline-start: $layout-padding;
 
             h1 {
                 text-transform: capitalize;

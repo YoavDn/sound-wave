@@ -41,15 +41,19 @@
     }
 }
 
+@mixin dots-when-break {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
-@mixin dark-seaerch-bar {
+
+@mixin search-bar {
     border-radius: 5px;
-    background: rgba($light-gray, .4);
     padding-inline: 1rem;
     color: $clr3;
 
     input {
-        color: $clr3;
         width: 100%;
         height: inherit;
         border-radius: inherit;

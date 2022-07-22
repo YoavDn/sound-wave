@@ -15,13 +15,13 @@
             font-size: 25px;
             letter-spacing: -1px;
             font-weight: 500;
-            color: $clr3;
             padding-block: 1.4rem;
         }
 
 
         .station-search-bar {
-            @include dark-seaerch-bar;
+            @include search-bar;
+            background-color: rgba($dark-gray, 0.2);
             height: 40px;
             width: 350px;
             margin-bottom: 20px;

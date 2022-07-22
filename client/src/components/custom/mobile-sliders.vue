@@ -67,15 +67,11 @@ export default {
     -webkit-align-items: center;
 
     img {
-
-        // display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
         aspect-ratio: 1;
-
     }
-
 
     .station-name {
         display: none;

@@ -77,7 +77,8 @@
 @media (max-width: $tablet-width) {
 
     .side-bar-container {
-        grid-column: 1 /span 2;
+        padding: 0;
+        grid-column: 1;
         grid-row: 3;
         background-color: $clr2;
 
@@ -87,9 +88,9 @@
 
         .side-bar-nav {
             display: flex;
-            height: 100px;
             align-items: center;
-            padding-inline: $layout-padding;
+            padding-inline: 10px;
+            justify-content: space-between;
 
             .page-link-btn {
                 display: flex;

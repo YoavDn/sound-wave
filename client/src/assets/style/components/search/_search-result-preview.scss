@@ -10,6 +10,12 @@
         width: 50%;
         overflow: hidden;
 
+        .track-title-container {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
         .track-img-container {
             img {
                 height: 40px;

@@ -6,7 +6,8 @@ function demoStations() {
     return [
         {
             _id: "5cksxjas89xjsa8xjsa8jxs01",
-            name: "Afik's playlist",
+            name: "Yoav's playlist",
+            imgUrl: "https://upload.wikimedia.org/wikipedia/he/2/21/Madvillainy.jpg",
             tags: ['test'],
             createdAt: 1541652422,
             createdBy: {
@@ -42,7 +43,8 @@ function demoStations() {
         },
         {
             _id: "5cksxjas89xjsa8xjsa8jxs09",
-            name: "Avoya",
+            name: "Run it ",
+            imgUrl: "https://www.giorarecords.co.il/wp-content/uploads/product_images/0602547311009.jpg",
             tags: ['test'],
             createdAt: 1541652422,
             createdBy: {

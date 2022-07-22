@@ -1,7 +1,6 @@
 .hero-container {
     grid-row: 1;
     margin-top: 85px;
-    padding-inline: $layout-padding;
 
     .hero-title {
         font-size: 26px;
@@ -22,6 +21,28 @@
         .hero-list {
             grid-template-columns: repeat(3, minmax(270px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(65px, 80px));
+            margin-top: 85px;
+        }
+    }
+}
+
+@media screen and(max-width: 780px) {
+    .hero-container {
+
+        margin-top: 45px;
+
+        .hero-title {
+            font-size: 26px;
+            color: $clr3;
+            margin-block: 20px;
+        }
+
+        .hero-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 55px);
+
+            // background-color: red;
         }
     }
 }

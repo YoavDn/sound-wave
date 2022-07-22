@@ -22,12 +22,18 @@
     .curr-track-img {
         height: 56px;
         width: 56px;
+        aspect-ratio: 1;
         object-fit: cover;
     }
 
     .track-details {
         align-items: center;
+        min-width: 220px;
         gap: 10px;
+
+        .curr-track-name {
+            @include dots-when-break
+        }
     }
 
     button {
