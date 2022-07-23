@@ -122,7 +122,6 @@ export default defineComponent({
         },
 
         state(ev) {
-            console.log('foo = ')
             if (ev.data === 3) {
                 this.pause()
                 this.play()
@@ -135,13 +134,11 @@ export default defineComponent({
         onReady() {
             this.player = this.$refs.youtube
             this.play()
-            console.log(this.player)
         },
 
         toggleSongPlay() {
             if (!this.isPlaying) {
                 this.play()
-                console.log('this.isPlaying = ', this.isPlaying)
             } else {
                 this.pause()
             }
