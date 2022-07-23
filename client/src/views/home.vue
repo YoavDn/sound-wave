@@ -30,7 +30,6 @@
 
 <script >
 
-import dropDown from '../components/custom/drop-down.vue'
 import heroPreview from '../components/home/hero-preview.vue'
 import stationsList from '../components/station/stations-list.vue'
 import mobileSliders from '../components/custom/mobile-sliders.vue'
@@ -41,7 +40,6 @@ export default {
     components: {
         heroPreview,
         stationsList,
-        dropDown,
         mobileSliders,
         MobileSliders
     },

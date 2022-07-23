@@ -47,7 +47,8 @@ export default {
         const { id } = this.$route.params
         this.station = await this.$store.getters.getStation(id)
         // if (!id) await this.$store.dispatch({ type: 'saveStation', station: this.station })
-        this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+        // this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+        this.unsubscribe = eventBus.on('updateStation', this.updateStation)
     },
 
     methods: {
@@ -67,8 +68,16 @@ export default {
             this.$store.commit({ type: 'setCurrStation', station })
         },
 
-        updateStation(station) {
-            this.$store.dispatch({ type: 'updateStation', station, })
+        updateStation({ station, track, toAdd }) {
+
+            let stationDeepClone = JSON.parse(JSON.stringify(station))
+            if (toAdd) {
+                stationDeepClone.tracks.push(track)
+            } else {
+                const idx = station.tracks.findIndex(t => t.id === track.id)
+                stationDeepClone.tracks.splice(idx, 1)
+            }
+            this.$store.dispatch({ type: 'updateStation', station: stationDeepClone, })
         }
 
     },

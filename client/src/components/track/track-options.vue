@@ -11,16 +11,22 @@
           class="bi bi-caret-right-fill"></i></span>
     </button>
 
+    <button v-if="currStation" class="clean-btn track-opt-btn remove-from-station"
+      @click="updateStation(track, undefined, false)" @mouseenter="isShareSubmodalOn = false">Remove
+      from playlist</button>
+
   </div>
 
   <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
-    <button v-for="station in stations" class="clean-btn"  @click="addTrackToStation({station, track})">{{ station.name }}</button>
+    <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station)">{{ station.name
+    }}</button>
   </div>
 
   <div v-if="isShareSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
     <button class="clean-btn">Copy link</button>
     <button class="clean-btn">Copy on whatsapp</button>
   </div>
+
 
 </template>
 
@@ -33,28 +39,32 @@ export default {
     return {
       isModalOn: false,
       isPlaylistsSubmodalOn: false,
-      isShareSubmodalOn: false
+      isShareSubmodalOn: false,
+      currStation: null,
     }
+  },
+
+  async created() {
+    const { id } = this.$route.params
+    if (id) this.currStation = await this.$store.getters.getStation(id)
+
   },
   computed: {
     stations() {
       return this.$store.getters.getStations
-    }
+    },
   },
 
   methods: {
-    addTrackToStation(data) {
-      eventBus.emit('addTrackToStation', data)
-    },
+
     openPlayListSubModal() {
       this.isShareSubmodalOn = false
       this.isPlaylistsSubmodalOn = true
     },
-    toggleModal(){
-       !this.isModalOn ? this.isModalOn = true : this.closeAllModals()
+    toggleModal() {
+      !this.isModalOn ? this.isModalOn = true : this.closeAllModals()
     },
     closeAllModals() {
-      console.log('hello');
       this.isShareSubmodalOn = false
       this.isPlaylistsSubmodalOn = false
       this.isModalOn = false
@@ -62,6 +72,10 @@ export default {
     openShareSubModal() {
       this.isShareSubmodalOn = true
       this.isPlaylistsSubmodalOn = false
+    },
+    updateStation(track, station = this.currStation, toAdd = true) {
+      this.closeAllModals()
+      eventBus.emit('updateStation', { station, track, toAdd })
     }
   }
 

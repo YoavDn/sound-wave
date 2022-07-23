@@ -69,20 +69,21 @@
     
         methods: {
             toggleLikedSong() {
-                let msg;
-                const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
+                const likedSongs = this.$store.getters.getLikedSongs
                 this.isLiked = !this.isLiked
+                let msg = this.likedSongs ? 'Add to' : 'Removed from'
     
-                if (likedSongs.tracks.find(t => t.id === this.track.id)) {
-                    const idx = likedSongs.tracks.findIndex(t => t.id === this.track.id)
-                    likedSongs.tracks.splice(idx, 1)
-                    msg = 'Removed from'
-                } else {
-                    likedSongs.tracks.unshift(this.track)
-                    msg = 'Added to'
-                }
+                // if (likedSongs.tracks.find(t => t.id === this.track.id)) {
+                //     const idx = likedSongs.tracks.findIndex(t => t.id === this.track.id)
+                //     likedSongs.tracks.splice(idx, 1)
+                //     msg = 'Removed from'
+                // } else {
+                //     likedSongs.tracks.unshift(this.track)
+                //     msg = 'Added to'
+                // }
+                const data = { station: likedSongs, track: this.track, toAdd: this.isLiked }
                 eventBus.emit('show-msg', `${msg} Liked Songs`)
-                this.$emit('updateStation', likedSongs)
+                this.$emit('updateStation', data)
             }
         },
     }
