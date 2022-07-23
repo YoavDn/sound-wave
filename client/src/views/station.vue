@@ -21,8 +21,6 @@ import searchBar from '../components/search/search-bar.vue'
 import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
 import stationOptions from '../components/station/station-options.vue'
-import { stationService } from '../services/station.service'
-import { utilService } from '../services/utils.service'
 
 export default {
     components: {
@@ -30,8 +28,7 @@ export default {
         trackList,
         searchResultList,
         searchBar,
-        stationOptions
-
+        stationOptions,
     },
 
     data() {
@@ -64,6 +61,7 @@ export default {
 
         addTrackToStation(data) {
             console.log(data);
+            eventBus.emit('show-msg', 'add to')
             this.$store.dispatch({ type: 'addTrackToStation', data })
         },
         setStation(station) {

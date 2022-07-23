@@ -56,3 +56,11 @@ input[type=range]::-webkit-slider-thumb {
     cursor: pointer;
     /* Cursor on hover */
 }
+
+.popup-msg {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+}
