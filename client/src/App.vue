@@ -7,12 +7,14 @@
     <side-bar />
     <player />
   </main>
+  <popup-msg />
 </template>
   
 <script>
 import appHeader from './components/base/app-header.vue'
 import sideBar from './components/base/side-bar.vue'
 import player from './components/base/player.vue'
+import popupMsg from './components/custom/popup-msg.vue'
 
 export default {
 
@@ -22,6 +24,7 @@ export default {
     appHeader,
     player,
     sideBar,
+    popupMsg,
   },
 
   created() {

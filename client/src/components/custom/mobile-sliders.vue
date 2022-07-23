@@ -29,7 +29,6 @@ export default {
     setup(props) {
         const router = useRouter()
         const goToStation = (stationId) => router.push(`/station/${stationId}`)
-        console.log(props.stations);
 
         return {
             props,

@@ -3,12 +3,13 @@
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
-            <p class="track-idx light">{{ trackIdx + 1 }}</p>
+            <p class="track-idx light" v-if="trackIdx">{{ trackIdx + 1 }}</p>
+            <!-- <sound-bar /> -->
         </div>
         <div class="track-img-title flex">
             <img :src="track.imgUrl" />
             <div class="div">
-                <h2>{{ track.title }}</h2>
+                <h2 class="long-text">{{ track.title }}</h2>
                 <p class="sub-text">singer</p>
             </div>
         </div>
@@ -32,9 +33,11 @@
 
     <script>
     import trackOptions from '../track/track-options.vue'
+    import soundBar from '../custom/sound-bar.vue'
     export default {
         components: {
-            trackOptions
+            trackOptions,
+            soundBar,
     
         },
         props: {
