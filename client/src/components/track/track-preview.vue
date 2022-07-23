@@ -3,7 +3,7 @@
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
-            <p class="track-idx light" v-if="trackIdx">{{ trackIdx + 1 }}</p>
+            <p class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
             <!-- <sound-bar /> -->
         </div>
         <div class="track-img-title flex">
@@ -14,7 +14,7 @@
         </div>
         <div class="track-added-by sub-text">
             <!-- <p>John Smith</p> -->
-            <p v-if="track.addedBy.length">{{ track.addedBy }}</p>
+            <p v-if="track.addedBy?.length">{{ track.addedBy }}</p>
             <p v-else>Guest</p>
         </div>
         <div class="track-date-added sub-text">

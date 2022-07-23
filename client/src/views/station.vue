@@ -68,7 +68,7 @@ export default {
             this.$store.commit({ type: 'setCurrStation', station })
         },
 
-        updateStation({ station, track, toAdd }) {
+        async updateStation({ station, track, toAdd }) {
 
             let stationDeepClone = JSON.parse(JSON.stringify(station))
             if (toAdd) {
@@ -77,7 +77,10 @@ export default {
                 const idx = station.tracks.findIndex(t => t.id === track.id)
                 stationDeepClone.tracks.splice(idx, 1)
             }
-            this.$store.dispatch({ type: 'updateStation', station: stationDeepClone, })
+            await this.$store.dispatch({ type: 'updateStation', station: stationDeepClone, })
+            const { id } = this.$route.params
+            this.station = await this.$store.getters.getStation(id)
+            console.log('foo = ', this.station)
         }
 
     },

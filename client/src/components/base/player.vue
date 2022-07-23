@@ -1,6 +1,6 @@
 <template>
 
-        <full-screen v-if="isFullScreen" @toggleFullScreen="toggleFullScreen"></full-screen>
+    <full-screen v-if="isFullScreen" @toggleFullScreen="toggleFullScreen"></full-screen>
 
     <section @click="toggleFullScreen" v-if="track && !isFullScreen" class="player-container">
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
@@ -12,44 +12,44 @@
         <div class="test1">
             <div class="track-controllers-container">
                 <div class="flex center player-track-controllers">
-                    <button @click="shuffle">
+                    <button @click.stop="shuffle">
                         <span>
                             <shuffle></shuffle>
                         </span>
                     </button>
-                    <button @click="onChangeSong(-1)">
+                    <button @click.stop="onChangeSong(-1)">
                         <span>
                             <prev></prev>
                         </span>
                     </button>
-    
+
                     <button class="btn-play" @click.stop="toggleSongPlay">
                         <span v-html="isPlaying ? pauseSvg : playSvg"></span>
                     </button>
-    
-                    <button @click="onChangeSong(1)">
+
+                    <button @click.stop="onChangeSong(1)">
                         <span v-html="next">
                         </span>
                     </button>
-    
+
                     <button>
                         <span v-html="repeatSvg">
                         </span>
                     </button>
                 </div>
-    
+
                 <div class="flex progress-bar-container">
                     <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
                     <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
-                    <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
+                    <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
                         :max="trackDuration" />
                     <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
                 </div>
             </div>
         </div>
         <div class="volume-container">
-            <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-            <input class="volume-bar" @input="changeVolume" type="range" v-model="volume" />
+            <button @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
+            <input class="volume-bar" @input.stop="changeVolume" type="range" v-model="volume" />
         </div>
 
     </section>
@@ -119,7 +119,7 @@ export default defineComponent({
 
 
     methods: {
-        toggleFullScreen(){
+        toggleFullScreen() {
             this.isFullScreen = !this.isFullScreen
         },
         handleTime() {
