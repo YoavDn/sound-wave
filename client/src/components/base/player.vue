@@ -2,7 +2,7 @@
 
     <full-screen v-if="isFullScreen" @toggleFullScreen="toggleFullScreen"></full-screen>
 
-    <section @click="toggleFullScreen" v-if="track && !isFullScreen" class="player-container">
+    <section @click="enterFullScreen" v-if="track && !isFullScreen" class="player-container">
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
@@ -87,7 +87,6 @@ export default defineComponent({
             // autoplay: 0,
         }
     },
-
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -164,7 +163,11 @@ export default defineComponent({
                 this.pause()
             }
         },
-
+        enterFullScreen(){
+            const tabletWidth = window.innerWidth
+            if(tabletWidth > 780) return
+            this.toggleFullScreen()
+        },
         pause() {
             clearInterval(this.trackInterval);
             this.isPlaying = false
