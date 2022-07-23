@@ -4,7 +4,7 @@
             <track-list-head />
             <li v-for="(track, idx) in tracks">
                 <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
-                    @addToLikedSongs="$emit('addToLikedSongs', track)" />
+                    @updateStation="updateStation" />
             </li>
         </ul>
     </div>
@@ -13,6 +13,7 @@
 <script>
 import trackPreview from './track-preview.vue'
 import trackListHead from '../custom/track-list-head.vue'
+import { method } from 'lodash'
 // import TrackListHead from '../custom/track-list-head.vue'
 
 
@@ -23,6 +24,12 @@ export default {
         trackListHead,
         // TrackListHead
     },
-    props: { 'tracks': Array }
+    props: { 'tracks': Array },
+
+    methods: {
+        updateStation(data) {
+            this.$emit('updateStation', data)
+        }
+    },
 }
 </script>

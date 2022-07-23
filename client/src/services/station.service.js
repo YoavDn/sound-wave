@@ -37,8 +37,9 @@ function getById(stationId) {
 }
 
 async function save(station) {
-    await storageService.post(KEY, station)
-    return await query()
+    if (station._id) storageService.put(KEY, station)
+    else await storageService.post(KEY, station)
+    return query()
 }
 
 async function remove(station) {
@@ -47,10 +48,12 @@ async function remove(station) {
 }
 
 async function addTrackToStation(data) {
+
+
     const { station, track } = data
     const stations = await storageService.query(KEY)
     const stationIdx = stations.findIndex(s => s._id === station._id)
-    console.log('statstationIdx = ', stationIdx)
+
     stations[stationIdx].tracks.unshift(track)
     await storageService.put(KEY, stations[stationIdx])
     return stations

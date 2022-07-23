@@ -4,7 +4,7 @@
         <main class="station-main-container">
             <station-options :station="station" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
-                @addToLikedSongs="addToLikedSongs" />
+                @updateStation="updateStation" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
@@ -66,19 +66,25 @@ export default {
         setStation(station) {
             this.$store.commit({ type: 'setCurrStation', station })
         },
-        addToLikedSongs(track) {
-            console.log(track);
-            eventBus.emit('show-msg', `Added to Liked Songs`)
-            const data = {
-                track, station: { _id: 'likedSongs' }
-            }
-            this.$store.dispatch({ type: 'addTrackToStation', data })
+
+        async updateStation(station) {
+            this.$store.dispatch({ type: 'updateStation', station })
         }
 
     },
     computed: {
         searchResults() { return this.$store.getters.searchResults },
-    }
+    },
+
+    watch: {
+        '$route.params.id': {
+            handler: async function (id) {
+                this.station = await this.$store.getters.getStation(id)
+            },
+            deep: true,
+            immediate: true
+        }
+    },
 
 }
 </script>

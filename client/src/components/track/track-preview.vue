@@ -22,7 +22,7 @@
         </div>
 
         <div class="track-time align-center sub-text">
-            <button @click="$emit('addToLikedSongs', track)" class="clean-btn"><i :class="loveIcon"></i></button>
+            <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
             <track-options :track="track" />
         </div>
@@ -33,6 +33,7 @@
 
     <script>
     import trackOptions from '../track/track-options.vue'
+    import { eventBus } from '../../services/event-bus.js'
     import soundBar from '../custom/sound-bar.vue'
     export default {
         components: {
@@ -61,19 +62,27 @@
             },
     
             likedSongs() {
-                return this.$store.getters.getLikedSongs
+                const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
+                return likedSongs
     
             }
         },
     
         methods: {
-            likeTrack(track) {
-                const data = {
-                    track,
-                    station: { _id: 'likedSongs' }
+            toggleLikedSong() {
+                let msg;
+    
+                if (this.likedSongs.tracks.find(t => t.id === this.track.id)) {
+                    const idx = this.likedSongs.tracks.findIndex(t => t.id === this.track.id)
+                    this.likedSongs.tracks.splice(idx, 1)
+                    msg = 'Removed from'
+                } else {
+                    this.likedSongs.tracks.unshift(this.track)
+                    msg = 'Added to'
                 }
-                eventBus.emit('addTrackToStation', data)
-            },
+                eventBus.emit('show-msg', `${msg} Liked Songs`)
+                this.$emit('updateStation', this.likedSongs)
+            }
         },
     
         created() {

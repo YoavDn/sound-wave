@@ -9,7 +9,7 @@ export default {
     },
 
     mutations: {
-        loadStations: (state, { stations }) => state.stations = stations,
+        setStations: (state, { stations }) => state.stations = stations,
         setCurrStation: (state, { station }) => {
             state.currStation = station
             console.log('station = ', station)
@@ -30,7 +30,7 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
-                commit({ type: 'loadStations', stations })
+                commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
             }
@@ -48,7 +48,7 @@ export default {
         async saveStation({ commit }, { station }) {
             try {
                 const stations = await stationService.save(station)
-                commit({ type: 'loadStations', stations })
+                commit({ type: 'setStations', stations })
             } catch (err) {
                 return console.log(err);
             }
@@ -57,14 +57,26 @@ export default {
         async addTrackToStation({ commit }, { data }) {
             try {
                 let { station, track } = data
-                if (station._id === 'likedSongs') station = stationService.getById(station._id)
-                if (station.tracks?.find(currTrack => currTrack.videoId === track.videoId)) throw new Error('Track already in station')
+                if (station.tracks?.find(currTrack => currTrack.id === track.id)) {
+                    throw new Error('Track already in station')
+                }
                 const stations = await stationService.addTrackToStation(data)
-                commit({ type: 'loadStations', stations })
+                commit({ type: 'setStations', stations })
             } catch (err) {
                 return console.log(err);
             }
         },
+
+        async updateStation({ commit }, { station }) {
+            try {
+                const updatedStations = await stationService.save(station)
+                commit({ type: 'setStations', updatedStations })
+                return updatedStations
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
 
     }
 }
