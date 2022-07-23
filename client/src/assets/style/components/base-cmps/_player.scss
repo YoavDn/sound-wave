@@ -9,9 +9,8 @@
     padding-inline: $base-padding;
     z-index: 3;
 
-    .track-controllers-container {
-        min-width: 310px;
-        width: 37%;
+    .test1{
+        width: 33.5%; 
     }
 
     .player-track-controllers {
@@ -28,8 +27,9 @@
 
     .track-details {
         align-items: center;
-        min-width: 220px;
+        // min-width: 220px;
         gap: 10px;
+        min-width: 30%;
 
         .curr-track-name {
             @include dots-when-break
@@ -67,7 +67,9 @@
     .volume-container {
         display: flex;
         align-items: center;
-        gap: 7px
+        gap: 7px;
+        min-width: 30%;
+        justify-content: end;
     }
 
     .volume-bar {
@@ -94,6 +96,7 @@
         z-index: 1;
         height: 4px;
 
+
         &:hover {
             opacity: 1;
         }
@@ -106,20 +109,18 @@
         background-color: $clr1;
         height: 4px;
     }
+    .progress-bar-nums1{
+        position: absolute;
+        transform: translateX(-140%);
+    }
+    .progress-bar-nums2{
+        position: absolute;
+        right: 0;
+        transform: translateX(140%);
+    }
 }
 
-@media (max-width: $tablet-width) {
-    .player-container {
-        grid-column: 1 /span 2;
-        grid-row: 2;
-        width: 100%;
-        margin-inline: $layout-padding;
-        margin: auto;
-        border-radius: 10px;
-
-    }
-
-    //Todo: make better 
+//Todo: make better 
 
     .progress-bar {
         // -webkit-appearance: none;
@@ -133,7 +134,7 @@
         -moz-appearance: none;
         appearance: none;
     }
-
+    
     :hover .progress-bar::-webkit-slider-thumb {
         // -webkit-appearance: none;
         // -moz-appearance: none;
@@ -143,7 +144,7 @@
         border-radius: 50%;
         background: #fff;
     }
-
+    
     //   input[type=range]::-moz-range-progress {
     //     background-color: green;
     //     height: 1em;
@@ -151,4 +152,16 @@
     //   :hover .progress-bar {
     //     border: 2px solid rgb(71, 235, 107);
     //   }
+
+    @media (max-width: $tablet-width) {
+        .player-container {
+            grid-column: 1 /span 2;
+            grid-row: 2;
+            width: 100%;
+            margin-inline: $layout-padding;
+            margin: auto;
+            border-radius: 10px;
+            padding-inline: 10px;
+            background-color: aqua;
+        }
 }

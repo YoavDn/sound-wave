@@ -7,42 +7,42 @@
             <div class="curr-track-name">{{ track.title }}</div>
         </div>
 
-        <div class="track-controllers-container">
-            <div class="flex center player-track-controllers">
-                <button @click="shuffle">
-                    <span>
-                        <shuffle></shuffle>
-                    </span>
-                </button>
-                <button @click="onChangeSong(-1)">
-                    <span>
-                        <prev></prev>
-                    </span>
-                </button>
-
-                <button class="btn-play" @click="toggleSongPlay">
-                    <span v-html="isPlaying ? pauseSvg : playSvg"></span>
-                </button>
-
-                <button @click="onChangeSong(1)">
-                    <span v-html="next">
-                    </span>
-                </button>
-
-                <button>
-                    <span v-html="repeatSvg">
-                    </span>
-                </button>
-
-
-            </div>
-
-            <div class="flex progress-bar-container">
-                <div>{{ convertMinStart }}</div>
-                <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
-                <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
-                    :max="trackDuration" />
-                <div>{{ convertMinEnd }}</div>
+        <div class="test1">
+            <div class="track-controllers-container">
+                <div class="flex center player-track-controllers">
+                    <button @click="shuffle">
+                        <span>
+                            <shuffle></shuffle>
+                        </span>
+                    </button>
+                    <button @click="onChangeSong(-1)">
+                        <span>
+                            <prev></prev>
+                        </span>
+                    </button>
+    
+                    <button class="btn-play" @click="toggleSongPlay">
+                        <span v-html="isPlaying ? pauseSvg : playSvg"></span>
+                    </button>
+    
+                    <button @click="onChangeSong(1)">
+                        <span v-html="next">
+                        </span>
+                    </button>
+    
+                    <button>
+                        <span v-html="repeatSvg">
+                        </span>
+                    </button>
+                </div>
+    
+                <div class="flex progress-bar-container">
+                    <div class="progress-bar-nums1">{{ convertMinStart }}</div>
+                    <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
+                    <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
+                        :max="trackDuration" />
+                    <div class="progress-bar-nums2">{{ convertMinEnd }}</div>
+                </div>
             </div>
         </div>
         <div class="volume-container">
