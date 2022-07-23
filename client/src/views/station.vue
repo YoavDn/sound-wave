@@ -61,7 +61,7 @@ export default {
 
         addTrackToStation(data) {
             console.log(data);
-            eventBus.emit('show-msg', 'add to')
+            eventBus.emit('show-msg', `Added to${data.station.name}`)
             this.$store.dispatch({ type: 'addTrackToStation', data })
         },
         setStation(station) {
