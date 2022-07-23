@@ -71,7 +71,6 @@
             toggleLikedSong() {
                 let msg;
                 const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
-    
                 this.isLiked = !this.isLiked
     
                 if (likedSongs.tracks.find(t => t.id === this.track.id)) {

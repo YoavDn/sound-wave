@@ -68,7 +68,7 @@ export default {
         },
 
         updateStation(station) {
-            this.$store.dispatch({ type: 'updateStation', station, currStation: this.station })
+            this.$store.dispatch({ type: 'updateStation', station, })
         }
 
     },

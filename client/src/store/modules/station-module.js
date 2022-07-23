@@ -70,6 +70,7 @@ export default {
         async updateStation({ commit }, { station, }) {
             try {
                 const stations = await stationService.save(station)
+                console.log(stations);
                 commit({ type: 'setStations', stations })
             } catch (err) {
                 console.log(err);
