@@ -92,6 +92,5 @@ function timeStampToStr(timestamp) {
     const seconds = timestamp / 60000
     const minuts = Math.floor(seconds / 60)
     const secondsRemainder = (seconds % 60);
-    console.log(minuts);
     return `${minuts} min ${_padTo2Digits(secondsRemainder)} sec`
 }

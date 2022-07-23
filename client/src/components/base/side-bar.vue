@@ -8,7 +8,7 @@
                 <h2> hello</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
-                :class="{ 'active-link': isActive(pageLink.id) }" class=" page-link-btn flex align-center">
+                :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <i :class="pageLink.icon"></i>
                 </span>
@@ -47,21 +47,20 @@ export default {
                 { id: '', name: 'Home', icon: 'bi bi-house-door-fill' },
                 { id: 'search', name: 'Search', icon: 'bi bi-search' },
                 { id: 'library', name: ' Your Library', icon: 'bi bi-music-note-list' }
-            ]
+            ],
+            activePage: null
         }
     },
 
     created() {
-        this.activePage = () => this.$route.name
+
     },
 
     computed: {
-        currPage() {
-            return this.$route.name
-        },
         stations() {
             return this.$store.getters.getStations
         },
+
     },
 
     methods: {
@@ -77,13 +76,28 @@ export default {
             return this.activePage === pageId ? true : false
         },
 
+        activeStyle(pageId) {
+            return { 'active-link': this.activePage === pageId }
+        },
+
         async createNewPlaylist() {
             const station = await stationService.getEmptyStation()
             await stationService.save(station)
             return this.$router.push(`/station/${station._id}`)
         }
 
-    }
+    },
+
+    watch: {
+        '$route.name': {
+            handler: function (name) {
+                this.activePage = name
+            },
+            deep: true,
+            immediate: true
+        },
+
+    },
 }
 
 </script>
