@@ -2,7 +2,7 @@
     <header class='station-header-container'>
         <div class="header-img-container">
             <img class="shadow" v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
-            <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover">
+            <!-- <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover"> -->
         </div>
         <div class="station-text">
             <p>PLAYIST</p>

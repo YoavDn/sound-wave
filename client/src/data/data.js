@@ -55,7 +55,7 @@ function demoGenres() {
             background: 'background-color: rgb(141, 103, 171)',
             title: 'Relax',
         },
-        
+
         // {
         //     imgUrl: 'https://i.scdn.co/image/ab67706f0000000319563f001e26bc056720e839',
         //     background: 'background-color: rgb(150, 234, 220)',
@@ -1301,5 +1301,494 @@ function demoStations() {
                 }
             ]
         },
+        // hiphob
+        {
+            _id: "4c5sxjas8lpqsa8j15igs32209",
+            name: "Mellow Bars",
+            tags: ['jazz', 'hiphop'],
+            createdAt: 1541652422,
+            imgUrl: "https://i.scdn.co/image/ab67706f000000022f8fdda43fa482dca18180f7",
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "Q2PujLvkDEs",
+                    title: "Heroes",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Q2PujLvkDEs/hqdefault.jpg",
+                    addedBy: "aviya",
+                    addedAt: 162521765262,
+                    time: '4:15',
+                },
+                {
+                    id: "7NQMHSja3xs",
+                    title: "Clara",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7NQMHSja3xs/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:54',
+                },
+                {
+                    id: "p-bHWsnKt4Q",
+                    title: "Arm in Arm",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/p-bHWsnKt4Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '8:43',
+                },
+                {
+                    id: "7893juDY71Q",
+                    title: "Virgo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7893juDY71Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '5:58',
+                },
+                {
+                    id: "1Ehr1Rg2gfg",
+                    title: "Cloud",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/1Ehr1Rg2gfg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:22',
+                },
+                {
+                    id: "Hcx68dXfEqM",
+                    title: "Largo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Hcx68dXfEqM/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:22',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        {
+            _id: "4c5sxjas8lpqsa8552jigs3253209",
+            name: "Mind right",
+            tags: ['mood', 'hiphop'],
+            createdAt: 1541652422,
+            imgUrl: "https://i.scdn.co/image/ab67706f0000000204eed48edd33d4eb60419ea7",
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "Q2PujLvkDEs",
+                    title: "Heroes",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Q2PujLvkDEs/hqdefault.jpg",
+                    addedBy: "aviya",
+                    addedAt: 162521765262,
+                    time: '4:15',
+                },
+                {
+                    id: "7NQMHSja3xs",
+                    title: "Clara",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7NQMHSja3xs/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:54',
+                },
+                {
+                    id: "p-bHWsnKt4Q",
+                    title: "Arm in Arm",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/p-bHWsnKt4Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '8:43',
+                },
+                {
+                    id: "7893juDY71Q",
+                    title: "Virgo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7893juDY71Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '5:58',
+                },
+                {
+                    id: "1Ehr1Rg2gfg",
+                    title: "Cloud",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/1Ehr1Rg2gfg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:22',
+                },
+                {
+                    id: "Hcx68dXfEqM",
+                    title: "Largo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Hcx68dXfEqM/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:22',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        {
+            _id: "4c5sxjas8lp52sa8jigs32209",
+            name: "This is MF DOOM",
+            tags: ['hiphop'],
+            createdAt: 1541652422,
+            imgUrl: 'https://ukhiphopblogcouk.files.wordpress.com/2019/02/img_20190202_234413.jpg',
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "gSJeHDlhYls",
+                    title: "Madvillain - All Caps",
+                    singer: 'MF DOOM',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/gSJeHDlhYls/hqdefault.jpg",
+                    addedBy: "Aviv Zafrir",
+                    addedAt: 162521765262,
+                    time: '2:14',
+                },
+                {
+                    id: "I4P5RR4jPGg",
+                    title: "Figaro",
+                    singer: 'MF DOOm',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/I4P5RR4jPGg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:54',
+                },
+                {
+                    id: "gQtKJbptcns",
+                    title: "Rapp Snitch Knishes (feat. Mr. Fantastik)",
+                    singer: 'MF DOOM',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/gQtKJbptcns/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '2:52',
+                },
+                {
+                    id: "kHBHDWpK1yo",
+                    title: "Doomsday",
+                    singer: 'MF DOOM',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/kHBHDWpK1yo/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '5:58',
+                },
+                {
+                    id: "1Ehr1Rg2gfg",
+                    title: "Cloud",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/1Ehr1Rg2gfg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:22',
+                },
+                {
+                    id: "tv2q9vQ7GOI",
+                    title: "Curls",
+                    singer: 'MF DOOM',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/tv2q9vQ7GOI/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:22',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        {
+            _id: "4c5sxjas8lpqsa8jigs353209",
+            name: "jazz rap",
+            tags: ['mood', 'hiphop'],
+            createdAt: 1541652422,
+            imgUrl: "https://i.scdn.co/image/ab67706f000000025115b9702d26cd841fda7827",
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "A8pYbK46VEI",
+                    title: "Rejjie Snow, MF DOOM & Cam O'bi - Cookie Chips",
+                    singer: 'Rejjie Snow',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/A8pYbK46VEI/hqdefault.jpg",
+                    addedBy: "aviya",
+                    addedAt: 162521765262,
+                    time: '4:15',
+                },
+                {
+                    id: "BpkxuwG1UJU",
+                    title: "  tom misch - it runs through me",
+                    url: "youtube/song.mp4",
+                    singer: 'tom misch',
+                    imgUrl: "https://i.ytimg.com/vi/BpkxuwG1UJU/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:24',
+                },
+                {
+                    id: "EzKvCAshwRI",
+                    title: "Jazz ",
+                    singer: 'Mick Jenkins',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/EzKvCAshwRI/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:20',
+                },
+                {
+                    id: "hC8CH0Z3L54",
+                    title: "Tadow",
+                    singer: 'Masego',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/hC8CH0Z3L54/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '8:06',
+                },
+                {
+                    id: "RM7lw0Ovzq0",
+                    title: "The Story of O.J.",
+                    singer: 'JAY-Z',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/RM7lw0Ovzq0/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:13',
+                },
+                {
+                    id: "_GghFQ8ryEU",
+                    title: "untitled 02 | 06.23.2014.",
+                    singer: 'Kendrick Lamar',
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/_GghFQ8ryEU/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:18',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        {
+            _id: "4c5sxjas8lpq431a8jigs32209",
+            name: "I Love My '90s Hip-Hop",
+            tags: ['hiphop'],
+            createdAt: 1541652422,
+            imgUrl: "https://i.scdn.co/image/ab67706f0000000285632c594e2b9d7515d7b912",
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "Q2PujLvkDEs",
+                    title: "Heroes",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Q2PujLvkDEs/hqdefault.jpg",
+                    addedBy: "aviya",
+                    addedAt: 162521765262,
+                    time: '4:15',
+                },
+                {
+                    id: "7NQMHSja3xs",
+                    title: "Clara",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7NQMHSja3xs/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:54',
+                },
+                {
+                    id: "p-bHWsnKt4Q",
+                    title: "Arm in Arm",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/p-bHWsnKt4Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '8:43',
+                },
+                {
+                    id: "7893juDY71Q",
+                    title: "Virgo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7893juDY71Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '5:58',
+                },
+                {
+                    id: "1Ehr1Rg2gfg",
+                    title: "Cloud",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/1Ehr1Rg2gfg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:22',
+                },
+                {
+                    id: "Hcx68dXfEqM",
+                    title: "Largo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Hcx68dXfEqM/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:22',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+        {
+            _id: "4c5sxjas8lpq431a8jigs353209",
+            name: "Get Turnt",
+            tags: ['hiphop', 'workout'],
+            createdAt: 1541652422,
+            imgUrl: "https://i.scdn.co/image/ab67706f0000000290a895ce2bd3e7195b84ae89",
+            createdBy: {
+                _id: "u101",
+                fullname: "Puki Ben David",
+                imgUrl: "http://some-photo/"
+            },
+            likedByUsers: [
+                "{minimal-user}",
+                "{minimal-user}"
+            ],
+            tracks: [
+                {
+                    id: "Q2PujLvkDEs",
+                    title: "Heroes",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Q2PujLvkDEs/hqdefault.jpg",
+                    addedBy: "aviya",
+                    addedAt: 162521765262,
+                    time: '4:15',
+                },
+                {
+                    id: "7NQMHSja3xs",
+                    title: "Clara",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7NQMHSja3xs/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:54',
+                },
+                {
+                    id: "p-bHWsnKt4Q",
+                    title: "Arm in Arm",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/p-bHWsnKt4Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '8:43',
+                },
+                {
+                    id: "7893juDY71Q",
+                    title: "Virgo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/7893juDY71Q/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '5:58',
+                },
+                {
+                    id: "1Ehr1Rg2gfg",
+                    title: "Cloud",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/1Ehr1Rg2gfg/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '3:22',
+                },
+                {
+                    id: "Hcx68dXfEqM",
+                    title: "Largo",
+                    url: "youtube/song.mp4",
+                    imgUrl: "https://i.ytimg.com/vi/Hcx68dXfEqM/hqdefault.jpg",
+                    addedBy: {},
+                    addedAt: 162521765262,
+                    time: '4:22',
+                },
+            ],
+            msgs: [
+                {
+                    id: "m101",
+                    from: "{mini-user}",
+                    txt: "Manish?"
+                }
+            ]
+        },
+
+
     ]
 }
+
