@@ -12,7 +12,8 @@ export default {
         setCurrStation: (state, { station }) => {
             state.currStation = station
             console.log('station = ', station)
-        }
+        },
+      
 
     },
     getters: {
