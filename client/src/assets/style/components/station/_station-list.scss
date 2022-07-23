@@ -3,6 +3,13 @@
     min-height: 20rem;
 }
 
+.station-list-container {
+    display: grid;
+    grid-template-columns: repeat(var(--column-count), minmax(0, 12.5rem));
+    // grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
+    gap: 24px
+}
+
 .station-list {
     width: 100%;
 }

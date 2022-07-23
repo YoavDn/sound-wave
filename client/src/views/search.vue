@@ -4,7 +4,7 @@
         <div v-if="tracks">
             <search-result-list @setTrack="setTrack" :tracks="tracks" />
         </div>
-        <genre-list :genres="genres" />
+        <genre-list v-if="!tracks" :genres="genres" />
     </section>
 </template>
     
@@ -22,7 +22,7 @@ export default {
         }
     },
     created() {
-        this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+        this.unsubscribe = eventBus.on('updateStation', this.updateStation)
         this.genres = this.$store.getters.genres
     },
     unmounted() {
@@ -47,9 +47,8 @@ export default {
             this.$store.commit({ type: 'loadTrack', track })
         },
 
-        addTrackToStation(data) {
-            console.log('from search');
-            this.$store.dispatch({ type: 'addTrackToStation', data })
+        updateStation(data) {
+            this.$store.dispatch({ type: 'updateStation', data })
         }
 
     },

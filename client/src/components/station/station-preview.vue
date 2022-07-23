@@ -6,7 +6,6 @@
             <button class="station-preview-play-btn"><i class="bi bi-play-circle-fill"></i></button>
         </div>
         <h3 class="station-name">{{ station.name }}</h3>
-        <p>Lorem ipsum, dolor sit amet consec</p>
     </div>
 </template>
     

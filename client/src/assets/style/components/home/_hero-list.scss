@@ -2,9 +2,12 @@
     grid-row: 1;
 
     .hero-title {
-        font-size: 26px;
-        color: $clr3;
+        font-size: 2rem;
+        line-height: 2.25rem;
+        text-transform: none;
+        letter-spacing: -0.04em;
         margin-block: 20px;
+        color: $clr3;
     }
 
     .hero-list {

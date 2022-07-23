@@ -3,19 +3,19 @@
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
-            <p class="track-idx light" v-if="trackIdx">{{ trackIdx + 1 }}</p>
+            <p class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
             <!-- <sound-bar /> -->
         </div>
         <div class="track-img-title flex">
             <img :src="track.imgUrl" />
             <div class="div">
                 <h2 class="long-text">{{ track.title }}</h2>
-                <p class="sub-text">singer</p>
             </div>
         </div>
         <div class="track-added-by sub-text">
             <!-- <p>John Smith</p> -->
-            <p>{{ track.addedBy }}</p>
+            <p v-if="track.addedBy?.length">{{ track.addedBy }}</p>
+            <p v-else>Guest</p>
         </div>
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
@@ -54,7 +54,7 @@
         },
     
         created() {
-            this.isLiked = this.$store.getters.getLikedStations.tracks.some(t => t.id === this.track.id)
+            this.isLiked = this.$store.getters.getTracksStation.tracks.some(t => t.id === this.track.id)
     
         },
         computed: {
@@ -70,11 +70,10 @@
     
         methods: {
             toggleLikedSong() {
-                const likedSongs = this.$store.getters.getLikedSongs
+                const likedTracks = this.$store.getters.getTracksStation
                 this.isLiked = !this.isLiked
-                let msg = this.likedSongs ? 'Add to' : 'Removed from'
-    
-                const data = { station: likedSongs, track: this.track, toAdd: this.isLiked }
+                let msg = this.isLiked ? 'Add to' : 'Removed from'
+                const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
                 eventBus.emit('show-msg', `${msg} Liked Songs`)
                 this.$emit('updateStation', data)
             }

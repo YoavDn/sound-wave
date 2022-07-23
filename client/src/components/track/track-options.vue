@@ -18,7 +18,7 @@
   </div>
 
   <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
-    <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station)">{{ station.name
+    <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station, true)">{{ station.name
     }}</button>
   </div>
 
@@ -73,9 +73,11 @@ export default {
       this.isShareSubmodalOn = true
       this.isPlaylistsSubmodalOn = false
     },
-    updateStation(track, station = this.currStation, toAdd = true) {
+    updateStation(track, station = this.currStation, isNew = true) {
       this.closeAllModals()
-      eventBus.emit('updateStation', { station, track, toAdd })
+
+      const data = { track, station, isNew }
+      eventBus.emit('updateStation', data)
     }
   }
 

@@ -56,11 +56,11 @@ function demoGenres() {
             title: 'Relax',
         },
         
-        {
-            imgUrl: 'https://i.scdn.co/image/ab67706f0000000319563f001e26bc056720e839',
-            background: 'background-color: rgb(150, 234, 220)',
-            title: 'French',
-        },
+        // {
+        //     imgUrl: 'https://i.scdn.co/image/ab67706f0000000319563f001e26bc056720e839',
+        //     background: 'background-color: rgb(150, 234, 220)',
+        //     title: 'French',
+        // },
     ]
 }
 
