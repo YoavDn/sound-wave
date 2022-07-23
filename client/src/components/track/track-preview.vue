@@ -52,6 +52,10 @@
                 isLiked: false,
             }
         },
+    
+        created() {
+            this.isLiked = this.$store.getters.getLikedSongs.tracks.some(t => t.id === this.track.id)
+        },
         computed: {
             playBtn() {
                 return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
@@ -61,32 +65,26 @@
                 return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }
             },
     
-            likedSongs() {
-                const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
-                return likedSongs
-    
-            }
         },
     
         methods: {
             toggleLikedSong() {
                 let msg;
+                const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
     
-                if (this.likedSongs.tracks.find(t => t.id === this.track.id)) {
-                    const idx = this.likedSongs.tracks.findIndex(t => t.id === this.track.id)
-                    this.likedSongs.tracks.splice(idx, 1)
+                this.isLiked = !this.isLiked
+    
+                if (likedSongs.tracks.find(t => t.id === this.track.id)) {
+                    const idx = likedSongs.tracks.findIndex(t => t.id === this.track.id)
+                    likedSongs.tracks.splice(idx, 1)
                     msg = 'Removed from'
                 } else {
-                    this.likedSongs.tracks.unshift(this.track)
+                    likedSongs.tracks.unshift(this.track)
                     msg = 'Added to'
                 }
                 eventBus.emit('show-msg', `${msg} Liked Songs`)
-                this.$emit('updateStation', this.likedSongs)
+                this.$emit('updateStation', likedSongs)
             }
         },
-    
-        created() {
-            if (this.likedSongs.tracks.find(t => t.id === this.track.id)) this.isLiked = true
-        }
     }
     </script>

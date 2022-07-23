@@ -67,8 +67,8 @@ export default {
             this.$store.commit({ type: 'setCurrStation', station })
         },
 
-        async updateStation(station) {
-            this.$store.dispatch({ type: 'updateStation', station })
+        updateStation(station) {
+            this.$store.dispatch({ type: 'updateStation', station, currStation: this.station })
         }
 
     },
@@ -83,7 +83,8 @@ export default {
             },
             deep: true,
             immediate: true
-        }
+        },
+
     },
 
 }

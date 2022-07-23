@@ -39,7 +39,7 @@ function getById(stationId) {
 async function save(station) {
     if (station._id) storageService.put(KEY, station)
     else await storageService.post(KEY, station)
-    return query()
+    return await query()
 }
 
 async function remove(station) {

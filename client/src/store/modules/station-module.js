@@ -67,11 +67,10 @@ export default {
             }
         },
 
-        async updateStation({ commit }, { station }) {
+        async updateStation({ commit }, { station, }) {
             try {
-                const updatedStations = await stationService.save(station)
-                commit({ type: 'setStations', updatedStations })
-                return updatedStations
+                const stations = await stationService.save(station)
+                commit({ type: 'setStations', stations })
             } catch (err) {
                 console.log(err);
             }
