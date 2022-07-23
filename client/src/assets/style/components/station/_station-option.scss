@@ -29,7 +29,33 @@
     .heart-btn {
         font-size: 30px;
         align-self: center;
-        color: $clr1;
+        color: #CBC7C7;
+
+
+        &:hover {
+            color: $clr3;
+        }
+    }
+
+    .like-share-container {
+        gap: 1rem;
+
+        .station-options-share {
+
+            filter: invert(96%) sepia(10%) saturate(2%) hue-rotate(51deg) brightness(105%) contrast(100%);
+            display: none;
+        }
+
+        .station-options {
+            color: #CBC7C7;
+            font-size: 1.5625rem;
+            letter-spacing: 1rem;
+            justify-self: end;
+
+            &:hover {
+                color: $clr3;
+            }
+        }
     }
 }
 
@@ -42,14 +68,12 @@
         padding-block: 0;
         justify-content: space-between;
 
-        .play-share-container {
-            gap: 1rem;
-
-            .station-options-share {
-                filter: invert(96%) sepia(10%) saturate(2%) hue-rotate(51deg) brightness(105%) contrast(100%);
-            }
+        .station-options-share {
+            display: block !important;
         }
-
+        .station-options {
+            display: none;
+        }
         .play-btn {
             order: 3;
             margin: 0;
@@ -58,7 +82,6 @@
         .heart-btn {
             font-size: 20px;
             align-self: center;
-            color: $clr3;
         }
     }
 

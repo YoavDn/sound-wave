@@ -64,7 +64,6 @@ export default {
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    -webkit-align-items: center;
 
     img {
         width: 100%;
@@ -73,9 +72,7 @@ export default {
         aspect-ratio: 1;
     }
 
-    .station-name {
-        display: none;
-    }
+    
 
     p {
         color: rgb(181, 181, 181);
