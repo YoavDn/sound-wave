@@ -43,6 +43,7 @@ export default {
         },
 
         addTrackToStation(data) {
+            console.log('from search');
             this.$store.dispatch({ type: 'addTrackToStation', data })
         }
 

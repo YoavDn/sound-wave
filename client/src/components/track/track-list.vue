@@ -3,7 +3,8 @@
         <ul class="clean-list station-list">
             <track-list-head />
             <li v-for="(track, idx) in tracks">
-                <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" />
+                <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
+                    @addToLikedSongs="$emit('addToLikedSongs', track)" />
             </li>
         </ul>
     </div>

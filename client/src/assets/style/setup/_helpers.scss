@@ -79,9 +79,14 @@
     width: 100%;
 }
 
-.long-text { 
+.long-text {
     text-overflow: ellipsis;
     overflow: hidden;
     width: 190px;
     white-space: nowrap;
-  }
+}
+
+
+.hidden {
+    display: none;
+}
