@@ -18,8 +18,7 @@ export default {
     },
     getters: {
         getStations: (state) => state.stations,
-        getLikedSongs: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
-        getCurrStation(state) { return state.currStation },
+        // getCurrStation(state) { return state.currStation },
         getStation: ({ stations }) => async (id) => {
             if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
