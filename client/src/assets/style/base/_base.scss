@@ -5,9 +5,14 @@
 }
 
 html {
-    font-family: 'Inter', sans-serif;
+    // font-family: 'Inter', sans-serif;
+    font-family: 'gotham medium', sans-serif;
     overflow-y: auto;
     scrollbar-gutter: revert;
+}
+
+button {
+    font-family: 'gotham medium', sans-serif;
 }
 
 

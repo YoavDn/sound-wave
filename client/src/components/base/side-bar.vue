@@ -72,9 +72,6 @@ export default {
             this.$router.push(`/station/${stationId}`)
         },
 
-        isActive(pageId) {
-            return this.activePage === pageId ? true : false
-        },
 
         activeStyle(pageId) {
             return { 'active-link': this.activePage === pageId }
