@@ -4,6 +4,7 @@
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
             <p class="track-idx light">{{ trackIdx + 1 }}</p>
+            <!-- <sound-bar /> -->
         </div>
         <div class="track-img-title flex">
             <img :src="track.imgUrl" />
@@ -32,9 +33,11 @@
 
     <script>
     import trackOptions from '../track/track-options.vue'
+    import soundBar from '../custom/sound-bar.vue'
     export default {
         components: {
-            trackOptions
+            trackOptions,
+            soundBar,
     
         },
         props: {
