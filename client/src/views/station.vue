@@ -68,9 +68,7 @@ export default {
             this.$store.commit({ type: 'setCurrStation', station })
         },
 
-        async updateStation({ station, track, isNew }) {
-            const data = { station, track, isNew }
-
+        async updateStation(data) {
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             this.station = await this.$store.getters.getStation(id)

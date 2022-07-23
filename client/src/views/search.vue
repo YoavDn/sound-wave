@@ -22,7 +22,7 @@ export default {
         }
     },
     created() {
-        this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+        this.unsubscribe = eventBus.on('updateStation', this.updateStation)
         this.genres = this.$store.getters.genres
     },
     unmounted() {
@@ -47,9 +47,8 @@ export default {
             this.$store.commit({ type: 'loadTrack', track })
         },
 
-        addTrackToStation(data) {
-            console.log('from search');
-            this.$store.dispatch({ type: 'addTrackToStation', data })
+        updateStation(data) {
+            this.$store.dispatch({ type: 'updateStation', data })
         }
 
     },

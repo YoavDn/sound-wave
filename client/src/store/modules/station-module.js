@@ -1,4 +1,3 @@
-import { storageService } from '../../services/async-storage.service'
 import { stationService } from '../../services/station.service'
 
 export default {
