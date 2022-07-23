@@ -11,12 +11,17 @@ export default {
     getters: {
         getTrack(state) {
             return state.currTrack
-        }
+        },
+        getCurrStation(state) {
+            console.log('state.currStation',state.currStation)
+            return state.currStation
+        },
     },
     mutations: {
         loadTrack(state, { track, station = null }) {
             state.currTrack = track
-            if (station) state.currStation = station.tracks
+            console.log('station',station)
+            if (station) state.currStation = station
         },
 
         changeTrackInStation(state, { diff }) {

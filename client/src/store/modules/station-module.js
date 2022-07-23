@@ -18,7 +18,7 @@ export default {
     },
     getters: {
         getStations: (state) => state.stations,
-        getCurrStation(state) { return state.currStation },
+        // getCurrStation(state) { return state.currStation },
         getStation: ({ stations }) => async (id) => {
             if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
