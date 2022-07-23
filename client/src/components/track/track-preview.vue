@@ -10,12 +10,12 @@
             <img :src="track.imgUrl" />
             <div class="div">
                 <h2 class="long-text">{{ track.title }}</h2>
-                <p class="sub-text">singer</p>
             </div>
         </div>
         <div class="track-added-by sub-text">
             <!-- <p>John Smith</p> -->
-            <p>{{ track.addedBy }}</p>
+            <p v-if="track.addedBy.length">{{ track.addedBy }}</p>
+            <p v-else>Guest</p>
         </div>
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>

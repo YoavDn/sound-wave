@@ -4,7 +4,7 @@
         <div v-if="tracks">
             <search-result-list @setTrack="setTrack" :tracks="tracks" />
         </div>
-        <genre-list :genres="genres" />
+        <genre-list v-if="!tracks" :genres="genres" />
     </section>
 </template>
     

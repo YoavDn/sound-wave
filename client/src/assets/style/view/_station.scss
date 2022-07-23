@@ -31,12 +31,7 @@
 }
 
 
-.station-list-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
-    grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
-    gap: 20px
-}
+
 
 
 @media (max-width: $tablet-width) {

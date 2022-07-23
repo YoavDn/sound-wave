@@ -2,7 +2,7 @@
 <template>
     <main class="home-container">
         <section class="hero-container">
-            <h2 class="hero-title">Final Sprint day 4 !</h2>
+            <h2 class="hero-title">{{ welcomeMessage }}</h2>
             <div class="hero-list">
                 <article v-for="station in heroStations" :key="station._id" @click="goToStation(station._id)"
                     class="hero-card flex">
@@ -67,6 +67,17 @@ export default {
 
         heroStations() {
             return this.$store.getters.getStations.slice(-6)
+        },
+        welcomeMessage() {
+            var today = new Date()
+            var curHr = today.getHours()
+            if (curHr < 12) {
+                return 'Good morning'
+            } else if (curHr < 18) {
+                return 'Good afternoon'
+            } else {
+                return 'Good evening'
+            }
         }
     },
 }

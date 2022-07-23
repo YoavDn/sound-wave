@@ -1,5 +1,5 @@
 <template>
-    <swiper :slidesPerView="2" :spaceBetween="20" :freeMode="true" :modules="modules" class="mySwiper">
+    <swiper :slidesPerView="2.5" :spaceBetween="5" :freeMode="true" :modules="modules" class="mySwiper">
         <swiper-slide v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
             <station-preview :station="station" class="station-card" />
         </swiper-slide>
@@ -48,10 +48,10 @@ export default {
 .swiper-slide {
 
     // background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    // padding: 10px;
     display: flex;
     flex-direction: column;
-
+    width: 10px;
     font-size: 16px;
     display: -webkit-box;
     display: -ms-flexbox;

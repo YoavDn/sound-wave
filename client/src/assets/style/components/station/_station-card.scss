@@ -1,11 +1,11 @@
 .station-card {
     cursor: pointer;
     // height: 285px;
-    background: rgba(255, 255, 255, .2);
     // margin-inline-end: 25px;
     padding: .5em;
     border-radius: 5px;
     transition: background .3s;
+    background-color: #ffffff0a;
 
     .station-card-img {
         position: relative;
@@ -62,7 +62,11 @@
     p {
         color: $clr3 ;
         padding-inline-start: 6px;
-        font-weight: 200;
+        font-size: 16px;
+        line-height: 1rem;
+        font-weight: 700;
+        margin-top: 2px;
+        overflow: hidden;
     }
 
     &:hover {
@@ -80,6 +84,10 @@
 
 
 @media (max-width: 780px) {
+    .station-card {
+        background: none;
+    }
+
     .station-preview-play-btn {
         display: none;
 
