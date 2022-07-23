@@ -71,6 +71,7 @@ export default {
 
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
+            // this.$router.go()
         },
 
         isActive(pageId) {

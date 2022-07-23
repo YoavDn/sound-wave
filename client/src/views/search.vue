@@ -4,7 +4,7 @@
         <div v-if="tracks">
             <search-result-list @setTrack="setTrack" :tracks="tracks" />
         </div>
-
+        <genre-list :genres="genres" />
     </section>
 </template>
     
@@ -12,14 +12,18 @@
 import { eventBus } from '../services/event-bus.js'
 import searchResultList from '../components/search/search-result-list.vue'
 import searchBar from '../components/search/search-bar.vue'
+import genreList from '../components/genre/genre-list.vue'
+
 export default {
     data() {
         return {
             unsubscribe: null,
+            genres: null,
         }
     },
     created() {
         this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
+        this.genres = this.$store.getters.genres
     },
     unmounted() {
         this.unsubscribe()
@@ -32,7 +36,8 @@ export default {
     },
     components: {
         searchResultList,
-        searchBar
+        searchBar,
+        genreList
     },
     methods: {
         async searchTrack(query) {
