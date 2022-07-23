@@ -3,6 +3,11 @@
     z-index: 3;
     top: 12px;
     left: 370px;
+
+    .search-container {
+        width: 100%;
+    }
+
     @include search-bar-properties
 }
 
