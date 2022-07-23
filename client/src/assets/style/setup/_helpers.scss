@@ -28,11 +28,11 @@
 //text
 
 .bold {
-    font-weight: 700;
+    font-family: 'gotham bold', sans-serif;
 }
 
 .light {
-    font-weight: 200;
+    font-family: 'gotham light', sans-serif;
 }
 
 //list 
@@ -79,7 +79,7 @@
     width: 100%;
 }
 
-.long-text { 
+.long-text {
     text-overflow: ellipsis;
     overflow: hidden;
     width: 190px;
@@ -99,3 +99,7 @@
     z-index: 100;
     transition: all 0.5s;
   }
+
+.hidden {
+    display: none;
+}

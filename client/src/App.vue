@@ -3,11 +3,11 @@
     <div class="main-view">
       <appHeader />
       <router-view />
+      <popup-msg />
     </div>
     <side-bar />
     <player />
   </main>
-  <popup-msg />
 </template>
   
 <script>

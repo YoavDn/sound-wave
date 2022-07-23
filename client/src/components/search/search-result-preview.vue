@@ -8,7 +8,7 @@
         </div>
 
         <div v-if="isSearchPage" class="preview-actions flex align-center space-between">
-            <button class="clean-btn action-btn" @click="likeTrack({ track })"><i class="bi bi-heart"></i></button>
+            <button class="clean-btn action-btn" @click="likeTrack(track)"><i class="bi bi-heart"></i></button>
             <div class="trackTime">{{ track.time }}</div>
             <track-options :track="track" />
         </div>
@@ -41,7 +41,7 @@ export default {
         trackOptions
     },
     methods: {
-        likeTrack({ track }) {
+        likeTrack(track) {
             const data = {
                 track,
                 station: { _id: 'likedSongs' }

@@ -3,7 +3,8 @@
         <station-header :station="station" />
         <main class="station-main-container">
             <station-options :station="station" @setStation="setStation" />
-            <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack" />
+            <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
+                @updateStation="updateStation" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
@@ -55,26 +56,36 @@ export default {
         },
 
         async searchTrack(query) {
-            console.log(query);
             await this.$store.dispatch({ type: 'searchTracks', query })
         },
 
         addTrackToStation(data) {
-            console.log(data);
-            eventBus.emit('show-msg', 'add to')
+            eventBus.emit('show-msg', `Added to${data.station.name}`)
             this.$store.dispatch({ type: 'addTrackToStation', data })
         },
         setStation(station) {
             this.$store.commit({ type: 'setCurrStation', station })
+        },
+
+        updateStation(station) {
+            this.$store.dispatch({ type: 'updateStation', station, })
         }
 
     },
     computed: {
-        searchResults() {
-            const tracks = this.$store.getters.searchResults
-            return tracks
+        searchResults() { return this.$store.getters.searchResults },
+    },
+
+    watch: {
+        '$route.params.id': {
+            handler: async function (id) {
+                this.station = await this.$store.getters.getStation(id)
+            },
+            deep: true,
+            immediate: true
         },
-    }
+
+    },
 
 }
 </script>

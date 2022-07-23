@@ -22,7 +22,7 @@
         </div>
 
         <div class="track-time align-center sub-text">
-            <button class="clean-btn action-btn"><i class="bi bi-heart"></i></button>
+            <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
             <track-options :track="track" />
         </div>
@@ -33,6 +33,7 @@
 
     <script>
     import trackOptions from '../track/track-options.vue'
+    import { eventBus } from '../../services/event-bus.js'
     import soundBar from '../custom/sound-bar.vue'
     export default {
         components: {
@@ -48,15 +49,41 @@
         data() {
             return {
                 isPlaying: true,
-            }
-        },
-        computed: {
-            playBtn() {
-                return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
+                isLiked: false,
             }
         },
     
         created() {
-        }
+            this.isLiked = this.$store.getters.getLikedSongs.tracks.some(t => t.id === this.track.id)
+        },
+        computed: {
+            playBtn() {
+                return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
+            },
+    
+            loveIcon() {
+                return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }
+            },
+    
+        },
+    
+        methods: {
+            toggleLikedSong() {
+                let msg;
+                const likedSongs = JSON.parse(JSON.stringify(this.$store.getters.getLikedSongs))
+                this.isLiked = !this.isLiked
+    
+                if (likedSongs.tracks.find(t => t.id === this.track.id)) {
+                    const idx = likedSongs.tracks.findIndex(t => t.id === this.track.id)
+                    likedSongs.tracks.splice(idx, 1)
+                    msg = 'Removed from'
+                } else {
+                    likedSongs.tracks.unshift(this.track)
+                    msg = 'Added to'
+                }
+                eventBus.emit('show-msg', `${msg} Liked Songs`)
+                this.$emit('updateStation', likedSongs)
+            }
+        },
     }
     </script>

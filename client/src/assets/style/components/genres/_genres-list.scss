@@ -1,0 +1,50 @@
+.genres-section {
+    color: white;
+    margin-top: 32px;
+
+
+    h1 {
+        margin-bottom: 16px;
+    }
+
+    .genres-container-grid {
+        display: grid;
+        width: 100%;
+        // justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(0, 206.3px));
+        grid-gap: 24px;
+    }
+
+    .genre-preview-container {
+        cursor: pointer;
+        background-color: gray;
+        border: none;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        min-height: 200px;
+
+        h1 {
+            font-size: 24px;
+            letter-spacing: -.04em;
+            line-height: 1.3em;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            padding: 16px;
+            position: absolute;
+        }
+
+        img {
+            bottom: 0;
+            right: 0;
+            height: 100px;
+            position: absolute;
+            width: 100px;
+            object-fit: cover;
+            object-position: center center;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+            transform: rotate(25deg) translate(18%, -2%);
+        }
+    }
+}

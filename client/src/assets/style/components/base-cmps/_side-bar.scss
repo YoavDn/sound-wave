@@ -31,14 +31,16 @@
             width: 100%;
             background-color: transparent;
             height: 40px;
+
             color: $light-gray;
-            font-size: 1rem;
+            font-size: 14px;
+            font-weight: 700;
+            // letter-spacing: .2px;
 
             .page-link-svg {
-                width: 24px;
-                font-size: 20px;
-                color: $light-gray;
-                margin-inline-end: 1em;
+                width: 27px;
+                font-size: 24px;
+                margin-inline-end: .6em;
             }
 
             &:hover {

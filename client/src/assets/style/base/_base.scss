@@ -5,9 +5,14 @@
 }
 
 html {
-    font-family: 'Inter', sans-serif;
+    // font-family: 'Inter', sans-serif;
+    font-family: 'gotham medium', sans-serif;
     overflow-y: auto;
     scrollbar-gutter: revert;
+}
+
+button {
+    font-family: 'gotham medium', sans-serif;
 }
 
 
@@ -57,10 +62,21 @@ input[type=range]::-webkit-slider-thumb {
     /* Cursor on hover */
 }
 
-.popup-msg {
+.pop-up-msg {
     position: absolute;
-    bottom: 200px;
+    bottom: 100px;
+    padding-inline: 2em;
+    border-radius: 10px;
+    z-index: 14;
     left: 50%;
     transform: translateX(-50%);
-    background-color: red;
+    background-color: #0a78b0;
+    box-shadow: 1px 2px 20px $clr2;
+
+    h2 {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 40px;
+        color: white;
+    }
 }

@@ -10,10 +10,10 @@ export const stationService = {
     save,
     getById,
     addTrackToStation,
-    getEmptyStation
+    getEmptyStation,
+    genresQuery
 }
 let demoStations;
-
 (async () => {
     demoStations = localStorageService.loadFromStorage(KEY)
     if (!demoStations || !demoStations.length) {
@@ -25,10 +25,15 @@ let demoStations;
     return demoStations
 
 })()
+const demoGenres = stationsData.demoGenres()
 
 async function query() {
     // return Promise.resolve(demoStations)
     return await storageService.query(KEY)
+}
+
+function genresQuery() {
+    return demoGenres
 }
 
 function getById(stationId) {
@@ -37,7 +42,8 @@ function getById(stationId) {
 }
 
 async function save(station) {
-    await storageService.post(KEY, station)
+    if (station._id) await storageService.put(KEY, station)
+    else await storageService.post(KEY, station)
     return await query()
 }
 
@@ -50,7 +56,7 @@ async function addTrackToStation(data) {
     const { station, track } = data
     const stations = await storageService.query(KEY)
     const stationIdx = stations.findIndex(s => s._id === station._id)
-    console.log('statstationIdx = ', stationIdx)
+
     stations[stationIdx].tracks.unshift(track)
     await storageService.put(KEY, stations[stationIdx])
     return stations

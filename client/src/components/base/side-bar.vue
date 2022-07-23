@@ -1,14 +1,14 @@
-<!-- TODO: set active link -->
+
 
 <template>
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
             <div class="logo flex">
                 <img class="logo-svg" src="../../assets/imgs/soundWave.svg" alt="logo">
-                <h2> hello</h2>
+                <h2> BeatHub</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
-                :class="{ 'active-link': isActive(pageLink.id) }" class=" page-link-btn flex align-center">
+                :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <i :class="pageLink.icon"></i>
                 </span>
@@ -47,21 +47,20 @@ export default {
                 { id: '', name: 'Home', icon: 'bi bi-house-door-fill' },
                 { id: 'search', name: 'Search', icon: 'bi bi-search' },
                 { id: 'library', name: ' Your Library', icon: 'bi bi-music-note-list' }
-            ]
+            ],
+            activePage: null
         }
     },
 
     created() {
-        this.activePage = () => this.$route.name
+
     },
 
     computed: {
-        currPage() {
-            return this.$route.name
-        },
         stations() {
             return this.$store.getters.getStations
         },
+
     },
 
     methods: {
@@ -71,10 +70,12 @@ export default {
 
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
+            // this.$router.go()
         },
 
-        isActive(pageId) {
-            return this.activePage === pageId ? true : false
+
+        activeStyle(pageId) {
+            return { 'active-link': this.activePage === pageId }
         },
 
         async createNewPlaylist() {
@@ -83,7 +84,18 @@ export default {
             return this.$router.push(`/station/${station._id}`)
         }
 
-    }
+    },
+
+    watch: {
+        '$route.name': {
+            handler: function (name) {
+                this.activePage = name
+            },
+            deep: true,
+            immediate: true
+        },
+
+    },
 }
 
 </script>

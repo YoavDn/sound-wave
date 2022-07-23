@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
 
 @font-face {
-    font-family: 'gotham';
+    font-family: gotham medium;
     src: url("../../fonts/gotham/GothamMedium.ttf");
+}
+
+@font-face {
+    font-family: gotham bold;
+    src: url("../../fonts/gotham/GothamBold.ttf");
+}
+
+@font-face {
+    font-family: gotham light;
+    src: url("../../fonts/gotham/GothamLight.ttf");
 }
