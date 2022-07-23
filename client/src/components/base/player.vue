@@ -6,7 +6,14 @@
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
-            <div class="curr-track-name">{{ track.title }}</div>
+            <div class="song-info">
+                <div class="curr-track-name">{{ track.title }}</div>
+                <div class="curr-track-singer">Big Boss Vette</div>
+            </div>
+
+            <button @click.stop="isLiked = !isLiked" class="like-btn">
+                    <span v-bind:class="greenHeart" v-html="isLiked ? unlike : like"></span>
+            </button>
         </div>
 
         <div class="test1">
@@ -61,6 +68,7 @@ import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
 import prev from '../icons/prev-btn.vue'
+
 import fullScreen from '../base/full-screen.vue'
 
 export default defineComponent({
@@ -75,6 +83,7 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
+            isLiked:false,
             // autoplay: 0,
         }
     },
@@ -99,22 +108,27 @@ export default defineComponent({
         repeatSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M0 4.75A3.75 3.75 0 013.75 1h8.5A3.75 3.75 0 0116 4.75v5a3.75 3.75 0 01-3.75 3.75H9.81l1.018 1.018a.75.75 0 11-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 111.06 1.06L9.811 12h2.439a2.25 2.25 0 002.25-2.25v-5a2.25 2.25 0 00-2.25-2.25h-8.5A2.25 2.25 0 001.5 4.75v5A2.25 2.25 0 003.75 12H5v1.5H3.75A3.75 3.75 0 010 9.75v-5z"></path></svg>`;
         },
+        unlike() {
+            return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-sc-1bi12j5-0 EQkJl"><path d="M1.69 2A4.582 4.582 0 018 2.023 4.583 4.583 0 0111.88.817h.002a4.618 4.618 0 013.782 3.65v.003a4.543 4.543 0 01-1.011 3.84L9.35 14.629a1.765 1.765 0 01-2.093.464 1.762 1.762 0 01-.605-.463L1.348 8.309A4.582 4.582 0 011.689 2zm3.158.252A3.082 3.082 0 002.49 7.337l.005.005L7.8 13.664a.264.264 0 00.311.069.262.262 0 00.09-.069l5.312-6.33a3.043 3.043 0 00.68-2.573 3.118 3.118 0 00-2.551-2.463 3.079 3.079 0 00-2.612.816l-.007.007a1.501 1.501 0 01-2.045 0l-.009-.008a3.082 3.082 0 00-2.121-.861z"></path></svg>`
+        },
+        like(){
+            return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-sc-1bi12j5-0 EQkJl"><path d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z"></path></svg>`
+        },
+        greenHeart(){
+            return {'green-heart' : !this.isLiked}
+        },
         track() {
             return this.$store.getters.getTrack;
         },
         vidSrc() {
             return `https://www.youtube.com/watch?v=${this.track.id}`;
         },
-        station() {
-            const { id } = this.$route.params
-            return this.$store.getters.getStation(id)
-        },
         convertMinStart() {
             return utilService.convertSecToMin(this.currTime.toFixed(0))
         },
         convertMinEnd() {
             return utilService.convertSecToMin(this.trackDuration.toFixed(0))
-        }
+        },
     },
 
 

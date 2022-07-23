@@ -56,7 +56,7 @@
         },
     
         created() {
-            this.isLiked = this.$store.getters.getLikedStations.tracks.some(t => t.id === this.track.id)
+            this.isLiked = this.$store.getters.getTracksStation.tracks.some(t => t.id === this.track.id)
     
         },
         computed: {
@@ -72,11 +72,10 @@
     
         methods: {
             toggleLikedSong() {
-                const likedSongs = this.$store.getters.getLikedSongs
+                const likedTracks = this.$store.getters.getTracksStation
                 this.isLiked = !this.isLiked
-                let msg = this.likedSongs ? 'Add to' : 'Removed from'
-    
-                const data = { station: likedSongs, track: this.track, toAdd: this.isLiked }
+                let msg = this.isLiked ? 'Add to' : 'Removed from'
+                const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
                 eventBus.emit('show-msg', `${msg} Liked Songs`)
                 this.$emit('updateStation', data)
             }
