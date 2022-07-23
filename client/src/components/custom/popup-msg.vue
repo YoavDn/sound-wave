@@ -2,6 +2,7 @@
 <template>
     <div v-if="msg" class="pop-up-msg shadow">
         <h2>{{ msg }}</h2>
+
     </div>
 </template>
 
