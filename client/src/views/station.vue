@@ -74,8 +74,8 @@ export default {
             let msg;
             console.log(data);
 
-            if (data.inNew) msg = `Added ${data.track.title} to ${data.station.name}`
-            if (!data.inNew) msg = `removed ${data.track.title} from ${data.station.name}`
+            if (!data.inNew) msg = `Added ${data.track.title} to ${data.station.name}`
+            if (data.inNew) msg = `removed ${data.track.title} from ${data.station.name}`
 
             eventBus.emit('show-msg', msg)
             this.station = await this.$store.getters.getStation(id)
