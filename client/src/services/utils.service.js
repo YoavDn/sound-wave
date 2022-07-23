@@ -1,10 +1,12 @@
+
+
 export const utilService = {
     randomColor,
     convertSecToMin,
     makeId,
     timeStampToStr,
     strTimeToStamp,
-    getAverageRGB
+    getAverageRGB,
 }
 
 
@@ -94,3 +96,5 @@ function timeStampToStr(timestamp) {
     const secondsRemainder = (seconds % 60);
     return `${minuts} min ${_padTo2Digits(secondsRemainder)} sec`
 }
+
+

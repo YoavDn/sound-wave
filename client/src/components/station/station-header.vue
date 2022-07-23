@@ -1,8 +1,8 @@
 <template>
     <header class='station-header-container'>
         <div class="header-img-container">
-            <img class="shadow" v-if="station.imgUrl" :src="station.imgUrl" alt="">
-            <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="">
+            <img class="shadow" v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
+            <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover">
         </div>
         <div class="station-text">
             <p>PLAYIST</p>
@@ -30,7 +30,12 @@ export default {
 
         tracksCount() {
             return this.station.tracks.length
+        },
+        created() {
+            console.log(this.station.imgUrl);
         }
+
+
     }
 }
 </script>

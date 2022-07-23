@@ -73,6 +73,7 @@ async function getEmptyStation(isLikedSongs = false) {
         _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
         name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (stations.length + 1),
         tags: ['test'],
+        imgUrl: isLikedSongs ? 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png' : null,
         createdAt: Date.now(),
         createdBy: null,
         likedByUsers: null,
@@ -80,4 +81,3 @@ async function getEmptyStation(isLikedSongs = false) {
 
     }
 }
-
