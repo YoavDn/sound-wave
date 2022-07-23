@@ -14,6 +14,7 @@
         .station-seaerch-main-txt {
             font-size: 25px;
             letter-spacing: -1px;
+            color: $clr3;
             font-weight: 500;
             padding-block: 1.4rem;
         }
@@ -21,10 +22,20 @@
 
         .station-search-bar {
             @include search-bar;
-            background-color: rgba($dark-gray, 0.2);
+            background-color: rgba(white, 0.4);
+            color: $clr3;
             height: 40px;
             width: 350px;
             margin-bottom: 20px;
+
+            ::placeholder {
+                color: $clr3;
+            }
+
+            input {
+                color: $clr3;
+
+            }
 
         }
     }
