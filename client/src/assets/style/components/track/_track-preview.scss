@@ -33,12 +33,14 @@
         @include dots-when-break
     }
 
+
+
     .track-date-added {
         grid-column: 4;
     }
 
     .track-time {
-        grid-column: 5;
+        // grid-column: 5;
         display: grid;
         grid-template-columns: 35px 53px 27px;
 
@@ -232,4 +234,28 @@
     height: 56px;
     position: relative;
     padding: 0 16px;
+}
+
+.mobile-options {
+    display: none;
+    color: $clr3;
+}
+
+@media (max-width: $tablet-width) {
+
+    .track-date-added,
+    .track-added-by,
+    .track-time {
+        display: none !important;
+    }
+
+    .mobile-options {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .track-list-row {
+        padding: 0;
+        grid-template-columns: 16px 6fr 1fr;
+    }
 }

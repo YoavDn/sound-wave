@@ -13,7 +13,8 @@ export default {
         setCurrStation: (state, { station }) => {
             state.currStation = station
             console.log('station = ', station)
-        }
+        },
+      
 
     },
     getters: {
@@ -66,6 +67,7 @@ export default {
         //         return console.log(err);
         //     }
         // },
+
 
         async updateStation({ commit }, { station }) {
             try {

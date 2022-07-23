@@ -19,3 +19,9 @@
         }
     }
 }
+
+@media (max-width: $tablet-width){
+    .track-list-head {
+        display: none;
+    }
+}

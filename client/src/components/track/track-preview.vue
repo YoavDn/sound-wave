@@ -8,7 +8,7 @@
         </div>
         <div class="track-img-title flex">
             <img :src="track.imgUrl" />
-            <div class="div">
+            <div class="div flex align-center">
                 <h2 class="long-text">{{ track.title }}</h2>
             </div>
         </div>
@@ -20,7 +20,9 @@
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
         </div>
-
+        <div class="mobile-options">
+            <i class="bi bi-three-dots mobile-options-dots"></i>
+        </div>
         <div class="track-time align-center sub-text">
             <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
