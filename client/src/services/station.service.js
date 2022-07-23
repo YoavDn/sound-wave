@@ -10,10 +10,10 @@ export const stationService = {
     save,
     getById,
     addTrackToStation,
-    getEmptyStation
+    getEmptyStation,
+    genresQuery
 }
 let demoStations;
-
 (async () => {
     demoStations = localStorageService.loadFromStorage(KEY)
     if (!demoStations || !demoStations.length) {
@@ -25,10 +25,15 @@ let demoStations;
     return demoStations
 
 })()
+const demoGenres = stationsData.demoGenres()
 
 async function query() {
     // return Promise.resolve(demoStations)
     return await storageService.query(KEY)
+}
+
+function genresQuery() {
+    return demoGenres
 }
 
 function getById(stationId) {
