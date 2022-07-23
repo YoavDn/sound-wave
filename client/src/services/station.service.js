@@ -69,7 +69,6 @@ async function removeTrackFromStation({ station, track }) {
 
 async function getEmptyStation(isLikedSongs = false) {
     const stations = await query()
-    console.log('stations = ', stations.length)
     return {
         _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
         name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (stations.length + 1),

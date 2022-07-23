@@ -1,17 +1,36 @@
 <template>
 
-        <full-screen v-if="isFullScreen" @toggleFullScreen="toggleFullScreen"></full-screen>
+    <section v-if="track" class="flex full-screen">
 
-    <section @click="toggleFullScreen" v-if="track && !isFullScreen" class="player-container">
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
-        <div class="flex track-details">
-            <img class="curr-track-img" :src="track.imgUrl" />
-            <div class="curr-track-name">{{ track.title }}</div>
+        <div class="flex full-screen-nav">
+            <button class="close-btn" @click="$emit('toggleFullScreen')">
+                <span>
+                    <close></close>
+                </span>
+            </button>
+            <h4>{{currStation.name}}</h4>
+            <trackOptions></trackOptions>    
         </div>
 
-        <div class="test1">
-            <div class="track-controllers-container">
-                <div class="flex center player-track-controllers">
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <div class="curr-track-img-container">
+            <img class="curr-track-img" :src="track.imgUrl" />
+        </div>
+    
+    <div class="all-controllers flex">
+
+        <div class="curr-track-name">{{ track.title }}</div>
+
+        <div class="flex progress-bar-container">
+                <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
+                    :max="trackDuration" />
+                <div class="flex progress-bar-time">
+                    <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
+                    <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
+                </div>
+            </div>
+
+                <div class="flex player-track-controllers">
                     <button @click="shuffle">
                         <span>
                             <shuffle></shuffle>
@@ -23,7 +42,7 @@
                         </span>
                     </button>
     
-                    <button class="btn-play" @click.stop="toggleSongPlay">
+                    <button class="btn-play" @click="toggleSongPlay">
                         <span v-html="isPlaying ? pauseSvg : playSvg"></span>
                     </button>
     
@@ -37,20 +56,7 @@
                         </span>
                     </button>
                 </div>
-    
-                <div class="flex progress-bar-container">
-                    <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
-                    <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
-                    <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
-                        :max="trackDuration" />
-                    <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="volume-container">
-            <button @click="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-            <input class="volume-bar" @input="changeVolume" type="range" v-model="volume" />
-        </div>
+    </div>
 
     </section>
 </template>
@@ -61,13 +67,13 @@ import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
 import prev from '../icons/prev-btn.vue'
-import fullScreen from '../base/full-screen.vue'
+import close from '../icons/close-btn.vue'
+import trackOptions from '../track/track-options.vue';
 
 export default defineComponent({
-    components: { YouTube, shuffle, prev, fullScreen },
+    components: { YouTube, shuffle, prev,close, trackOptions},
     data() {
         return {
-            isFullScreen: false,
             isMute: false,
             volume: 50,
             currTime: 0,
@@ -75,10 +81,13 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
+            currStation: null,
             // autoplay: 0,
         }
     },
-
+    created() {
+        this.currStation = this.$store.getters.getCurrStation
+    },
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -99,15 +108,15 @@ export default defineComponent({
         repeatSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M0 4.75A3.75 3.75 0 013.75 1h8.5A3.75 3.75 0 0116 4.75v5a3.75 3.75 0 01-3.75 3.75H9.81l1.018 1.018a.75.75 0 11-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 111.06 1.06L9.811 12h2.439a2.25 2.25 0 002.25-2.25v-5a2.25 2.25 0 00-2.25-2.25h-8.5A2.25 2.25 0 001.5 4.75v5A2.25 2.25 0 003.75 12H5v1.5H3.75A3.75 3.75 0 010 9.75v-5z"></path></svg>`;
         },
+        arrowDown() {
+            return `<svg role="img" height="16" width="16" fill="#fff" viewBox="0 0 16 16"><path d="M14 6l-6 6-6-6h12z"></path></svg>`;
+        },
         track() {
             return this.$store.getters.getTrack;
         },
+
         vidSrc() {
             return `https://www.youtube.com/watch?v=${this.track.id}`;
-        },
-        station() {
-            const { id } = this.$route.params
-            return this.$store.getters.getStation(id)
         },
         convertMinStart() {
             return utilService.convertSecToMin(this.currTime.toFixed(0))
@@ -117,11 +126,7 @@ export default defineComponent({
         }
     },
 
-
     methods: {
-        toggleFullScreen(){
-            this.isFullScreen = !this.isFullScreen
-        },
         handleTime() {
             this.isPlaying ? this.play() : this.pause()
             this.player.seekTo(this.currTime)

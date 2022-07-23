@@ -18,8 +18,8 @@ export default {
     },
     getters: {
         getStations: (state) => state.stations,
-        getLikedSongs: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
-        getCurrStation(state) { return state.currStation },
+        getLikedStations: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
+        // getCurrStation(state) { return state.currStation },
         getStation: ({ stations }) => async (id) => {
             if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
@@ -67,10 +67,9 @@ export default {
             }
         },
 
-        async updateStation({ commit }, { station, }) {
+        async updateStation({ commit }, { station }) {
             try {
                 const stations = await stationService.save(station)
-                console.log(stations);
                 commit({ type: 'setStations', stations })
             } catch (err) {
                 console.log(err);
