@@ -1,10 +1,12 @@
 <template>
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
-            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
-                    class="bi bi-play-fill"></i></button>
-            <p :class="currTrackStyle" class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
-            <!-- <sound-bar v-if="currTrack" /> -->
+            <button @click="$emit('setTrack', track)" class="clean-btn action-btn ">
+                <component :is="togglePlayBtn" />
+
+            </button>
+            <sound-bar v-if="isPlaying && currTrack" class="sound-bar" />
+            <p v-else :class="currTrackStyle" class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
         </div>
         <div :class="currTrackStyle" class="track-img-title flex">
             <img :src="track.imgUrl" />
@@ -14,9 +16,9 @@
         </div>
         <div class="track-added-by sub-text">
             <!-- <p>John Smith</p> -->
-            <!-- <p v-if="track.addedBy?.length">{{ track.addedBy }}</p> -->
-            <!-- <p v-else>Guest</p> -->
-            <h2>{{ currTrack }}</h2>
+            <p v-if="track.addedBy?.length">{{ track.addedBy }}</p>
+            <p v-else>Guest</p>
+
         </div>
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
@@ -36,14 +38,20 @@
 
 
     <script>
+    import playIcon from '../../assets/imgs/preview-play.svg'
+    import pauseIcon from '../../assets/imgs/preview-pause.svg'
     import trackOptions from '../track/track-options.vue'
-    import { eventBus } from '../../services/event-bus.js'
     import soundBar from '../custom/sound-bar.vue'
+    
+    import { eventBus } from '../../services/event-bus.js'
     import { rest } from 'lodash'
+    
     export default {
         components: {
             trackOptions,
             soundBar,
+            playIcon,
+            pauseIcon,
     
         },
         props: {
@@ -54,8 +62,6 @@
     
         data() {
             return {
-                isPlaying: true,
-                // isLike: null,
             }
         },
     
@@ -72,8 +78,8 @@
             isLiked() {
                 return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
             },
-            playBtn() {
-                return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
+            togglePlayBtn() {
+                return this.isPlaying ? 'pause-icon' : 'play-icon'
             },
     
             loveIcon() {
@@ -83,11 +89,14 @@
                 return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
             },
             currTrack() {
-                return this.$store.getters.getTrack.id === this.track.id
+                return this.$store.getters.getTrack?.id === this.track.id
             },
             currTrackStyle() {
                 return { 'active-track': this.currTrack, 'test': !this.currTrack }
             },
+            isPlaying() {
+                return this.$store.getters.getIsPlaying
+            }
     
         },
     

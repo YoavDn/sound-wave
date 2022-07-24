@@ -6,6 +6,9 @@
 
     .track-play {
         grid-column: 1;
+        width: 16px;
+        height: 16px;
+        align-self: center;
     }
 
     .track-img-title {
@@ -101,6 +104,8 @@
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
+
+
     }
 
     .preview-actions {
@@ -131,12 +136,18 @@
         .track-idx {
             display: none;
         }
+
+        .sound-bar {
+            display: none;
+        }
     }
 
     .sub-text {
         font-size: 0.875rem;
         color: $light-gray;
     }
+
+
 
 
 }

@@ -14,6 +14,7 @@
 #bars {
     height: 10px;
     position: relative;
+    transform: translateY(50%);
 
     /* left: 50%; */
     /* margin: -30px 0 0 -20px; */

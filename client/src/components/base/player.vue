@@ -170,8 +170,10 @@ export default defineComponent({
 
         toggleSongPlay() {
             if (!this.isPlaying) {
+                this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
                 this.play()
             } else {
+                this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
                 this.pause()
             }
         },
