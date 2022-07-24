@@ -90,8 +90,13 @@
                 console.log('isLike = ', isLike)
                 isLike = !isLike
                 console.log('isLike now? = ', isLike)
+<<<<<<< HEAD
     
                 const data = { station: likedTracks, track: this.track, isLike }
+=======
+
+                const data = { station: likedTracks, track: this.track, isNew: isLike }
+>>>>>>> 41f6e53aa4bbe2bbb213996178a356de39a7a297
                 this.$emit('updateStation', data)
             },
     
