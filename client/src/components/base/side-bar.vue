@@ -11,7 +11,7 @@
                 :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <component v-if="activePage === pageLink.id" :is="pageLink.icon[1]"/>
-                    <component v-else :is="pageLink.icon[0]"/>
+                    <component class="page-svg" v-else :is="pageLink.icon[0]"/>
                 </span>
                 {{ pageLink.name }}
             </button>
