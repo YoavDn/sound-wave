@@ -1,62 +1,51 @@
-<template>
-    <section class="result-preview-container flex align-center space-between">
-        <div class="track-details flex align-center ">
-            <button class="clean-btn action-btn" @click="$emit('setTrack', track)"><i
-                    class="bi bi-play-fill"></i></button>
-            <div class="track-img-container "><img :src="track.imgUrl"></div>
-            <div class="track-title-container">{{ track.title }}</div>
-        </div>
 
-        <div v-if="isSearchPage" class="preview-actions flex align-center space-between">
-            <button class="clean-btn action-btn" @click="likeTrack(track)"><i class="bi bi-heart"></i></button>
-            <div class="trackTime">{{ track.time }}</div>
-            <track-options :track="track" />
+<template>
+    <section class="track-preview track-list-row align-center">
+        <div class="track-play">
+            <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
+                    class="bi bi-play-fill"></i></button>
+            <p class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
         </div>
-        <button @click="addTrackToStation" class="add-to-playlist-btn" v-else>Add</button>
+        <div class="track-img-title flex">
+            <img :src="track.imgUrl" />
+            <div class="div flex align-center">
+                <h2 class="long-text">{{ track.title }}</h2>
+            </div>
+        </div>
+        <div><button @click="addTrackToStation(track, true)" class="add-track-search-btn">Add</button></div>
     </section>
 </template>
 
-<script>
-import trackOptions from '../track/track-options.vue'
-import { eventBus } from '../../services/event-bus'
-export default {
-
-    name: 'search-result-preview',
-    props: {
-        track: {
-            type: Object,
-            required: true,
+    <script>
+    export default {
+    
+    
+        props: {
+            'track': Object,
+            'trackIdx': Number,
+            station: null,
         },
-    },
-    data() {
-        return {
-            isSearchPage: true,
-        }
-    },
-    created() {
-        this.$route.name === 'search' ? this.isSearchPage = true : this.isSearchPage = false
-    },
-
-    components: {
-        trackOptions
-    },
-    methods: {
-        likeTrack(track) {
-            const data = {
-                track,
-                station: { _id: 'likedSongs' }
+    
+    
+    
+        data() {
+            return {
+                isPlaying: true,
+    
             }
-            eventBus.emit('addTrackToStation', data)
         },
-
-        addTrackToStation() {
-            const { id } = this.$route.params
-            const data = { track: this.track, station: { _id: id } }
-            eventBus.emit('addTrackToStation', data)
+        created() {
+        },
+        methods: {
+    
+            addTrackToStation(track, isNew) {
+                const { id } = this.$route.params
+                const stations = this.$store.getters.getStations
+                const station = stations.find(s => s._id === id)
+                const data = { station, track, isNew }
+                this.$emit('updateStation', data)
+            },
         }
     }
-}
-</script>
-
-<style lang="scss" scoped>
-</style>
+    
+    </script>

@@ -8,7 +8,8 @@
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
-                <search-result-list v-if="searchResults" @setTrack="setTrack" :tracks="searchResults" />
+                <search-result-list v-if="searchResults" :currentPreivew="'searchResultPreview'" @setTrack="setTrack"
+                    :tracks="searchResults" @updateStation="updateStation" />
             </div>
         </main>
     </section>
@@ -43,11 +44,13 @@ export default {
         this.unsubscribe()
     },
 
+    provide: {
+        trackFromSearch: true,
+    },
+
     async created() {
         const { id } = this.$route.params
         this.station = await this.$store.getters.getStation(id)
-        // if (!id) await this.$store.dispatch({ type: 'saveStation', station: this.station })
-        // this.unsubscribe = eventBus.on('addTrackToStation', this.addTrackToStation)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
     },
 
@@ -69,10 +72,10 @@ export default {
         },
 
         async updateStation(data) {
+            if (!data) return
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
-            console.log(data);
 
             if (!data.inNew) msg = `Added ${data.track.title} to ${data.station.name}`
             if (data.inNew) msg = `removed ${data.track.title} from ${data.station.name}`

@@ -2,7 +2,7 @@
     <section class="search-page-container">
         <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack" />
         <div v-if="tracks">
-            <search-result-list @setTrack="setTrack" :tracks="tracks" />
+            <search-result-list @setTrack="setTrack" :tracks="tracks" :currentPreivew="'trackPreview'" />
         </div>
         <genre-list v-if="!tracks" :genres="genres" />
     </section>
@@ -24,6 +24,9 @@ export default {
     created() {
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
         this.genres = this.$store.getters.genres
+    },
+    provide: {
+        trackFromSearch: false
     },
     unmounted() {
         this.unsubscribe()

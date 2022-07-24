@@ -13,7 +13,7 @@ export default {
             state.currStation = station
             console.log('station = ', station)
         },
-      
+
 
     },
     getters: {
@@ -54,22 +54,9 @@ export default {
             }
         },
 
-        // async addTrackToStation({ commit }, { data }) {
-        //     try {
-        //         let { station, track } = data
-        //         if (station.tracks?.find(currTrack => currTrack.id === track.id)) {
-        //             throw new Error('Track already in station')
-        //         }
-        //         const stations = await stationService.addTrackToStation(data)
-        //         commit({ type: 'setStations', stations })
-        //     } catch (err) {
-        //         return console.log(err);
-        //     }
-        // },
 
         async updateStation({ commit }, { data }) {
             try {
-                console.log(data);
                 const { station, track, isNew } = data
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
                 if (isNew) {
