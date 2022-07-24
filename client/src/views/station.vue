@@ -2,7 +2,7 @@
     <section v-if="station" class="station-container">
         <station-header :station="station" />
         <main class="station-main-container">
-            <station-options :station="station" @setStation="setStation" />
+            <station-options :station="station" @playStation="playStation" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
@@ -57,6 +57,10 @@ export default {
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
+        },
+        playStation(){
+            const firstTrack = this.station.tracks[0]
+            this.setTrack(firstTrack)
         },
 
         async searchTrack(query) {

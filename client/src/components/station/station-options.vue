@@ -1,6 +1,6 @@
 <template>
     <section class="station-option-container flex align-center">
-        <button v-if="station.tracks.length > 0" @click="$emit('setStation', station)" class="play-btn"><i
+        <button v-if="station.tracks.length > 0" @click="$emit('playStation')" class="play-btn"><i
                 class="bi bi-play-fill"></i></button>
         <div class="like-share-container flex align-center">
             <button v-if="station.tracks.length > 0" class="heart-btn"><i class="bi bi-heart"></i> </button>

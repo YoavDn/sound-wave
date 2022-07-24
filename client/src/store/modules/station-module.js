@@ -11,7 +11,6 @@ export default {
         setStations: (state, { stations }) => state.stations = stations,
         setCurrStation: (state, { station }) => {
             state.currStation = station
-            console.log('station = ', station)
         },
 
 

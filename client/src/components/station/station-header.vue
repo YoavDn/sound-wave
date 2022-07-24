@@ -19,6 +19,9 @@ import { utilService } from '../../services/utils.service';
 export default {
     name: 'stationHeader',
     props: { 'station': Object },
+    created() {
+        console.log(this.station.imgUrl);
+    },
 
     computed: {
         stationDetails() {
@@ -31,9 +34,6 @@ export default {
         tracksCount() {
             return this.station.tracks.length
         },
-        created() {
-            console.log(this.station.imgUrl);
-        }
 
 
     }
