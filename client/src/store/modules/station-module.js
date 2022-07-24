@@ -3,18 +3,13 @@ import { stationService } from '../../services/station.service'
 export default {
     state: {
         stations: null,
-        currStation: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
-        setCurrStation: (state, { station }) => {
-            state.currStation = station
-        },
-
-
     },
+
     getters: {
         getStations: (state) => state.stations,
         getLikedStation: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
@@ -26,6 +21,19 @@ export default {
     },
 
     actions: {
+        async updateTracksInStation({ commit }, { value , id}){
+            try {
+                const station = await stationService.getById(id)
+                station.tracks = value
+
+                const stations = await stationService.save(station)
+                commit({ type: 'setStations', stations })
+                return station
+            } catch {
+                console.log('cant update tracks')
+            }
+        },
+
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
