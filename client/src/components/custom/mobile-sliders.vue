@@ -1,5 +1,5 @@
 <template>
-    <swiper :slidesPerView="2.5" :spaceBetween="5" :freeMode="true" :modules="modules" class="mySwiper">
+    <swiper :slidesPerView="2.5" :spaceBetween="0" :freeMode="true" :modules="modules" class="mySwiper">
         <swiper-slide v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
             <station-preview :station="station" class="station-card" />
         </swiper-slide>

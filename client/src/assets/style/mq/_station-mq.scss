@@ -56,11 +56,18 @@
         }
     }
 
+    .station-tracks-container {
+        padding-inline-start: 1rem;
+        padding-inline-end: 0;
+    }
+
     // STATION OPTION 
     .station-option-container {
         margin: 0;
         padding-block: 0;
         justify-content: space-between;
+        padding-inline-start: 1rem;
+        padding-inline-end: 0;
 
         .station-options-share {
             display: block !important;
@@ -80,17 +87,23 @@
             align-self: center;
         }
     }
+
+    .station-card {
+        padding: 0;
+    }
 }
 
-@media screen and (min-width: 1320px) {
-    img {
-        height: 230px;
-    }
+@media screen and (max-width: $medium-width) and (min-width: $tablet-width) {
+    .station-header-container {
+        img {
+            height: 190px;
+        }
 
-    .station-text {
-        .station-name {
-            font-size: 96px;
-            line-height: 130px;
+        .station-text {
+            .station-name {
+                font-size: 60px;
+                line-height: 130px;
+            }
         }
     }
 }

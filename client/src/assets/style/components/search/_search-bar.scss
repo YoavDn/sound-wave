@@ -2,15 +2,16 @@
     position: fixed;
     z-index: 3;
     top: 12px;
-    left: 370px;
+    left: 25.3125rem;
 
-    .search-container {
-        width: 100%;
-    }
+
 
     @include search-bar-properties
 }
 
+.search-container {
+    width: 100% ;
+}
 
 // @media only screen and (max-width: $tablet-width) {
 //     .search-input-container {

@@ -1,8 +1,8 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 280px 1fr;
     grid-template-rows: 1fr 90px;
-    background: linear-gradient(#363745, $dark-gray 340px);
+    background: linear-gradient(#70015b, #121212 438px);
     height: 100vh;
     overflow: hidden;
 }

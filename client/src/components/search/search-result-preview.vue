@@ -12,7 +12,7 @@
                 <h2 class="long-text">{{ track.title }}</h2>
             </div>
         </div>
-        <div><button @click="addTrackToStation(track, true)" class="add-track-search-btn">Add</button></div>
+        <div style="grid-column: 5"><button @click="addTrackToStation(track, true)" class="add-track-search-btn">Add</button></div>
     </section>
 </template>
 

@@ -7,7 +7,6 @@
                 <h1 class="liked-tracks-title">liked Songs</h1>
                 <div class="liked-tracks-count">{{likedTracksCount}} liked songs</div>
                 </div>
-                <p></p>
                 <stations-list :stations="stations" />
         </article>
     </section>

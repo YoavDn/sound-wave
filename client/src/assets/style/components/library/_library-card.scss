@@ -5,7 +5,7 @@
     margin-inline-end: 25px;
     padding: .5em;
     border-radius: 5px;
-    background: linear-gradient(135deg,#450af5,#c4efd9);
+    background: linear-gradient(135deg, #450af5, #c4efd9);
     background-image: linear-gradient(135deg, rgb(69, 10, 245), rgb(172, 148, 243));
     background-position-x: initial;
     background-position-y: initial;
@@ -15,19 +15,22 @@
     background-clip: initial;
     background-color: initial;
     margin-inline-end: 25px;
-    width:439px; 
+    // width:439px; 
+    grid-column: 1 /span 2;
     flex-direction: column;
     justify-content: end;
+    width: 100%;
 
-    .liked-tracks-names{
+    .liked-tracks-names {
         margin-bottom: 40px;
     }
-    .liked-tracks-title{
+
+    .liked-tracks-title {
         font-size: 2rem;
         margin-bottom: 5px;
     }
 
-    .liked-tracks-count{
+    .liked-tracks-count {
         margin-bottom: 20px;
     }
 }

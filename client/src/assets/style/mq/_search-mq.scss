@@ -6,3 +6,11 @@
         width: 100%;
     }
 }
+
+@media only screen and (max-width: $mobile-width) {
+    .search-page-container {
+        padding-inline-start: 1rem;
+        padding-inline-end: 0;
+    }
+
+}
