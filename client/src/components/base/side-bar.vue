@@ -10,7 +10,7 @@
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <i :class="pageLink.icon"></i>
+                    <component :is="pageLink.icon"/>
                 </span>
                 {{ pageLink.name }}
             </button>
@@ -38,22 +38,26 @@
     
 <script >
 import { stationService } from '../../services/station.service'
+import homeIcon  from '../../assets/imgs/home.svg'
+import libraryIcon  from '../../assets/imgs/library.svg'
+import searchIcon  from '../../assets/imgs/search.svg'
 
 export default {
     data() {
         return {
             activePage: null,
             pagesLinks: [
-                { id: '', name: 'Home', icon: 'bi bi-house-door-fill' },
-                { id: 'search', name: 'Search', icon: 'bi bi-search' },
-                { id: 'library', name: ' Your Library', icon: 'bi bi-music-note-list' }
+                { id: '', name: 'Home', icon: 'homeIcon' },
+                { id: 'search', name: 'Search', icon: 'libraryIcon' },
+                { id: 'library', name: ' Your Library', icon: "searchIcon" }
             ],
             activePage: null
         }
     },
-
-    created() {
-
+    components: {
+        homeIcon,
+        libraryIcon ,
+        searchIcon,
     },
 
     computed: {

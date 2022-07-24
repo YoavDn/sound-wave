@@ -7,6 +7,7 @@
         background-color: $clr2;
         z-index: 50;
         justify-content: center;
+
         .logo {
             display: none;
         }
@@ -28,8 +29,9 @@
                 color: $light-gray;
 
                 .page-link-svg {
-                    font-size: 32px;
+                    font-size: 16px;
                     margin: 0;
+                    line-height: 24px;
                     padding-block: 2px;
                     color: $light-gray;
                 }
