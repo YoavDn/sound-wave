@@ -86,7 +86,7 @@
                 isLike = !isLike
                 console.log('isLike now? = ', isLike)
 
-                const data = { station: likedTracks, track: this.track, isLike }
+                const data = { station: likedTracks, track: this.track, isNew: isLike }
                 this.$emit('updateStation', data)
             },
     
