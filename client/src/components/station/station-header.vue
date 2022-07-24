@@ -2,7 +2,7 @@
     <header class='station-header-container'>
         <div class="header-img-container">
             <img class="shadow" v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
-            <!-- <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover"> -->
+            <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover">
         </div>
         <div class="station-text">
             <p>PLAYIST</p>
@@ -19,6 +19,9 @@ import { utilService } from '../../services/utils.service';
 export default {
     name: 'stationHeader',
     props: { 'station': Object },
+    created() {
+        console.log(this.station.imgUrl);
+    },
 
     computed: {
         stationDetails() {
@@ -31,9 +34,6 @@ export default {
         tracksCount() {
             return this.station.tracks.length
         },
-        created() {
-            console.log(this.station.imgUrl);
-        }
 
 
     }

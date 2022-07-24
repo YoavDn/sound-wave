@@ -127,10 +127,10 @@ export default defineComponent({
             return `https://www.youtube.com/watch?v=${this.track.id}`;
         },
         convertMinStart() {
-            return utilService.convertSecToMin(this.currTime.toFixed(0))
+            return utilService.convertSecToMin(Number(this.currTime).toFixed(0))
         },
         convertMinEnd() {
-            return utilService.convertSecToMin(this.trackDuration.toFixed(0))
+            return utilService.convertSecToMin(Number(this.trackDuration).toFixed(0))
         },
     },
 

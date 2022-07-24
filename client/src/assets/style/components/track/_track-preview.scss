@@ -93,6 +93,11 @@
 
     }
 
+    .add-track-search-btn {
+        @include add-to-playlist-btn;
+
+    }
+
 
     &:hover {
         background: $opacityWhite;
@@ -234,6 +239,7 @@
     height: 56px;
     position: relative;
     padding: 0 16px;
+    cursor: default;
 }
 
 .mobile-options {

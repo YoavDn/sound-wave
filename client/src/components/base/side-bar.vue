@@ -5,7 +5,7 @@
         <nav class="side-bar-nav">
             <div class="logo flex">
                 <img class="logo-svg" src="../../assets/imgs/soundWave.svg" alt="logo">
-                <h2> BeatHub</h2>
+                <h2>SoundWave</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
@@ -79,8 +79,8 @@ export default {
         },
 
         async createNewPlaylist() {
-            const station = await stationService.getEmptyStation()
-            await stationService.save(station)
+            // await stationService.save(station)
+            const station = await this.$store.dispatch({ type: 'createNewStation' })
             return this.$router.push(`/station/${station._id}`)
         }
 
