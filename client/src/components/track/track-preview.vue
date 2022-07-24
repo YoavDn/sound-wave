@@ -77,7 +77,7 @@
                 return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
             },
             togglePlayBtn() {
-                return this.isPlaying ? 'pause-icon' : 'play-icon'
+                return this.isPlaying && this.currTrack ? 'pause-icon' : 'play-icon'
             },
     
             loveIcon() {
