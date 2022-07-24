@@ -4,7 +4,7 @@
         padding: 0;
         grid-column: 1;
         grid-row: 3;
-        background-color: $clr2;
+        background: linear-gradient(rgba($clr2, .8), rgba($clr2, .97)70px);
         z-index: 50;
         justify-content: center;
 
@@ -20,6 +20,7 @@
 
             .page-link-btn {
                 display: flex;
+                font-weight: 500;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -29,10 +30,10 @@
                 color: $light-gray;
 
                 .page-link-svg {
-                    font-size: 16px;
+                    font-size: 26px;
                     margin: 0;
-                    line-height: 24px;
-                    padding-block: 2px;
+                    line-height: 14px;
+                    padding-block: 5px;
                     color: $light-gray;
                 }
 

@@ -10,7 +10,8 @@
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <component :is="pageLink.icon"/>
+                    <component v-if="activePage === pageLink.id" :is="pageLink.icon[1]"/>
+                    <component v-else :is="pageLink.icon[0]"/>
                 </span>
                 {{ pageLink.name }}
             </button>
@@ -41,15 +42,18 @@ import { stationService } from '../../services/station.service'
 import homeIcon  from '../../assets/imgs/home.svg'
 import libraryIcon  from '../../assets/imgs/library.svg'
 import searchIcon  from '../../assets/imgs/search.svg'
+import activeSearchIcon from '../../assets/imgs/active-search.svg'
+import activeHomeIcon from '../../assets/imgs/active-home.svg'
+import activeLibraryIcon from '../../assets/imgs/active-library.svg'
 
 export default {
     data() {
         return {
             activePage: null,
             pagesLinks: [
-                { id: '', name: 'Home', icon: 'homeIcon' },
-                { id: 'search', name: 'Search', icon: 'libraryIcon' },
-                { id: 'library', name: ' Your Library', icon: "searchIcon" }
+                { id: '', name: 'Home', icon: ['homeIcon', 'activeHomeIcon' ]},
+                { id: 'search', name: 'search', icon: ['searchIcon' ,'activeSearchIcon'] },
+                { id: 'library', name: ' Your Library', icon:[ "libraryIcon", 'activeLibraryIcon'] }
             ],
             activePage: null
         }
@@ -58,12 +62,16 @@ export default {
         homeIcon,
         libraryIcon ,
         searchIcon,
+        activeHomeIcon,
+        activeLibraryIcon,
+        activeSearchIcon,
     },
 
     computed: {
         stations() {
             return this.$store.getters.getStations
         },
+        
 
     },
 
