@@ -23,6 +23,7 @@
         <div class="mobile-options">
             <i class="bi bi-three-dots mobile-options-dots"></i>
         </div>
+
         <div class="track-time align-center sub-text">
             <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
@@ -45,7 +46,8 @@
         },
         props: {
             'track': Object,
-            'trackIdx': Number
+            'trackIdx': Number,
+            station: null,
         },
     
         data() {
@@ -57,7 +59,7 @@
     
         created() {
             this.isLiked = this.$store.getters.getTracksStation.tracks.some(t => t.id === this.track.id)
-    
+            // this.station = await this.$store.getters.getStation(id)
         },
         computed: {
             playBtn() {
@@ -74,10 +76,15 @@
             toggleLikedSong() {
                 const likedTracks = this.$store.getters.getTracksStation
                 this.isLiked = !this.isLiked
-                let msg = this.isLiked ? 'Add to' : 'Removed from'
-                console.log('this.isLiked = ', msg)
                 const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
-                eventBus.emit('show-msg', `${msg} Liked Songs`)
+                this.$emit('updateStation', data)
+            },
+    
+            addTrackToStation(track, isNew) {
+                const { id } = this.$route.params
+                const stations = this.$store.getters.getStations
+                const station = stations.find(s => s._id === id)
+                const data = { station, track, isNew }
                 this.$emit('updateStation', data)
             }
         },

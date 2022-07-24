@@ -1,5 +1,6 @@
 const YT_KEY = import.meta.env.VITE_YT_KEY
 import axios from 'axios'
+const audioDB = 'https://theaudiodb.com/api/v1/json/523532/searchalbum.php?s='
 
 export const youtubeService = {
     searchTracks,
@@ -7,29 +8,30 @@ export const youtubeService = {
 }
 
 async function searchTracks(query) {
-    
+
     try {
         const { data } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${YT_KEY}&q=${query}`)
         console.log('data = ', data)
+        // const artist = await searchArtist(query) // if time allow 
         // console.log('data.items = ', data.items)
         let tracks
-        
-             tracks = data.items.map(async ({ snippet, id }) => {
-                 let { title, publishTime, description, thumbnails } = snippet
-                 const { videoId } = id
-                 const time = await getTrackDuration(videoId)
-                
-                title = proccessSpecialChars(title)
-                return {
-                    title,
-                    id: videoId,
-                    description,
-                    imgUrl: thumbnails.high.url,
-                    publishedAt: publishTime,
-                    time,
-                }
-            })
-     
+
+        tracks = data.items.map(async ({ snippet, id }) => {
+            let { title, publishTime, description, thumbnails } = snippet
+            const { videoId } = id
+            const time = await getTrackDuration(videoId)
+
+            title = proccessSpecialChars(title)
+            return {
+                title,
+                id: videoId,
+                description,
+                imgUrl: thumbnails.high.url,
+                publishedAt: publishTime,
+                time,
+            }
+        })
+
         return Promise.all(tracks)
     } catch (error) {
         console.log('error = ', error)
@@ -71,4 +73,11 @@ async function getTrackDuration(songId) {
     } catch (error) {
         console.log('request faild', error)
     }
+}
+
+
+async function searchArtist(query) {
+    const artistAlbums = await fetch(audioDB + query).then(res => res.json())
+    console.log(artistAlbums);
+    if (artistAlbums.album === null) return
 }

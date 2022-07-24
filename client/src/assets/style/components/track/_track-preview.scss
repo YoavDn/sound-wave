@@ -93,6 +93,11 @@
 
     }
 
+    .add-track-search-btn {
+        @include add-to-playlist-btn;
+
+    }
+
 
     &:hover {
         background: $opacityWhite;
