@@ -2,8 +2,13 @@
     font-size: 16px;
     position: relative;
 
+
+
     .track-play {
         grid-column: 1;
+        width: 16px;
+        height: 16px;
+        align-self: center;
     }
 
     .track-img-title {
@@ -25,7 +30,17 @@
             font-weight: 400;
             color: $clr3;
         }
+
+        &.active-track {
+            h2 {
+
+                color: $clr1
+            }
+        }
+
+
     }
+
 
 
     .track-added-by {
@@ -53,7 +68,7 @@
         p {
             grid-column: 2;
             // align-self: flex-end;
-            justify-self: flex-end;
+            justify-self: center;
         }
 
         .bi-three-dots {
@@ -77,6 +92,10 @@
     .track-idx {
         color: $light-gray;
         width: 20px;
+
+        &.active-track {
+            color: $clr1
+        }
     }
 
     .action-btn {
@@ -85,6 +104,8 @@
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
+
+
     }
 
     .preview-actions {
@@ -115,30 +136,27 @@
         .track-idx {
             display: none;
         }
+
+        .sound-bar {
+            display: none;
+        }
     }
 
     .sub-text {
         font-size: 0.875rem;
         color: $light-gray;
     }
+
+
+
+
 }
 
 
+.track-options-overlay {
+    display: none;
+}
 
-// .dropdown-menu {
-//     background-color: $clr4;
-//     border: none;
-
-//     .dropdown-item {
-//         color: $clr3;
-
-//         &:hover {
-//             background-color: $opacityWhite;
-//             color: $clr3;
-
-//         }
-//     }
-// }
 .track-options-dropdown {
     position: relative;
 }
@@ -179,14 +197,6 @@
             text-decoration: none;
         }
     }
-
-
-    // span {
-    //     color: $clr3;
-    //     cursor: default;
-    //     border-radius: 2px;
-
-    // }
 
 
 }
@@ -239,6 +249,10 @@
     position: relative;
     padding: 0 16px;
     cursor: default;
+
+    img {
+        grid-column: 1;
+    }
 }
 
 .mobile-options {

@@ -2,9 +2,9 @@
     <div class="search-result-list-container">
         <ul class="clean-list flex flex-column result-list">
             <li v-for="(track) in tracks" class="flex align-center">
-                <!-- <track-preview :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation" /> -->
-                <component :is="currentPreivew" :track="track" @setTrack="$emit('setTrack', track)"
-                    @updateStation="updateStation" />
+                <search-result-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation" />
+                                <!-- <component :is="currentPreivew" :track="track" @setTrack="$emit('setTrack', track)"
+                    @updateStation="updateStation" /> -->
             </li>
         </ul>
     </div>

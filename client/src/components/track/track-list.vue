@@ -3,7 +3,7 @@
         <track-list-head />
         <draggable v-model="trackList" class="clean-list station-list" :sort="true">
             <li v-for="(track, idx) in tracks" :key="track.id">
-                <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
+                <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
                     @updateStation="updateStation" />
             </li>
         </draggable>
@@ -50,3 +50,5 @@ export default defineComponent({
     },
 })
 </script>
+
+<!-- <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" -->

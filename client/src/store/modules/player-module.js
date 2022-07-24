@@ -3,7 +3,8 @@ import stationModule from "./station-module"
 export default {
     state: {
         currTrack: null,
-        // currStation: null,
+        isPlaying: false,
+        currStation: null,
     },
     modules: {
 
@@ -15,11 +16,18 @@ export default {
         getCurrStation(state) {
             return state.currStation
         },
+        getIsPlaying(state) {
+            return state.isPlaying
+        }
     },
     mutations: {
         loadTrack(state, { track, station = null }) {
             state.currTrack = track
+            state.isPlaying = true
             if (station) state.currStation = station
+        },
+        setIsPlaying: (state, { isPlaying }) => {
+            state.isPlaying = isPlaying
         },
 
         changeTrackInStation(state, { diff }) {

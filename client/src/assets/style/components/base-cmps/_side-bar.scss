@@ -39,7 +39,8 @@
             // letter-spacing: .2px;
 
             .page-link-svg {
-                width: 27px;
+                width: 32px;
+                margin: 0;
                 font-size: 24px;
                 margin-inline-end: .6em;
             }
@@ -47,15 +48,12 @@
             &:hover {
                 color: $clr3;
 
-                .page-link-svg {
-                    color: $clr3;
+                .page-svg {
+                    fill: $clr3;
                 }
             }
         }
 
-        .active-link {
-            color: $clr3;
-        }
 
         .create-playlist-link {
             margin-top: 20px;

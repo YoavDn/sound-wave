@@ -113,15 +113,17 @@
 
         &:hover {
             opacity: 1;
+
+
         }
     }
 
     .progress-bar {
         position: absolute;
-        z-index: -1;
+        z-index: 1;
         width: 100%;
-        background-color: $clr1;
-        height: 4px;
+        height: 3px;
+
     }
 
     .progress-bar-nums1 {
@@ -169,4 +171,3 @@
         justify-content: space-between;
     }
 }
-

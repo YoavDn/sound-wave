@@ -14,8 +14,8 @@ export default {
         getStations: (state) => state.stations,
         getLikedStation: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
         // getCurrStation(state) { return state.currStation },
-        getStation: ({ stations }) => async (id) => {
-            if (!id) return await stationService.getEmptyStation()
+        getStation: ({ stations }) => (id) => {
+            // if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
         },
     },
@@ -68,6 +68,7 @@ export default {
         async updateStation({ commit }, { data }) {
             try {
                 const { station, track, isNew } = data
+                if (station.tracks.some(t => t.id === track.id)) return
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
                 if (isNew) {
                     stationToUpdate.tracks.unshift(track)
