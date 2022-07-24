@@ -28,23 +28,23 @@
     }
 }
 
-@media screen and(max-width: 780px) {
-    .hero-container {
+// @media screen and(max-width: 780px) {
+//     .hero-container {
 
-        margin-top: 45px;
+//         margin-top: 45px;
 
-        .hero-title {
-            font-size: 26px;
-            color: $clr3;
-            margin-block: 20px;
-        }
+//         .hero-title {
+//             font-size: 26px;
+//             color: $clr3;
+//             margin-block: 20px;
+//         }
 
-        .hero-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, 55px);
+//         .hero-list {
+//             display: grid;
+//             grid-template-columns: 1fr 1fr;
+//             grid-template-rows: repeat(3, 55px);
 
-            // background-color: red;
-        }
-    }
-}
+//             // background-color: red;
+//         }
+//     }
+// }

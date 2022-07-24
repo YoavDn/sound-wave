@@ -1,0 +1,21 @@
+@media (max-width: $tablet-width) {
+    .track-list-head {
+        display: none;
+    }
+
+    .track-date-added,
+    .track-added-by,
+    .track-time {
+        display: none !important;
+    }
+
+    .mobile-options {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .track-list-row {
+        padding: 0;
+        grid-template-columns: 16px 6fr 1fr;
+    }
+}

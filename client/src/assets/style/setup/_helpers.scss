@@ -84,21 +84,11 @@
     overflow: hidden;
     // width: 190px;
     white-space: nowrap;
-  }
+}
 
-  .full-screen {
-    position: absolute;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg, rgb(0, 0, 0) 50%, rgb(238, 63, 40) 94%);
-    backdrop-filter: blur(4px);
-    z-index: 100;
-    transition: all 0.5s;
-  }
+.full-screen {
+   
+}
 
 .hidden {
     display: none;

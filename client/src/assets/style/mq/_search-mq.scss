@@ -1,0 +1,8 @@
+@media only screen and (max-width: $tablet-width) {
+    .search-input-container {
+        position: static;
+        @include search-bar;
+        color: $clr2;
+        width: 100%;
+    }
+}
