@@ -11,7 +11,6 @@ async function searchTracks(query) {
 
     try {
         const { data } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${YT_KEY}&q=${query}`)
-        console.log('data = ', data)
         // const artist = await searchArtist(query) // if time allow 
         // console.log('data.items = ', data.items)
         let tracks

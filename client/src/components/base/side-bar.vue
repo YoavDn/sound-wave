@@ -79,8 +79,8 @@ export default {
         },
 
         async createNewPlaylist() {
-            const station = await stationService.getEmptyStation()
-            await stationService.save(station)
+            // await stationService.save(station)
+            const station = await this.$store.dispatch({ type: 'createNewStation' })
             return this.$router.push(`/station/${station._id}`)
         }
 

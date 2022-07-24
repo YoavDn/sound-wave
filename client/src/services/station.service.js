@@ -42,8 +42,13 @@ function getById(stationId) {
 }
 
 async function save(station) {
+
+
     if (station._id) await storageService.put(KEY, station)
-    else await storageService.post(KEY, station)
+    else {
+        station._id = utilService.makeId()
+        await storageService.post(KEY, station)
+    }
     return await query()
 }
 
@@ -70,7 +75,7 @@ async function removeTrackFromStation({ station, track }) {
 async function getEmptyStation(isLikedSongs = false) {
     const stations = await query()
     return {
-        _id: isLikedSongs ? 'likedSongs' : utilService.makeId(),
+        _id: isLikedSongs ? 'likedSongs' : null,
         name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (stations.length + 1),
         tags: ['test'],
         imgUrl: isLikedSongs ? 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png' : null,

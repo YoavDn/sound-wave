@@ -45,10 +45,13 @@ export default {
             }
         },
 
-        async saveStation({ commit }, { station }) {
+        async createNewStation({ commit }) {
             try {
+                const station = await stationService.getEmptyStation()
                 const stations = await stationService.save(station)
+                console.log(stations);
                 commit({ type: 'setStations', stations })
+                return station
             } catch (err) {
                 return console.log(err);
             }
