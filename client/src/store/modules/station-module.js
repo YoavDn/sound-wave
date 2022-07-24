@@ -19,8 +19,8 @@ export default {
         getStations: (state) => state.stations,
         getLikedStation: ({ stations }) => stations.find(s => s._id === 'likedSongs'),
         // getCurrStation(state) { return state.currStation },
-        getStation: ({ stations }) => async (id) => {
-            if (!id) return await stationService.getEmptyStation()
+        getStation: ({ stations }) => (id) => {
+            // if (!id) return await stationService.getEmptyStation()
             return stations.find(station => station._id === id)
         },
     },

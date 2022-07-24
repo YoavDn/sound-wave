@@ -2,7 +2,7 @@
     <section class="search-page-container">
         <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack" />
         <div v-if="tracks">
-            <search-result-list @setTrack="setTrack" :tracks="tracks" :currentPreivew="'trackPreview'" />
+            <search-result-list @setTrack="setTrack" @updateStation="updateStation" :tracks="tracks" :currentPreivew="'trackPreview'" />
         </div>
         <genre-list v-if="!tracks" :genres="genres" />
     </section>
@@ -52,7 +52,7 @@ export default {
 
         updateStation(data) {
             let msg;
-
+            console.log('data = ', data)
             if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
             if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
 

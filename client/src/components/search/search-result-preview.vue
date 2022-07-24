@@ -31,7 +31,7 @@
         props: {
             'track': Object,
             'trackIdx': Number,
-            station: null,
+    
         },
     
     
@@ -39,10 +39,12 @@
         data() {
             return {
                 isPlaying: true,
-    
+                station: null,
+                isLiked: false,
             }
         },
         created() {
+            this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
         },
         computed: {
             loveIcon() {
@@ -53,6 +55,12 @@
             trackOptions
         },
         methods: {
+            toggleLikedSong() {
+                const likedTracks = this.$store.getters.getLikedStation
+                this.isLiked = !this.isLiked
+                const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
+                this.$emit('updateStation', data)
+            },
     
             addTrackToStation(track, isNew) {
                 const { id } = this.$route.params
