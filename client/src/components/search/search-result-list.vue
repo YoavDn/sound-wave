@@ -29,21 +29,12 @@ export default {
         searchResultPreview,
         trackPreview
     },
-    data() {
-        return {
-        }
-    },
-    created() {
-        console.log(this.currentPreivew);
-    },
     methods: {
         updateStation(data) {
-            console.log(data);
             this.$emit('updateStation', data)
         }
     },
-    computed: {
-    },
+
 }
 </script>
 

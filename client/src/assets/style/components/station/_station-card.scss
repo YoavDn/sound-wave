@@ -49,6 +49,11 @@
             width: 20px;
             height: 20px;
         }
+
+        &:hover {
+            font-size: 53px;
+            cursor: default;
+        }
     }
 
     .station-name {
