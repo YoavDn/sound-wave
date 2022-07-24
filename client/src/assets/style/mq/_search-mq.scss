@@ -4,11 +4,18 @@
         @include search-bar;
         color: $clr2;
         width: 100%;
+        margin-bottom: 1rem;
     }
 }
 
 @media only screen and (max-width: $mobile-width) {
     .search-page-container {
+        padding-inline-start: 1rem;
+        padding-inline-end: 0;
+    }
+
+
+    .station-container .station-search {
         padding-inline-start: 1rem;
         padding-inline-end: 0;
     }
