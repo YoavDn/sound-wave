@@ -48,9 +48,9 @@ export default {
         trackFromSearch: true,
     },
 
-    async created() {
+    created() {
         const { id } = this.$route.params
-        this.station = await this.$store.getters.getStation(id)
+        this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
     },
 
@@ -75,9 +75,9 @@ export default {
             this.$store.commit({ type: 'setCurrStation', station })
         },
 
+
         async updateStation(data) {
             if (!data) return
-            console.log(data);
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
@@ -86,8 +86,7 @@ export default {
             if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
 
             eventBus.emit('show-msg', msg)
-            this.station = await this.$store.getters.getStation(id)
-            console.log(this.station)
+            this.station = this.$store.getters.getStation(id)
         }
 
     },
@@ -97,13 +96,19 @@ export default {
 
     watch: {
         '$route.params.id': {
-            handler: async function (id) {
-                this.station = await this.$store.getters.getStation(id)
-
+            handler: function (id) {
+                this.station = this.$store.getters.getStation(id)
             },
             deep: true,
-            immediate: true
+            immediate: true,
         },
+        // '$route.params.id': {
+        //     handler: function (id) {
+        //         this.station = this.$store.getters.getStation(id)
+        //     },
+        //     deep: true,
+        //     immediate: true,
+        // },
 
     },
 

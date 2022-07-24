@@ -239,6 +239,10 @@
     position: relative;
     padding: 0 16px;
     cursor: default;
+
+    img {
+        grid-column: 1;
+    }
 }
 
 .mobile-options {

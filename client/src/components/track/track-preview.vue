@@ -54,15 +54,22 @@
         data() {
             return {
                 isPlaying: true,
-                isLiked: false,
+                // isLike: null,
             }
         },
     
         created() {
+            // this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+            // this.isLiked = this.track.isLiked ? this.track.isLiked : false
+            // console.log('this.isLike = ', this.isLike)
+            // this.isLike = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
     
         },
     
         computed: {
+            isLiked() {
+                return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+            },
             playBtn() {
                 return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
             },
@@ -79,8 +86,12 @@
         methods: {
             toggleLikedSong() {
                 const likedTracks = this.$store.getters.getLikedStation
-                this.isLiked = !this.isLiked
-                const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
+                var isLike = this.isLiked
+                console.log('isLike = ', isLike)
+                isLike = !isLike
+                console.log('isLike now? = ', isLike)
+    
+                const data = { station: likedTracks, track: this.track, isLike }
                 this.$emit('updateStation', data)
             },
     
@@ -93,15 +104,17 @@
             }
         },
     
-        watch: {
-            '$route.params.id': {
-                handler: function (id) {
     
-                },
-                deep: true,
-                immediate: true
-            },
+        // watch: {
+        //     '$route.params.id': {
+        //         handler: function () {
+        //             this.isLiked = this.$store.getters.getLikedStation.tracks.find(t => t.id === this.track.id)
+        //             console.log('this.isLiked = ', this.isLiked)
+        //         },
+        //         deep: true,
+        //         immediate: true
+        //     },
     
-        },
+        // },
     }
     </script>
