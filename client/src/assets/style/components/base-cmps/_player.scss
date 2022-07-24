@@ -114,9 +114,7 @@
         &:hover {
             opacity: 1;
 
-            progress[value]::-webkit-progress-value {
-                background: $clr1;
-            }
+
         }
     }
 

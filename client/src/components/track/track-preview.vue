@@ -38,6 +38,7 @@
     import trackOptions from '../track/track-options.vue'
     import { eventBus } from '../../services/event-bus.js'
     import soundBar from '../custom/sound-bar.vue'
+    import { onMounted } from 'vue'
     export default {
         components: {
             trackOptions,
@@ -58,17 +59,20 @@
         },
     
         created() {
-            this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
     
         },
+    
         computed: {
             playBtn() {
                 return { 'bi bi-play-fill': this.isPlaying, 'bi bi-pause-circle-fill': !this.isPlaying }
             },
     
             loveIcon() {
-                return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }
+                return { 'bi bi-heart action-btn': !this.likedTrack, "bi bi-heart-fill track-like": this.likedTrack }
             },
+            likedTrack() {
+                return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+            }
     
         },
     
@@ -87,6 +91,17 @@
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
             }
+        },
+    
+        watch: {
+            '$route.params.id': {
+                handler: function (id) {
+    
+                },
+                deep: true,
+                immediate: true
+            },
+    
         },
     }
     </script>

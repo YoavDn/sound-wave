@@ -58,7 +58,7 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
         },
-        playStation(){
+        playStation() {
             const firstTrack = this.station.tracks[0]
             this.setTrack(firstTrack)
         },
@@ -87,6 +87,7 @@ export default {
 
             eventBus.emit('show-msg', msg)
             this.station = await this.$store.getters.getStation(id)
+            console.log(this.station)
         }
 
     },
@@ -98,6 +99,7 @@ export default {
         '$route.params.id': {
             handler: async function (id) {
                 this.station = await this.$store.getters.getStation(id)
+
             },
             deep: true,
             immediate: true
