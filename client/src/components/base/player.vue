@@ -89,7 +89,6 @@ export default defineComponent({
         }
     },
     created() {
-        this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
         },
     computed: {
         // make svgs work not from here
@@ -137,6 +136,7 @@ export default defineComponent({
 
     methods: {
         toggleLikedSong() {
+                this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
                 const likedTracks = this.$store.getters.getTracksStation
                 this.isLiked = !this.isLiked
                 let msg = this.isLiked ? 'Add to' : 'Removed from'
