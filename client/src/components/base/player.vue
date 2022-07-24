@@ -1,6 +1,6 @@
 <template>
 
-    <full-screen v-if="isFullScreen" @toggleFullScreen="toggleFullScreen"></full-screen>
+    <full-screen v-if="isFullScreen" @changeSong="onChangeSong" @toggleScreen="toggleFullScreen"></full-screen>
 
     <section @click="enterFullScreen" v-if="track && !isFullScreen" class="player-container">
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
@@ -11,8 +11,8 @@
                 <div class="curr-track-singer">Big Boss Vette</div>
             </div>
 
-            <button @click.stop="isLiked = !isLiked" class="like-btn">
-                    <span v-bind:class="greenHeart" v-html="isLiked ? unlike : like"></span>
+            <button @click.stop="toggleLikedSong" class="like-btn">
+                    <span v-bind:class="greenHeart" v-html="isLiked ? like : unlike"></span>
             </button>
         </div>
 
@@ -68,11 +68,12 @@ import { defineComponent } from 'vue';
 import YouTube from 'vue3-youtube'
 import shuffle from '../icons/shuffle-btn.vue'
 import prev from '../icons/prev-btn.vue'
+import { eventBus } from '../../services/event-bus.js';
 
 import fullScreen from '../base/full-screen.vue'
 
 export default defineComponent({
-    components: { YouTube, shuffle, prev, fullScreen },
+    components: { YouTube, shuffle, prev, fullScreen,eventBus },
     data() {
         return {
             isFullScreen: false,
@@ -87,6 +88,9 @@ export default defineComponent({
             // autoplay: 0,
         }
     },
+    created() {
+        this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+        },
     computed: {
         // make svgs work not from here
         playSvg() {
@@ -114,7 +118,7 @@ export default defineComponent({
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-sc-1bi12j5-0 EQkJl"><path d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z"></path></svg>`
         },
         greenHeart(){
-            return {'green-heart' : !this.isLiked}
+            return {'green-heart' : this.isLiked}
         },
         track() {
             return this.$store.getters.getTrack;
@@ -132,6 +136,14 @@ export default defineComponent({
 
 
     methods: {
+        toggleLikedSong() {
+                const likedTracks = this.$store.getters.getTracksStation
+                this.isLiked = !this.isLiked
+                let msg = this.isLiked ? 'Add to' : 'Removed from'
+                const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
+                eventBus.emit('show-msg', `${msg} Liked Songs`)
+                this.$emit('updateStation', data)
+        },
         toggleFullScreen() {
             this.isFullScreen = !this.isFullScreen
         },
@@ -165,7 +177,7 @@ export default defineComponent({
         },
         enterFullScreen(){
             const tabletWidth = window.innerWidth
-            if(tabletWidth > 780) return
+            if(tabletWidth > 915) return
             this.toggleFullScreen()
         },
         pause() {

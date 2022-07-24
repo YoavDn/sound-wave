@@ -1,9 +1,9 @@
 <template>
 
-    <section v-if="track" class="flex full-screen">
+    <section v-if="track && vidSrc" class="flex full-screen">
 
         <div class="flex full-screen-nav">
-            <button class="close-btn" @click="$emit('toggleFullScreen')">
+            <button class="close-btn" @click="$emit('toggleScreen')">
                 <span>
                     <close></close>
                 </span>
@@ -25,7 +25,6 @@
                 <div class="curr-track-singer">Big Boss Vette</div>
             </div>
 
-
              <button class="like-btn" @click.stop="isLiked = !isLiked">
                     <span v-bind:class="greenHeart" v-html="isLiked ? unlike : like"></span>
             </button>
@@ -46,7 +45,8 @@
                             <shuffle></shuffle>
                         </span>
                     </button>
-                    <button @click="onChangeSong(-1)">
+                    
+                    <button @click.stop="$emit('changeSong', -1)">
                         <span>
                             <prev></prev>
                         </span>
@@ -56,7 +56,7 @@
                         <span v-html="isPlaying ? pauseSvg : playSvg"></span>
                     </button>
     
-                    <button @click="onChangeSong(1)">
+                    <button @click.stop="$emit('changeSong', 1)">
                         <span v-html="next">
                         </span>
                     </button>
@@ -84,8 +84,6 @@ export default defineComponent({
     components: { YouTube, shuffle, prev,close, trackOptions},
     data() {
         return {
-            isMute: false,
-            volume: 50,
             currTime: 0,
             trackDuration: 0,
             trackInterval: null,
@@ -143,7 +141,12 @@ export default defineComponent({
         },
         convertMinEnd() {
             return utilService.convertSecToMin(this.trackDuration.toFixed(0))
-        }
+        },
+        // exitFullScreen(){
+        //     const tabletWidth = window.innerWidth
+        //     if(tabletWidth < 915) return
+        //     $emit('toggleScreen')
+        // },
     },
 
     methods: {
@@ -194,27 +197,6 @@ export default defineComponent({
             this.trackInterval = setInterval(() => {
                 this.currTime = this.player.getCurrentTime()
             }, 1000);
-        },
-
-        changeVolume() {
-            this.player.setVolume(this.volume)
-        },
-        mute() {
-            if (this.isMute) {
-                this.isMute = false
-                this.volume = 50;
-                this.player.setVolume(50)
-            } else {
-                this.isMute = true
-                this.volume = 0;
-                this.player.setVolume(0)
-            }
-        },
-
-        onChangeSong(diff) {
-            this.$store.commit({ type: 'changeTrackInStation', diff })
-            this.pause()
-            this.play()
         },
 
         shuffle() {
