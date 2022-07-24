@@ -23,6 +23,7 @@ export default {
     mutations: {
         loadTrack(state, { track, station = null }) {
             state.currTrack = track
+            state.isPlaying = true
             if (station) state.currStation = station
         },
         setIsPlaying: (state, { isPlaying }) => {

@@ -60,6 +60,7 @@ export default {
         async updateStation({ commit }, { data }) {
             try {
                 const { station, track, isNew } = data
+                if (station.tracks.some(t => t.id === track.id)) return
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
                 if (isNew) {
                     stationToUpdate.tracks.unshift(track)

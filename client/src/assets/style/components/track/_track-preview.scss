@@ -68,7 +68,7 @@
         p {
             grid-column: 2;
             // align-self: flex-end;
-            justify-self: flex-end;
+            justify-self: center;
         }
 
         .bi-three-dots {
@@ -153,21 +153,10 @@
 }
 
 
+.track-options-overlay {
+    display: none;
+}
 
-// .dropdown-menu {
-//     background-color: $clr4;
-//     border: none;
-
-//     .dropdown-item {
-//         color: $clr3;
-
-//         &:hover {
-//             background-color: $opacityWhite;
-//             color: $clr3;
-
-//         }
-//     }
-// }
 .track-options-dropdown {
     position: relative;
 }
@@ -208,14 +197,6 @@
             text-decoration: none;
         }
     }
-
-
-    // span {
-    //     color: $clr3;
-    //     cursor: default;
-    //     border-radius: 2px;
-
-    // }
 
 
 }

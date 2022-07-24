@@ -3,7 +3,6 @@
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn ">
                 <component :is="togglePlayBtn" />
-
             </button>
             <sound-bar v-if="isPlaying && currTrack" class="sound-bar" />
             <p v-else :class="currTrackStyle" class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
@@ -23,8 +22,8 @@
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
         </div>
-        <div class="mobile-options">
-            <i class="bi bi-three-dots mobile-options-dots"></i>
+        <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
+            <three-dots />
         </div>
 
         <div class="track-time align-center sub-text">
@@ -42,6 +41,8 @@
     import pauseIcon from '../../assets/imgs/preview-pause.svg'
     import trackOptions from '../track/track-options.vue'
     import soundBar from '../custom/sound-bar.vue'
+    import threeDots from '../../assets/imgs/three-dots.svg'
+    
     
     import { eventBus } from '../../services/event-bus.js'
     import { rest } from 'lodash'
@@ -52,6 +53,7 @@
             soundBar,
             playIcon,
             pauseIcon,
+            threeDots
     
         },
         props: {
@@ -62,15 +64,11 @@
     
         data() {
             return {
+                // isPlaying: true,
             }
         },
     
-    
         created() {
-            // this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
-            // this.isLiked = this.track.isLiked ? this.track.isLiked : false
-            // console.log('this.isLike = ', this.isLike)
-            // this.isLike = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
     
         },
     
@@ -103,10 +101,7 @@
         methods: {
             toggleLikedSong() {
                 const likedTracks = this.$store.getters.getLikedStation
-                var isLike = this.isLiked
-                console.log('isLike = ', isLike)
-                isLike = !isLike
-                console.log('isLike now? = ', isLike)
+                let isLike = !this.isLiked
     
                 const data = { station: likedTracks, track: this.track, isNew: isLike }
                 this.$emit('updateStation', data)
@@ -120,18 +115,5 @@
                 this.$emit('updateStation', data)
             }
         },
-    
-    
-        // watch: {
-        //     '$route.params.id': {
-        //         handler: function () {
-        //             this.isLiked = this.$store.getters.getLikedStation.tracks.find(t => t.id === this.track.id)
-        //             console.log('this.isLiked = ', this.isLiked)
-        //         },
-        //         deep: true,
-        //         immediate: true
-        //     },
-    
-        // },
     }
     </script>

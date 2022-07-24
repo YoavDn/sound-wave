@@ -3,7 +3,7 @@
         <ul class="clean-list station-list">
             <track-list-head />
             <li v-for="(track, idx) in tracks">
-                <track-preview :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
+                <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)"
                     @updateStation="updateStation" />
             </li>
         </ul>

@@ -4,7 +4,17 @@
         @include search-bar;
         color: $clr2;
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1rem;   
+    }
+    .track-row-search {
+        padding-inline: 0;
+        
+        .track-img-title {
+            gap: 1rem;
+        }
+        .play-btn-search{
+            color: $clr3;
+        }
     }
 }
 
