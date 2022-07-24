@@ -21,8 +21,11 @@ export default {
     props: { 'station': Object },
     created() {
         console.log(this.station.imgUrl);
-    },
 
+    },
+    // mounted() {
+    //     let v = new Vibrant(this.station.imgUrl, opts)
+    // },
     computed: {
         stationDetails() {
             const timeStamp = this.station.tracks.reduce((sum, track) => {

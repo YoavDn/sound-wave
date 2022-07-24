@@ -59,7 +59,7 @@ export default {
                 const { station, track, isNew } = data
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
                 if (isNew) {
-                    stationToUpdate.tracks.push(track)
+                    stationToUpdate.tracks.unshift(track)
                 } else {
                     const idx = station.tracks.findIndex(t => t.id === track.id)
                     stationToUpdate.tracks.splice(idx, 1)
