@@ -4,13 +4,16 @@
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
-                @updateStation="updateStation" />
+                @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions"/>
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
                 <search-result-list v-if="searchResults" :currentPreivew="'searchResultPreview'" @setTrack="setTrack"
                     :tracks="searchResults" @updateStation="updateStation" />
             </div>
+
+            <track-options-mobile @updateStation="updateStation" 
+                :track="track" v-if="isMobileOptionsOn" @toggleMobileOptions="toggleMobileOptions"/>
         </main>
     </section>
 
@@ -23,6 +26,8 @@ import searchBar from '../components/search/search-bar.vue'
 import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
 import stationOptions from '../components/station/station-options.vue'
+import trackOptionsMobile from '../components/track/track-options-mobile.vue'
+
 
 export default {
     components: {
@@ -31,6 +36,7 @@ export default {
         searchResultList,
         searchBar,
         stationOptions,
+        trackOptionsMobile
     },
 
     data() {
@@ -38,6 +44,7 @@ export default {
             newStation: null,
             station: null,
             unsubscribe: null,
+            isMobileOptionsOn: false
         }
     },
     unmounted() {
@@ -63,6 +70,12 @@ export default {
             this.setTrack(firstTrack)
         },
 
+        toggleMobileOptions(track = null) {
+            console.log('hello');
+            this.track = track
+            this.isMobileOptionsOn = !this.isMobileOptionsOn
+        },
+
         async searchTrack(query) {
             await this.$store.dispatch({ type: 'searchTracks', query })
         },
@@ -74,7 +87,7 @@ export default {
         setStation(station) {
             this.$store.commit({ type: 'setCurrStation', station })
         },
-        
+
 
         async updateStation(data) {
             if (!data) return

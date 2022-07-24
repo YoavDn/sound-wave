@@ -1,5 +1,5 @@
 <template class="track-options-dropdown" >
-  <i class="bi bi-three-dots action-btn" @click="toggleModal"></i>
+  <three-dots @click="toggleModal"/>
   <div v-if="isModalOn" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
     <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
@@ -32,6 +32,7 @@
 
 
 <script>
+import threeDots from '../../assets/imgs/three-dots.svg'
 import { eventBus } from '../../services/event-bus.js'
 export default {
   props: { track: Object },
@@ -43,10 +44,13 @@ export default {
       currStation: null,
     }
   },
+  components: {
+    threeDots
+  },
 
-  async created() {
+   created() {
     const { id } = this.$route.params
-    if (id) this.currStation = await this.$store.getters.getStation(id)
+    if (id) this.currStation =  this.$store.getters.getStation(id)
 
   },
   computed: {

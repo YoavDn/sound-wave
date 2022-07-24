@@ -2,9 +2,10 @@
     <section class="search-page-container">
         <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack" />
         <div v-if="tracks">
-            <search-result-list @setTrack="setTrack" @updateStation="updateStation" :tracks="tracks" :currentPreivew="'trackPreview'" />
+            <search-result-list @setTrack="setTrack" @toggleMobileOptions="toggleMobileOptions" @updateStation="updateStation" :tracks="tracks" :currentPreivew="'trackPreview'" />
         </div>
         <genre-list v-if="!tracks" :genres="genres" />
+        <track-options-mobile @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" :track="track" v-if="isMobileOptionsOn"/>
     </section>
 </template>
     
@@ -13,12 +14,15 @@ import { eventBus } from '../services/event-bus.js'
 import searchResultList from '../components/search/search-result-list.vue'
 import searchBar from '../components/search/search-bar.vue'
 import genreList from '../components/genre/genre-list.vue'
+import trackOptionsMobile from '../components/track/track-options-mobile.vue'
 
 export default {
     data() {
         return {
             unsubscribe: null,
             genres: null,
+            isMobileOptionsOn: false,
+            track: null,
         }
     },
     created() {
@@ -40,7 +44,8 @@ export default {
     components: {
         searchResultList,
         searchBar,
-        genreList
+        genreList,
+        trackOptionsMobile
     },
     methods: {
         async searchTrack(query) {
@@ -49,7 +54,10 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track })
         },
-
+        toggleMobileOptions(track = null){
+            this.track = track
+            this.isMobileOptionsOn = !this.isMobileOptionsOn
+        },
         updateStation(data) {
             let msg;
             console.log('data = ', data)
