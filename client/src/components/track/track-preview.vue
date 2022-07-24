@@ -3,10 +3,10 @@
         <div class="track-play">
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn"><i
                     class="bi bi-play-fill"></i></button>
-            <p class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
-            <!-- <sound-bar /> -->
+            <p :class="currTrackStyle" class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
+            <!-- <sound-bar v-if="currTrack" /> -->
         </div>
-        <div class="track-img-title flex">
+        <div :class="currTrackStyle" class="track-img-title flex">
             <img :src="track.imgUrl" />
             <div class="div flex align-center">
                 <h2 class="long-text">{{ track.title }}</h2>
@@ -14,8 +14,9 @@
         </div>
         <div class="track-added-by sub-text">
             <!-- <p>John Smith</p> -->
-            <p v-if="track.addedBy?.length">{{ track.addedBy }}</p>
-            <p v-else>Guest</p>
+            <!-- <p v-if="track.addedBy?.length">{{ track.addedBy }}</p> -->
+            <!-- <p v-else>Guest</p> -->
+            <h2>{{ currTrack }}</h2>
         </div>
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
@@ -38,7 +39,7 @@
     import trackOptions from '../track/track-options.vue'
     import { eventBus } from '../../services/event-bus.js'
     import soundBar from '../custom/sound-bar.vue'
-    import { onMounted } from 'vue'
+    import { rest } from 'lodash'
     export default {
         components: {
             trackOptions,
@@ -57,6 +58,7 @@
                 // isLike: null,
             }
         },
+    
     
         created() {
             // this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
@@ -79,7 +81,13 @@
             },
             likedTrack() {
                 return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
-            }
+            },
+            currTrack() {
+                return this.$store.getters.getTrack.id === this.track.id
+            },
+            currTrackStyle() {
+                return { 'active-track': this.currTrack, 'test': !this.currTrack }
+            },
     
         },
     
@@ -90,13 +98,8 @@
                 console.log('isLike = ', isLike)
                 isLike = !isLike
                 console.log('isLike now? = ', isLike)
-<<<<<<< HEAD
     
-                const data = { station: likedTracks, track: this.track, isLike }
-=======
-
                 const data = { station: likedTracks, track: this.track, isNew: isLike }
->>>>>>> 41f6e53aa4bbe2bbb213996178a356de39a7a297
                 this.$emit('updateStation', data)
             },
     

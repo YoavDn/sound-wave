@@ -38,28 +38,30 @@ export default {
             newStation: null,
             station: null,
             unsubscribe: null,
+            currTrack: null,
         }
     },
     unmounted() {
         this.unsubscribe()
     },
 
-    provide: {
-        trackFromSearch: true,
-    },
+
 
     created() {
         const { id } = this.$route.params
         this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
+
     },
 
     methods: {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
+            this.currTrack = track
         },
         playStation() {
             const firstTrack = this.station.tracks[0]
+            this.currTrack = firstTrack
             this.setTrack(firstTrack)
         },
 

@@ -2,6 +2,8 @@
     font-size: 16px;
     position: relative;
 
+
+
     .track-play {
         grid-column: 1;
     }
@@ -25,7 +27,17 @@
             font-weight: 400;
             color: $clr3;
         }
+
+        &.active-track {
+            h2 {
+
+                color: $clr1
+            }
+        }
+
+
     }
+
 
 
     .track-added-by {
@@ -77,6 +89,10 @@
     .track-idx {
         color: $light-gray;
         width: 20px;
+
+        &.active-track {
+            color: $clr1
+        }
     }
 
     .action-btn {
@@ -121,6 +137,8 @@
         font-size: 0.875rem;
         color: $light-gray;
     }
+
+
 }
 
 
