@@ -74,7 +74,7 @@
     
         methods: {
             toggleLikedSong() {
-                const likedTracks = this.$store.getters.getTracksStation
+                const likedTracks = this.$store.getters.getLikedStation
                 this.isLiked = !this.isLiked
                 const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
                 this.$emit('updateStation', data)

@@ -51,6 +51,12 @@ export default {
         },
 
         updateStation(data) {
+            let msg;
+
+            if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
+            if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
+
+            eventBus.emit('show-msg', msg)
             this.$store.dispatch({ type: 'updateStation', data })
         }
 

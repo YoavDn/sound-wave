@@ -77,16 +77,16 @@ export default {
 
         async updateStation(data) {
             if (!data) return
+            console.log(data);
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
 
-            if (!data.inNew) msg = `Added ${data.track.title} to ${data.station.name}`
-            if (data.inNew) msg = `removed ${data.track.title} from ${data.station.name}`
+            if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
+            if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
 
             eventBus.emit('show-msg', msg)
             this.station = await this.$store.getters.getStation(id)
-
         }
 
     },
