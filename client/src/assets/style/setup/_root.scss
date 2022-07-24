@@ -1,5 +1,5 @@
 :root {
-    --column-count: 5;
+    --column-count: 6;
 }
 
 // @media (min-width: $medium-width) {
@@ -7,7 +7,11 @@
 //         --coulmn-count: 6;
 //     }
 // }
-
+@media (max-width: 1300px){
+    :root {
+        --column-count: 5;
+    }
+}
 @media (max-width: $medium-width) {
     :root {
         --column-count: 4;

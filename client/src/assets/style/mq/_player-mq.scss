@@ -80,4 +80,104 @@
             }
         }
     }
+
+    .full-screen {
+        position: absolute;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, #121212 14%, #693508 103%);
+        backdrop-filter: blur(4px);
+        z-index: 100;
+        transition: all 0.5s;
+        padding-inline: $base-padding;
+        flex-direction: column;
+        justify-content: space-between;
+        color: $light-gray;
+        gap: 20px;
+
+        .like-name-container {
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .song-info {
+            flex-direction: column;
+        }
+
+        .full-screen-nav {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .all-controllers {
+            flex-direction: column;
+            flex-grow: 0.1;
+            justify-content: space-between;
+        }
+
+        .curr-track-img-container {
+            flex-grow: 1;
+        }
+
+        .curr-track-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .curr-track-name {
+            @include dots-when-break;
+            color: rgb(255, 255, 255);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 36px;
+        }
+
+        span {
+            filter: invert(89%) sepia(6%) saturate(17%) hue-rotate(315deg) brightness(82%) contrast(84%);
+        }
+
+        .like-btn {
+            margin-left: 16px;
+
+            .green-heart {
+                filter: invert(61%) sepia(75%) saturate(531%) hue-rotate(87deg) brightness(98%) contrast(84%);
+            }
+        }
+
+        button {
+            background-color: transparent;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+
+            svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+
+        .btn-play {
+            background-color: rgb(255, 255, 255);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+
+            span {
+                filter: invert(0%)
+            }
+        }
+    }
+
+   
+
+    .player-track-controllers {
+        justify-content: space-between;
+    }
 }
