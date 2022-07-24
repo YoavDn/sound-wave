@@ -11,7 +11,6 @@ export default {
         setStations: (state, { stations }) => state.stations = stations,
         setCurrStation: (state, { station }) => {
             state.currStation = station
-            console.log('station = ', station)
         },
       
 
@@ -69,7 +68,6 @@ export default {
 
         async updateStation({ commit }, { data }) {
             try {
-                console.log(data);
                 const { station, track, isNew } = data
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
                 if (isNew) {

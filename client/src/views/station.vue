@@ -2,7 +2,7 @@
     <section v-if="station" class="station-container">
         <station-header :station="station" />
         <main class="station-main-container">
-            <station-options :station="station" @setStation="setStation" />
+            <station-options :station="station" @playStation="playStation" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" />
             <div v-if="!station?.tracks?.length > 0" class="station-search">
@@ -55,6 +55,10 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
         },
+        playStation(){
+            const firstTrack = this.station.tracks[0]
+            this.setTrack(firstTrack)
+        },
 
         async searchTrack(query) {
             await this.$store.dispatch({ type: 'searchTracks', query })
@@ -72,7 +76,6 @@ export default {
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
-            console.log(data);
 
             if (!data.inNew) msg = `Added ${data.track.title} to ${data.station.name}`
             if (data.inNew) msg = `removed ${data.track.title} from ${data.station.name}`

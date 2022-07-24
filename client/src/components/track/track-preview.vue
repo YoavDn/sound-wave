@@ -75,6 +75,7 @@
                 const likedTracks = this.$store.getters.getTracksStation
                 this.isLiked = !this.isLiked
                 let msg = this.isLiked ? 'Add to' : 'Removed from'
+                console.log('this.isLiked = ', msg)
                 const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
                 eventBus.emit('show-msg', `${msg} Liked Songs`)
                 this.$emit('updateStation', data)
