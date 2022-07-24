@@ -3,7 +3,7 @@ import stationModule from "./station-module"
 export default {
     state: {
         currTrack: null,
-        currStation: null,
+        // currStation: null,
     },
     modules: {
 
@@ -34,5 +34,6 @@ export default {
         }
     },
     actions: {
+
     }
 }
