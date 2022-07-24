@@ -58,8 +58,8 @@
         },
     
         created() {
-            this.isLiked = this.$store.getters.getTracksStation.tracks.some(t => t.id === this.track.id)
-            // this.station = await this.$store.getters.getStation(id)
+            this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+    
         },
         computed: {
             playBtn() {
