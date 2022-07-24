@@ -241,21 +241,21 @@
     color: $clr3;
 }
 
-@media (max-width: $tablet-width) {
+// @media (max-width: $tablet-width) {
 
-    .track-date-added,
-    .track-added-by,
-    .track-time {
-        display: none !important;
-    }
+//     .track-date-added,
+//     .track-added-by,
+//     .track-time {
+//         display: none !important;
+//     }
 
-    .mobile-options {
-        display: flex;
-        justify-content: flex-end;
-    }
+//     .mobile-options {
+//         display: flex;
+//         justify-content: flex-end;
+//     }
 
-    .track-list-row {
-        padding: 0;
-        grid-template-columns: 16px 6fr 1fr;
-    }
-}
+//     .track-list-row {
+//         padding: 0;
+//         grid-template-columns: 16px 6fr 1fr;
+//     }
+// }

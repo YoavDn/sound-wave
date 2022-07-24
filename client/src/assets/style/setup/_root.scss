@@ -1,0 +1,27 @@
+:root {
+    --column-count: 5;
+}
+
+// @media (min-width: $medium-width) {
+//     :root {
+//         --coulmn-count: 6;
+//     }
+// }
+
+@media (max-width: $medium-width) {
+    :root {
+        --column-count: 4;
+    }
+}
+
+@media (max-width: $tablet-width) {
+    :root {
+        --column-count: 3;
+    }
+}
+
+@media (max-width: $mobile-width) {
+    :root {
+        --column-count: 2;
+    }
+}

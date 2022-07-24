@@ -29,25 +29,25 @@
 //temp  
 
 
-@media (max-width: $tablet-width) {
+// @media (max-width: $tablet-width) {
 
-    .home-container {
-        padding-inline: 10px;
+//     .home-container {
+//         padding-inline: 10px;
 
-        .home-stations-desktop {
-            display: none;
-        }
+//         .home-stations-desktop {
+//             display: none;
+//         }
 
-        .home-stations-mobile {
-            display: block;
-            // padding-inline-start: $layout-padding;
+//         .home-stations-mobile {
+//             display: block;
+//             // padding-inline-start: $layout-padding;
 
-            h1 {
-                text-transform: capitalize;
-                margin-block: 20px;
-            }
-        }
-    }
+//             h1 {
+//                 text-transform: capitalize;
+//                 margin-block: 20px;
+//             }
+//         }
+//     }
 
 
-}
+// }

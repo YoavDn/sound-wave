@@ -55,36 +55,36 @@
 //tablet 
 
 @media screen and(max-width: 780px) {
-    .hero-card {
-        border-radius: 3px;
-        transition: background .3s;
-        cursor: pointer;
-        background: rgba(255, 255, 255, 0.1);
+    // .hero-card {
+    //     border-radius: 3px;
+    //     transition: background .3s;
+    //     cursor: pointer;
+    //     background: rgba(255, 255, 255, 0.1);
 
-        .hero-img {
-            img {
-                height: 100%;
+    //     .hero-img {
+    //         img {
+    //             height: 100%;
 
-                border-top-left-radius: 3px;
-                border-bottom-left-radius: 3px;
-                aspect-ratio: 1;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
+    //             border-top-left-radius: 3px;
+    //             border-bottom-left-radius: 3px;
+    //             aspect-ratio: 1;
+    //             object-fit: cover;
+    //             object-position: center;
+    //         }
+    //     }
 
-        // opacity: 20%;
+    //     // opacity: 20%;
 
-        .hero-card-title {
-            font-size: 13px;
-            margin-inline-start: 1em;
-            color: $clr3 ;
-            font-weight: 700;
-            align-self: center;
-        }
+    //     .hero-card-title {
+    //         font-size: 13px;
+    //         margin-inline-start: 1em;
+    //         color: $clr3 ;
+    //         font-weight: 700;
+    //         align-self: center;
+    //     }
 
-        &:hover {
-            background: rgba($clr3, .3);
-        }
-    }
+    //     &:hover {
+    //         background: rgba($clr3, .3);
+    //     }
+    // }
 }

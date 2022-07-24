@@ -1,0 +1,83 @@
+@media (max-width: $tablet-width) {
+    .player-container {
+        position: relative;
+        grid-column: 1 /span 2;
+        grid-row: 2;
+        width: 100%;
+        margin: auto;
+        border-radius: 10px;
+        padding-inline: 10px;
+        background-color: rgb(70, 52, 73);
+        height: 56px;
+
+        .volume-container {
+            display: none;
+        }
+
+        .track-details {
+            width: 100%;
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .curr-track-img {
+            height: 40px;
+            width: 40px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .btn-play {
+            background-color: transparent;
+            padding: 0;
+            border: none;
+
+            span {
+                filter: invert(100%);
+            }
+        }
+
+        .player-track-controllers {
+            justify-content: end;
+            margin-bottom: 0;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+
+        }
+
+        button:not(.btn-play) {
+            display: none;
+        }
+
+        .test1 {
+            width: 70%;
+        }
+
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0%;
+            width: 94.7%;
+            right: 2.7%;
+            align-items: center;
+            font-size: 0.6875rem;
+            line-height: 1rem;
+            gap: 7px;
+            z-index: 5;
+
+            .progress-bar-range {
+                width: 500px;
+            }
+
+            .nums {
+                display: none;
+            }
+        }
+    }
+}

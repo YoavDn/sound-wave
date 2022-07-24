@@ -4,7 +4,7 @@
 @import './setup/functions';
 @import './setup/helpers';
 @import './setup/mixins';
-
+@import './setup/root';
 //base 
 @import './base/base';
 @import './base/layout';
@@ -33,3 +33,13 @@
 @import './view/station';
 @import './view/home';
 @import './view/library';
+
+// MEDIAQUERIES
+
+@import './mq/home-mq';
+@import './mq/library-mq';
+@import './mq/player-mq';
+@import './mq/search-mq';
+@import './mq/side-bar-mq';
+@import './mq/station-mq';
+@import './mq/track-mq';
