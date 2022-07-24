@@ -43,7 +43,6 @@ function getById(stationId) {
 
 async function save(station) {
 
-
     if (station._id) await storageService.put(KEY, station)
     else {
         station._id = utilService.makeId()
