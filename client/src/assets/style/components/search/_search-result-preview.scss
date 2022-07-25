@@ -84,7 +84,6 @@
 
 .track-row-search {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -96,7 +95,8 @@
     border-radius: 4px;
 
     .track-img-title {
-        grid-column: 1 !important;
+        // grid-column: 1 !important;
+        margin-right: 1rem;
     }
 
     .add-track-search-btn {

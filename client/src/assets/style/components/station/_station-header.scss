@@ -26,7 +26,7 @@
 
         .station-name {
             font-size: 96px;
-            line-height: 100px;
+            // line-height: 100px;
             padding: 0.08em 0px;
         }
 
@@ -49,79 +49,6 @@
         }
     }
 
-    // @media screen and (min-width: 1320px) {
-    //     img {
-    //         height: 230px;
-    //     }
-
-    //     .station-text {
-    //         .station-name {
-    //             font-size: 96px;
-    //             line-height: 130px;
-
-    //         }
-    //     }
-    // }
+  
 }
 
-// @media screen and (max-width: 950px) {
-
-//     .station-header-container {
-//         .station-text {
-//             .station-name {
-//                 font-size: 53px;
-//             }
-//         }
-
-//     }
-// }
-
-
-// @media screen and (max-width: $tablet-width) {
-
-//     .station-header-container {
-//         .station-text {
-//             .station-name {
-//                 font-size: 48px;
-//             }
-//         }
-
-//     }
-// }
-
-
-
-// @media screen and (max-width: $mobile-width) {
-
-//     .station-header-container {
-//         height: auto;
-//         padding-inline: 30px;
-//         padding-block: 0;
-//         flex-direction: column;
-//         align-items: flex-start;
-
-//         .header-img-container {
-//             align-self: center;
-//         }
-
-//         .station-text {
-//             margin-inline-start: 0;
-//             margin-top: 20px;
-
-//             p {
-//                 display: none;
-//             }
-
-//             .station-name {
-//                 line-height: 30px;
-//                 font-size: 20px;
-
-
-//             }
-//         }
-
-//     }
-
-
-
-// }

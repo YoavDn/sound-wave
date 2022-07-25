@@ -1,13 +1,13 @@
 <template>
 
-    <full-screen v-if="isFullScreen" @changeSong="onChangeSong" @toggleScreen="toggleFullScreen"></full-screen>
+    <full-screen  v-if="isFullScreen" @changeSong="onChangeSong" @toggleScreen="toggleFullScreen"/>
 
     <section @click="enterFullScreen" v-if="track && !isFullScreen" class="player-container">
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
         <div class="flex track-details">
             <img class="curr-track-img" :src="track.imgUrl" />
             <div class="song-info">
-                <div class="curr-track-name">{{ track.title }}</div>
+                <div class="curr-track-name long-text">{{ track.title }}</div>
                 <div class="curr-track-singer">Big Boss Vette</div>
             </div>
 
@@ -84,8 +84,6 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
-            isLiked: false,
-            // autoplay: 0,
         }
     },
     created() {
@@ -116,6 +114,9 @@ export default defineComponent({
         like() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-sc-1bi12j5-0 EQkJl"><path d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z"></path></svg>`
         },
+        isLiked() {
+            return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+        },
         greenHeart() {
             return { 'green-heart': this.isLiked }
         },
@@ -135,14 +136,13 @@ export default defineComponent({
 
 
     methods: {
-        toggleLikedSong() {
-            this.isLiked = this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
-            const likedTracks = this.$store.getters.getTracksStation
-            this.isLiked = !this.isLiked
-            let msg = this.isLiked ? 'Add to' : 'Removed from'
-            const data = { station: likedTracks, track: this.track, isNew: this.isLiked }
-            eventBus.emit('show-msg', `${msg} Liked Songs`)
-            this.$emit('updateStation', data)
+        async toggleLikedSong() {
+            const likedTracks = this.$store.getters.getLikedStation
+            console.log('this.isLiked = ', this.isLiked)
+            let isLike = !this.isLiked
+
+            const data = { station: likedTracks, track: this.track, isNew: isLike }
+            await this.$store.dispatch({type:'updateStation', data})
         },
         toggleFullScreen() {
             this.isFullScreen = !this.isFullScreen

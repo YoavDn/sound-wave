@@ -74,7 +74,6 @@ export default {
         },
 
         toggleMobileOptions(track = null) {
-            console.log('hello');
             this.track = track
             this.isMobileOptionsOn = !this.isMobileOptionsOn
         },
