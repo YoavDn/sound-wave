@@ -45,7 +45,6 @@
     
     
     import { eventBus } from '../../services/event-bus.js'
-    import { rest } from 'lodash'
     
     export default {
         components: {
@@ -69,7 +68,6 @@
         },
     
         created() {
-    
         },
     
         computed: {

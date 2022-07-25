@@ -10,8 +10,8 @@
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
                 :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <component v-if="activePage === pageLink.id" :is="pageLink.icon[1]"/>
-                    <component class="page-svg" v-else :is="pageLink.icon[0]"/>
+                    <component v-if="activePage === pageLink.id" :is="pageLink.icon[1]" />
+                    <component class="page-svg" v-else :is="pageLink.icon[0]" />
                 </span>
                 {{ pageLink.name }}
             </button>
@@ -39,9 +39,9 @@
     
 <script >
 import { stationService } from '../../services/station.service'
-import homeIcon  from '../../assets/imgs/home.svg'
-import libraryIcon  from '../../assets/imgs/library.svg'
-import searchIcon  from '../../assets/imgs/search.svg'
+import homeIcon from '../../assets/imgs/home.svg'
+import libraryIcon from '../../assets/imgs/library.svg'
+import searchIcon from '../../assets/imgs/search.svg'
 import activeSearchIcon from '../../assets/imgs/active-search.svg'
 import activeHomeIcon from '../../assets/imgs/active-home.svg'
 import activeLibraryIcon from '../../assets/imgs/active-library.svg'
@@ -51,16 +51,16 @@ export default {
         return {
             activePage: null,
             pagesLinks: [
-                { id: '', name: 'Home', icon: ['homeIcon', 'activeHomeIcon' ]},
-                { id: 'search', name: 'search', icon: ['searchIcon' ,'activeSearchIcon'] },
-                { id: 'library', name: ' Your Library', icon:[ "libraryIcon", 'activeLibraryIcon'] }
+                { id: '', name: 'Home', icon: ['homeIcon', 'activeHomeIcon'] },
+                { id: 'search', name: 'search', icon: ['searchIcon', 'activeSearchIcon'] },
+                { id: 'library', name: ' Your Library', icon: ["libraryIcon", 'activeLibraryIcon'] }
             ],
             activePage: null
         }
     },
     components: {
         homeIcon,
-        libraryIcon ,
+        libraryIcon,
         searchIcon,
         activeHomeIcon,
         activeLibraryIcon,
@@ -71,7 +71,7 @@ export default {
         stations() {
             return this.$store.getters.getStations
         },
-        
+
 
     },
 
@@ -93,7 +93,7 @@ export default {
         async createNewPlaylist() {
             // await stationService.save(station)
             const station = await this.$store.dispatch({ type: 'createNewStation' })
-            return this.$router.push(`/station/${station._id}`)
+            return this.$router.push(`/station/${station.insertedId}`)
         }
 
     },

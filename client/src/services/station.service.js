@@ -3,33 +3,39 @@ import { utilService } from './utils.service.js'
 import { storageService } from './async-storage.service.js';
 import { localStorageService } from './local-storage.js';
 import { stationsData } from '../data/data.js'
+import { httpService } from './http.serivce.js';
+
 const KEY = 'stationsDB'
+
+
 
 export const stationService = {
     query,
     save,
     getById,
-    addTrackToStation,
     getEmptyStation,
     genresQuery
 }
-let demoStations;
-(async () => {
-    demoStations = localStorageService.loadFromStorage(KEY)
-    if (!demoStations || !demoStations.length) {
-        demoStations = stationsData.demoStations()
-        const likedSongs = await getEmptyStation(true)
-        demoStations.unshift(likedSongs)
-        storageService.postMany(KEY, demoStations)
-    }
-    return demoStations
 
-})()
+// let demoStations;
+// (async () => {
+//     demoStations = localStorageService.loadFromStorage(KEY)
+//     if (!demoStations || !demoStations.length) {
+//         demoStations = stationsData.demoStations()
+//         const likedSongs = await getEmptyStation(true)
+//         demoStations.unshift(likedSongs)
+//         storageService.postMany(KEY, demoStations)
+//     }
+//     return demoStations
+
+// })()
+
 const demoGenres = stationsData.demoGenres()
 
 async function query() {
     // return Promise.resolve(demoStations)
-    return await storageService.query(KEY)
+    // return await storageService.query(KEY)
+    return await httpService.get('station')
 }
 
 function genresQuery() {
@@ -43,12 +49,14 @@ function getById(stationId) {
 
 async function save(station) {
 
-    if (station._id) await storageService.put(KEY, station)
-    else {
-        station._id = utilService.makeId()
-        await storageService.post(KEY, station)
-    }
-    return await query()
+    // if (station._id) await storageService.put(KEY, station)
+    // else {
+    //     station._id = utilService.makeId()
+    //     await storageService.post(KEY, station)
+    // }
+    // return await query()
+    if (station._id) return await httpService.put(`station/${station._id}`, station)
+    return await httpService.post('station', station)
 }
 
 async function remove(station) {
@@ -56,26 +64,26 @@ async function remove(station) {
     return storageService.query(KEY)
 }
 
-async function addTrackToStation(data) {
-    const { station, track } = data
-    const stations = await storageService.query(KEY)
-    const stationIdx = stations.findIndex(s => s._id === station._id)
+// async function addTrackToStation(data) {
+//     const { station, track } = data
+//     const stations = await storageService.query(KEY)
+//     const stationIdx = stations.findIndex(s => s._id === station._id)
 
-    stations[stationIdx].tracks.unshift(track)
-    await storageService.put(KEY, stations[stationIdx])
-    return stations
-}
+//     stations[stationIdx].tracks.unshift(track)
+//     await storageService.put(KEY, stations[stationIdx])
+//     return stations
+// }
 
-async function removeTrackFromStation({ station, track }) {
-    const stationIdx = demoStations.findIndex(s => s._id === station._id)
+// async function removeTrackFromStation({ station, track }) {
+//     const stationIdx = demoStations.findIndex(s => s._id === station._id)
 
-}
+// }
 
 async function getEmptyStation(isLikedSongs = false) {
     const stations = await query()
     return {
-        _id: isLikedSongs ? 'likedSongs' : null,
-        name: isLikedSongs ? 'Liked Songs' : 'My Playlist #' + (stations.length + 1),
+        // _id: isLikedSongs ? 'likedSongs' : null,
+        name: 'My Playlist #' + (stations.length + 1),
         tags: ['test'],
         imgUrl: isLikedSongs ? 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png' : null,
         createdAt: Date.now(),
