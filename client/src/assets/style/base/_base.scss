@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: default;
 }
 
 html {
@@ -46,6 +47,7 @@ button {
 }
 
 
+
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     /* Override default look */
@@ -85,6 +87,9 @@ progress[value] {
     -webkit-appearance: none;
     appearance: none;
 
+}
+progress[value]:hover {
+    /* Reset the default appearance */
 }
 
 progress[value]::-webkit-progress-bar {

@@ -23,17 +23,17 @@
                 object-fit: cover;
             }
         }
+
+
     }
 
     .action-btn {
-        visibility: hidden;
-        opacity: 0;
-        // width: .9375rem;
+        // visibility: hidden;
+        width: .9375rem;
         font-size: 1rem;
         cursor: pointer;
         color: $clr3;
     }
-
 
     .preview-actions {
         width: 6rem;
@@ -44,6 +44,29 @@
     .add-to-playlist-btn {
         @include add-to-playlist-btn
     }
+
+
+
+    // .track-preview-search {
+    //     display: grid;
+    //     border: 1px solid transparent;
+    //     border-radius: 4px;
+    //     grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
+    //     grid-gap: 16px;
+    //     height: 56px;
+    //     position: relative;
+    //     padding: 0 16px;
+    //     cursor: default;
+
+
+    //     img {
+    //         height: 40px;
+    //         aspect-ratio: 1;
+    //         object-fit: cover;
+    //     }
+
+
+    // }
 
 
     &:hover {
@@ -62,16 +85,23 @@
 .track-row-search {
     display: flex;
     width: 100%;
+    display: flex;
     justify-content: space-between;
     width: 100%;
     height: 56px;
     position: relative;
     padding: 0 16px;
-    gap: 10px;
     cursor: default;
     border-radius: 4px;
 
+    .track-img-title {
+        // grid-column: 1 !important;
+        gap: 1rem;
 
+        button {
+            flex-basis: 30px;
+        }
+    }
 
     .add-track-search-btn {
         grid-column: 3;

@@ -182,3 +182,8 @@
         justify-content: space-between;
     }
 }
+
+.progress-bar-range:hover progress[value]::-webkit-progress-value {
+
+    background: green;
+}

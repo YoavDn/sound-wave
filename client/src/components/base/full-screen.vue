@@ -82,6 +82,7 @@ import trackOptions from '../track/track-options.vue';
 
 export default defineComponent({
     components: { YouTube, shuffle, prev,close, trackOptions},
+
     data() {
         return {
             currTime: 0,
@@ -91,10 +92,11 @@ export default defineComponent({
             isPlaying: false,
             currStation: null,
             isLiked:false,
-            // autoplay: 0,
         }
     },
     created() {
+        // this.player.seekTo(this.currTime)
+        // handleTime()
         this.currStation = this.$store.getters.getCurrStation
     },
     computed: {
@@ -152,7 +154,7 @@ export default defineComponent({
     methods: {
         handleTime() {
             this.isPlaying ? this.play() : this.pause()
-            this.player.seekTo(this.currTime)
+            this.player.seekTo(Number(this.currTime))
             this.play()
         },
 

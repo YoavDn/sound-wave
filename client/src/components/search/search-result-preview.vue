@@ -1,10 +1,9 @@
 
 <template>
     <section class="track-preview track-row-search align-center">
-        <div :class="currTrackStyle" class="track-img-title flex">
-            <button @click="$emit('setTrack', track)" class="clean-btn play-btn-search action-btn flex align-center ">
-                <component :is="togglePlayBtn" />
-                <sound-bar v-if="isPlaying && currTrack" class="sound-bar" />
+        <div class="track-img-title flex">
+            <button @click="$emit('setTrack', track)" class="clean-btn flex align-center play-btn-search">
+                <component :is="togglePlayBtn"></component>
             </button>
             <img :src="track.imgUrl" />
             <div class="div flex align-center">
