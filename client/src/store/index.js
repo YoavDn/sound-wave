@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import searchStore from './modules/search-module.js'
 import stationStore from './modules/station-module.js'
 import playerStore from './modules/player-module'
+import userStore from './modules/user-module'
 
 
 const store = createStore({
@@ -13,7 +14,8 @@ const store = createStore({
     modules: {
         searchStore,
         stationStore,
-        playerStore
+        playerStore,
+        userStore,
     }
 })
 

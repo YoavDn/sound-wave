@@ -26,7 +26,8 @@ export default {
 
     methods: {
         updateModalValue() {
-            this.$emit('update:modelValue', modelValue)
+            console.log(this.modelValue);
+            this.$emit('getUserInfo', modelValue)
         }
     }
 }

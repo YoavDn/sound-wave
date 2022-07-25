@@ -28,7 +28,6 @@ export default {
     player,
     sideBar,
     popupMsg,
-    login,
   },
 
   created() {

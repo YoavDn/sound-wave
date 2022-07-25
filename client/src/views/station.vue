@@ -30,6 +30,7 @@ import trackOptionsMobile from '../components/track/track-options-mobile.vue'
 
 
 export default {
+    name: 'station',
     components: {
         stationHeader,
         trackList,
