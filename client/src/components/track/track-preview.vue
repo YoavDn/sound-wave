@@ -64,7 +64,7 @@
     
         data() {
             return {
-                // isPlaying: true,
+    
             }
         },
     

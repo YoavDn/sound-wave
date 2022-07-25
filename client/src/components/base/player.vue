@@ -56,6 +56,7 @@
         </div>
         <div class="volume-container">
             <button @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
+            <progress class="progress-bar-volume " :value="volume" max="100"></progress>
             <input class="volume-bar" @input.stop="changeVolume" type="range" v-model="volume" />
         </div>
 
