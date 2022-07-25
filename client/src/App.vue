@@ -18,17 +18,22 @@ import appHeader from './components/base/app-header.vue'
 import sideBar from './components/base/side-bar.vue'
 import player from './components/base/player.vue'
 import popupMsg from './components/custom/popup-msg.vue'
+import loginSignup from './views/login-signup.vue'
 
 export default {
 
   name: 'app',
-
+  data() {
+    return {
+      isLoginPage: false,
+    }
+  },
   components: {
     appHeader,
     player,
     sideBar,
     popupMsg,
-    login,
+    loginSignup,
   },
 
   created() {
