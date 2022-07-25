@@ -1,6 +1,6 @@
 <template>
 
-    <full-screen  v-if="isFullScreen" @changeSong="onChangeSong" @toggleScreen="toggleFullScreen"/>
+    <full-screen v-if="isFullScreen" @changeSong="onChangeSong" @toggleScreen="toggleFullScreen" />
 
     <section @click="enterFullScreen" v-if="track && !isFullScreen" class="player-container">
         <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
@@ -143,7 +143,7 @@ export default defineComponent({
             let isLike = !this.isLiked
 
             const data = { station: likedTracks, track: this.track, isNew: isLike }
-            await this.$store.dispatch({type:'updateStation', data})
+            await this.$store.dispatch({ type: 'updateStation', data })
         },
         toggleFullScreen() {
             this.isFullScreen = !this.isFullScreen
@@ -166,6 +166,7 @@ export default defineComponent({
         },
         onReady() {
             this.player = this.$refs.youtube
+            this.player.setVolume(this.volume)
             this.play()
         },
 

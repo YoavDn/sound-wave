@@ -45,28 +45,10 @@
         @include add-to-playlist-btn
     }
 
+    .play-btn-search {
+        visibility: hidden;
+    }
 
-
-    // .track-preview-search {
-    //     display: grid;
-    //     border: 1px solid transparent;
-    //     border-radius: 4px;
-    //     grid-template-columns: 16px 6fr 4fr 3fr minmax(120px, 1fr);
-    //     grid-gap: 16px;
-    //     height: 56px;
-    //     position: relative;
-    //     padding: 0 16px;
-    //     cursor: default;
-
-
-    //     img {
-    //         height: 40px;
-    //         aspect-ratio: 1;
-    //         object-fit: cover;
-    //     }
-
-
-    // }
 
 
     &:hover {
@@ -74,7 +56,10 @@
 
         .action-btn {
             visibility: visible;
+
         }
+
+
     }
 
     .options-modal {
@@ -95,15 +80,25 @@
     border-radius: 4px;
 
     .track-img-title {
+
         // grid-column: 1 !important;
         gap: 1rem;
 
         button {
             flex-basis: 30px;
+            opacity: 0
         }
+
+
     }
 
     .add-track-search-btn {
         grid-column: 3;
+    }
+
+    &:hover {
+        .play-btn-search {
+            opacity: 1;
+        }
     }
 }

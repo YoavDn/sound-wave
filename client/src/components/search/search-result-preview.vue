@@ -2,9 +2,10 @@
 <template>
     <section class="track-preview track-row-search align-center">
         <div class="track-img-title flex">
-            <button @click="$emit('setTrack', track)" class="clean-btn flex align-center play-btn-search">
+            <button @click="$emit('setTrack', track)" class="clean-btn flex align-center  play-btn-search">
                 <component :is="togglePlayBtn"></component>
             </button>
+            <!-- <sound-bar class="flex align-center sound-bar" v-if="isPlaying && currTrack" /> -->
             <img :src="track.imgUrl" />
             <div class="div flex align-center">
                 <h2 class="long-text">{{ track.title }}</h2>
