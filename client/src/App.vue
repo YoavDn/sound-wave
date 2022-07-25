@@ -8,6 +8,9 @@
     <side-bar />
     <player />
   </main>
+  <section>
+
+  </section>
 </template>
   
 <script>
@@ -25,6 +28,7 @@ export default {
     player,
     sideBar,
     popupMsg,
+    login,
   },
 
   created() {

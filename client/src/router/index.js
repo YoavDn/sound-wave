@@ -3,6 +3,7 @@ import home from '../views/home.vue'
 import search from '../views/search.vue'
 import library from '../views/library.vue'
 import station from '../views/station.vue'
+import login from '../views/login-signup.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/station/:id?',
       name: 'station',
       component: station
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     },
   ]
 })
