@@ -27,14 +27,17 @@ export default {
     },
 
     actions: {
-        async updateTracksInStation({ commit }, { value, id }) {
+        async updateTracksInStation({ commit, dispatch }, { value, id }) {
             try {
-                const station = await stationService.getById(id)
-                station.tracks = value
+                const stations = await stationService.query()
+                const station = stations.find(s => s._id === id)
 
-                const stations = await stationService.save(station)
-                commit({ type: 'setStations', stations })
-                return station
+                station.tracks = value
+                const stations2 = await stationService.save(station)
+                const updatedStation = stations2.find(s => s._id === id)
+                console.log('updatedStation in try',updatedStation)
+                commit({ type: 'setStations', stations2 })
+                return updatedStation
             } catch {
                 console.log('cant update tracks')
             }

@@ -7,7 +7,9 @@ import { httpService } from './http.serivce.js';
 
 const KEY = 'stationsDB'
 
-
+function _getUrl(id = '') {
+    return `station/${id}`
+  }
 
 export const stationService = {
     query,
@@ -45,9 +47,8 @@ function genresQuery() {
     return demoGenres
 }
 
-function getById(stationId) {
-    const station = demoStations.find(s => s._id === stationId)
-    return Promise.resolve(station)
+async function getById(stationId) {
+    return await httpService.get(_getUrl(stationId))
 }
 
 async function save(station) {
