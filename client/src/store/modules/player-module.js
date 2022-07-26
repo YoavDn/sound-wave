@@ -21,6 +21,9 @@ export default {
         }
     },
     mutations: {
+        setCurrStation: (state, { station }) => {
+            state.currStation = station
+        },
         loadTrack(state, { track, station = null }) {
             state.currTrack = track
             state.isPlaying = true
@@ -42,6 +45,16 @@ export default {
         }
     },
     actions: {
+
+        async setCurrStation({ commit }, { stationId }) {
+            try {
+                const station = await stationService.getById(stationId)
+                commit({ type: 'setCurrStation', station })
+                return station
+            } catch {
+                return console.log('cant get current Station');
+            }
+        },
 
     }
 }

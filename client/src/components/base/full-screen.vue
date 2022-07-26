@@ -8,7 +8,7 @@
                     <close></close>
                 </span>
             </button>
-            <h4>{{currStation.name}}</h4>
+            <!-- <h4>{{currStation.name}}</h4> -->
             <trackOptions></trackOptions>    
         </div>
 
@@ -34,7 +34,7 @@
                 <input class="progress-bar-range" @change.prevent="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
                 <div class="flex progress-bar-time">
-                    <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
+                    <div class="nums progress-bar-nums1">{{ currTime }}</div>
                     <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ import trackOptions from '../track/track-options.vue';
 
 export default defineComponent({
     components: { YouTube, shuffle, prev,close, trackOptions},
-
+    props:{currTime:Number},
     data() {
         return {
             currTime: 0,
@@ -97,7 +97,7 @@ export default defineComponent({
     created() {
         // this.player.seekTo(this.currTime)
         // handleTime()
-        this.currStation = this.$store.getters.getCurrStation
+        // this.currStation = this.$store.getters.getCurrStation
     },
     computed: {
         // make svgs work not from here

@@ -1,16 +1,14 @@
 <template>
 
-    <div style="margin: 20px" />
-    <el-form @submit="updateModalValue" label-position="top" label-width="100px" :model="formLabelAlign"
-        style="max-width: 460px">
-        <el-form-item label="Username">
-            <el-input v-model="modelValue.username" />
-        </el-form-item>
-        <el-form-item label="password">
-            <el-input type="password" v-model="modelValue.password" />
-        </el-form-item>
-        <el-button>Login</el-button>
-    </el-form>
+    <div class="login-container">
+        <form class="login-form flex flex-column">
+            <label for="username">Email address or username </label>
+            <input type="text"  id="username" class="login-input" placeholder="Email address or username">
+            <label for="password">Password </label>
+            <input type="password"  id="password" class="login-input" placeholder="Password">
+            <button class="clean-btn login-btn">LOG IN</button>
+        </form>
+    </div>
 </template>
 
 <script >
@@ -28,7 +26,8 @@ export default {
         updateModalValue() {
             console.log(this.modelValue);
             this.$emit('getUserInfo', modelValue)
-        }
+        },
+        
     }
 }
 
