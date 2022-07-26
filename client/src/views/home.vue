@@ -55,7 +55,7 @@ export default {
             this.$router.push(`/station/${stationId}`)
         },
         getFilterStations(tag) {
-            return this.stations.filter(s => s.tags.some(t => t === tag))
+            return this.stations.filter(s => s.tags?.some(t => t === tag))
         },
     },
     computed: {

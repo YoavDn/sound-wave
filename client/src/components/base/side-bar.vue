@@ -22,7 +22,7 @@
                 </span>
                 Create Playlist
             </button>
-            <button @click="goToPage('station/62deb26c4c8fc791056c4df6')" class=" liked-songs-link page-link-btn flex align-center">
+            <button @click="goToPage(likedSongsRoute)" class=" liked-songs-link page-link-btn flex align-center">
                 <span class="page-link-svg">
                     <i class="bi bi-heart-fill"></i>
                 </span>
@@ -71,6 +71,10 @@ export default {
         stations() {
             return this.$store.getters.getStations
         },
+        likedSongsRoute() {
+            const _id = this.$store.getters.getLoggedInUser.likedSongs
+            return `station/${_id}`
+        }
 
 
     },

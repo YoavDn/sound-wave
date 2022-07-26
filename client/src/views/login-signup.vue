@@ -17,12 +17,13 @@
                     <span class="span-hr">OR</span>
                     <hr class="hr">
                 </div>
-                <login-form v-model="userInfo" />
+                <login-form :isNewUser="isNewUser" @signup="signup" @login="login" />
                 <hr>
             </div>
             <div class="flex flex-column align-center sign-up-action">
-                <span>Don't have an account?</span>
-                <button class="clean-btn"><span>SIGN UP FOR SOUNDWAVE</span></button>
+                <span v-if="!isNewUser" >Don't have an account?</span>
+                <button v-if="!isNewUser" class="clean-btn" @click="isNewUser = !isNewUser"><span>SIGN UP FOR SOUNDWAVE</span></button>
+                <span v-else>Already have an account - click here</span>
             </div>
         </div>
     </section>
@@ -52,27 +53,20 @@ export default {
     },
     data() {
         return {
-            userInfo: {
-                username: '',
-                password: ''
-            },
-            newUser: {
-                fullname: '',
-                username: '',
-                password: '',
-                email: ''
-            }
+            isNewUser: false,
         }
     },
 
     methods: {
-        async login() {
-            const user = await this.$store.dispatch({ type: 'login', userInfo: this.userInfo })
+        async login(userInfo) {
+            console.log('userInfo = ', userInfo)
+            const user = await this.$store.dispatch({ type: 'login', userInfo })
             if (user) return this.$router.push('/')
             //else some msg about being Unauthorized
         },
-        async signup() {
-            const user = await this.$store.dispatch({ type: 'signup', newUser: this.newUser })
+        async signup(newUser) {
+            // console.log('userInfo = ', newUser)
+            const user = await this.$store.dispatch({ type: 'signup', newUser })
             if (user) return this.$router.push('/')
             //else some msg about being Unauthorized
         }

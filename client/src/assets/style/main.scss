@@ -4,7 +4,9 @@
 @import './setup/functions';
 @import './setup/helpers';
 @import './setup/mixins';
-@import './setup/root';
+@import './setup/root'; 
+@import './setup/animations'; 
+
 //base 
 @import './base/base';
 @import './base/layout';
