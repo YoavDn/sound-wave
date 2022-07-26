@@ -7,10 +7,12 @@
     .track-play {
         grid-column: 1;
         width: 16px;
-        height: 16px;
         align-self: center;
     }
-
+    .play-pause {
+        width: 15px;
+    }
+    
     .track-img-title {
         grid-column: 2;
 
