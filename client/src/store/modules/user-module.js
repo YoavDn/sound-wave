@@ -10,7 +10,7 @@ export default {
         getLoggedInUser: (state) => state.loggedInUser
     },
     mutations: {
-        setLoggedInUser: (state, { user }) => state.loggedInUser = user,
+        setUser: (state, { user }) => state.loggedInUser = user,
         setLogout: (state) => state.loggedInUser = null
 
     },
@@ -19,7 +19,7 @@ export default {
         async login({ commit }, { userInfo }) {
             try {
                 const user = await userService.login(userInfo)
-                commit({ type: 'setLoggedInUser', user })
+                commit({ type: 'setUser', user })
                 return user
 
             } catch (err) {
@@ -30,8 +30,8 @@ export default {
         async signup({ commit }, { newUser }) {
             try {
                 const user = await userService.signup(newUser)
-                console.log(newUser);
-                commit({ type: 'setLoggedInUser', user })
+
+                commit({ type: 'setUser', user })
                 return user
 
             } catch (err) {
@@ -47,7 +47,18 @@ export default {
             } catch (err) {
                 return console.log('cant logout for some reson', err);
             }
-        }
+        },
+
+        // async updateUserLikedSong(ctx, { data }) {
+        //     try {
+        //         const {_id} = ctx.state.loggedInUser.likedSongs
+        //         const newLikedSongs = await userService.updateUserLikedSong(_id, data)
+        //         console.log(userToUpdate);
+        //         ctx.commit({ type: 'setUser', user: userToUpdate })
+        //     } catch (err) {
+        //         return console.log('could not update user');
+        //     }
+        // }
 
     }
 }

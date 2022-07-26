@@ -86,6 +86,14 @@ export default {
             } catch (err) {
                 console.log(err);
             }
+        },
+
+        async updateLikedSongs() {
+            try {
+
+            } catch (err) {
+                return console.log('could not update liked Songs');
+            }
         }
     }
 }

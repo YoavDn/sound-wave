@@ -72,18 +72,18 @@
     
         computed: {
             isLiked() {
-                return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+                const loggedInUser = this.$store.getters.getLoggedInUser
+                const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+                return station.tracks.some(t => t.id === this.track.id)
             },
             togglePlayBtn() {
                 return this.isPlaying && this.currTrack ? 'pause-icon' : 'play-icon'
             },
     
             loveIcon() {
-                return { 'bi bi-heart action-btn': !this.likedTrack, "bi bi-heart-fill track-like": this.likedTrack }
+                return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }
             },
-            likedTrack() {
-                return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
-            },
+    
             currTrack() {
                 return this.$store.getters.getTrack?.id === this.track.id
             },
@@ -98,10 +98,11 @@
     
         methods: {
             toggleLikedSong() {
-                const likedTracks = this.$store.getters.getLikedStation
-                let isLike = !this.isLiked
     
-                const data = { station: likedTracks, track: this.track, isNew: isLike }
+                const loggedInUser = this.$store.getters.getLoggedInUser
+                if (!loggedInUser) return console.log('no logged in user');
+                const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+                const data = { station, track: this.track, isNew: !this.isLiked }
                 this.$emit('updateStation', data)
             },
     
