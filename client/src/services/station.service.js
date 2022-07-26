@@ -34,10 +34,13 @@ export const stationService = {
 
 const demoGenres = stationsData.demoGenres()
 
-async function query() {
+async function query(demoStations = false) {
     // return Promise.resolve(demoStations)
     // return await storageService.query(KEY)
+
+    if (demoStations) return await httpService.get('station/demoStations')
     return await httpService.get('station')
+
 }
 
 function genresQuery() {
@@ -50,17 +53,21 @@ async function getById(stationId) {
 
 async function save(station) {
     try {
-        if (station._id) return await httpService.put(`station/${station._id}`, station)
+        if (station._id) await httpService.put(`station/${station._id}`, station)
+        await httpService.post('station', station)
+        return await query()
     } catch (err) {
         return console.log("could not make new station", err);
     }
+
+
     // if (station._id) await storageService.put(KEY, station)
     // else {
     //     station._id = utilService.makeId()
     //     await storageService.post(KEY, station)
     // }
-    // return await query()
-    return await httpService.post('station', station)
+    // 
+
 }
 
 async function remove(station) {

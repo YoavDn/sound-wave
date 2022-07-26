@@ -1,6 +1,6 @@
 <template>
     <section v-if="station" class="station-container">
-        <station-header :station="station" />
+        <station-header :station="station" @updateStationDetails="updateStationDetails" />
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
@@ -89,6 +89,13 @@ export default {
         },
         setStation(station) {
             this.$store.commit({ type: 'setCurrStation', station })
+        },
+
+        async updateStationDetails(stationToUpdate) {
+            const data = { station: stationToUpdate, track: null, isNew: null }
+            await this.$store.dispatch({ type: 'updateStation', data })
+            const { id } = this.$route.params
+            this.station = this.$store.getters.getStation(id)
         },
 
 

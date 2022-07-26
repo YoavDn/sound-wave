@@ -1,5 +1,6 @@
 <template>
   <main v-if="stations" class="main-layout">
+
     <div class="main-view">
       <appHeader />
       <router-view />
@@ -38,6 +39,7 @@ export default {
 
   created() {
     this.$store.dispatch({ type: 'loadStations' })
+    this.$store.dispatch({ type: 'loadDemoStations' })
     this.$store.dispatch({ type: 'getLoggedInUser' })
   },
   computed: {

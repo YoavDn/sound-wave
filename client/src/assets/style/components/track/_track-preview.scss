@@ -16,7 +16,7 @@
     .track-img-title {
         grid-column: 2;
 
-        .track-img{
+        .track-img {
             aspect-ratio: 1;
             overflow: hidden;
             height: 40px;
@@ -187,6 +187,11 @@
     overflow-y: auto;
     padding: 4px;
     gap: 8px;
+
+    &.station-opt {
+        left: 1.5rem;
+    }
+
 
 
 

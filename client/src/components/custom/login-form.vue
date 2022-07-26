@@ -24,8 +24,7 @@
 </template>
 
 <script >
-
-
+import { eventBus } from '../../services/event-bus';
 
 export default {
     props: {
@@ -59,14 +58,14 @@ export default {
             this.$emit('getUserInfo', modelValue)
         },
         login() {
-            if (this.userInfo.username === '' || this.userInfo.password === '') return console.log('fill all details');
+            if (this.userInfo.username === '' || this.userInfo.password === '') return eventBus.emit('show-msg', 'Please fill all requested details');
             this.$emit('login', this.userInfo)
         },
         signup() {
             if (this.newUser.username === '' 
             || this.newUser.email === '' 
             || this.newUser.fullname === '' 
-            || this.newUser.password === '') return console.log('fill all details');
+            || this.newUser.password === '') return eventBus.emit('show-msg', 'Please fill all requested details');
             this.$emit('signup', this.newUser)
         }
 

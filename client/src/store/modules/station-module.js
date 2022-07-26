@@ -3,22 +3,26 @@ import { stationService } from '../../services/station.service'
 export default {
     state: {
         stations: null,
+        demoStations: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
+        setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
     },
 
     getters: {
         getStations: (state) => state.stations,
+        getDemoStations: (state) => state.demoStations,
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         // getCurrStation(state) { return state.currStation },
-        getStation: ({ stations }) => (id) => {
-            // if (!id) return await stationService.getEmptyStation()
-            return stations.find(station => station._id === id)
+        getStation: (state) => (id) => {
+            const station = state.stations.find(station => station._id === id)
+            if (station) return station
+            return state.demoStations.find(station => station._id === id)
         },
     },
 
@@ -45,6 +49,14 @@ export default {
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
+            }
+        },
+        async loadDemoStations({ commit }) {
+            try {
+                const demoStations = await stationService.query(true)
+                commit({ type: 'setDemoStations', demoStations })
+            } catch {
+                return console.log('cant load demoStation');
             }
         },
         // async setCurrStation({ commit }, { stationId }) {
@@ -76,13 +88,17 @@ export default {
         async updateStation({ dispatch }, { data }) {
             try {
                 const { station, track, isNew } = data
-                if (station.tracks.some(t => t.id === track.id) && isNew) return
+
+                console.log("data =", data);
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
-                if (isNew) {
-                    stationToUpdate.tracks.unshift(track)
-                } else {
-                    const idx = station.tracks.findIndex(t => t.id === track.id)
-                    stationToUpdate.tracks.splice(idx, 1)
+
+                if (track && isNew !== null) {  //if  changing tracks
+                    if (station.tracks.some(t => t.id === track.id) && isNew) return // if track alreay in station
+                    if (isNew) stationToUpdate.tracks.unshift(track) // adding track
+                    else { //removing tracks
+                        const idx = station.tracks.findIndex(t => t.id === track.id)
+                        stationToUpdate.tracks.splice(idx, 1)
+                    }
                 }
 
                 const stations = await stationService.save(stationToUpdate)

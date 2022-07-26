@@ -4,8 +4,8 @@
 @import './setup/functions';
 @import './setup/helpers';
 @import './setup/mixins';
-@import './setup/root'; 
-@import './setup/animations'; 
+@import './setup/root';
+@import './setup/animations';
 
 //base 
 @import './base/base';
@@ -29,6 +29,8 @@
 @import './components/track/track-options-mobile';
 @import './components/library/library-card';
 @import './components/genres/genres-list';
+@import './components/station/station-modal';
+
 
 
 //views 
