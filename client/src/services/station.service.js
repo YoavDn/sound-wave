@@ -9,7 +9,7 @@ const KEY = 'stationsDB'
 
 function _getUrl(id = '') {
     return `station/${id}`
-  }
+}
 
 export const stationService = {
     query,
@@ -54,16 +54,14 @@ async function getById(stationId) {
 async function save(station) {
     try {
         if (station._id) {
-            return await httpService.put(`station/${station._id}`, station)
-        } 
-        else {
-            return await httpService.post('station', station)
-        }
+            await httpService.put(`station/${station._id}`, station)
+        } else return await httpService.post('station', station)
+
+        return await query()
     } catch (err) {
         return console.log("could not make new station", err);
     }
-
-
+}
     // if (station._id) await storageService.put(KEY, station)
     // else {
     //     station._id = utilService.makeId()
@@ -71,7 +69,7 @@ async function save(station) {
     // }
     // 
 
-}
+
 
 async function remove(station) {
     await storageService.remove(KEY, station)
