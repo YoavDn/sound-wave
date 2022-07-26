@@ -1,27 +1,31 @@
 <template>
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
+
             <button @click="$emit('setTrack', track)" class="clean-btn action-btn ">
                 <component :is="togglePlayBtn" />
             </button>
+
             <sound-bar v-if="isPlaying && currTrack" class="sound-bar" />
             <p v-else :class="currTrackStyle" class="track-idx light" v-if="trackIdx > -1">{{ trackIdx + 1 }}</p>
         </div>
+
         <div :class="currTrackStyle" class="track-img-title flex">
             <img :src="track.imgUrl" />
             <div class="div flex align-center">
                 <h2 class="long-text">{{ track.title }}</h2>
             </div>
         </div>
+
         <div class="track-added-by sub-text">
-            <!-- <p>John Smith</p> -->
             <p v-if="track.addedBy?.length">{{ track.addedBy }}</p>
             <p v-else>Guest</p>
-
         </div>
+
         <div class="track-date-added sub-text">
             <p>Dec 25, 2019 </p>
         </div>
+
         <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
             <three-dots />
         </div>
@@ -31,6 +35,7 @@
             <p>{{ track.time }}</p>
             <track-options :track="track" />
         </div>
+
     </section>
 </template>
 
@@ -98,18 +103,21 @@
     
         methods: {
             toggleLikedSong() {
-    
                 const loggedInUser = this.$store.getters.getLoggedInUser
                 if (!loggedInUser) return console.log('no logged in user');
+
                 const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
                 const data = { station, track: this.track, isNew: !this.isLiked }
+
                 this.$emit('updateStation', data)
             },
     
             addTrackToStation(track, isNew) {
                 const { id } = this.$route.params
+
                 const stations = this.$store.getters.getStations
                 const station = stations.find(s => s._id === id)
+
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
             }
