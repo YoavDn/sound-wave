@@ -1,5 +1,5 @@
 <template class="track-options-dropdown" >
-  <three-dots @click="toggleModal"/>
+  <three-dots @click="toggleModal" />
   <div v-if="isModalOn" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
     <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
@@ -48,9 +48,9 @@ export default {
     threeDots
   },
 
-   created() {
+  created() {
     const { id } = this.$route.params
-    if (id) this.currStation =  this.$store.getters.getStation(id)
+    if (id) this.currStation = this.$store.getters.getStation(id)
 
   },
   computed: {

@@ -60,7 +60,7 @@ export default {
     },
     computed: {
         stations() {
-            return this.$store.getters.getStations
+            return this.$store.getters.getDemoStations
         },
 
         heroStations() {

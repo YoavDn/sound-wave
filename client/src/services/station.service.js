@@ -32,10 +32,13 @@ export const stationService = {
 
 const demoGenres = stationsData.demoGenres()
 
-async function query() {
+async function query(demoStations = false) {
     // return Promise.resolve(demoStations)
     // return await storageService.query(KEY)
+
+    if (demoStations) return await httpService.get('station/demoStations')
     return await httpService.get('station')
+
 }
 
 function genresQuery() {

@@ -3,15 +3,18 @@ import { stationService } from '../../services/station.service'
 export default {
     state: {
         stations: null,
+        demoStations: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
+        setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
     },
 
     getters: {
         getStations: (state) => state.stations,
+        getDemoStations: (state) => state.demoStations,
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
@@ -42,6 +45,15 @@ export default {
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
+            }
+        },
+        async loadDemoStations({ commit }) {
+            try {
+                const demoStations = await stationService.query(true)
+                console.log(demoStations);
+                commit({ type: 'setDemoStations', demoStations })
+            } catch {
+                return console.log('cant load demoStation');
             }
         },
         // async setCurrStation({ commit }, { stationId }) {

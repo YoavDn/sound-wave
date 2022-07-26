@@ -4,21 +4,26 @@
                 class="bi bi-play-fill"></i></button>
         <div class="like-share-container flex align-center">
             <button v-if="station.tracks.length > 0" class="heart-btn"><i class="bi bi-heart"></i> </button>
-            <button class="clean-btn station-options"><i class="bi bi-three-dots"></i></button>
-            <button class="clean-btn station-options-share">
-                <three-dots />
+            <button style="position: relative" class="clean-btn station-options">
+                <station-opt-dropdown :station="station" />
             </button>
         </div>
     </section>
 </template>
 
 
-<script setup>
+<script >
 import threeDots from '../../assets/imgs/three-dots.svg'
+import stationOptDropdown from '../custom/station-opt-dropdown.vue'
 
-import { defineComponent, defineProps } from 'vue';
-defineProps({ 'station': Object })
-defineComponent({ threeDots })
+
+export default {
+    props: { 'station': Object },
+    components: {
+        threeDots,
+        stationOptDropdown
+    }
+}
 
 
 </script>

@@ -26,6 +26,7 @@ import { utilService } from '../../services/utils.service';
 export default {
     name: 'stationHeader',
     props: { 'station': Object },
+    emits: ["updateStationDetails"],
 
 
     components: {
