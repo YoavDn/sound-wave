@@ -138,10 +138,8 @@ import { eventBus } from '../../services/event-bus.js';
 import close from '../icons/close-btn.vue'
 import trackOptions from '../track/track-options.vue';
 
-import fullScreen from '../base/full-screen.vue'
-
 export default defineComponent({
-    components: { YouTube, shuffle, prev, fullScreen, eventBus, close, trackOptions},
+    components: { YouTube, shuffle, prev, eventBus, close, trackOptions},
     data() {
         return {
             isFullScreen: false,
@@ -159,13 +157,17 @@ export default defineComponent({
     created() {
          this.currStation = this.$store.getters.getCurrStation
     },
-    watch:{
-        //?????
-        exitFullScreen(w){
-            if(w < 915) return
-            this.toggleFullScreen()
-        }
-    },
+    // watch:{
+       
+        // w: {
+        //     if(w < 915) return
+        // //    this.toggleFullScreen()
+        // }
+        // exitFullScreen(w){
+        //     if(w < 915) return
+        //     this.toggleFullScreen()
+        // }
+    // },
     computed: {
         playSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M3 1.713a.7.7 0 011.05-.607l10.89 6.288a.7.7 0 010 1.212L4.05 14.894A.7.7 0 013 14.288V1.713z"></path></svg>`;
@@ -213,8 +215,6 @@ export default defineComponent({
             return utilService.convertSecToMin(Number(this.trackDuration).toFixed(0))
         },
     },
-
-
     methods: {
         async toggleLikedSong() {
             const likedTracks = this.$store.getters.getLikedStation
@@ -316,6 +316,10 @@ export default defineComponent({
 
     },
     watch: {
+         exitFullScreen(w){
+            if(w < 915) return
+            this.toggleFullScreen()
+        },
         currTime: {
             handler: function (time) {
                 if (this.trackDuration - time < 1) {
