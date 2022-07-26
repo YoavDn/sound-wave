@@ -35,14 +35,17 @@
         gap: 10px;
         min-width: 30%;
 
-        .curr-track-singer {
-            font-size: 11px;
-        }
-
-        .curr-track-name {
-            font-size: 14px;
-            color: #fff;
-            @include dots-when-break
+        .song-info{
+            max-width: 60%;
+            .curr-track-singer {
+                font-size: 11px;
+            }
+    
+            .curr-track-name {
+                font-size: 14px;
+                color: #fff;
+                @include dots-when-break;
+            }
         }
     }
 
@@ -63,6 +66,7 @@
 
     .like-btn {
         margin-left: 16px;
+        left:35%;
 
         .green-heart {
             filter: invert(61%) sepia(75%) saturate(531%) hue-rotate(87deg) brightness(98%) contrast(84%);
