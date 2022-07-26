@@ -29,7 +29,7 @@ export default {
     props: { 'station': Object },
     data() {
         return {
-            isModalOn: true,
+            isModalOn: false,
             isShareSubmodalOn: false,
         }
     },

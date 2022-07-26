@@ -9,7 +9,7 @@ const KEY = 'stationsDB'
 
 function _getUrl(id = '') {
     return `station/${id}`
-  }
+}
 
 export const stationService = {
     query,
@@ -55,9 +55,8 @@ async function save(station) {
     try {
         if (station._id) {
             await httpService.put(`station/${station._id}`, station)
-        } else {
-            return await httpService.post('station', station)
-        }
+        } else return await httpService.post('station', station)
+
         return await query()
     } catch (err) {
         return console.log("could not make new station", err);
