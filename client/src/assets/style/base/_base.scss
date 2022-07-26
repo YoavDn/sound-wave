@@ -14,6 +14,11 @@ html {
 
 button {
     font-family: 'gotham medium', sans-serif;
+    cursor: pointer;
+
+    span {
+        cursor: pointer;
+    }
 }
 
 
@@ -68,11 +73,12 @@ input[type=range]::-webkit-slider-thumb {
     bottom: 100px;
     padding-inline: 2em;
     border-radius: 10px;
-    z-index: 14;
+    z-index: 500;
     left: 50%;
     transform: translateX(-50%);
     background-color: #0a78b0;
-    box-shadow: 1px 2px 20px $clr2;
+    animation: fadeIn .3s;
+    // box-shadow: 1px 2px 20px $clr2;
 
     h2 {
         font-size: 14px;

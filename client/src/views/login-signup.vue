@@ -24,28 +24,15 @@
                 <span v-if="!isNewUser">Don't have an account?</span>
                 <button v-if="!isNewUser" class="clean-btn" @click="isNewUser = !isNewUser"><span>SIGN UP FOR
                         SOUNDWAVE</span></button>
-                <span v-else>Already have an account - click here</span>
+                <span v-else>Already have an account - <span style="text-decoration:underline; cursor: pointer;" @click="isNewUser = false">click here</span></span>
             </div>
         </div>
     </section>
-    <!-- <login-form /> -->
-    <!-- <form @submit.prevent="login" class="temp">
-        <input v-model="userInfo.username" type="text">
-        <input v-model="userInfo.password" type="password">
-        <button>login</button>
-    </form>
-
-    <form @submit.prevent="signup" class="signup-temp">
-        <input v-model="newUser.fullname" type="text" placeholder="full name">
-        <input v-model="newUser.email" type="email" placeholder="email">
-        <input v-model="newUser.username" type="text" placeholder="username">
-        <input v-model="newUser.password" type="password" placeholder="password">
-        <button>signup</button>
-    </form> -->
 </template>
 
 
 <script>
+
 import loginForm from '../components/custom/login-form.vue'
 export default {
     name: 'login',
