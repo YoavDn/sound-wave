@@ -31,14 +31,14 @@
         </nav>
         <div class="side-bar-station-list" v-if="stations" style="color:white;">
             <p class="station-side-link" v-for="station in stations" :key="station?._id"
-                @click="goToStation(station._id)">{{ station.name }}</p>
+                @click="goToStation(station._id)">
+                {{ station.name }}</p>
         </div>
     </section>
 </template>
 
     
 <script >
-import { stationService } from '../../services/station.service'
 import homeIcon from '../../assets/imgs/home.svg'
 import libraryIcon from '../../assets/imgs/library.svg'
 import searchIcon from '../../assets/imgs/search.svg'
@@ -69,7 +69,12 @@ export default {
 
     computed: {
         stations() {
-            return this.$store.getters.getStations
+            const stations = this.$store.getters.getStations
+            const loggedInUser = this.$store.getters.getLoggedInUser
+
+            if (!loggedInUser) return stations
+
+            return loggedInUser.stations.map(id => stations.find(s => s._id === id))
         },
         likedSongsRoute() {
             const _id = this.$store.getters.getLoggedInUser.likedSongs
@@ -95,9 +100,17 @@ export default {
         },
 
         async createNewPlaylist() {
-            // await stationService.save(station)
-            const station = await this.$store.dispatch({ type: 'createNewStation' })
+            const user = this.$store.getters.getLoggedInUser
+
+            const station = await this.$store.dispatch({ type: 'createNewStation', user })
+            const updatedUser = JSON.parse(JSON.stringify(user))
+            console.log(station);
+
+            updatedUser.stations.unshift(station.insertedId)
+
+            await this.$store.dispatch({ type: 'updateUser', user: updatedUser, })
             return this.$router.push(`/station/${station.insertedId}`)
+
         }
 
     },

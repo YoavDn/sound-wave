@@ -49,16 +49,18 @@ export default {
             }
         },
 
-        // async updateUserLikedSong(ctx, { data }) {
-        //     try {
-        //         const {_id} = ctx.state.loggedInUser.likedSongs
-        //         const newLikedSongs = await userService.updateUserLikedSong(_id, data)
-        //         console.log(userToUpdate);
-        //         ctx.commit({ type: 'setUser', user: userToUpdate })
-        //     } catch (err) {
-        //         return console.log('could not update user');
-        //     }
-        // }
+        async updateUser(ctx, { user }) {
+            try {
+                const updatedUser = await userService.updateUser(user)
+                ctx.commit({ type: 'setUser', user: updatedUser })
+            } catch (err) {
+                return console.log('could not update user');
+            }
+        },
+        async getLoggedInUser({ commit }) {
+            const user = await userService.getLoggedInUser()
+            commit({ type: 'setUser', user })
+        }
 
     }
 }

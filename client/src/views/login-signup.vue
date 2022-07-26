@@ -21,8 +21,9 @@
                 <hr>
             </div>
             <div class="flex flex-column align-center sign-up-action">
-                <span v-if="!isNewUser" >Don't have an account?</span>
-                <button v-if="!isNewUser" class="clean-btn" @click="isNewUser = !isNewUser"><span>SIGN UP FOR SOUNDWAVE</span></button>
+                <span v-if="!isNewUser">Don't have an account?</span>
+                <button v-if="!isNewUser" class="clean-btn" @click="isNewUser = !isNewUser"><span>SIGN UP FOR
+                        SOUNDWAVE</span></button>
                 <span v-else>Already have an account - click here</span>
             </div>
         </div>
@@ -59,15 +60,14 @@ export default {
 
     methods: {
         async login(userInfo) {
-            console.log('userInfo = ', userInfo)
             const user = await this.$store.dispatch({ type: 'login', userInfo })
             if (user) return this.$router.push('/')
             //else some msg about being Unauthorized
         },
         async signup(newUser) {
-            // console.log('userInfo = ', newUser)
+
             const user = await this.$store.dispatch({ type: 'signup', newUser })
-            if (user) return this.$router.push('/')
+            if (user) return this.$router.go()
             //else some msg about being Unauthorized
         }
     }

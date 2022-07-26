@@ -38,6 +38,7 @@ export default {
 
   created() {
     this.$store.dispatch({ type: 'loadStations' })
+    this.$store.dispatch({ type: 'getLoggedInUser' })
   },
   computed: {
     stations() {
