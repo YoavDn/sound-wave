@@ -19,9 +19,10 @@ export default {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         // getCurrStation(state) { return state.currStation },
-        getStation: ({ stations }) => (id) => {
-            // if (!id) return await stationService.getEmptyStation()
-            return stations.find(station => station._id === id)
+        getStation: (state) => (id) => {
+            const station = state.stations.find(station => station._id === id)
+            if (station) return station
+            return state.demoStations.find(station => station._id === id)
         },
     },
 
@@ -50,7 +51,6 @@ export default {
         async loadDemoStations({ commit }) {
             try {
                 const demoStations = await stationService.query(true)
-                console.log(demoStations);
                 commit({ type: 'setDemoStations', demoStations })
             } catch {
                 return console.log('cant load demoStation');
@@ -86,17 +86,17 @@ export default {
             try {
                 const { station, track, isNew } = data
 
-
+                console.log("data =", data);
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
 
                 if (track && isNew !== null) {  //if  changing tracks
-                    if (station.tracks.some(t => t.id === track.id) && isNew) return
-                    if (isNew) stationToUpdate.tracks.unshift(track)
-                    const idx = station.tracks.findIndex(t => t.id === track.id)
-                    stationToUpdate.tracks.splice(idx, 1)
+                    if (station.tracks.some(t => t.id === track.id) && isNew) return // if track alreay in station
+                    if (isNew) stationToUpdate.tracks.unshift(track) // adding track
+                    else { //removing tracks
+                        const idx = station.tracks.findIndex(t => t.id === track.id)
+                        stationToUpdate.tracks.splice(idx, 1)
+                    }
                 }
-
-
 
                 const stations = await stationService.save(stationToUpdate)
                 await dispatch({ type: 'loadStations', stations })
