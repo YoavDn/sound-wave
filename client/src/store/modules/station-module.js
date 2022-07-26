@@ -44,15 +44,15 @@ export default {
                 return console.log('cant load stations');
             }
         },
-        async setCurrStation({ commit }, { stationId }) {
-            try {
-                const station = await stationService.getById(stationId)
-                commit({ type: 'setCurrStation', station })
-                return station
-            } catch {
-                return console.log('cant get current Station');
-            }
-        },
+        // async setCurrStation({ commit }, { stationId }) {
+        //     try {
+        //         const station = await stationService.getById(stationId)
+        //         commit({ type: 'setCurrStation', station })
+        //         return station
+        //     } catch {
+        //         return console.log('cant get current Station');
+        //     }
+        // },
 
         async createNewStation({ commit, dispatch }) {
             try {
