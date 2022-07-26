@@ -18,13 +18,17 @@
         margin-bottom: 10px;
     }
 
-    .curr-track-img {
-        height: 56px;
-        width: 56px;
+    .curr-track-img-container {
         aspect-ratio: 1;
-        object-fit: cover;
+        overflow: hidden;
     }
 
+    .curr-track-img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        transform: scale(1.4)
+    }
 
     .track-details {
         align-items: center;
@@ -66,14 +70,20 @@
     }
 
     .btn-play {
+        display: flex;
         background-color: rgb(255, 255, 255);
         width: 32px;
         height: 32px;
         border-radius: 50%;
+        justify-content: center;
+        align-items: center;
 
         // &:hover{}
 
         span {
+            display: flex;
+            justify-content: center;
+        align-items: center;
             filter: invert(0%)
         }
     }

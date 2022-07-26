@@ -7,7 +7,8 @@
                     <close></close>
                 </span>
             </button>
-            <h4>{{currStation.name}}</h4>
+            <!-- <h4>{{currStation.name}}</h4> -->
+            <h4>Station Name</h4>
             <trackOptions></trackOptions>    
         </div>
 
@@ -39,7 +40,7 @@
 
                 <div v-if="isFullScreen" class="flex player-track-controllers">
                     <button @click.stop="shuffle">
-                        <span>
+                        <span class="side">
                             <shuffle></shuffle>
                         </span>
                     </button>
@@ -60,7 +61,7 @@
                         </button>
     
                     <button>
-                        <span v-html="repeatSvg">
+                        <span class="side" v-html="repeatSvg">
                         </span>
                     </button>
                 </div>
@@ -68,9 +69,11 @@
 <!-- ------------------------------------------------------------------------------------------------------------------- -->
             <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
             <div v-if="!isFullScreen" class="flex track-details">
+            <div class="curr-track-img-container">
                 <img class="curr-track-img" :src="track.imgUrl" />
+            </div>
                 <div class="song-info">
-                    <div class="curr-track-name long-text">{{ track.title }}</div>
+                    <div class="curr-track-name">{{ track.title }}</div>
                     <div class="curr-track-singer">Big Boss Vette</div>
                 </div>
     
@@ -157,6 +160,7 @@ export default defineComponent({
          this.currStation = this.$store.getters.getCurrStation
     },
     watch:{
+        //?????
         exitFullScreen(w){
             if(w < 915) return
             this.toggleFullScreen()
