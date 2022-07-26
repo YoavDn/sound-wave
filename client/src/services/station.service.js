@@ -52,8 +52,11 @@ function getById(stationId) {
 
 async function save(station) {
     try {
-        if (station._id) await httpService.put(`station/${station._id}`, station)
-        await httpService.post('station', station)
+        if (station._id) {
+            await httpService.put(`station/${station._id}`, station)
+        } else {
+            return await httpService.post('station', station)
+        }
         return await query()
     } catch (err) {
         return console.log("could not make new station", err);
