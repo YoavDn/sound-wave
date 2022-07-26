@@ -73,14 +73,18 @@ export default {
         async updateStation({ dispatch }, { data }) {
             try {
                 const { station, track, isNew } = data
-                if (station.tracks.some(t => t.id === track.id) && isNew) return
+
+
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
-                if (isNew) {
-                    stationToUpdate.tracks.unshift(track)
-                } else {
+
+                if (track && isNew !== null) {  //if  changing tracks
+                    if (station.tracks.some(t => t.id === track.id) && isNew) return
+                    if (isNew) stationToUpdate.tracks.unshift(track)
                     const idx = station.tracks.findIndex(t => t.id === track.id)
                     stationToUpdate.tracks.splice(idx, 1)
                 }
+
+
 
                 const stations = await stationService.save(stationToUpdate)
                 await dispatch({ type: 'loadStations', stations })
