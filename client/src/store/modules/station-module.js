@@ -54,11 +54,12 @@ export default {
         //     }
         // },
 
-        async createNewStation({ commit, dispatch }) {
+        async createNewStation({ commit, dispatch }, { user }) {
             try {
-                const newStation = await stationService.getEmptyStation()
+                console.log(user);
+                const newStation = await stationService.getEmptyStation(user)
                 const station = await stationService.save(newStation)
-                console.log(station);
+
                 // commit({ type: 'setStations', stations })
                 await dispatch({ type: "loadStations" })
                 return station

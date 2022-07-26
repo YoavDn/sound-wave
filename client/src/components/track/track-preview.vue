@@ -11,7 +11,9 @@
         </div>
 
         <div :class="currTrackStyle" class="track-img-title flex">
-            <img :src="track.imgUrl" />
+            <div class="track-img">
+                <img :src="track.imgUrl" />
+            </div>
             <div class="div flex align-center">
                 <h2 class="long-text">{{ track.title }}</h2>
             </div>
