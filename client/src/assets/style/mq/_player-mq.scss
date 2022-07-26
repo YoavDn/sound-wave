@@ -1,3 +1,4 @@
+@media (min-width:$tablet-width){}
 @media (max-width: $tablet-width) {
     .player-container {
         position: relative;
@@ -132,13 +133,20 @@
             transform: scale(1.4)
         }
 
-        .curr-track-name {
-            @include dots-when-break;
-            color: rgb(255, 255, 255);
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 36px;
+        .song-info{
+            max-width: 85%;
+            .curr-track-singer {
+                font-size: 11px;
+            }
+    
+            .curr-track-name {
+                font-size: 32px;
+                font-weight: 700;
+                letter-spacing: -0.04em;
+                line-height: 36px;
+                color: rgb(255, 255, 255);
+                @include dots-when-break;
+            }
         }
 
         span {
