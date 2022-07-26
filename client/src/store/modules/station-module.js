@@ -31,6 +31,7 @@ export default {
             try {
                 console.log('id',id)
                 const stations = state.stations
+                console.log('stations',stations)
                 const station = stations.find(s => s._id === id)
                 station.tracks = value
 
