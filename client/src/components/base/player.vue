@@ -72,7 +72,7 @@
             <div class="curr-track-img-container">
                 <img class="curr-track-img" :src="track.imgUrl" />
             </div>
-                <div class="song-info">
+                <div class="song-info"> 
                     <div class="curr-track-name">{{ track.title }}</div>
                     <div class="curr-track-singer">Big Boss Vette</div>
                 </div>
