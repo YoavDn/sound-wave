@@ -35,16 +35,11 @@ export default defineComponent({
     computed: {
         trackList: {
             get() {
-                console.log('tracks in get', this.tracks)
                 return this.tracks
             },
             async set(value) {
-                console.log('value in set',value)
                 const { id } = this.$route.params
-                console.log('id',id)
-                const station = await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
-                console.log('station in set',station)
-                this.tracks = station.tracks
+                await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
             }
         }
     },
