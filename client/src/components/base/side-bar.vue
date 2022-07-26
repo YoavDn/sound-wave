@@ -70,11 +70,13 @@ export default {
     computed: {
         stations() {
             const stations = this.$store.getters.getStations
+            const demoStations = this.$store.getters.getStations
             const loggedInUser = this.$store.getters.getLoggedInUser
 
-            if (!loggedInUser) return stations
+            if (!loggedInUser) return demoStations
+            return demoStations
+            // return loggedInUser.stations.map(id => stations.find(s => s._id === id))
 
-            return loggedInUser.stations.map(id => stations.find(s => s._id === id))
         },
         likedSongsRoute() {
             const _id = this.$store.getters.getLoggedInUser.likedSongs
