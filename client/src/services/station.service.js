@@ -48,15 +48,17 @@ function getById(stationId) {
 }
 
 async function save(station) {
-
+    try {
+        if (station._id) return await httpService.put(`station/${station._id}`, station)
+    } catch (err) {
+        return console.log("could not make new station", err);
+    }
     // if (station._id) await storageService.put(KEY, station)
     // else {
     //     station._id = utilService.makeId()
     //     await storageService.post(KEY, station)
     // }
     // return await query()
-
-    if (station._id) return await httpService.put(`station/${station._id}`, station)
     return await httpService.post('station', station)
 }
 
@@ -80,13 +82,16 @@ async function remove(station) {
 
 // }
 
-async function getEmptyStation(isLikedSongs = false) {
-    const stations = await query()
+async function getEmptyStation(user = null) {
+    let stations;
+    if (!user) stations = await query()
+    stations = user.stations
+
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
         name: 'My Playlist #' + (stations.length + 1),
         tags: ['test'],
-        imgUrl: isLikedSongs ? 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png' : null,
+        imgUrl: null,
         createdAt: Date.now(),
         createdBy: null,
         likedByUsers: null,

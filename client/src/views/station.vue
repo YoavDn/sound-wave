@@ -105,9 +105,7 @@ export default {
             this.station = this.$store.getters.getStation(id)
         },
         async updateUser(data) {
-
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })
-
         }
 
     },
@@ -123,14 +121,6 @@ export default {
             deep: true,
             immediate: true,
         },
-        // '$route.params.id': {
-        //     handler: function (id) {
-        //         this.station = this.$store.getters.getStation(id)
-        //     },
-        //     deep: true,
-        //     immediate: true,
-        // },
-
     },
 
 }
