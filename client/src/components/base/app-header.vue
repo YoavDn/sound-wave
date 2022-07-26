@@ -14,12 +14,12 @@
             <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown"><img src="../../assets/imgs/avatar-arrow.svg"></button>
         </div>
 
-        <div v-else class="also-temp">
-            <button @click="goToLoginPage">Log In</button>
+        <div v-else class="btns-container flex align-center">
+            <button @click="goToLoginPage" class="clean-btn login">Log in</button>
         </div>
 
         <div v-if="isUserModalShown" class="user-modal flex flex-column">
-            <button class="clean-btn"><span>Log Out</span></button>
+            <button class="clean-btn" @click="logout"><span>Log Out</span></button>
             <button class="clean-btn"><span>Profile</span></button>
             <button class="clean-btn"><span>Account</span></button>
         </div>
@@ -44,6 +44,7 @@ export default {
         logout() {
             if (!this.loggedInUser) return
             this.$store.dispatch({ type: 'logout' })
+            this.isUserModalShown = false
         },
 
         goToLoginPage() {
