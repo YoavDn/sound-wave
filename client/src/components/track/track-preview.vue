@@ -2,7 +2,7 @@
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
 
-            <button @click="$emit('setTrack', track)" class="clean-btn action-btn ">
+            <button @click="$emit('setTrack', track)" class="clean-btn action-btn play-pause">
                 <component :is="togglePlayBtn" />
             </button>
 
