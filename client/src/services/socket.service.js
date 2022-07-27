@@ -37,10 +37,10 @@ function createSocketService() {
       socket.emit(eventName, data)
     },
     login(userId) {
-      socket.emit(SOCKET_EMIT_LOGIN, userId)
+      socket.emit(LOGIN, userId)
     },
     logout() {
-      socket.emit(SOCKET_EMIT_LOGOUT)
+      socket.emit(LOGOUT)
     },
     terminate() {
       socket = null
