@@ -61,8 +61,7 @@ async function save(station) {
     } catch (err) {
         return console.log("could not make new station", err);
     }
-
-
+}
     // if (station._id) await storageService.put(KEY, station)
     // else {
     //     station._id = utilService.makeId()
@@ -70,7 +69,7 @@ async function save(station) {
     // }
     // 
 
-}
+
 
 async function remove(station) {
     await storageService.remove(KEY, station)

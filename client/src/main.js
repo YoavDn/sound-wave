@@ -9,6 +9,7 @@ import { clickOutsideDirective } from './directives'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import './assets/style/main.scss'
+import gAuthPlugin from 'vue3-google-oauth2' // dont delete this it will be in use later on
 
 
 const app = createApp(App)
