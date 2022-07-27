@@ -4,14 +4,14 @@ export default {
     state: {
         stations: null,
         demoStations: null,
-        localStations: [],
+        localStations: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
         setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
-        setLocalStations: (state, { station }) => state.localStations.push(station),
+        setLocalStations: (state, { localStations }) => state.localStations = localStations,
     },
 
     getters: {
@@ -20,12 +20,15 @@ export default {
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
-        // getCurrStation(state) { return state.currStation },
         getStation: (state) => (id) => {
             const station = state.stations.find(station => station._id === id)
             if (station) return station
             return state.demoStations.find(station => station._id === id)
         },
+        getLocalStation: ({ localStations }) => (id) => {
+            return localStations.find(s => s._id === id)
+        }
+
     },
 
     actions: {
@@ -78,6 +81,12 @@ export default {
                 return console.log('cant load demoStation');
             }
         },
+
+        loadLocalStations({ commit }) {
+            const localStations = stationService.queryLocalStations()
+            commit({ type: 'setLocalStations', localStations })
+        },
+
         // async setCurrStation({ commit }, { stationId }) {
         //     try {
         //         const station = await stationService.getById(stationId)
@@ -92,8 +101,9 @@ export default {
             try {
                 const newStation = stationService.getEmptyStation(user)
                 if (!user) {
-                    commit({ type: 'setLocalStations', station: newStation })
-                    return
+                    const localStations = stationService.queryLocalStations()
+                    commit({ type: 'setLocalStations', localStations })
+                    return newStation
                 }
                 const station = await stationService.save(newStation)
                 console.log(station);

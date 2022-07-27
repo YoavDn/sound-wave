@@ -58,7 +58,8 @@ export default {
 
     created() {
         const { id } = this.$route.params
-        this.station = this.$store.getters.getStation(id)
+        if (!this.user) this.station = this.$store.getters.getLocalStation(id)
+        else this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
 
     },
@@ -118,6 +119,7 @@ export default {
     },
     computed: {
         searchResults() { return this.$store.getters.searchResults },
+        user() { return this.$store.getters.getLoggedInUser }
     },
 
     watch: {

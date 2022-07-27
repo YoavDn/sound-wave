@@ -105,8 +105,8 @@ export default {
             const user = this.$store.getters.getLoggedInUser
 
             if (!user) {
-                this.$sotre.dispatch({ type: 'createNewStation' })
-                return
+                const localStation = await this.$store.dispatch({ type: 'createNewStation' })
+                return this.$router.push(`/station/${localStation._id}`)
             }
 
             const station = await this.$store.dispatch({ type: 'createNewStation', user })
