@@ -85,8 +85,7 @@ export default {
                 console.log(station);
                 return `station/${station._id}`
             }
-            const _id = this.$store.getters.getLoggedInUser.likedSongs
-            return `station/${_id}`
+            return `station/${this.user.likedSongs}`
 
         },
         user() {
