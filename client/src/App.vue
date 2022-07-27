@@ -43,17 +43,18 @@ export default {
   },
 
   created() {
-    this.$store.dispatch({ type: 'loadStations' })
-    this.$store.dispatch({ type: 'loadDemoStations' })
     this.$store.dispatch({ type: 'getLoggedInUser' })
+    this.$store.dispatch({ type: 'loadStations' })
+    this.$store.dispatch({ type: 'loadLocalStations' })
+    this.$store.dispatch({ type: 'loadDemoStations' })
   },
   computed: {
     stations() {
       return this.$store.getters.getStations
     },
-    demoStations(){
+    demoStations() {
       return this.$store.getters.getDemoStations
-    }
+    },
   }
 
 }

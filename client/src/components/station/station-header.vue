@@ -8,7 +8,8 @@
             <p>PLAYIST</p>
             <h2 class="station-name">{{ station.name }}</h2>
             <div class="station-sub-title flex flex-column">
-                <h4>with singer "singer" shakira and more.. </h4>
+                <h4 v-if="station.description">{{ station.description }}</h4>
+                <h4 v-if="station.tracks.length > 1">{{ staitonsTracksNames }}</h4>
                 <h3 classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount }} Songs &#8226
                     {{ stationDetails }}
                 </h3>
@@ -53,6 +54,9 @@ export default {
         tracksCount() {
             return this.station.tracks.length
         },
+        staitonsTracksNames() {
+            return `${this.station.tracks[0].title}, ${this.station.tracks[1].title} and more..`
+        }
     },
     methods: {
         openEditModal() {
