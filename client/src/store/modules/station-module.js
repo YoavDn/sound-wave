@@ -27,19 +27,38 @@ export default {
     },
 
     actions: {
-        async updateTracksInStation({ commit, dispatch }, { value, id }) {
+        async updateTracksInStation({ commit, state }, { value, id }) {
             try {
-                const stations = await stationService.query()
+                console.log('id',id)
+                const stations = state.stations
+                console.log('stations',stations)
                 const station = stations.find(s => s._id === id)
-
                 station.tracks = value
+
                 const stations2 = await stationService.save(station)
-                const updatedStation = stations2.find(s => s._id === id)
+                console.log('stations2',stations2)
+                // await dispatch({ type: 'loadStations', stations })
                 commit({ type: 'setStations', stations2 })
-                return updatedStation
+                return station
             } catch {
                 console.log('cant update tracks')
             }
+            // try {
+            //     const stations = await stationService.query()
+            //     const station = stations.find(s => s._id === id)
+            //     station.tracks = value
+
+            //     const stations2 = await stationService.save(station)
+            //     console.log('stations2',stations2)
+                
+            //     const updatedStation = stations2.find(s => s._id === id)
+            //     console.log('updatedStation in try',updatedStation)
+            //     await dispatch({ type: 'loadStations', stations2 })
+
+            //     return updatedStation
+            // } catch {
+            //     console.log('cant update tracks')
+            // }
         },
 
         async loadStations({ commit }) {
@@ -64,6 +83,7 @@ export default {
                 console.log(user);
                 const newStation = await stationService.getEmptyStation(user)
                 const station = await stationService.save(newStation)
+                console.log(station);
 
                 await dispatch({ type: "loadStations" })
                 return station
