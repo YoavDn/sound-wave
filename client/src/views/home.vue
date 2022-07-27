@@ -60,11 +60,11 @@ export default {
     },
     computed: {
         stations() {
-            return this.$store.getters.getDemoStations
+            return this.$store.getters.getStations
         },
 
         heroStations() {
-            return this.$store.getters.getDemoStations.slice(-6)
+            return this.$store.getters.getStations.slice(-6)
         },
         welcomeMessage() {
             var today = new Date()

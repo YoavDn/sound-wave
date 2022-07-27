@@ -1,5 +1,5 @@
 <template>
-  <main v-if="stations && demoStations" class="main-layout">
+  <main v-if="stations" class="main-layout">
     <div class="main-view">
       <perfect-scrollbar>
         <div class="background-1">
@@ -46,7 +46,6 @@ export default {
     this.$store.dispatch({ type: 'getLoggedInUser' })
     this.$store.dispatch({ type: 'loadStations' })
     this.$store.dispatch({ type: 'loadLocalStations' })
-    this.$store.dispatch({ type: 'loadDemoStations' })
   },
   computed: {
     stations() {

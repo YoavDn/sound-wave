@@ -51,8 +51,6 @@
     import threeDots from '../../assets/imgs/three-dots.svg'
     
     
-    import { eventBus } from '../../services/event-bus.js'
-    
     export default {
         components: {
             trackOptions,
@@ -65,7 +63,7 @@
         props: {
             'track': Object,
             'trackIdx': Number,
-            'listLength':Number,
+            'listLength': Number,
             station: null,
         },
     

@@ -65,7 +65,7 @@ export default {
     methods: {
         openEditModal() {
             const stations = this.$store.getters.getStations
-            if (!stations.some(s => s._id === this.station._id)) return
+            // if (!stations.some(s => s._id === this.station._id)) return
             this.editModalOpen = true
         },
 
