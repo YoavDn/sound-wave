@@ -1,4 +1,4 @@
-import io from 'socket.io-client'
+import { io } from 'socket.io-client'
 import { userService } from './user.service'
 
 export const SOCKET_EMIT_ENTERED_STATION = 'enter-station'
@@ -10,7 +10,7 @@ const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
+export const socketService = createSocketService()
 
 socketService.setup()
 
@@ -19,7 +19,7 @@ function createSocketService() {
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      setTimeout(()=>{
+      setTimeout(() => {
         const user = userService.getLoggedinUser()
         if (user) this.login(user._id)
       }, 500)
@@ -45,6 +45,7 @@ function createSocketService() {
     terminate() {
       socket = null
     },
+
 
   }
   return socketService

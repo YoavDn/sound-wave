@@ -20,6 +20,7 @@ export default {
             try {
                 const user = await userService.login(userInfo)
                 commit({ type: 'setUser', user })
+                console.log(user);
                 return user
 
             } catch (err) {
@@ -64,11 +65,19 @@ export default {
 
         async toggleLikeStation(ctx, { station }) {
             try {
-                if (!ctx.state.loggedInUser) {
+                if (!ctx.state.loggedInUser) return
+                const user = ctx.state.loggedInUser
+                const userToUpdate = JSON.parse(JSON.stringify(user))
 
+                // when station already in user stations
+                if (user.stations.some(id => id === station)) {
+                    const idx = user.stations.findIndex(id => id === station)
+                    userToUpdate.stations.splice(idx, 1)
+                } else {
+                    userToUpdate.stations.push(station)
                 }
-                const userToUpdate = JSON.parse(JSON.stringify(ctx.state.loggedInUser))
-                userToUpdate.station.push(station._id)
+                await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
+
 
 
             } catch (err) {

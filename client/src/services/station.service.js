@@ -1,10 +1,11 @@
 import { utilService } from './utils.service.js'
 import { storageService } from './async-storage.service.js';
 import { localStorageService } from './local-storage.js';
+
 import { stationsData } from '../data/data.js'
 import { httpService } from './http.serivce.js';
 
-// import { socketService, SOCKET_EMIT_UPDATE_STATION} from './socket.service'
+import { socketService } from './socket.service'
 
 const KEY = 'stationsDB'
 
@@ -24,7 +25,7 @@ const KEY = 'stationsDB'
 //         showSuccessMsg(`New station about me ${station.txt}`)
 //       })
 //     }, 0)
-  
+
 //   })()
 
 
@@ -76,14 +77,14 @@ async function getById(stationId) {
 }
 
 async function save(station, user) {
-        if (!user) return await storageService.put(KEY, station)
+    if (!user) return await storageService.put(KEY, station)
 
-        //when user logged in
-        else if (station._id) {
-            await httpService.put(`station/${station._id}`, station)
-            socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
-            return await query()
-        } else return await httpService.post('station', station)
+    //when user logged in
+    else if (station._id) {
+        await httpService.put(`station/${station._id}`, station)
+        // socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
+        return await query()
+    } else return await httpService.post('station', station)
 }
 
 async function remove(station) {
@@ -115,7 +116,7 @@ function getEmptyStation(user = null) {
 function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
-        name: user? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length), 
+        name: user ? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length),
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),
