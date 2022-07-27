@@ -1,7 +1,7 @@
 <template>
   <main v-if="stations" class="main-layout">
     <div class="main-view">
-      <perfect-scrollbar @ps-scroll-y="onScroll" ref="scroll">
+      <perfect-scrollbar ref="scroll">
         <div class="background-1">
           <appHeader />
         </div>
@@ -26,12 +26,14 @@ import sideBar from './components/base/side-bar.vue'
 import player from './components/base/player.vue'
 import popupMsg from './components/custom/popup-msg.vue'
 import loginSignup from './views/login-signup.vue'
+import trackOptionsVue from './components/track/track-options.vue'
 
 export default {
 
   name: 'app',
   data() {
     return {
+      isReady: false, 
     }
   },
   components: {
@@ -46,6 +48,7 @@ export default {
     this.$store.dispatch({ type: 'getLoggedInUser' })
     this.$store.dispatch({ type: 'loadStations' })
     this.$store.dispatch({ type: 'loadLocalStations' })
+    
   },
   computed: {
     stations() {
@@ -55,17 +58,19 @@ export default {
       return this.$store.getters.getDemoStations
     },
   },
-
-  methods: {
-    onScroll(event) {
-      console.log(this.$refs.scroll.$el, event);
-    }
+  mounted(){
+    console.log('hello');
+    this.isReady = trackOptionsVue
   },
+  // methods: {
+  //   onScroll(event) {
+  //     console.log(this.$refs.scroll.$el, event);
+  //   }
+  // },
   watch: {
     $route() {
-       if (this.$refs.scroll.$el) {
-        this.$res.scroll.$el.scrollTop = 0
-       }
+      if(!this.isReady) return
+      this.$refs.scroll.$el.scrollTop = 0
     }
   }
 
