@@ -4,7 +4,7 @@
 
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation" />
-            <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
+            <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
             <div v-if="!station?.tracks?.length > 0" class="station-search">
@@ -113,6 +113,7 @@ export default {
 
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
+            console.log(this.station);
         },
         async updateUser(data) {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })

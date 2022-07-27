@@ -60,9 +60,9 @@ async function save(station, user) {
         //when user logged in
         if (station._id) {
             await httpService.put(`station/${station._id}`, station)
+            return await query()
         } else return await httpService.post('station', station)
 
-        return await query()
     } catch (err) {
         return console.log("could not make new station", err);
     }
@@ -121,7 +121,7 @@ function _createEmptyStation(length, user = null) {
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),
-        createdBy: user? user : 'Guest',
+        createdBy: user ? user : 'Guest',
         likedByUsers: null,
         tracks: [],
 

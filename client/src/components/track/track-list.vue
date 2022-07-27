@@ -13,10 +13,11 @@
 <script>
 import { defineComponent } from 'vue'
 import { VueDraggableNext } from 'vue-draggable-next'
+import { defineProps } from 'vue'
 
 import trackPreview from './track-preview.vue'
 import trackListHead from '../custom/track-list-head.vue'
-import { method } from 'lodash'
+
 
 export default defineComponent({
     name: 'track-list',
@@ -32,15 +33,17 @@ export default defineComponent({
         trackListHead,
     },
     props: { 'tracks': Array },
+    // defineProps: { 'tracks': Array },
+
     computed: {
         trackList: {
             get() {
                 return this.tracks
             },
             async set(value) {
-                console.log('value',value)
+                console.log('value', value)
                 const { id } = this.$route.params
-                console.log('id',id)
+                console.log('id', id)
                 await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
             }
         }
