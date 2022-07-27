@@ -98,7 +98,7 @@ export default {
     methods: {
         goToPage(page) {
             this.$router.push(`/${page}`)
-            // console.log(this.stations);
+            
         },
 
         goToStation(stationId) {
