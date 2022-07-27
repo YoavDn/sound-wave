@@ -240,6 +240,7 @@ export default defineComponent({
         },
 
         state(ev) {
+            console.log('ev.data',ev.data)
             if (ev.data === 3) {
                 this.pause()
                 this.play()
@@ -307,8 +308,8 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
-            this.pause()
-            this.play()
+            // this.pause()
+            // this.play()
         },
 
         shuffle() {
