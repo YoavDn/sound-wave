@@ -1,5 +1,5 @@
 <template>
-  <main v-if="stations" class="main-layout">
+  <main v-if="stations && demoStations" class="main-layout">
     <div class="main-view">
       <perfect-scrollbar>
         <div class="background-1">
@@ -50,6 +50,9 @@ export default {
   computed: {
     stations() {
       return this.$store.getters.getStations
+    },
+    demoStations(){
+      return this.$store.getters.getDemoStations
     }
   }
 
