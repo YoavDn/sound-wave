@@ -104,6 +104,11 @@ export default {
         async createNewPlaylist() {
             const user = this.$store.getters.getLoggedInUser
 
+            if (!user) {
+                this.$sotre.dispatch({ type: 'createNewStation' })
+                return
+            }
+
             const station = await this.$store.dispatch({ type: 'createNewStation', user })
             const updatedUser = JSON.parse(JSON.stringify(user))
             console.log(station);

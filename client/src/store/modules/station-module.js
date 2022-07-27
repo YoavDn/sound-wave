@@ -4,12 +4,14 @@ export default {
     state: {
         stations: null,
         demoStations: null,
+        localStations: [],
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
         setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
+        setLocalStations: (state, { station }) => state.localStations.push(station),
     },
 
     getters: {
@@ -35,7 +37,7 @@ export default {
                 station.tracks = value
                 const stations2 = await stationService.save(station)
                 const updatedStation = stations2.find(s => s._id === id)
-                console.log('updatedStation in try',updatedStation)
+                console.log('updatedStation in try', updatedStation)
                 commit({ type: 'setStations', stations2 })
                 return updatedStation
             } catch {
@@ -71,8 +73,11 @@ export default {
 
         async createNewStation({ commit, dispatch }, { user }) {
             try {
-                console.log(user);
-                const newStation = await stationService.getEmptyStation(user)
+                const newStation = stationService.getEmptyStation(user)
+                if (!user) {
+                    commit({ type: 'setLocalStations', station: newStation })
+                    return
+                }
                 const station = await stationService.save(newStation)
                 console.log(station);
 
@@ -84,6 +89,7 @@ export default {
                 return console.log(err);
             }
         },
+
 
 
         async updateStation({ dispatch }, { data }) {

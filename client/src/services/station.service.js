@@ -92,14 +92,24 @@ async function remove(station) {
 
 // }
 
-async function getEmptyStation(user = null) {
+function getEmptyStation(user = null) {
     let stations;
-    if (!user) stations = await query()
-    stations = user.stations
+    let newStation
+    if (!user) {
+        stations = localStorageService.loadFromStorage(KEY)
+        newStation = _createEmptyStation(stations.length)
+        localStorageService.saveToStorage(KEY, newStation)
+    } else {
+        stations = user.stations
+        newStation = _createEmptyStation(user.stations.length)
+    }
+    return newStation
+}
 
+function _createEmptyStation(length) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
-        name: 'My Playlist #' + (stations.length + 1),
+        name: 'My Playlist #' + (length),
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),
