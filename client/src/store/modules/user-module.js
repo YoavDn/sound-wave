@@ -60,6 +60,14 @@ export default {
         async getLoggedInUser({ commit }) {
             const user = await userService.getLoggedInUser()
             commit({ type: 'setUser', user })
+        },
+
+        async toggleLikeStation({ commit, dispatch }, station) {
+            try {
+
+            } catch (err) {
+                return console.log('cant add station ', err);
+            }
         }
 
     }

@@ -10,9 +10,11 @@
             <div class="station-sub-title flex flex-column">
                 <h4 v-if="station.description">{{ station.description }}</h4>
                 <h4 v-if="station.tracks.length > 1 && !station.description">{{ staitonsTracksNames }}</h4>
-                <h3 classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount }} Songs &#8226
+                <h3 v-if="station.tracks.legth > 1" classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount
+                }} Songs &#8226
                     {{ stationDetails }}
                 </h3>
+                <h3 v-if="station.createdBy">{{ station.createdBy.fullname }}</h3>
 
             </div>
         </div>
@@ -45,6 +47,7 @@ export default {
 
     computed: {
         stationDetails() {
+            if (this.station.tracks.length < 1) return
             const timeStamp = this.station.tracks.reduce((sum, track) => {
                 return sum += utilService.strTimeToStamp(track.time)
             }, 0)
@@ -52,6 +55,7 @@ export default {
         },
 
         tracksCount() {
+
             return this.station.tracks.length
         },
         staitonsTracksNames() {

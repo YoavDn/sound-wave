@@ -3,7 +3,8 @@
         <station-header :station="station" @updateStationDetails="updateStationDetails" />
 
         <main class="station-main-container">
-            <station-options :station="station" @playStation="playStation" @setStation="setStation" />
+            <station-options :station="station" @playStation="playStation" @setStation="setStation"
+                @toggleLikeStation="toggleLikeStation" />
             <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
@@ -120,6 +121,9 @@ export default {
         },
         async updateUser(data) {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })
+        },
+        toggleLikeStation() {
+            this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
         }
 
     },

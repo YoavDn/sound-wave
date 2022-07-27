@@ -3,7 +3,8 @@
         <button v-if="station.tracks.length > 0" @click="$emit('playStation')" class="play-btn"><i
                 class="bi bi-play-fill"></i></button>
         <div class="like-share-container flex align-center">
-            <button v-if="station.tracks.length > 0" class="heart-btn"><i class="bi bi-heart"></i> </button>
+            <button @click="toggleLikeStation" v-if="station.tracks.length > 0" class="heart-btn"><i
+                    class="bi bi-heart"></i> </button>
             <button style="position: relative" class="clean-btn station-options">
                 <station-opt-dropdown :station="station" />
             </button>
@@ -22,6 +23,11 @@ export default {
     components: {
         threeDots,
         stationOptDropdown
+    },
+    methods: {
+        toggleLikeStation() {
+            this.$emit('toggleLikeStation',)
+        }
     }
 }
 

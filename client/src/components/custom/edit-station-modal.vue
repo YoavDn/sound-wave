@@ -59,12 +59,10 @@ export default {
             // this.$refs.uploadImg.src = URL.createObjectURL(event.target.files[0]);
             this.stationToUpdate.imgUrl = URL.createObjectURL(event.target.files[0]);
             this.$refs.stationImg.src = this.stationToUpdate.imgUrl
-            console.log(URL.createObjectURL(event.target.files[0]));
         },
 
         onLoadImg() {
             this.isLoaded = true
-            console.log(this.isLoaded);
         }
 
 
