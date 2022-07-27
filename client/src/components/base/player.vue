@@ -240,16 +240,19 @@ export default defineComponent({
         },
 
         state(ev) {
-            console.log('ev.data',ev.data)
-            if (ev.data === 3) {
-                this.pause()
-                this.play()
-            }
-            if (ev.data === 0) {
-                this.currTime = 0
-                return clearInterval(this.trackInterval)
-            }
+            if (ev.data === 3) this.play()     
+            else if (ev.data === 0) this.currTime = 0               
         },
+        // state(ev) {
+        //     if (ev.data === 3) {
+        //         this.pause()
+        //         this.play()
+        //     }
+        //     if (ev.data === 0) {
+        //         this.currTime = 0
+        //         return clearInterval(this.trackInterval)
+        //     }
+        // },
         onReady() {
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
