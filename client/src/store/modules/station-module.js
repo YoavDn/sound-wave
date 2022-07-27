@@ -39,14 +39,11 @@ export default {
     actions: {
         async updateTracksInStation({ dispatch, state }, { value, id }) {
             try {
-                console.log('id', id)
                 const stations = state.stations
-                console.log('stations', stations)
                 const station = stations.find(s => s._id === id)
                 station.tracks = value
 
                 const stations2 = await stationService.save(station)
-                console.log('stations2', stations2)
 
                 await dispatch({ type: 'loadStations' })
                 // commit({ type: 'setStations', stations2 })
@@ -54,22 +51,6 @@ export default {
             } catch {
                 console.log('cant update tracks')
             }
-            // try {
-            //     const stations = await stationService.query()
-            //     const station = stations.find(s => s._id === id)
-            //     station.tracks = value
-
-            //     const stations2 = await stationService.save(station)
-            //     console.log('stations2',stations2)
-
-            //     const updatedStation = stations2.find(s => s._id === id)
-            //     console.log('updatedStation in try',updatedStation)
-            //     await dispatch({ type: 'loadStations', stations2 })
-
-            //     return updatedStation
-            // } catch {
-            //     console.log('cant update tracks')
-            // }
         },
 
         async loadStations({ commit }) {
@@ -94,27 +75,16 @@ export default {
             commit({ type: 'setLocalStations', localStations })
         },
 
-        // async setCurrStation({ commit }, { stationId }) {
-        //     try {
-        //         const station = await stationService.getById(stationId)
-        //         commit({ type: 'setCurrStation', station })
-        //         return station
-        //     } catch {
-        //         return console.log('cant get current Station');
-        //     }
-        // },
 
         async createNewStation({ commit, dispatch }, { user }) {
             try {
                 const newStation = stationService.getEmptyStation(user)
-                console.log(newStation);
                 if (!user) {
                     const localStations = stationService.queryLocalStations()
                     commit({ type: 'setLocalStations', localStations })
                     return newStation
                 }
                 const station = await stationService.save(newStation, user)
-                console.log(station);
 
                 await dispatch({ type: "loadStations" })
                 return station
@@ -131,7 +101,6 @@ export default {
                 const { station, track, isNew } = data
                 const user = userStore.state.loggedInUser
 
-                console.log("data =", data);
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
 
                 if (track && isNew !== null) {  //if  changing tracks
@@ -144,8 +113,8 @@ export default {
                 }
 
                 const stations = await stationService.save(stationToUpdate, user)
-                await dispatch({ type: 'loadStations', stations })
-                if (!user) await dispatch({ type: 'loadLocalStations' })
+                if (user) await dispatch({ type: 'loadStations', stations })
+                else dispatch({ type: 'loadLocalStations' })
 
             } catch (err) {
                 console.log(err);

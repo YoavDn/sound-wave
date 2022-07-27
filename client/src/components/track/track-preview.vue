@@ -119,6 +119,7 @@
             },
     
             addTrackToStation(track, isNew) {
+                console.log('hello = ', hello)
                 const { id } = this.$route.params
                 const station = this.$store.getters.getStation(id)
     

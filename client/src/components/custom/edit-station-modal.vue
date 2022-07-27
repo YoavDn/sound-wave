@@ -7,7 +7,12 @@
         </div>
         <div class="main-modal-container ">
             <div class="modal-img-container">
-                <img :src="station.imgUrl" alt="station img">
+                <label for="file-input">
+                    <img ref="stationImg" v-if="stationToUpdate.imgUrl" :src="station.imgUrl" alt="station img">
+                    <img v-else src="../../assets/imgs/defaultCover.svg" alt="station img">
+                    <input id="file-input" class="apload-img-input" type="file" accept="image/*"
+                        @change="uploadImage" />
+                </label>
             </div>
             <div class="input-title">
                 <input class="input-title" type="text" v-model="stationToUpdate.name" required>
@@ -25,12 +30,14 @@
 </template>
     
 <script >
+import axios from 'axios'
 export default {
     props: { 'station': Object },
     emits: ['updateStationDetails', 'closeModal'],
     data() {
         return {
             stationToUpdate: null,
+            isLoaded: false
         }
     },
 
@@ -46,8 +53,23 @@ export default {
         updateStationDetails() {
             this.closeModal()
             this.$emit('updateStationDetails', this.stationToUpdate)
+        },
+
+        uploadImage(event) {
+            // this.$refs.uploadImg.src = URL.createObjectURL(event.target.files[0]);
+            this.stationToUpdate.imgUrl = URL.createObjectURL(event.target.files[0]);
+            this.$refs.stationImg.src = this.stationToUpdate.imgUrl
+            console.log(URL.createObjectURL(event.target.files[0]));
+        },
+
+        onLoadImg() {
+            this.isLoaded = true
+            console.log(this.isLoaded);
         }
+
+
     }
+
 }
 </script>
     

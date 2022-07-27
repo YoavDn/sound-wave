@@ -41,7 +41,7 @@ async function query(demoStations = false) {
 }
 
 function queryLocalStations() {
-    return gLocalStations
+    return localStorageService.loadFromStorage(KEY)
 }
 
 function genresQuery() {
@@ -67,12 +67,7 @@ async function save(station, user) {
         return console.log("could not make new station", err);
     }
 }
-// if (station._id) 
-// else {
-//     station._id = utilService.makeId()
-//     await storageService.post(KEY, station)
-// }
-// 
+
 
 
 
@@ -81,20 +76,6 @@ async function remove(station) {
     return storageService.query(KEY)
 }
 
-// async function addTrackToStation(data) {
-//     const { station, track } = data
-//     const stations = await storageService.query(KEY)
-//     const stationIdx = stations.findIndex(s => s._id === station._id)
-
-//     stations[stationIdx].tracks.unshift(track)
-//     await storageService.put(KEY, stations[stationIdx])
-//     return stations
-// }
-
-// async function removeTrackFromStation({ station, track }) {
-//     const stationIdx = demoStations.findIndex(s => s._id === station._id)
-
-// }
 
 function getEmptyStation(user = null) {
     let stations;
@@ -105,7 +86,6 @@ function getEmptyStation(user = null) {
         newStation = _createEmptyStation(stations.length)
         newStation._id = utilService.makeId()
         gLocalStations.push(newStation)
-        console.log('ehllo');
         localStorageService.saveToStorage(KEY, gLocalStations)
     } else { // when user logged in
         stations = user.stations
@@ -117,7 +97,7 @@ function getEmptyStation(user = null) {
 function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
-        name: 'My Playlist #' + (length),
+        name: user? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length), 
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),

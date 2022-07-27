@@ -9,7 +9,7 @@
             <h2 class="station-name">{{ station.name }}</h2>
             <div class="station-sub-title flex flex-column">
                 <h4 v-if="station.description">{{ station.description }}</h4>
-                <h4 v-if="station.tracks.length > 1">{{ staitonsTracksNames }}</h4>
+                <h4 v-if="station.tracks.length > 1 && !station.description">{{ staitonsTracksNames }}</h4>
                 <h3 classs="station-info"> <span>SoundWave</span> &#8226 {{ tracksCount }} Songs &#8226
                     {{ stationDetails }}
                 </h3>
@@ -60,7 +60,8 @@ export default {
     },
     methods: {
         openEditModal() {
-            console.log('hi');
+            const stations = this.$store.getters.getStations
+            if (!stations.some(s => s._id === this.station._id)) return
             this.editModalOpen = true
         },
 
