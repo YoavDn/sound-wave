@@ -4,11 +4,30 @@ import { localStorageService } from './local-storage.js';
 import { stationsData } from '../data/data.js'
 import { httpService } from './http.serivce.js';
 
+// import { socketService, SOCKET_EMIT_UPDATE_STATION} from './socket.service'
+
 const KEY = 'stationsDB'
 
-function _getUrl(id = '') {
-    return `station/${id}`
-}
+// const stationChannel = new BroadcastChannel('stationChannel')
+
+// ;(() => {
+//     // reviewChannel.addEventListener('message', (ev) => {
+//     //   console.log('msg event', ev)
+//     //   store.commit(ev.data)
+//     // })
+//     setTimeout(()=>{
+//       socketService.on(SOCKET_EMIT_UPDATE_STATION, (station) => {
+//         console.log('GOT from socket', station)
+//         store.dispatch({type: 'updateStation', station})
+//       })
+//       socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, (station) => {
+//         showSuccessMsg(`New station about me ${station.txt}`)
+//       })
+//     }, 0)
+  
+//   })()
+
+
 
 export const stationService = {
     query,
@@ -16,9 +35,13 @@ export const stationService = {
     getById,
     getEmptyStation,
     genresQuery,
-    queryLocalStations
+    queryLocalStations,
+    remove,
 }
 
+function _getUrl(id = '') {
+    return `station/${id}`
+}
 
 var gLocalStations
 (() => {
@@ -53,7 +76,7 @@ async function getById(stationId) {
 }
 
 async function save(station, user) {
-    try {
+
         //when there is no user {
         if (!user) {
             if (station._id) return await storageService.put(KEY, station)
@@ -61,20 +84,17 @@ async function save(station, user) {
         }
 
         //when user logged in
-        if (station._id) {
+        else if (station._id) {
             await httpService.put(`station/${station._id}`, station)
+            socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
             return await query()
         } else return await httpService.post('station', station)
-
-    } catch (err) {
-        return console.log("could not make new station", err);
-    }
 }
 
-
-
-
 async function remove(station) {
+    // await httpService.delete(`station/${reviewId}`)
+    // stationChannel.postMessage({type: 'removeStation', reviewId})
+
     await storageService.remove(KEY, station)
     return storageService.query(KEY)
 }
