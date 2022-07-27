@@ -26,7 +26,6 @@ import sideBar from './components/base/side-bar.vue'
 import player from './components/base/player.vue'
 import popupMsg from './components/custom/popup-msg.vue'
 import loginSignup from './views/login-signup.vue'
-import trackOptionsVue from './components/track/track-options.vue'
 
 export default {
 
@@ -59,20 +58,19 @@ export default {
     },
   },
   mounted() {
-    console.log('hello');
-    this.isReady = trackOptionsVue
+    this.isReady = true
   },
   // methods: {
   //   onScroll(event) {
   //     console.log(this.$refs.scroll.$el, event);
   //   }
   // },
-  watch: {
-    $route() {
-      if (!this.isReady) return
-      this.$refs.scroll.$el.scrollTop = 0
-    }
-  }
+  // watch: {
+  //   $route() {
+  //     if (!this.isReady) return
+  //     this.$refs.scroll.$el.scrollTop = 0
+  //   }
+  // }
 
 }
 </script>

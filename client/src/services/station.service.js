@@ -60,7 +60,6 @@ var gLocalStations
 const demoGenres = stationsData.demoGenres()
 
 async function query(demoStations = false) {
-    if (demoStations) return await httpService.get('station/demoStations')
     return await httpService.get('station')
 }
 
