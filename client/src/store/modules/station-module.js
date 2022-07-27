@@ -142,16 +142,10 @@ export default {
                         stationToUpdate.tracks.splice(idx, 1)
                     }
                 }
-<<<<<<< HEAD
-                const stations = await stationService.save(stationToUpdate)
-                console.log('stations', stations)
-                await dispatch({ type: 'loadStations', stations })
-=======
 
                 const stations = await stationService.save(stationToUpdate, user)
                 await dispatch({ type: 'loadStations', stations })
-                if (!user) dispatch({ type: 'loadLocalStations' })
->>>>>>> cd9d1925be7046b84cb3900de20edac86d63bbd0
+                if (!user) await dispatch({ type: 'loadLocalStations' })
 
             } catch (err) {
                 console.log(err);

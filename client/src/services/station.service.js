@@ -109,12 +109,12 @@ function getEmptyStation(user = null) {
         localStorageService.saveToStorage(KEY, gLocalStations)
     } else { // when user logged in
         stations = user.stations
-        newStation = _createEmptyStation(user.stations.length)
+        newStation = _createEmptyStation(user.stations.length, user)
     }
     return newStation
 }
 
-function _createEmptyStation(length) {
+function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
         name: 'My Playlist #' + (length),
