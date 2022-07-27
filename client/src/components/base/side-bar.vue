@@ -68,13 +68,8 @@ export default {
     },
 
     computed: {
-            stations() {
+        stations() {
             const stations = this.$store.getters.getStations
-<<<<<<< HEAD
-=======
-            console.log('stations',stations)
-            const loggedInUser = this.$store.getters.getLoggedInUser
->>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
 
             if (!this.user) return this.$store.getters.getLocalStations
             return this.user.stations.map(id => stations.find(s => s._id === id))

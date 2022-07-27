@@ -46,15 +46,10 @@ export default {
                 station.tracks = value
 
                 const stations2 = await stationService.save(station)
-<<<<<<< HEAD
-                // await dispatch({ type: 'loadStations', stations })
-                commit({ type: 'setStations', stations2 })
-=======
-                console.log('stations2',stations2)
+                console.log('stations2', stations2)
 
-                await dispatch({ type: 'loadStations'})
+                await dispatch({ type: 'loadStations' })
                 // commit({ type: 'setStations', stations2 })
->>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
                 return station
             } catch {
                 console.log('cant update tracks')
@@ -93,7 +88,6 @@ export default {
                 return console.log('cant load demoStation');
             }
         },
-<<<<<<< HEAD
 
         loadLocalStations({ commit }) {
             const localStations = stationService.queryLocalStations()
@@ -109,8 +103,6 @@ export default {
         //         return console.log('cant get current Station');
         //     }
         // },
-=======
->>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
 
         async createNewStation({ commit, dispatch }, { user }) {
             try {
