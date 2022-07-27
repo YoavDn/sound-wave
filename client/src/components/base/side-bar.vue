@@ -68,8 +68,9 @@ export default {
     },
 
     computed: {
-        stations() {
+            stations() {
             const stations = this.$store.getters.getStations
+            console.log('stations',stations)
             const loggedInUser = this.$store.getters.getLoggedInUser
 
             if (!loggedInUser) return stations

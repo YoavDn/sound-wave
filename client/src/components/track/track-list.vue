@@ -38,7 +38,9 @@ export default defineComponent({
                 return this.tracks
             },
             async set(value) {
+                console.log('value',value)
                 const { id } = this.$route.params
+                console.log('id',id)
                 await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
             }
         }
