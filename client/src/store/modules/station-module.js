@@ -1,4 +1,5 @@
 import { stationService } from '../../services/station.service'
+import userStore from './user-module'
 
 export default {
     state: {
@@ -17,17 +18,21 @@ export default {
     getters: {
         getStations: (state) => state.stations,
         getDemoStations: (state) => state.demoStations,
+        getLocalStations: (state) => state.localStations,
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         getStation: (state) => (id) => {
-            const station = state.stations.find(station => station._id === id)
-            if (station) return station
-            return state.demoStations.find(station => station._id === id)
+            const demoStation = state.demoStations.find(station => station._id === id)
+
+            if (demoStation) return demoStation // when clicking on demo station
+            if (userStore.state.loggedInUser) {
+                return state.stations.find(station => station._id === id)
+            } else { // when no user logged in
+                return state.localStations.find(station => station._id === id)
+            }
         },
-        getLocalStation: ({ localStations }) => (id) => {
-            return localStations.find(s => s._id === id)
-        }
+
 
     },
 
@@ -100,12 +105,13 @@ export default {
         async createNewStation({ commit, dispatch }, { user }) {
             try {
                 const newStation = stationService.getEmptyStation(user)
+                console.log(newStation);
                 if (!user) {
                     const localStations = stationService.queryLocalStations()
                     commit({ type: 'setLocalStations', localStations })
                     return newStation
                 }
-                const station = await stationService.save(newStation)
+                const station = await stationService.save(newStation, user)
                 console.log(station);
 
                 // commit({ type: 'setStations', stations })
@@ -122,6 +128,7 @@ export default {
         async updateStation({ dispatch }, { data }) {
             try {
                 const { station, track, isNew } = data
+                const user = userStore.state.loggedInUser
 
                 console.log("data =", data);
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
@@ -135,8 +142,10 @@ export default {
                     }
                 }
 
-                const stations = await stationService.save(stationToUpdate)
+                const stations = await stationService.save(stationToUpdate, user)
                 await dispatch({ type: 'loadStations', stations })
+                if (!user) dispatch({ type: 'loadLocalStations' })
+
             } catch (err) {
                 console.log(err);
             }

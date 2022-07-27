@@ -25,6 +25,8 @@ var gLocalStations
     gLocalStations = localStorageService.loadFromStorage(KEY)
     if (!gLocalStations || !gLocalStations.length) {
         gLocalStations = []
+        const likedSongs = _createLikedSongs()
+        gLocalStations.push(likedSongs)
         localStorageService.saveToStorage(KEY, gLocalStations)
     }
     return gLocalStations
@@ -50,8 +52,12 @@ async function getById(stationId) {
     return await httpService.get(_getUrl(stationId))
 }
 
-async function save(station) {
+async function save(station, user) {
     try {
+        //when there is no user {
+        if (!user) return await storageService.put(KEY, station)
+
+        //when user logged in
         if (station._id) {
             await httpService.put(`station/${station._id}`, station)
         } else return await httpService.post('station', station)
@@ -61,7 +67,7 @@ async function save(station) {
         return console.log("could not make new station", err);
     }
 }
-// if (station._id) await storageService.put(KEY, station)
+// if (station._id) 
 // else {
 //     station._id = utilService.makeId()
 //     await storageService.post(KEY, station)
@@ -114,6 +120,20 @@ function _createEmptyStation(length) {
         name: 'My Playlist #' + (length),
         tags: ['test'],
         imgUrl: null,
+        createdAt: Date.now(),
+        createdBy: null,
+        likedByUsers: null,
+        tracks: [],
+
+    }
+}
+
+function _createLikedSongs() {
+    return {
+        _id: 'likedSongs',
+        name: 'Liked Songs',
+        tags: ['test'],
+        imgUrl: "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png",
         createdAt: Date.now(),
         createdBy: null,
         likedByUsers: null,

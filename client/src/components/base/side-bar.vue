@@ -70,21 +70,30 @@ export default {
     computed: {
         stations() {
             const stations = this.$store.getters.getStations
-            const demoStations = this.$store.getters.getStations
-            const loggedInUser = this.$store.getters.getLoggedInUser
 
-            if (!loggedInUser) return demoStations
-            return demoStations
-            // return loggedInUser.stations.map(id => stations.find(s => s._id === id))
+            if (!this.user) return this.$store.getters.getLocalStations
+            return this.user.stations.map(id => stations.find(s => s._id === id))
 
         },
         likedSongsRoute() {
+
+            if (!this.user) {
+                const station = this.$store.getters.getStation('likedSongs')
+                console.log(station);
+                return `station/${station._id}`
+            }
             const _id = this.$store.getters.getLoggedInUser.likedSongs
             return `station/${_id}`
-        }
 
-
+        },
+        user() {
+            return this.$store.getters.getLoggedInUser
+        },
     },
+
+
+
+
 
     methods: {
         goToPage(page) {

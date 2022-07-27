@@ -80,7 +80,9 @@
         computed: {
             isLiked() {
                 const loggedInUser = this.$store.getters.getLoggedInUser
-                const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+                let station
+                if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+                else station = this.$store.getters.getStation(loggedInUser.likedSongs)
                 return station.tracks.some(t => t.id === this.track.id)
             },
             togglePlayBtn() {
@@ -106,20 +108,20 @@
         methods: {
             toggleLikedSong() {
                 const loggedInUser = this.$store.getters.getLoggedInUser
-                if (!loggedInUser) return console.log('no logged in user');
-
-                const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+                let station;
+                if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+                else station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+                console.log('hello?');
+    
                 const data = { station, track: this.track, isNew: !this.isLiked }
-
+    
                 this.$emit('updateStation', data)
             },
     
             addTrackToStation(track, isNew) {
                 const { id } = this.$route.params
-
-                const stations = this.$store.getters.getStations
-                const station = stations.find(s => s._id === id)
-
+                const station = this.$store.getters.getStation(id)
+    
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
             }

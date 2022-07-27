@@ -58,8 +58,7 @@ export default {
 
     created() {
         const { id } = this.$route.params
-        if (!this.user) this.station = this.$store.getters.getLocalStation(id)
-        else this.station = this.$store.getters.getStation(id)
+        this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
 
     },
@@ -102,6 +101,7 @@ export default {
 
         async updateStation(data) {
             if (!data) return
+
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;

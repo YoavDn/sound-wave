@@ -95,8 +95,7 @@
     
             addTrackToStation(track, isNew) {
                 const { id } = this.$route.params
-                const stations = this.$store.getters.getStations
-                const station = stations.find(s => s._id === id)
+                const station = this.$store.getters.getStation(id)
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
             },
