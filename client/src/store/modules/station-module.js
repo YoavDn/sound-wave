@@ -4,37 +4,32 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-        demoStations: null,
+
         localStations: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
-        setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
         setLocalStations: (state, { localStations }) => state.localStations = localStations,
     },
 
     getters: {
         getStations: (state) => state.stations,
-        getDemoStations: (state) => state.demoStations,
         getLocalStations: (state) => state.localStations,
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         getStation: (state) => (id) => {
-            const demoStation = state.demoStations.find(station => station._id === id)
-
-            if (demoStation) return demoStation // when clicking on demo station
-            if (userStore.state.loggedInUser) {
-                return state.stations.find(station => station._id === id)
-            } else { // when no user logged in
-                return state.localStations.find(station => station._id === id)
-            }
-        },
-
+            const station = state.stations.find(station => station._id === id)
+            if (station) return station
+            return state.localStations.find(station => station._id === id)
+        }
 
     },
+
+
+
 
     actions: {
         async updateTracksInStation({ dispatch, state }, { value, id }) {
@@ -59,14 +54,6 @@ export default {
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
-            }
-        },
-        async loadDemoStations({ commit }) {
-            try {
-                const demoStations = await stationService.query(true)
-                commit({ type: 'setDemoStations', demoStations })
-            } catch {
-                return console.log('cant load demoStation');
             }
         },
 
