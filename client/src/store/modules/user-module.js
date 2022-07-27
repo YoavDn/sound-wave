@@ -62,8 +62,14 @@ export default {
             commit({ type: 'setUser', user })
         },
 
-        async toggleLikeStation({ commit, dispatch }, station) {
+        async toggleLikeStation(ctx, { station }) {
             try {
+                if (!ctx.state.loggedInUser) {
+
+                }
+                const userToUpdate = JSON.parse(JSON.stringify(ctx.state.loggedInUser))
+                userToUpdate.station.push(station._id)
+
 
             } catch (err) {
                 return console.log('cant add station ', err);
