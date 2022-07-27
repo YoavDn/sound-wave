@@ -1,16 +1,16 @@
 import io from 'socket.io-client'
 import { userService } from './user.service'
 
-export const SOCKET_EMIT_ENTERED_STATION = 'enter-station'
-export const SOCKET_EMIT_UPDATE_STATION = 'update-station'
-export const SOCKET_EMIT_STATION_UPDATED = 'station-updated'
+export const ENTERED_STATION = 'enter-station'
+export const UPDATE_STATION = 'update-station'
+export const STATION_UPDATED = 'station-updated'
 
-const SOCKET_EMIT_LOGIN = 'set-user-socket'
-const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
+const LOGIN = 'set-user-socket'
+const LOGOUT = 'unset-user-socket'
 
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
+export const socketService = createSocketService()
 
 socketService.setup()
 
