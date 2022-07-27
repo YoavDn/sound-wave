@@ -26,6 +26,7 @@ export default {
     computed: {
         isUserStation() {
             const user = this.$store.getters.getLoggedInUser
+            if (!user) return
             return user.stations.some(id => id === this.station._id)
             // return true
         },

@@ -10,7 +10,7 @@
             <div class="station-sub-title flex flex-column">
                 <h4 v-if="station.description">{{ station.description }}</h4>
                 <h4 v-if="station.tracks.length > 1 && !station.description">{{ staitonsTracksNames }}</h4>
-                <h3 v-if="station.tracks.length > 1 && this.station.createdBy.fullname" classs="station-info"> <span>{{
+                <h3 v-if="station.tracks.length > 1 && this.station.createdBy" classs="station-info"> <span>{{
                         station.createdBy.fullname
                 }}</span>
                     &#8226 {{ tracksCount

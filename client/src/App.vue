@@ -29,7 +29,6 @@ export default {
   name: 'app',
   data() {
     return {
-      isReady: null,
     }
   },
   components: {
@@ -44,7 +43,6 @@ export default {
     this.$store.dispatch({ type: 'getLoggedInUser' })
     this.$store.dispatch({ type: 'loadStations' })
     this.$store.dispatch({ type: 'loadLocalStations' })
-    this.isReady = false
   },
   computed: {
     stations() {
@@ -54,9 +52,7 @@ export default {
       return this.$store.getters.getDemoStations
     },
   },
-  mounted() {
-    this.isReady = true
-  },
+
 }
 </script>
 
