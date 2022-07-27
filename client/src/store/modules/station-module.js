@@ -27,39 +27,23 @@ export default {
     },
 
     actions: {
-        async updateTracksInStation({ commit, state }, { value, id }) {
-            try {
-                console.log('id',id)
-                const stations = state.stations
-                console.log('stations',stations)
-                const station = stations.find(s => s._id === id)
-                station.tracks = value
+        // async updateTracksInStation({ commit, state }, { value, id }) {
+        //     try {
+        //         console.log('id',id)
+        //         const stations = state.stations
+        //         console.log('stations',stations)
+        //         const station = stations.find(s => s._id === id)
+        //         station.tracks = value
 
-                const stations2 = await stationService.save(station)
-                console.log('stations2',stations2)
-                // await dispatch({ type: 'loadStations', stations })
-                commit({ type: 'setStations', stations2 })
-                return station
-            } catch {
-                console.log('cant update tracks')
-            }
-            // try {
-            //     const stations = await stationService.query()
-            //     const station = stations.find(s => s._id === id)
-            //     station.tracks = value
-
-            //     const stations2 = await stationService.save(station)
-            //     console.log('stations2',stations2)
-                
-            //     const updatedStation = stations2.find(s => s._id === id)
-            //     console.log('updatedStation in try',updatedStation)
-            //     await dispatch({ type: 'loadStations', stations2 })
-
-            //     return updatedStation
-            // } catch {
-            //     console.log('cant update tracks')
-            // }
-        },
+        //         const stations2 = await stationService.save(station)
+        //         console.log('stations2',stations2)
+        //         // await dispatch({ type: 'loadStations', stations })
+        //         // commit({ type: 'setStations', stations2 })
+        //         return station
+        //     } catch {
+        //         console.log('cant update tracks')
+        //     }
+        // },
 
         async loadStations({ commit }) {
             try {
@@ -109,9 +93,10 @@ export default {
                         stationToUpdate.tracks.splice(idx, 1)
                     }
                 }
-
                 const stations = await stationService.save(stationToUpdate)
+                console.log('stations', stations)
                 await dispatch({ type: 'loadStations', stations })
+
             } catch (err) {
                 console.log(err);
             }

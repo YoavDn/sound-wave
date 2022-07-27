@@ -226,6 +226,14 @@ export default defineComponent({
             const data = { station, track: this.track, isNew: !this.isLiked }
 
             this.$emit('updateStation', data)
+
+            // const loggedInUser = this.$store.getters.getLoggedInUser
+            //     if (!loggedInUser) return console.log('no logged in user');
+
+            //     const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+            //     const data = { station, track: this.track, isNew: !this.isLiked }
+
+            //     this.$emit('updateStation', data)
         },
         
         toggleFullScreen() {
