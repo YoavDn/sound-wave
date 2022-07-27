@@ -136,6 +136,7 @@ import prev from '../icons/prev-btn.vue'
 import { eventBus } from '../../services/event-bus.js';
 import close from '../icons/close-btn.vue'
 import trackOptions from '../track/track-options.vue';
+import {socketService} from '../../services/socket.service.js'
 
 export default defineComponent({
     components: { YouTube, shuffle, prev, eventBus, close, trackOptions },
@@ -152,9 +153,12 @@ export default defineComponent({
             w: window.innerWidth,
         }
     },
-    // created() {
-    //      this.currStation = this.$store.getters.getCurrStation
-    // },
+    created() {
+         socketService.on('track-playing', (track) => {
+            this.example(track)
+                // this.logTrack(trackId)
+         })
+    },
     // watch:{
 
     // w: {
@@ -221,6 +225,15 @@ export default defineComponent({
         },
     },
     methods: {
+        example(track) {
+            // console.log(JSON.stringify(trackId))
+            // console.log(`https://www.youtube.com/watch?v=${trackId.toString()}`)
+            this.$store.commit({type:'loadTrack', track})
+        },
+        logTrack(trackId){
+            console.log('trackId',trackId)
+        },
+
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
             if (!loggedInUser) return console.log('no logged in user');
@@ -245,17 +258,10 @@ export default defineComponent({
             if (ev.data === 3) this.play()
             else if (ev.data === 0) this.currTime = 0
         },
-        // state(ev) {
-        //     if (ev.data === 3) {
-        //         this.pause()
-        //         this.play()
-        //     }
-        //     if (ev.data === 0) {
-        //         this.currTime = 0
-        //         return clearInterval(this.trackInterval)
-        //     }
-        // },
         onReady() {
+            console.log('ready');
+            // console.log(this.$refs.youtube)
+            // console.log(this.$refs)
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
@@ -265,6 +271,7 @@ export default defineComponent({
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
                 this.play()
+                // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
                 this.pause()
@@ -287,6 +294,7 @@ export default defineComponent({
             this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
+            socketService.emit('track-playing', this.track)
         },
 
         intervalForTrack() {
