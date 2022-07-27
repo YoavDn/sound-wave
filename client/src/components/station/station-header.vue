@@ -53,6 +53,14 @@ export default {
             }, 0)
             return `${utilService.timeStampToStr(timeStamp)}`
         },
+        isUserStation() {
+            const user = this.$store.getters.getLoggedInUser
+            return user.stations.some(id => id === this.station._id)
+        },
+
+        loveIcon() {
+            return { 'bi bi-heart action-btn': !this.isUserStation, "bi bi-heart-fill track-like": this.isUserStation }
+        },
 
         tracksCount() {
 

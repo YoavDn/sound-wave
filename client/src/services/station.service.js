@@ -1,10 +1,11 @@
 import { utilService } from './utils.service.js'
 import { storageService } from './async-storage.service.js';
 import { localStorageService } from './local-storage.js';
+
 import { stationsData } from '../data/data.js'
 import { httpService } from './http.serivce.js';
 
-// import { socketService, SOCKET_EMIT_UPDATE_STATION} from './socket.service'
+import { socketService } from './socket.service'
 
 const KEY = 'stationsDB'
 
@@ -24,7 +25,7 @@ const KEY = 'stationsDB'
 //         showSuccessMsg(`New station about me ${station.txt}`)
 //       })
 //     }, 0)
-  
+
 //   })()
 
 
@@ -76,6 +77,16 @@ async function getById(stationId) {
 }
 
 async function save(station, user) {
+<<<<<<< HEAD
+    if (!user) return await storageService.put(KEY, station)
+
+    //when user logged in
+    else if (station._id) {
+        await httpService.put(`station/${station._id}`, station)
+        // socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
+        return await query()
+    } else return await httpService.post('station', station)
+=======
 
         //when there is no user {
         if (!user) {
@@ -89,6 +100,7 @@ async function save(station, user) {
             socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
             return await query()
         } else return await httpService.post('station', station)
+>>>>>>> 0722ad4653f0e7c2d9fad541fc450336809ceef0
 }
 
 async function remove(station) {

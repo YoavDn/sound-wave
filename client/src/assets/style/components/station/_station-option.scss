@@ -37,6 +37,12 @@
         }
     }
 
+    .active-heart {
+        color: $clr1;
+        font-size: 30px;
+        align-self: center;
+    }
+
     .like-share-container {
         gap: 1rem;
 

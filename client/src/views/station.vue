@@ -122,6 +122,7 @@ export default {
         },
         toggleLikeStation() {
             this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
+            eventBus.emit('show-msg', `Added ${this.station.name} to library`)
         }
 
     },
