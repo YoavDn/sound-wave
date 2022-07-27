@@ -72,7 +72,9 @@ export default {
             const stations = this.$store.getters.getStations
 
             if (!this.user) return this.$store.getters.getLocalStations
-            return this.user.stations.map(id => stations.find(s => s._id === id))
+            const userStations = this.user.stations.map(id => stations.find(s => s._id === id))
+            if (userStations) return userStations
+            return stations
 
         },
         likedSongsRoute() {
