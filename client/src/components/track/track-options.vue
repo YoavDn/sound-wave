@@ -1,5 +1,5 @@
 <template class="track-options-dropdown" >
-  <three-dots @click="toggleModal" />
+  <i class="bi bi-three-dots action-btn" @click="toggleModal"></i>
   <div v-if="isModalOn" :style="modalPos" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
     <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
@@ -17,12 +17,13 @@
 
   </div>
 
-  <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
+  <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" :style="modalPos"
+    @mouseleave="isPlaylistsSubmodalOn = false">
     <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station, true)">{{ station.name
     }}</button>
   </div>
 
-  <div v-if="isShareSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
+  <div v-if="isShareSubmodalOn" class="opt-dropdown-side" :style="modalPos" @mouseleave="isPlaylistsSubmodalOn = false">
     <button class="clean-btn">Copy link</button>
     <button class="clean-btn">Copy on whatsapp</button>
   </div>
@@ -56,10 +57,12 @@ export default {
   },
   computed: {
     stations() {
-      return this.$store.getters.getStations
+      const user = this.$store.getters.getLoggedInUser
+      if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
+      else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
     },
-    modalPos(){
-      if(this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
+    modalPos() {
+      if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
       return 'bottom: 2.5rem'
     }
   },

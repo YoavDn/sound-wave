@@ -20,5 +20,11 @@
         width: 100%;
     }
 
-    
+
+}
+
+@media (min-width: $mobile-width)  {
+    .mobile-options {
+        justify-content: flex-end;
+    }
 }

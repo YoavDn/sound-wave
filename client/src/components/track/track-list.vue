@@ -9,12 +9,6 @@
                     @updateUser="updateUser" />
             </Draggable>
         </Container>
-
-        <!-- <li v-for="(track, idx) in tracks" :key="track.id">
-            <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :trackIdx="idx" :track="track"
-                @setTrack="$emit('setTrack', track)" @updateStation="updateStation" @updateUser="updateUser" />
-        </li> -->
-        <!-- </draggable> -->
     </div>
 </template>
 
@@ -45,25 +39,7 @@ export default {
     },
     props: { 'tracks': Array },
     computed: {
-        // trackList: {
-        //         get() {
-        //             return this.tracks
-        //         },
-        //         set(value) {
-        //             console.log('value', value)
-        //             const { id } = this.$route.params
-        //             const station = JSON.parse(JSON.stringify(this.$store.getters.getStation(id)))
-        //             station.tracks = value
-        //             const data = {
-        //                 station,
-        //                 track: null,
-        //                 isNew: null,
-        //             }
-        //             // await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
-        //             this.$emit('updateStation', data)
-        //         }
-        //     }
-        // },
+
 
     },
     methods: {

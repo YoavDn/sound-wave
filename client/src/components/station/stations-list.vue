@@ -1,6 +1,5 @@
 <template>
-    <article v-if="stations" v-for="station in stations" :key="station?._id" 
-        @click="goToStation(station._id)">
+    <article v-if="stations" v-for="station in stations" :key="station?._id" @click="goToStation(station._id)">
         <station-preview :station="station" />
     </article>
 </template >
@@ -12,11 +11,19 @@ export default {
     components: {
         stationPreview,
     },
-    props: { stations: Array, 
-                tag:String,
-     },
+    props: {
+        // stations: Array, 
+        tag: String,
+    },
 
     created() {
+    },
+    computed: {
+        stations() {
+            const user = this.$store.getters.getLoggedInUser
+            if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
+            else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+        }
     },
     methods: {
         goToStation(stationId) {

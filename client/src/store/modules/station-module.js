@@ -85,9 +85,10 @@ export default {
 
         async updateStation({ dispatch }, { data }) {
             try {
+                console.log('data = ', data)
                 const { station, track, isNew } = data
                 const user = userStore.state.loggedInUser
-
+                
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
 
                 if (track && isNew !== null) {  //if  changing tracks

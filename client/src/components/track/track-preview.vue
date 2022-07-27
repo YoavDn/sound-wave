@@ -35,7 +35,7 @@
         <div class="track-time align-center sub-text">
             <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
-            <track-options :trackIdx="trackIdx" :listLength="listLength" :track="track" />
+            <track-options  :trackIdx="trackIdx" :listLength="listLength" :track="track" />
         </div>
 
     </section>

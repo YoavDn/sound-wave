@@ -64,11 +64,12 @@ export default {
         },
 
         heroStations() {
-            const stations = this.$store.getters.getStations
-            if (!this.user) return this.$store.getters.getStations.slice(-6)
-            const userStations = this.user.stations.map(id => stations.find(s => s._id === id))
-            if (userStations) return userStations
-            return stations
+            const user = this.$store.getters.getLoggedInUser
+            let heroList = []
+            if (user) heroList = this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
+            else heroList = this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+
+            return heroList.slice(-6)
 
         },
         welcomeMessage() {
