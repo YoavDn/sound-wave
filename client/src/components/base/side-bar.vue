@@ -30,9 +30,9 @@
             </button>
         </nav>
         <div class="side-bar-station-list" v-if="stations" style="color:white;">
-            <p class="station-side-link" v-for="station in stations" :key="station._id"
+            <!-- <p class="station-side-link" v-for="station in stations" :key="station._id"
                 @click="goToStation(station._id)">
-                {{ station.name }}</p>
+                {{ station.name }}</p> -->
         </div>
     </section>
 </template>
