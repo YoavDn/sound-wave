@@ -13,7 +13,7 @@
 <script>
 import { defineComponent } from 'vue'
 import { VueDraggableNext } from 'vue-draggable-next'
-import { defineProps } from 'vue'
+
 
 import trackPreview from './track-preview.vue'
 import trackListHead from '../custom/track-list-head.vue'
