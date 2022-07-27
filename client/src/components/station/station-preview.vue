@@ -1,7 +1,7 @@
 <template>
     <div class="station-card">
         <div class="station-card-img">
-            <img v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
+            <img v-if="station.imgUrl" :src="station.imgUrl" alt="">
             <img v-else src="../../assets/imgs/defaultCover.svg" alt="">
             <button @click.stop="playStation" class="station-preview-play-btn"><i
                     class="bi bi-play-circle-fill"></i></button>
