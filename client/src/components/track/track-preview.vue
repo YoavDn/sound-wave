@@ -110,8 +110,8 @@
                 const loggedInUser = this.$store.getters.getLoggedInUser
                 let station;
                 if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
-                else station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
-                console.log('hello?');
+                else station = this.$store.getters.getStation(loggedInUser.likedSongs)
+    
     
                 const data = { station, track: this.track, isNew: !this.isLiked }
     
