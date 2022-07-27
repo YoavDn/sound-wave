@@ -4,7 +4,7 @@
 
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation" />
-            <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
+            <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
             <div v-if="!station?.tracks?.length > 0" class="station-search">
@@ -66,6 +66,7 @@ export default {
     },
 
     methods: {
+
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
             this.currTrack = track
@@ -103,16 +104,19 @@ export default {
 
         async updateStation(data) {
             if (!data) return
-
+            console.log('data = ', data)
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
 
-            if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
-            if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
+            if (data.isNew !== null) {
+                if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
+                if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
+            }
 
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
+            console.log(this.station);
         },
         async updateUser(data) {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })

@@ -12,14 +12,11 @@
     "bootstrap-icons": "^1.9.1",
     "element-plus": "^2.2.9",
     "swiper": "^8.3.1",
-    "vue-dndrop": "^1.2.9",
-    "vue-draggable-next": "^2.1.1",
     "vue-router": "^4.1.2",
     "vue-slider-component": "^3.2.18",
-    "vue3-perfect-scrollbar": "^1.6.0",
     "vue3-google-oauth2": "^1.0.6",
+    "vue3-perfect-scrollbar": "^1.6.0",
     "vue3-youtube": "^0.1.9",
-    "vuedraggable": "^2.24.3",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
