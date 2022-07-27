@@ -4,10 +4,10 @@
         <section class="hero-container">
             <h2 class="hero-title">{{ welcomeMessage }}</h2>
             <div class="hero-list">
-                <!-- <article v-for="station in heroStations" :key="station._id" @click="goToStation(station._id)"
+                <article v-for="station in heroStations" :key="station._id" @click="goToStation(station._id)"
                     class="hero-card flex">
                     <hero-preview :station="station" />
-                </article> -->
+                </article>
             </div>
         </section>
         <article class="home-stations-desktop" style="color:white;" v-if="stations" v-for="tag in tags">
@@ -63,9 +63,9 @@ export default {
             return this.$store.getters.getDemoStations
         },
 
-        // heroStations() {
-        //     return this.$store.getters.getDemoStations.slice(-6)
-        // },
+        heroStations() {
+            return this.$store.getters.getDemoStations.slice(-6)
+        },
         welcomeMessage() {
             var today = new Date()
             var curHr = today.getHours()
