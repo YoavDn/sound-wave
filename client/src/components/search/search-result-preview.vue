@@ -20,7 +20,7 @@
             <div v-else class="track-time align-center sub-text">
                 <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
                 <p>{{ track.time }}</p>
-                <track-options :track="track" />
+                <track-options :trackIdx="trackIdx" :listLength="listLength" :track="track" />
             </div>
             <button v-if="!$route.params.id" class="clean-btn mobile-options"
                 @click="$emit('toggleMobileOptions', track)">
@@ -43,6 +43,7 @@
         props: {
             'track': Object,
             'trackIdx': Number,
+            'listLength':Number,
         },
     
         components: {
@@ -55,7 +56,6 @@
     
         data() {
             return {
-                isPlaying: true,
                 station: null,
             }
         },
@@ -64,7 +64,11 @@
         },
         computed: {
             isLiked() {
-                return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+                const loggedInUser = this.$store.getters.getLoggedInUser
+                let station
+                if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+                else station = this.$store.getters.getStation(loggedInUser.likedSongs)
+                return station.tracks.some(t => t.id === this.track.id)
             },
             loveIcon() {
                 return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }

@@ -1,3 +1,9 @@
+.smooth-dnd-container.vertical>.smooth-dnd-draggable-wrapper {
+    // /* overflow: hidden; */
+    overflow: visible;
+    // display: block;
+}
+
 .track-preview {
     font-size: 16px;
     position: relative;
@@ -9,10 +15,11 @@
         width: 16px;
         align-self: center;
     }
+
     .play-pause {
         width: 15px;
     }
-    
+
     .track-img-title {
         grid-column: 2;
 
@@ -175,7 +182,7 @@
     z-index: 7;
     background-color: #282828;
     position: absolute;
-    top: 2.5rem;
+    // top: 2.5rem;
     right: 1.5rem;
     overflow: hidden;
     border-radius: 4px;

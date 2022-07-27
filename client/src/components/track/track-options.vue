@@ -1,6 +1,6 @@
 <template class="track-options-dropdown" >
   <three-dots @click="toggleModal" />
-  <div v-if="isModalOn" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
+  <div v-if="isModalOn" :style="modalPos" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
     <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
         playlist <i class="bi bi-caret-right-fill"></i></span>
@@ -36,7 +36,7 @@ import threeDots from '../../assets/imgs/three-dots.svg'
 import { eventBus } from '../../services/event-bus.js'
 
 export default {
-  props: { track: Object },
+  props: { track: Object, trackIdx: Number, listLength: Number },
   data() {
     return {
       isModalOn: false,
@@ -58,6 +58,10 @@ export default {
     stations() {
       return this.$store.getters.getStations
     },
+    modalPos(){
+      if(this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
+      return 'bottom: 2.5rem'
+    }
   },
 
   methods: {

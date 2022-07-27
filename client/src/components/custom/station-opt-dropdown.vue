@@ -1,7 +1,7 @@
 <template class="track-options-dropdown" >
     <three-dots @click="toggleModal" />
 
-    <div v-if="isModalOn" class="opt-dropdown  station-opt flex flex-column" v-click-outside="closeAllModals">
+    <div v-if="isModalOn" class="opt-dropdown station-opt flex flex-column" v-click-outside="closeAllModals">
         <button class="clean-btn track-opt-btn">
             <span class="flex space-between align-center" @mouseover="openShareSubModal">Share <i
                     class="bi bi-caret-right-fill"></i></span>
