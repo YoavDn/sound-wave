@@ -12,7 +12,6 @@
     "bootstrap-icons": "^1.9.1",
     "element-plus": "^2.2.9",
     "socket.io-client": "^4.5.1",
-    "esbuild-darwin-arm64": "^0.14.50",
     "swiper": "^8.3.1",
     "vue-router": "^4.1.2",
     "vue-slider-component": "^3.2.18",
