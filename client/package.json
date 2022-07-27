@@ -11,11 +11,8 @@
     "axios": "^0.27.2",
     "bootstrap-icons": "^1.9.1",
     "element-plus": "^2.2.9",
-<<<<<<< HEAD
     "socket.io-client": "^4.5.1",
-=======
     "esbuild-darwin-arm64": "^0.14.50",
->>>>>>> a4522b94616552c44678bd04a8e58630f788aa88
     "swiper": "^8.3.1",
     "vue-router": "^4.1.2",
     "vue-slider-component": "^3.2.18",
