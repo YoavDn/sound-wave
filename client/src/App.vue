@@ -1,7 +1,7 @@
 <template>
   <main v-if="stations" class="main-layout">
     <div class="main-view">
-      <perfect-scrollbar>
+      <perfect-scrollbar @ps-scroll-y="onScroll" ref="scroll">
         <div class="background-1">
           <appHeader />
         </div>
@@ -54,6 +54,19 @@ export default {
     demoStations() {
       return this.$store.getters.getDemoStations
     },
+  },
+
+  methods: {
+    onScroll(event) {
+      console.log(this.$refs.scroll.$el, event);
+    }
+  },
+  watch: {
+    $route() {
+       if (this.$refs.scroll.$el) {
+        this.$res.scroll.$el.scrollTop = 0
+       }
+    }
   }
 
 }
