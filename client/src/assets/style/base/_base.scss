@@ -3,13 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     cursor: default;
+
 }
+
 
 html {
     // font-family: 'Inter', sans-serif;
-    font-family: 'gotham medium', sans-serif;
-    overflow-y: auto;
-    scrollbar-gutter: revert;
+    // overflow-y: hidden;
 }
 
 button {
@@ -23,31 +23,11 @@ button {
 
 
 // scrool bar 
-.ps {
-    height: 100%;
 
-    .ps__thumb-y {
-        background: rgba($clr3, 0.3) !important;
-        width: 13px;
-        border-radius:0;
-        visibility: visible;
-        &:hover {
-            background: rgba($clr3, 0.5) !important;
-            width: 13px !important;
-        }
-    }
-
-    .ps__rail-y {
-        opacity: 1;
-        width: 0;
-        z-index: 11 !important;
-    }
-
-}
 
 
 ::-webkit-scrollbar {
-    display: none;
+    // display: none;
     width: 10px;
     z-index: 100;
 
@@ -60,6 +40,7 @@ button {
 /* Track */
 ::-webkit-scrollbar-track {
     background: none;
+    background: linear-gradient(rgba(68, 36, 48, 0) 4rem, $dark-gray 36rem);
 }
 
 /* Handle */
