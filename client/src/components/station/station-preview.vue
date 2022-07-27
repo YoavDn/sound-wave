@@ -3,9 +3,14 @@
         <div class="station-card-img">
             <img v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
             <img v-else src="../../assets/imgs/defaultCover.svg" alt="">
-            <button @click.stop="playStation" class="station-preview-play-btn"><i class="bi bi-play-circle-fill"></i></button>
+            <button @click.stop="playStation" class="station-preview-play-btn"><i
+                    class="bi bi-play-circle-fill"></i></button>
         </div>
-        <h3 class="station-name">{{ station.name }}</h3>
+        <div class="station-name-container flex flex-column">
+            <h3 class="station-name">{{ station.name }}</h3>
+            <span v-if="station.createdBy?.username">By {{ station.createdBy?.username }}</span>
+            <span v-else>By SoundWave</span>
+        </div>
     </div>
 </template>
     

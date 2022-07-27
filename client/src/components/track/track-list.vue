@@ -1,6 +1,6 @@
 <template>
-    <div class="station-tracks-container">
         <track-list-head />
+    <div class="station-tracks-container">
         <draggable v-model="trackList" class="clean-list station-list" :sort="true">
             <li v-for="(track, idx) in tracks" :key="track.id">
                 <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :trackIdx="idx" :track="track"

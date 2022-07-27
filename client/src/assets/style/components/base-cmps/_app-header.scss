@@ -1,11 +1,11 @@
 .app-header-container {
     position: sticky;
     padding-inline: $layout-padding ;
-    height: 64px;
+    height: 5rem;
     top: 0;
     top: 0;
     width: 100%;
-    z-index: 3;
+    z-index: 10;
     background: rgba($clr3, 0);
 
     .btns-container {

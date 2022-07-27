@@ -35,7 +35,6 @@ export default {
                 station.tracks = value
                 const stations2 = await stationService.save(station)
                 const updatedStation = stations2.find(s => s._id === id)
-                console.log('updatedStation in try',updatedStation)
                 commit({ type: 'setStations', stations2 })
                 return updatedStation
             } catch {
@@ -59,15 +58,6 @@ export default {
                 return console.log('cant load demoStation');
             }
         },
-        // async setCurrStation({ commit }, { stationId }) {
-        //     try {
-        //         const station = await stationService.getById(stationId)
-        //         commit({ type: 'setCurrStation', station })
-        //         return station
-        //     } catch {
-        //         return console.log('cant get current Station');
-        //     }
-        // },
 
         async createNewStation({ commit, dispatch }, { user }) {
             try {
@@ -75,7 +65,6 @@ export default {
                 const newStation = await stationService.getEmptyStation(user)
                 const station = await stationService.save(newStation)
 
-                // commit({ type: 'setStations', stations })
                 await dispatch({ type: "loadStations" })
                 return station
 

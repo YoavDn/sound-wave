@@ -101,7 +101,7 @@ async function getEmptyStation(user = null) {
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),
-        createdBy: null,
+        createdBy: user? user : 'Guest',
         likedByUsers: null,
         tracks: [],
 

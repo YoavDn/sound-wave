@@ -1,10 +1,16 @@
 <template>
   <main v-if="stations" class="main-layout">
-
     <div class="main-view">
-      <appHeader />
-      <router-view />
-      <popup-msg />
+      <perfect-scrollbar>
+        <div class="background-1">
+          <appHeader />
+        </div>
+        <div class="main-app">
+          <router-view />
+          <popup-msg />
+        </div>
+      </perfect-scrollbar>
+
     </div>
     <side-bar />
     <player />
@@ -26,7 +32,6 @@ export default {
   name: 'app',
   data() {
     return {
-      isLoginPage: false,
     }
   },
   components: {
