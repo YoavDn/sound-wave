@@ -78,18 +78,18 @@ async function getById(stationId) {
 
 async function save(station, user) {
 
-        //when there is no user {
-        if (!user) {
-            if (station._id) return await storageService.put(KEY, station)
-            else return await storageService.post(KEY, station)
-        }
+    //when there is no user {
+    if (!user) {
+        if (station._id) return await storageService.put(KEY, station)
+        else return await storageService.post(KEY, station)
+    }
 
-        //when user logged in
-        else if (station._id) {
-            await httpService.put(`station/${station._id}`, station)
-            socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
-            return await query()
-        } else return await httpService.post('station', station)
+    //when user logged in
+    else if (station._id) {
+        await httpService.put(`station/${station._id}`, station)
+        // socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
+        return await query()
+    } else return await httpService.post('station', station)
 }
 
 async function remove(station) {

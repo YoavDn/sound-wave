@@ -1,5 +1,5 @@
 .login-page {
-    position: absolute;
+    position: fixed;
     display: grid;
     grid-template-rows: 100px 1fr;
     top: 0;
@@ -131,7 +131,7 @@
                 align-self: flex-end;
                 cursor: pointer;
 
-    
+
 
 
             }
@@ -162,7 +162,7 @@
                 position: relative;
                 border: 1px solid #878787f5;
                 color: var(--text-base, #000000);
-                
+
                 span {
                     letter-spacing: 3px;
                     color: #6a6a6a;
