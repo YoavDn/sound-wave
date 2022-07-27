@@ -4,9 +4,9 @@
         <!-- <draggable v-model="trackList" class="clean-list station-list" :sort="true"> -->
         <Container orientation="vertical" @drop="onDrop">
             <Draggable v-for="(track, idx) in tracks" :key="track.id">
-                    <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :listLength="tracks.length" :trackIdx="idx"
-                        :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation"
-                        @updateUser="updateUser" />
+                <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :listLength="tracks.length"
+                    :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation"
+                    @updateUser="updateUser" />
             </Draggable>
         </Container>
 
@@ -24,6 +24,7 @@ import { Container, Draggable } from "vue3-smooth-dnd";
 // import { applyDrag, generateItems } from '../utils/helpers'
 import trackPreview from './track-preview.vue'
 import trackListHead from '../custom/track-list-head.vue'
+import { socketService } from "../../services/socket.service";
 
 
 export default {
@@ -32,7 +33,7 @@ export default {
         return {
             // enabled: true,
             // dragging: false,
-            showDragContainer: false, 
+            showDragContainer: false,
         }
     },
     components: {
@@ -68,7 +69,6 @@ export default {
     methods: {
         async onDrop(dropResult) {
             let updatedList = this.applyDrag(this.tracks, dropResult)
-            console.log('updatedList = ', updatedList)
             const { id } = this.$route.params
             const station = JSON.parse(JSON.stringify(this.$store.getters.getStation(id)))
             station.tracks = updatedList
@@ -78,6 +78,8 @@ export default {
                 isNew: null,
             }
             this.$emit('updateStation', data)
+
+
         },
 
         updateStation(data) {

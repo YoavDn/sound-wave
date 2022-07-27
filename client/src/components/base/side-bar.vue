@@ -72,7 +72,10 @@ export default {
             const stations = this.$store.getters.getStations
 
             if (!this.user) return this.$store.getters.getLocalStations
-            return this.user.stations.map(id => stations.find(s => s._id === id))
+            const userStations = this.user.stations.map(id => stations.find(s => s._id === id))
+            console.log(userStations);
+            if (userStations) return userStations
+            return stations
 
         },
         likedSongsRoute() {
@@ -82,8 +85,7 @@ export default {
                 console.log(station);
                 return `station/${station._id}`
             }
-            const _id = this.$store.getters.getLoggedInUser.likedSongs
-            return `station/${_id}`
+            return `station/${this.user.likedSongs}`
 
         },
         user() {
@@ -98,7 +100,7 @@ export default {
     methods: {
         goToPage(page) {
             this.$router.push(`/${page}`)
-            // console.log(this.stations);
+
         },
 
         goToStation(stationId) {

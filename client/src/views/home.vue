@@ -64,7 +64,12 @@ export default {
         },
 
         heroStations() {
-            return this.$store.getters.getStations.slice(-6)
+            const stations = this.$store.getters.getStations
+            if (!this.user) return this.$store.getters.getStations.slice(-6)
+            const userStations = this.user.stations.map(id => stations.find(s => s._id === id))
+            if (userStations) return userStations
+            return stations
+
         },
         welcomeMessage() {
             var today = new Date()

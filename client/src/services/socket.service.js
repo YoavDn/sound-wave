@@ -1,4 +1,4 @@
-import io from 'socket.io-client'
+import { io } from 'socket.io-client'
 import { userService } from './user.service'
 
 export const ENTERED_STATION = 'enter-station'
@@ -19,8 +19,8 @@ function createSocketService() {
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      setTimeout(()=>{
-        const user = userService.getLoggedinUser()
+      setTimeout(() => {
+        const user = userService.getLoggedInUser()
         if (user) this.login(user._id)
       }, 500)
     },
@@ -45,6 +45,7 @@ function createSocketService() {
     terminate() {
       socket = null
     },
+
 
   }
   return socketService

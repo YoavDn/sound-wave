@@ -7,28 +7,28 @@
                     <close></close>
                 </span>
             </button>
-            <h4>{{currStation.name}}</h4>
-            <trackOptions></trackOptions>    
+            <h4>{{ currStation.name }}</h4>
+            <trackOptions></trackOptions>
         </div>
 
         <div v-if="isFullScreen" class="curr-track-img-container">
             <img class="curr-track-img" :src="track.imgUrl" />
         </div>
-    
-    <div v-if="isFullScreen" class="all-controllers flex">
 
-        <div class="flex like-name-container">
-            <div class="flex song-info">
-                <div class="curr-track-name">{{ track.title }}</div>
-                <div class="curr-track-singer">Big Boss Vette</div>
-            </div>
+        <div v-if="isFullScreen" class="all-controllers flex">
 
-             <button @click.stop="toggleLikedSong" class="like-btn">
+            <div class="flex like-name-container">
+                <div class="flex song-info">
+                    <div class="curr-track-name">{{ track.title }}</div>
+                    <div class="curr-track-singer">Big Boss Vette</div>
+                </div>
+
+                <button @click.stop="toggleLikedSong" class="like-btn">
                     <span v-bind:class="greenHeart" v-html="isLiked ? like : unlike"></span>
                 </button>
-        </div>
+            </div>
 
-        <div v-if="isFullScreen" class="flex progress-bar-container">
+            <div v-if="isFullScreen" class="flex progress-bar-container">
                 <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
                 <div class="flex progress-bar-time">
@@ -37,94 +37,94 @@
                 </div>
             </div>
 
-                <div v-if="isFullScreen" class="flex player-track-controllers">
-                    <button @click.stop="shuffle">
-                        <span class="side">
-                            <shuffle></shuffle>
-                        </span>
-                    </button>
-                    
-                    <button @click.stop="onChangeSong(-1)">
-                            <span>
-                                <prev></prev>
-                            </span>
-                        </button>
-    
-                    <button class="btn-play" @click.stop="toggleSongPlay">
-                        <span v-html="isPlaying ? pauseSvg : playSvg"></span>
-                    </button>
-    
-                    <button @click.stop="onChangeSong(1)">
-                            <span v-html="next">
-                            </span>
-                        </button>
-    
-                    <button>
-                        <span class="side" v-html="repeatSvg">
-                        </span>
-                    </button>
-                </div>
-    </div>
-<!-- ------------------------------------------------------------------------------------------------------------------- -->
-            <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
-            <div v-if="!isFullScreen" class="flex track-details">
+            <div v-if="isFullScreen" class="flex player-track-controllers">
+                <button @click.stop="shuffle">
+                    <span class="side">
+                        <shuffle></shuffle>
+                    </span>
+                </button>
+
+                <button @click.stop="onChangeSong(-1)">
+                    <span>
+                        <prev></prev>
+                    </span>
+                </button>
+
+                <button class="btn-play" @click.stop="toggleSongPlay">
+                    <span v-html="isPlaying ? pauseSvg : playSvg"></span>
+                </button>
+
+                <button @click.stop="onChangeSong(1)">
+                    <span v-html="next">
+                    </span>
+                </button>
+
+                <button>
+                    <span class="side" v-html="repeatSvg">
+                    </span>
+                </button>
+            </div>
+        </div>
+        <!-- ------------------------------------------------------------------------------------------------------------------- -->
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
                 <img class="curr-track-img" :src="track.imgUrl" />
             </div>
-                <div class="song-info"> 
-                    <div class="curr-track-name">{{ track.title }}</div>
-                    <div class="curr-track-singer">Big Boss Vette</div>
+            <div class="song-info">
+                <div class="curr-track-name">{{ track.title }}</div>
+                <div class="curr-track-singer">Big Boss Vette</div>
+            </div>
+
+            <button @click.stop="toggleLikedSong" class="like-btn">
+                <span v-bind:class="greenHeart" v-html="isLiked ? like : unlike"></span>
+            </button>
+        </div>
+
+        <div v-if="!isFullScreen" class="test1">
+            <div class="track-controllers-container">
+                <div class="flex center player-track-controllers">
+                    <button @click.stop="shuffle">
+                        <span>
+                            <shuffle></shuffle>
+                        </span>
+                    </button>
+                    <button @click.stop="onChangeSong(-1)">
+                        <span>
+                            <prev></prev>
+                        </span>
+                    </button>
+
+                    <button class="btn-play" @click.stop="toggleSongPlay">
+                        <span v-html="isPlaying ? pauseSvg : playSvg"></span>
+                    </button>
+
+                    <button @click.stop="onChangeSong(1)">
+                        <span v-html="next">
+                        </span>
+                    </button>
+
+                    <button>
+                        <span v-html="repeatSvg">
+                        </span>
+                    </button>
                 </div>
-    
-                <button @click.stop="toggleLikedSong" class="like-btn">
-                    <span v-bind:class="greenHeart" v-html="isLiked ? like : unlike"></span>
-                </button>
-            </div>
-    
-            <div v-if="!isFullScreen" class="test1">
-                <div class="track-controllers-container">
-                    <div class="flex center player-track-controllers">
-                        <button @click.stop="shuffle">
-                            <span>
-                                <shuffle></shuffle>
-                            </span>
-                        </button>
-                        <button @click.stop="onChangeSong(-1)">
-                            <span>
-                                <prev></prev>
-                            </span>
-                        </button>
-    
-                        <button class="btn-play" @click.stop="toggleSongPlay">
-                            <span v-html="isPlaying ? pauseSvg : playSvg"></span>
-                        </button>
-    
-                        <button @click.stop="onChangeSong(1)">
-                            <span v-html="next">
-                            </span>
-                        </button>
-    
-                        <button>
-                            <span v-html="repeatSvg">
-                            </span>
-                        </button>
-                    </div>
-    
-                    <div v-if="!isFullScreen" class="flex progress-bar-container">
-                        <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
-                        <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
-                        <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
-                            :max="trackDuration" />
-                        <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
-                    </div>
+
+                <div v-if="!isFullScreen" class="flex progress-bar-container">
+                    <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
+                    <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
+                    <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
+                        :max="trackDuration" />
+                    <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
                 </div>
             </div>
-            <div v-if="!isFullScreen" class="volume-container">
-                <button @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
-                <progress class="progress-bar-volume " :value="volume" max="100"></progress>
-                <input class="volume-bar" @input.stop="changeVolume" type="range" v-model="volume" />
-            </div>
-        </section>
+        </div>
+        <div v-if="!isFullScreen" class="volume-container">
+            <button @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
+            <progress class="progress-bar-volume " :value="volume" max="100"></progress>
+            <input class="volume-bar" @input.stop="changeVolume" type="range" v-model="volume" />
+        </div>
+    </section>
 </template>
 
 <script>
@@ -139,7 +139,7 @@ import trackOptions from '../track/track-options.vue';
 import {socketService} from '../../services/socket.service.js'
 
 export default defineComponent({
-    components: { YouTube, shuffle, prev, eventBus, close, trackOptions},
+    components: { YouTube, shuffle, prev, eventBus, close, trackOptions },
     data() {
         return {
             isFullScreen: false,
@@ -150,7 +150,7 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
-            w:window.innerWidth,
+            w: window.innerWidth,
         }
     },
     created() {
@@ -160,15 +160,15 @@ export default defineComponent({
          })
     },
     // watch:{
-       
-        // w: {
-        //     if(w < 915) return
-        // //    this.toggleFullScreen()
-        // }
-        // exitFullScreen(w){
-        //     if(w < 915) return
-        //     this.toggleFullScreen()
-        // }
+
+    // w: {
+    //     if(w < 915) return
+    // //    this.toggleFullScreen()
+    // }
+    // exitFullScreen(w){
+    //     if(w < 915) return
+    //     this.toggleFullScreen()
+    // }
     // },
     computed: {
         currStation() {
@@ -199,15 +199,17 @@ export default defineComponent({
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-sc-1bi12j5-0 EQkJl"><path d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z"></path></svg>`
         },
         isLiked() {
-           const loggedInUser = this.$store.getters.getLoggedInUser
-            const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+            const loggedInUser = this.$store.getters.getLoggedInUser
+            let station
+            if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+            else station = this.$store.getters.getStation(loggedInUser.likedSongs)
             return station.tracks.some(t => t.id === this.track.id)
         },
         greenHeart() {
             return { 'green-heart': this.isLiked }
         },
         isInFullScreen() {
-            return {'player-container': !this.isFullScreen, 'full-screen': this.isFullScreen}
+            return { 'player-container': !this.isFullScreen, 'full-screen': this.isFullScreen }
         },
         track() {
             return this.$store.getters.getTrack;
@@ -239,10 +241,10 @@ export default defineComponent({
             const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
             const data = { station, track: this.track, isNew: !this.isLiked }
 
-            this.$store.dispatch({type:'updateStation', data})
+            this.$store.dispatch({ type: 'updateStation', data })
             // this.$emit('updateStation', data)
         },
-        
+
         toggleFullScreen() {
             this.isFullScreen = !this.isFullScreen
         },
@@ -253,8 +255,8 @@ export default defineComponent({
         },
 
         state(ev) {
-            if (ev.data === 3) this.play()     
-            else if (ev.data === 0) this.currTime = 0               
+            if (ev.data === 3) this.play()
+            else if (ev.data === 0) this.currTime = 0
         },
         onReady() {
             console.log('ready');
@@ -278,8 +280,8 @@ export default defineComponent({
         enterFullScreen() {
             const tabletWidth = window.innerWidth
             if (tabletWidth > 915) return
-            else if(!this.isFullScreen)
-            this.toggleFullScreen()
+            else if (!this.isFullScreen)
+                this.toggleFullScreen()
         },
         pause() {
             clearInterval(this.trackInterval);
@@ -334,8 +336,8 @@ export default defineComponent({
 
     },
     watch: {
-         exitFullScreen(w){
-            if(w < 915) return
+        exitFullScreen(w) {
+            if (w < 915) return
             this.toggleFullScreen()
         },
         currTime: {

@@ -82,7 +82,7 @@
                 let station
                 if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
                 else station = this.$store.getters.getStation(loggedInUser.likedSongs)
-                return station.tracks.some(t => t.id === this.track.id)
+                return station?.tracks?.some(t => t.id === this.track?.id)
             },
             togglePlayBtn() {
                 return this.isPlaying && this.currTrack ? 'pause-icon' : 'play-icon'

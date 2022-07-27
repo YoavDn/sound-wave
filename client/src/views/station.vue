@@ -105,7 +105,6 @@ export default {
 
         async updateStation(data) {
             if (!data) return
-            console.log('data = ', data)
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
@@ -117,13 +116,13 @@ export default {
 
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
-            console.log(this.station);
         },
         async updateUser(data) {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })
         },
         toggleLikeStation() {
             this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
+            eventBus.emit('show-msg', `Added ${this.station.name} to library`)
         }
 
     },
