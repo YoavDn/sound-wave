@@ -68,7 +68,6 @@ export default {
     methods: {
         async onDrop(dropResult) {
             let updatedList = this.applyDrag(this.tracks, dropResult)
-            console.log('updatedList = ', updatedList)
             const { id } = this.$route.params
             const station = JSON.parse(JSON.stringify(this.$store.getters.getStation(id)))
             station.tracks = updatedList

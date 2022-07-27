@@ -55,7 +55,10 @@ async function getById(stationId) {
 async function save(station, user) {
     try {
         //when there is no user {
-        if (!user) return await storageService.put(KEY, station)
+        if (!user) {
+            if (station._id) return await storageService.put(KEY, station)
+            else return await storageService.post(KEY, station)
+        }
 
         //when user logged in
         if (station._id) {
@@ -97,7 +100,7 @@ function getEmptyStation(user = null) {
 function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
-        name: user? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length), 
+        name: user ? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length),
         tags: ['test'],
         imgUrl: null,
         createdAt: Date.now(),
