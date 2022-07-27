@@ -54,6 +54,7 @@ export default {
             try {
                 const updatedUser = await userService.updateUser(user)
                 ctx.commit({ type: 'setUser', user: updatedUser })
+                return updatedUser
             } catch (err) {
                 return console.log('could not update user');
             }
@@ -76,7 +77,7 @@ export default {
                 } else {
                     userToUpdate.stations.push(station)
                 }
-                await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
+                newUser = await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
 
 
 
