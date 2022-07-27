@@ -70,19 +70,30 @@ export default {
     computed: {
         stations() {
             const stations = this.$store.getters.getStations
-            const loggedInUser = this.$store.getters.getLoggedInUser
 
-            if (!loggedInUser) return stations
+            if (!this.user) return this.$store.getters.getLocalStations
+            return this.user.stations.map(id => stations.find(s => s._id === id))
 
-            return loggedInUser.stations.map(id => stations.find(s => s._id === id))
         },
         likedSongsRoute() {
+
+            if (!this.user) {
+                const station = this.$store.getters.getStation('likedSongs')
+                console.log(station);
+                return `station/${station._id}`
+            }
             const _id = this.$store.getters.getLoggedInUser.likedSongs
             return `station/${_id}`
-        }
 
-
+        },
+        user() {
+            return this.$store.getters.getLoggedInUser
+        },
     },
+
+
+
+
 
     methods: {
         goToPage(page) {
@@ -102,6 +113,11 @@ export default {
 
         async createNewPlaylist() {
             const user = this.$store.getters.getLoggedInUser
+
+            if (!user) {
+                const localStation = await this.$store.dispatch({ type: 'createNewStation' })
+                return this.$router.push(`/station/${localStation._id}`)
+            }
 
             const station = await this.$store.dispatch({ type: 'createNewStation', user })
             const updatedUser = JSON.parse(JSON.stringify(user))

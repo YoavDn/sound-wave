@@ -103,6 +103,7 @@ export default {
 
         async updateStation(data) {
             if (!data) return
+
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
@@ -120,6 +121,7 @@ export default {
     },
     computed: {
         searchResults() { return this.$store.getters.searchResults },
+        user() { return this.$store.getters.getLoggedInUser }
     },
 
     watch: {

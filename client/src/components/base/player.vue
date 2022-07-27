@@ -1,14 +1,13 @@
 <template>
     <section @click="enterFullScreen" v-if="track" v-bind:class="isInFullScreen">
 
-        <div v-if="isFullScreen" class="flex full-screen-nav">
+        <div v-if="isFullScreen && currStation" class="flex full-screen-nav">
             <button class="close-btn" @click.stop="toggleFullScreen">
                 <span>
                     <close></close>
                 </span>
             </button>
-            <!-- <h4>{{currStation.name}}</h4> -->
-            <h4>Station Name</h4>
+            <h4>{{currStation.name}}</h4>
             <trackOptions></trackOptions>    
         </div>
 
@@ -150,13 +149,12 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             isPlaying: false,
-            currStation:null,
             w:window.innerWidth,
         }
     },
-    created() {
-         this.currStation = this.$store.getters.getCurrStation
-    },
+    // created() {
+    //      this.currStation = this.$store.getters.getCurrStation
+    // },
     // watch:{
        
         // w: {
@@ -169,6 +167,9 @@ export default defineComponent({
         // }
     // },
     computed: {
+        currStation() {
+            return this.$store.getters.getCurrStation
+        },
         playSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M3 1.713a.7.7 0 011.05-.607l10.89 6.288a.7.7 0 010 1.212L4.05 14.894A.7.7 0 013 14.288V1.713z"></path></svg>`;
         },
@@ -225,15 +226,8 @@ export default defineComponent({
             const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
             const data = { station, track: this.track, isNew: !this.isLiked }
 
-            this.$emit('updateStation', data)
-
-            // const loggedInUser = this.$store.getters.getLoggedInUser
-            //     if (!loggedInUser) return console.log('no logged in user');
-
-            //     const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
-            //     const data = { station, track: this.track, isNew: !this.isLiked }
-
-            //     this.$emit('updateStation', data)
+            this.$store.dispatch({type:'updateStation', data})
+            // this.$emit('updateStation', data)
         },
         
         toggleFullScreen() {

@@ -1,49 +1,76 @@
 import { stationService } from '../../services/station.service'
+import userStore from './user-module'
 
 export default {
     state: {
         stations: null,
         demoStations: null,
+        localStations: null,
         player: null
     },
 
     mutations: {
         setStations: (state, { stations }) => state.stations = stations,
         setDemoStations: (state, { demoStations }) => state.demoStations = demoStations,
+        setLocalStations: (state, { localStations }) => state.localStations = localStations,
     },
 
     getters: {
         getStations: (state) => state.stations,
         getDemoStations: (state) => state.demoStations,
+        getLocalStations: (state) => state.localStations,
         getLikedStation: (state) => {
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
-        // getCurrStation(state) { return state.currStation },
         getStation: (state) => (id) => {
-            const station = state.stations.find(station => station._id === id)
-            if (station) return station
-            return state.demoStations.find(station => station._id === id)
+            const demoStation = state.demoStations.find(station => station._id === id)
+
+            if (demoStation) return demoStation // when clicking on demo station
+            if (userStore.state.loggedInUser) {
+                return state.stations.find(station => station._id === id)
+            } else { // when no user logged in
+                return state.localStations.find(station => station._id === id)
+            }
         },
+
+
     },
 
     actions: {
-        // async updateTracksInStation({ commit, state }, { value, id }) {
-        //     try {
-        //         console.log('id',id)
-        //         const stations = state.stations
-        //         console.log('stations',stations)
-        //         const station = stations.find(s => s._id === id)
-        //         station.tracks = value
+        async updateTracksInStation({ dispatch, state }, { value, id }) {
+            try {
+                console.log('id', id)
+                const stations = state.stations
+                console.log('stations', stations)
+                const station = stations.find(s => s._id === id)
+                station.tracks = value
 
-        //         const stations2 = await stationService.save(station)
-        //         console.log('stations2',stations2)
-        //         // await dispatch({ type: 'loadStations', stations })
-        //         // commit({ type: 'setStations', stations2 })
-        //         return station
-        //     } catch {
-        //         console.log('cant update tracks')
-        //     }
-        // },
+                const stations2 = await stationService.save(station)
+                console.log('stations2', stations2)
+
+                await dispatch({ type: 'loadStations' })
+                // commit({ type: 'setStations', stations2 })
+                return station
+            } catch {
+                console.log('cant update tracks')
+            }
+            // try {
+            //     const stations = await stationService.query()
+            //     const station = stations.find(s => s._id === id)
+            //     station.tracks = value
+
+            //     const stations2 = await stationService.save(station)
+            //     console.log('stations2',stations2)
+
+            //     const updatedStation = stations2.find(s => s._id === id)
+            //     console.log('updatedStation in try',updatedStation)
+            //     await dispatch({ type: 'loadStations', stations2 })
+
+            //     return updatedStation
+            // } catch {
+            //     console.log('cant update tracks')
+            // }
+        },
 
         async loadStations({ commit }) {
             try {
@@ -62,11 +89,31 @@ export default {
             }
         },
 
+        loadLocalStations({ commit }) {
+            const localStations = stationService.queryLocalStations()
+            commit({ type: 'setLocalStations', localStations })
+        },
+
+        // async setCurrStation({ commit }, { stationId }) {
+        //     try {
+        //         const station = await stationService.getById(stationId)
+        //         commit({ type: 'setCurrStation', station })
+        //         return station
+        //     } catch {
+        //         return console.log('cant get current Station');
+        //     }
+        // },
+
         async createNewStation({ commit, dispatch }, { user }) {
             try {
-                console.log(user);
-                const newStation = await stationService.getEmptyStation(user)
-                const station = await stationService.save(newStation)
+                const newStation = stationService.getEmptyStation(user)
+                console.log(newStation);
+                if (!user) {
+                    const localStations = stationService.queryLocalStations()
+                    commit({ type: 'setLocalStations', localStations })
+                    return newStation
+                }
+                const station = await stationService.save(newStation, user)
                 console.log(station);
 
                 await dispatch({ type: "loadStations" })
@@ -78,9 +125,11 @@ export default {
         },
 
 
+
         async updateStation({ dispatch }, { data }) {
             try {
                 const { station, track, isNew } = data
+                const user = userStore.state.loggedInUser
 
                 console.log("data =", data);
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
@@ -93,9 +142,16 @@ export default {
                         stationToUpdate.tracks.splice(idx, 1)
                     }
                 }
+<<<<<<< HEAD
                 const stations = await stationService.save(stationToUpdate)
                 console.log('stations', stations)
                 await dispatch({ type: 'loadStations', stations })
+=======
+
+                const stations = await stationService.save(stationToUpdate, user)
+                await dispatch({ type: 'loadStations', stations })
+                if (!user) dispatch({ type: 'loadLocalStations' })
+>>>>>>> cd9d1925be7046b84cb3900de20edac86d63bbd0
 
             } catch (err) {
                 console.log(err);
