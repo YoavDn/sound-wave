@@ -1,6 +1,6 @@
 <template>
-    <div class="station-tracks-container">
         <track-list-head />
+    <div class="station-tracks-container">
         <draggable v-model="trackList" class="clean-list station-list" :sort="true">
             <li v-for="(track, idx) in tracks" :key="track.id">
                 <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :trackIdx="idx" :track="track"
@@ -38,7 +38,9 @@ export default defineComponent({
                 return this.tracks
             },
             async set(value) {
+                console.log('value',value)
                 const { id } = this.$route.params
+                console.log('id',id)
                 await this.$store.dispatch({ type: 'updateTracksInStation', value, id })
             }
         }

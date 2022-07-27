@@ -30,7 +30,7 @@
             </button>
         </nav>
         <div class="side-bar-station-list" v-if="stations" style="color:white;">
-            <p class="station-side-link" v-for="station in stations" :key="station?._id"
+            <p class="station-side-link" v-for="station in stations" :key="station._id"
                 @click="goToStation(station._id)">
                 {{ station.name }}</p>
         </div>
@@ -68,8 +68,13 @@ export default {
     },
 
     computed: {
-        stations() {
+            stations() {
             const stations = this.$store.getters.getStations
+<<<<<<< HEAD
+=======
+            console.log('stations',stations)
+            const loggedInUser = this.$store.getters.getLoggedInUser
+>>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
 
             if (!this.user) return this.$store.getters.getLocalStations
             return this.user.stations.map(id => stations.find(s => s._id === id))
@@ -98,6 +103,7 @@ export default {
     methods: {
         goToPage(page) {
             this.$router.push(`/${page}`)
+            // console.log(this.stations);
         },
 
         goToStation(stationId) {

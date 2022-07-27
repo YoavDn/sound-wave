@@ -1,10 +1,12 @@
 <template>
     <section v-if="station" class="station-container">
         <station-header :station="station" @updateStationDetails="updateStationDetails" />
+
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation" />
             <track-list v-if="station.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
+
             <div v-if="!station?.tracks?.length > 0" class="station-search">
                 <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />

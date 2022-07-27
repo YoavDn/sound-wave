@@ -23,12 +23,33 @@ button {
 
 
 // scrool bar 
+.ps {
+    height: 100%;
+
+    .ps__thumb-y {
+        background: rgba($clr3, 0.3) !important;
+        width: 13px;
+        border-radius:0;
+        visibility: visible;
+        &:hover {
+            background: rgba($clr3, 0.5) !important;
+            width: 13px !important;
+        }
+    }
+
+    .ps__rail-y {
+        opacity: 1;
+        width: 0;
+        z-index: 11 !important;
+    }
+
+}
+
 
 ::-webkit-scrollbar {
-    position: absolute;
-    position: fixed;
+    display: none;
     width: 10px;
-    right: 0;
+    z-index: 100;
 
 }
 
@@ -45,6 +66,7 @@ button {
 ::-webkit-scrollbar-thumb {
     background: rgba($clr3, 0.3);
 }
+
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -94,6 +116,7 @@ progress[value] {
     appearance: none;
 
 }
+
 progress[value]:hover {
     /* Reset the default appearance */
 }

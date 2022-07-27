@@ -1,8 +1,8 @@
 .station-card {
     cursor: pointer;
-    height: 100%;
     padding: .5em;
     border-radius: 5px;
+    min-height: 15rem;
     transition: background .3s;
     background-color: #ffffff0a;
 
@@ -55,14 +55,26 @@
         }
     }
 
-    .station-name {
-        padding-inline-start: 6px;
-        color: $clr3;
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 2em;
-        
+    .station-name-container {
+        .station-name {
+            color: $clr3;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 2em;
+
+        }
+
+        span {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin-block: 0px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color:  #a7a7a7bd;
+        }
     }
+
+
 
     p {
         color: $clr3 ;

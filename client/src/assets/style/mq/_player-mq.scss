@@ -94,7 +94,8 @@
         background: linear-gradient(0deg, #121212 14%, #693508 103%);
         backdrop-filter: blur(4px);
         z-index: 100;
-        transition: all 0.5s;
+        // transition: all 0.5s;
+        animation: slide_up 0.3s;
         padding-inline: $base-padding;
         flex-direction: column;
         justify-content: space-between;

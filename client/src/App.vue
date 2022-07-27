@@ -1,10 +1,20 @@
 <template>
   <main v-if="stations && demoStations" class="main-layout">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
     <div class="main-view">
-      <appHeader />
-      <router-view />
-      <popup-msg />
+      <perfect-scrollbar>
+        <div class="background-1">
+          <appHeader />
+        </div>
+        <div class="main-app">
+          <router-view />
+          <popup-msg />
+        </div>
+      </perfect-scrollbar>
+
     </div>
     <side-bar />
     <player />
@@ -26,7 +36,6 @@ export default {
   name: 'app',
   data() {
     return {
-      isLoginPage: false,
     }
   },
   components: {
@@ -47,9 +56,15 @@ export default {
     stations() {
       return this.$store.getters.getStations
     },
+<<<<<<< HEAD
     demoStations() {
       return this.$store.getters.getDemoStations
     },
+=======
+    demoStations(){
+      return this.$store.getters.getDemoStations
+    }
+>>>>>>> 96d3558c5d5efb3de6663cfbe4008cfe16543eba
   }
 
 }
