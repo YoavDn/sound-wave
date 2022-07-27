@@ -34,6 +34,7 @@
 <script>
 import threeDots from '../../assets/imgs/three-dots.svg'
 import { eventBus } from '../../services/event-bus.js'
+
 export default {
   props: { track: Object },
   data() {
@@ -79,7 +80,6 @@ export default {
     },
     updateStation(track, station = this.currStation, isNew = true) {
       this.closeAllModals()
-
       const data = { track, station, isNew }
       eventBus.emit('updateStation', data)
     }
