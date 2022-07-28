@@ -1,13 +1,13 @@
 .app-header-container {
     position: sticky;
     padding-inline: $layout-padding ;
+    grid-row: 1;
+    grid-column: 2;
     height: 5rem;
-    top: 0;
     top: 0;
     width: 100%;
     z-index: 10;
-    // background: rgba($clr3, 0);
-    background: linear-gradient($main-background, $dark-gray 23rem);
+    background: linear-gradient($main-background 85px, $dark-gray 23rem);
 
     .btns-container {
         gap: 1rem;

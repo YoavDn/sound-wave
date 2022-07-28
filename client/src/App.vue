@@ -1,7 +1,7 @@
 <template>
   <main v-if="stations" class="main-layout">
+    <appHeader />
     <div class="main-view">
-      <appHeader />
       <div class="main-app">
         <router-view />
         <popup-msg />
