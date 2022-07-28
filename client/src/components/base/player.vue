@@ -157,10 +157,22 @@ export default defineComponent({
         }
     },
     created() {
+<<<<<<< HEAD
+        const { id } = this.$route.params
+        this.$store.dispatch({type:'setCurrStation',stationId:id })
+         socketService.on('track-playing', (track) => {
+            this.sendTrack(track)
+         })
+         socketService.on('track-pausing', (track) => {
+            console.log('im here')
+            this.pauseTrack(track)
+         })
+=======
         socketService.on('track-playing', (track) => {
             this.example(track)
             // this.logTrack(trackId)
         })
+>>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
     },
     computed: {
         currStation() {
@@ -210,6 +222,9 @@ export default defineComponent({
         track() {
             return this.$store.getters.getTrack;
         },
+        // getIsPlaying() {
+        //     return this.$store.getters.getIsPlaying;
+        // },
         vidSrc() {
             if (this.track) {
 
@@ -224,6 +239,16 @@ export default defineComponent({
         },
     },
     methods: {
+<<<<<<< HEAD
+        sendTrack(track) {
+            this.$store.commit({type:'loadTrack', track})
+        },
+        pauseTrack() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+            clearInterval(this.trackInterval);
+            this.isPlaying = false
+            this.player.pauseVideo()
+=======
         example(track) {
             // console.log(JSON.stringify(trackId))
             // console.log(`https://www.youtube.com/watch?v=${trackId.toString()}`)
@@ -231,14 +256,13 @@ export default defineComponent({
         },
         logTrack(trackId) {
             console.log('trackId', trackId)
+>>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
         },
-
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
             let station;
             if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
             else station = this.$store.getters.getStation(loggedInUser.likedSongs)
-
             const data = { station, track: this.track, isNew: !this.isLiked }
 
             this.$store.dispatch({ type: 'updateStation', data })
@@ -285,14 +309,20 @@ export default defineComponent({
             // this.isPlaying = false
 
             this.player.pauseVideo()
+            if(this.currStation.name === 'jazz rap') {
+            socketService.emit('track-pausing', this.track)
+            }
         },
 
         play() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
             // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
-            socketService.emit('track-playing', this.track)
+            if(this.currStation.name === 'jazz rap') {
+                socketService.emit('track-playing', this.track)
+            }
         },
 
         intervalForTrack() {
@@ -328,8 +358,6 @@ export default defineComponent({
                 this.player.setShuffle(true);
             }
         },
-
-
 
 
     },
