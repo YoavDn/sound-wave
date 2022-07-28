@@ -17,7 +17,6 @@ export default {
     getters: {
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
-            console.log('state.stations = ', state.stations)
             if (user) return state.stations.filter(station => station.createdBy?._id === user._id)
             else return state.stations.filter(station => station.createdBy?._id === 'u101')
         },
