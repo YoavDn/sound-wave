@@ -107,6 +107,7 @@ export default {
                 }
 
                 const stations = await stationService.save(stationToUpdate, user)
+                console.log(stations);
                 if (user) await dispatch({ type: 'loadStations', stations })
                 else dispatch({ type: 'loadLocalStations' })
 
