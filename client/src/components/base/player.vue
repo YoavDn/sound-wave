@@ -158,7 +158,8 @@ export default defineComponent({
             player: null,
             // isPlaying: false,
             w: window.innerWidth,
-            isMobileOptionsShown: false
+            isMobileOptionsShown: false,
+            isReady: false
         }
     },
     created() {
@@ -295,7 +296,7 @@ export default defineComponent({
             else if (ev.data === 0) this.currTime = 0
         },
         onReady() {
-            console.log('ready');
+            this.isReady = true
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
@@ -390,7 +391,8 @@ export default defineComponent({
         },
         isPlaying: {
             handler: function () {
-                if (this.isPlaying) {
+                if(!this.isReady) return
+                else if (this.isPlaying) {
                     this.play()
                 } else {
                     this.pause()
