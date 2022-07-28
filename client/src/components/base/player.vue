@@ -152,7 +152,7 @@ export default defineComponent({
             trackDuration: 0,
             trackInterval: null,
             player: null,
-            isPlaying: false,
+            // isPlaying: false,
             w: window.innerWidth,
         }
     },
@@ -180,6 +180,10 @@ export default defineComponent({
             }
             return station
         },
+        isPlaying() {
+            return this.$store.getters.getIsPlaying
+        },
+
         playSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M3 1.713a.7.7 0 011.05-.607l10.89 6.288a.7.7 0 010 1.212L4.05 14.894A.7.7 0 013 14.288V1.713z"></path></svg>`;
         },
@@ -287,11 +291,9 @@ export default defineComponent({
         toggleSongPlay() {
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
-                this.play()
                 // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
-                this.pause()
             }
         },
         enterFullScreen() {
@@ -302,7 +304,8 @@ export default defineComponent({
         },
         pause() {
             clearInterval(this.trackInterval);
-            this.isPlaying = false
+            // this.isPlaying = false
+
             this.player.pauseVideo()
             if(this.currStation.name === 'jazz rap') {
             socketService.emit('track-pausing', this.track)
@@ -312,7 +315,7 @@ export default defineComponent({
         play() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
-            this.isPlaying = true
+            // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
             if(this.currStation.name === 'jazz rap') {
@@ -372,8 +375,19 @@ export default defineComponent({
             deep: true,
             immediate: false
         },
+        isPlaying: {
+            handler: function () {
+                if (this.isPlaying) {
+                    this.play()
+                } else {
+                    this.pause()
+                }
+            }
+        }
+
 
     },
+
 
 });
 </script>

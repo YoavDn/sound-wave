@@ -63,6 +63,38 @@
             }
         }
     }
+
+    .station-share-modal {
+        z-index: 7;
+        background-color: #282828;
+        position: absolute;
+        top: 3rem;
+        left: 11rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        max-height: 16rem;
+        max-width: 350px;
+        min-width: 160px;
+        padding: 7px;
+        gap: 8px;
+
+
+    }
+
+    .share-link-btn {
+        color: $clr3;
+        height: 40px;
+        padding-inline-start: 10px;
+        text-align: start;
+
+        &:hover {
+            background-color: hsla(0deg, 0%, 100%, 0.1);
+        }
+    }
 }
 
 
