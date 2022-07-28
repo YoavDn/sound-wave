@@ -47,10 +47,12 @@ function _getUrl(id = '') {
 var gLocalStations
 (() => {
     gLocalStations = localStorageService.loadFromStorage(KEY)
+    console.log(gLocalStations);
     if (!gLocalStations || !gLocalStations.length) {
         gLocalStations = []
         const likedSongs = _createLikedSongs()
         gLocalStations.push(likedSongs)
+        console.log(gLocalStations);
         localStorageService.saveToStorage(KEY, gLocalStations)
     }
     return gLocalStations
