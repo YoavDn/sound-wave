@@ -231,13 +231,14 @@ export default defineComponent({
 
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
-            if (!loggedInUser) return console.log('no logged in user');
+            let station;
+            if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+            else station = this.$store.getters.getStation(loggedInUser.likedSongs)
 
-            const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+
             const data = { station, track: this.track, isNew: !this.isLiked }
 
             this.$store.dispatch({ type: 'updateStation', data })
-            // this.$emit('updateStation', data)
         },
 
         toggleFullScreen() {

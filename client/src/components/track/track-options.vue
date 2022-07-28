@@ -19,7 +19,8 @@
 
   <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" :style="sideModalPos"
     @mouseleave="isPlaylistsSubmodalOn = false">
-    <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station, true)">{{ station.name
+    <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station, true)">{{
+        station.name
     }}</button>
   </div>
 
@@ -63,7 +64,7 @@ export default {
       if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
       return 'bottom: 2.5rem'
     },
-    sideModalPos(){
+    sideModalPos() {
       if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
       return 'bottom: 7.5rem'
     }
@@ -76,14 +77,17 @@ export default {
       this.isShareSubmodalOn = false
       this.isPlaylistsSubmodalOn = true
     },
+    
     toggleModal() {
       !this.isModalOn ? this.isModalOn = true : this.closeAllModals()
     },
+
     closeAllModals() {
       this.isShareSubmodalOn = false
       this.isPlaylistsSubmodalOn = false
       this.isModalOn = false
     },
+
     openShareSubModal() {
       this.isShareSubmodalOn = true
       this.isPlaylistsSubmodalOn = false

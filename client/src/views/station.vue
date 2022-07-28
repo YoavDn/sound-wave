@@ -9,8 +9,10 @@
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
             <div v-if="!station?.tracks?.length > 0" class="station-search">
-                <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you Playlist</h2>
+                <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you playlist</h2>
+
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
+
                 <search-result-list v-if="searchResults" :currentPreivew="'searchResultPreview'" @setTrack="setTrack"
                     :tracks="searchResults" @updateStation="updateStation" />
             </div>
@@ -72,6 +74,7 @@ export default {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
             this.currTrack = track
         },
+
         playStation() {
             const firstTrack = this.station.tracks[0]
             this.currTrack = firstTrack
@@ -91,6 +94,7 @@ export default {
             eventBus.emit('show-msg', `Added to${data.station.name}`)
             this.$store.dispatch({ type: 'addTrackToStation', data })
         },
+
         setStation(station) {
             this.$store.commit({ type: 'setCurrStation', station })
         },
@@ -101,7 +105,6 @@ export default {
             const { id } = this.$route.params
             this.station = this.$store.getters.getStation(id)
         },
-
 
         async updateStation(data) {
             if (!data) return
@@ -117,15 +120,17 @@ export default {
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
         },
+
         async updateUser(data) {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })
         },
+
         toggleLikeStation() {
             this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
             eventBus.emit('show-msg', `Added ${this.station.name} to library`)
         }
-
     },
+
     computed: {
         searchResults() { return this.$store.getters.searchResults },
         user() { return this.$store.getters.getLoggedInUser }
