@@ -4,7 +4,7 @@
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
             <div class="logo flex">
-                <img class="logo-svg" src="../../assets/imgs/soundWave.svg" alt="logo">
+                <img class="logo-svg" src="../../assets/imgs/logo.svg" alt="logo">
                 <h2>SoundWave</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
@@ -69,13 +69,9 @@ export default {
 
     computed: {
         stations() {
-            // const user = this.$store.getters.getLoggedInUser
-            // if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
-            // else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
-
             return this.$store.getters.getUserStations
-
         },
+
         likedSongsRoute() {
 
             if (!this.user) {

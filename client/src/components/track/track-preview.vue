@@ -2,7 +2,11 @@
     <section class="track-preview track-list-row align-center">
         <div class="track-play">
 
-            <button @click="$emit('setTrack', track)" class="clean-btn action-btn play-pause">
+            <!-- <button @click="$emit('setTrack', track)" class="clean-btn action-btn play-pause">
+                <component :is="togglePlayBtn" />
+            </button> -->
+
+            <button @click="togglePlay" class="clean-btn action-btn play-pause">
                 <component :is="togglePlayBtn" />
             </button>
 
@@ -37,7 +41,7 @@
         <div class="track-time align-center sub-text">
             <button @click="toggleLikedSong" class="clean-btn"><i :class="loveIcon"></i></button>
             <p>{{ track.time }}</p>
-            <track-options  :trackIdx="trackIdx" :listLength="listLength" :track="track" />
+            <track-options :trackIdx="trackIdx" :listLength="listLength" :track="track" />
         </div>
 
     </section>
@@ -102,11 +106,21 @@
             },
             isPlaying() {
                 return this.$store.getters.getIsPlaying
-            }
+            },
     
         },
     
         methods: {
+            togglePlay() {
+                if (!this.currTrack) return this.$emit('setTrack', this.track)
+    
+                if (this.isPlaying) {
+                    this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+                } else {
+                    this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+                }
+            },
+    
             toggleLikedSong() {
                 const loggedInUser = this.$store.getters.getLoggedInUser
                 let station;
@@ -128,5 +142,7 @@
                 this.$emit('updateStation', data)
             }
         },
+    
+    
     }
     </script>

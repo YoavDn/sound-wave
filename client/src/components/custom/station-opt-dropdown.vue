@@ -13,9 +13,9 @@
 
     </div>
 
-    <div v-if="isShareSubmodalOn" class="opt-dropdown-side" @mouseleave="isPlaylistsSubmodalOn = false">
-        <button class="clean-btn">Copy link</button>
-        <button class="clean-btn">Copy on whatsapp</button>
+    <div v-if="isShareSubmodalOn" class="station-share-modal">
+        <button @click="copyToClipboard" class="share-link-btn clean-btn">Copy link</button>
+        <button class="share-link-btn clean-btn">Copy on whatsapp</button>
     </div>
 
 
@@ -59,7 +59,11 @@ export default {
         },
         openShareSubModal() {
             this.isShareSubmodalOn = true
-            this.isPlaylistsSubmodalOn = false
+        },
+
+        copyToClipboard() {
+            navigator.clipboard.writeText(this.$route.fullPath);
+            eventBus.emit('show-msg', "Link copied to clipboard")
         },
 
         deleteStation() {
