@@ -56,6 +56,6 @@ function getUser(user) {
     return httpService.post('auth/login', user)
 }
 
-function getLoggedInUser() {
-    return httpService.get('auth')
+async function getLoggedInUser() {
+    return await httpService.get('auth')
 }
