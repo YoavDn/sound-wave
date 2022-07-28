@@ -10,8 +10,7 @@
                 <label for="file-input">
                     <img ref="stationImg" v-if="stationToUpdate.imgUrl" :src="station.imgUrl" alt="station img">
                     <img v-else src="../../assets/imgs/defaultCover.svg" alt="station img">
-                    <input id="file-input" class="apload-img-input" type="file" accept="image/*"
-                        @change="uploadImage" />
+                    <input id="file-input" class="apload-img-input" type="file" accept="image/*" @change="handleFile" />
                 </label>
             </div>
             <div class="input-title">
@@ -30,7 +29,8 @@
 </template>
     
 <script >
-import axios from 'axios'
+import { uploadImg } from '../../services/img-upload.service'
+
 export default {
     props: { 'station': Object },
     emits: ['updateStationDetails', 'closeModal'],
@@ -55,14 +55,28 @@ export default {
             this.$emit('updateStationDetails', this.stationToUpdate)
         },
 
-        uploadImage(event) {
-            // this.$refs.uploadImg.src = URL.createObjectURL(event.target.files[0]);
-            this.stationToUpdate.imgUrl = URL.createObjectURL(event.target.files[0]);
-            this.$refs.stationImg.src = this.stationToUpdate.imgUrl
-        },
+        // uploadImage(event) {
+        //     // this.$refs.uploadImg.src = URL.createObjectURL(event.target.files[0]);
+        //     this.stationToUpdate.imgUrl = URL.createObjectURL(event.target.files[0]);
+        //     this.$refs.stationImg.src = this.stationToUpdate.imgUrl
+        // },
 
-        onLoadImg() {
-            this.isLoaded = true
+        // onLoadImg() {
+        //     this.isLoaded = true
+        // },
+        handleFile(ev) {
+            console.log(ev);
+            var file
+            if (ev.type === "change") file = ev.target.files[0]
+            else if (ev.type === "drop") file = ev.dataTransfer.files[0]
+            this.onUploadFile(file)
+        },
+        async onUploadFile(file) {
+            this.isLoading = true
+            const res = await uploadImg(file)
+            this.stationToUpdate.imgUrl = res.secure_url
+            this.$refs.stationImg.src = this.stationToUpdate.imgUrl
+            // this.$emit('save', res.url)
         }
 
 
