@@ -83,7 +83,6 @@ async function save(station, user) {
 
     //when there is no user {
     if (!user && isLocal) {
-
         if (station._id) return await storageService.put(KEY, station)
         else return await storageService.post(KEY, station)
     }
