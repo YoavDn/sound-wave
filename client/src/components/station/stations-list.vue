@@ -12,18 +12,13 @@ export default {
         stationPreview,
     },
     props: {
-        // stations: Array, 
+        stations: Array, 
         tag: String,
     },
 
     created() {
     },
     computed: {
-        stations() {
-            const user = this.$store.getters.getLoggedInUser
-            if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
-            else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
-        }
     },
     methods: {
         goToStation(stationId) {
