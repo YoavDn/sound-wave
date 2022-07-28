@@ -121,6 +121,11 @@ export default {
             await this.$store.dispatch({ type: 'updateUserLikedSong', data })
         },
         toggleLikeStation() {
+            if (!this.user) {
+                eventBus.emit('show-msg', 'Log in to add station ')
+                return
+
+            }
             this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
             eventBus.emit('show-msg', `Added ${this.station.name} to library`)
         }
