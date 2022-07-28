@@ -157,26 +157,28 @@ export default defineComponent({
         }
     },
     created() {
-<<<<<<< HEAD
         const { id } = this.$route.params
         this.$store.dispatch({type:'setCurrStation',stationId:id })
-         socketService.on('track-playing', (track) => {
+         socketService.on('load-track', (track) => {
             this.sendTrack(track)
+         })
+         socketService.on('track-playing', (track) => {
+            console.log('im here 2')
+            this.playTrack(track)
          })
          socketService.on('track-pausing', (track) => {
             console.log('im here')
             this.pauseTrack(track)
          })
-=======
-        socketService.on('track-playing', (track) => {
-            this.example(track)
-            // this.logTrack(trackId)
-        })
->>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
     },
     computed: {
         currStation() {
-            return this.$store.getters.getCurrStation
+            const station = this.$store.getters.getCurrStation
+
+                if(station.name === 'jazz rap') {
+                socketService.emit('load-track', this.track)
+            }
+            return station
         },
         playSvg() {
             return `<svg role="img" height="16" width="16" viewBox="0 0 16 16" ><path d="M3 1.713a.7.7 0 011.05-.607l10.89 6.288a.7.7 0 010 1.212L4.05 14.894A.7.7 0 013 14.288V1.713z"></path></svg>`;
@@ -235,24 +237,22 @@ export default defineComponent({
         },
     },
     methods: {
-<<<<<<< HEAD
         sendTrack(track) {
             this.$store.commit({type:'loadTrack', track})
+            this.play()
         },
         pauseTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
             clearInterval(this.trackInterval);
             this.isPlaying = false
             this.player.pauseVideo()
-=======
-        example(track) {
-            // console.log(JSON.stringify(trackId))
-            // console.log(`https://www.youtube.com/watch?v=${trackId.toString()}`)
-            this.$store.commit({ type: 'loadTrack', track })
         },
-        logTrack(trackId) {
-            console.log('trackId', trackId)
->>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
+        playTrack() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+            clearInterval(this.trackInterval);
+            this.isPlaying = true
+            this.player.playVideo()
+            this.intervalForTrack()
         },
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
@@ -279,8 +279,6 @@ export default defineComponent({
         },
         onReady() {
             console.log('ready');
-            // console.log(this.$refs.youtube)
-            // console.log(this.$refs)
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
@@ -318,7 +316,7 @@ export default defineComponent({
             this.player.playVideo()
             this.intervalForTrack()
             if(this.currStation.name === 'jazz rap') {
-                socketService.emit('track-playing', this.track)
+            socketService.emit('track-playing', this.track)
             }
         },
 
