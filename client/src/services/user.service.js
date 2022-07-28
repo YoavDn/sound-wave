@@ -44,7 +44,7 @@ async function signup(newUser) {
 
 async function logout() {
     // socketService.logout()
-    socketService.emit('unset-user-socket');
+    // socketService.emit('unset-user-socket'); //Raw bugged !!
     return await httpService.post('auth/logout')
 }
 

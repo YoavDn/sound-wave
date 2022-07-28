@@ -57,9 +57,10 @@ export default {
   },
   computed: {
     stations() {
-      const user = this.$store.getters.getLoggedInUser
-      if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
-      else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+      // const user = this.$store.getters.getLoggedInUser
+      // if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
+      // else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+      return this.$store.getters.getUserStations
     },
     modalPos() {
       if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
