@@ -68,8 +68,7 @@ export default {
             let heroList = this.$store.getters.getStations
             if (user) {
                 heroList = heroList.filter(station => station.createdBy?._id === user._id)
-                console.log('heroList.length = ', heroList.length)
-                if (heroList.length === 0) heroList = heroList.filter(station => station.createdBy?._id === 'u101')
+                if (heroList.length === 0) heroList = this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
             }
             else {
                 heroList = heroList.filter(station => station.createdBy?._id === 'u101')
