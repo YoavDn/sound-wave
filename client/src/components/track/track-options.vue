@@ -25,7 +25,7 @@
   </div>
 
   <div v-if="isShareSubmodalOn" class="opt-dropdown-side" :style="modalPos" @mouseleave="isPlaylistsSubmodalOn = false">
-    <button class="clean-btn">Copy link</button>
+    <button @click="copyToClipboard" class="clean-btn">Copy link</button>
     <button class="clean-btn">Copy on whatsapp</button>
   </div>
 
@@ -77,7 +77,7 @@ export default {
       this.isShareSubmodalOn = false
       this.isPlaylistsSubmodalOn = true
     },
-    
+
     toggleModal() {
       !this.isModalOn ? this.isModalOn = true : this.closeAllModals()
     },
@@ -96,6 +96,10 @@ export default {
       this.closeAllModals()
       const data = { track, station, isNew }
       eventBus.emit('updateStation', data)
+    },
+    copyToClipboard() {
+      navigator.clipboard.writeText(this.$route.fullPath);
+      eventBus.emit('show-msg', "Link copied to clipboard")
     }
   }
 
