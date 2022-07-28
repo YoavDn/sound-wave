@@ -153,14 +153,19 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             // isPlaying: false,
+            isReady: false,
             w: window.innerWidth,
         }
     },
     created() {
         const { id } = this.$route.params
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
-        socketService.on('track-playing', (track) => {
+        socketService.on('load-track', (track) => {
             this.sendTrack(track)
+        })
+        socketService.on('track-playing', (track) => {
+            console.log('im here 2')
+            this.playTrack(track)
         })
         socketService.on('track-pausing', (track) => {
             console.log('im here')
@@ -169,7 +174,12 @@ export default defineComponent({
     },
     computed: {
         currStation() {
-            return this.$store.getters.getCurrStation
+            const station = this.$store.getters.getCurrStation
+
+            if (station.name === 'jazz rap') {
+                socketService.emit('load-track', this.track)
+            }
+            return station
         },
         isPlaying() {
             return this.$store.getters.getIsPlaying
@@ -234,12 +244,20 @@ export default defineComponent({
     methods: {
         sendTrack(track) {
             this.$store.commit({ type: 'loadTrack', track })
+            this.play()
         },
         pauseTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
             clearInterval(this.trackInterval);
             this.isPlaying = false
             this.player.pauseVideo()
+        },
+        playTrack() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+            clearInterval(this.trackInterval);
+            this.isPlaying = true
+            this.player.playVideo()
+            this.intervalForTrack()
         },
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
@@ -265,9 +283,8 @@ export default defineComponent({
             else if (ev.data === 0) this.currTime = 0
         },
         onReady() {
+            this.isReady = true
             console.log('ready');
-            // console.log(this.$refs.youtube)
-            // console.log(this.$refs)
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
@@ -276,9 +293,12 @@ export default defineComponent({
         toggleSongPlay() {
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+                // this.play()
+
                 // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+                // this.pause()
             }
         },
         enterFullScreen() {
@@ -362,7 +382,8 @@ export default defineComponent({
         },
         isPlaying: {
             handler: function () {
-                if (this.isPlaying) {
+                if (!this.isReady) return
+                if (this.isPlaying && this.track) {
                     this.play()
                 } else {
                     this.pause()
