@@ -17,9 +17,16 @@ export default {
     getters: {
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
-            if (user) return state.stations.filter(station => station.createdBy?._id === user._id)
-            else return state.stations.filter(station => station.createdBy?._id === 'u101')
+            let stationsToSend = state.stations
+            console.log('state.localStations = ', state.localStations)
+            if (user) { return stationsToSend.filter(station => station.createdBy?._id === user._id) }
+            else if (state.localStations) {
+                stationsToSend = stationsToSend.filter(station => station.createdBy?._id === 'u101')
+                return  [...state.localStations, ...stationsToSend]
+            }
+            else return stationsToSend.filter(station => station.createdBy?._id === 'u101')
         },
+        
         getStations: (state) => state.stations,
         getLocalStations: (state) => state.localStations,
         getLikedStation: (state) => {

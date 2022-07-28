@@ -64,17 +64,19 @@ export default {
         },
 
         heroStations() {
-            const user = this.$store.getters.getLoggedInUser
-            let heroList = this.$store.getters.getStations
-            if (user) {
-                heroList = heroList.filter(station => station.createdBy?._id === user._id)
-                if (heroList.length === 0) heroList = this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
-            }
-            else {
-                heroList = heroList.filter(station => station.createdBy?._id === 'u101')
-            }
+            // const user = this.$store.getters.getLoggedInUser
+            // let heroList = this.$store.getters.getStations
+            // if (user) {
+            //     heroList = heroList.filter(station => station.createdBy?._id === user._id)
+            //     if (heroList.length === 0) heroList = this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+            // }
+            // else {
+            //     heroList = heroList.filter(station => station.createdBy?._id === 'u101')
+            // }
 
-            return heroList.slice(-6)
+            const heroList = this.$store.getters.getUserStations
+
+            return heroList.slice(0, 6)
 
         },
         welcomeMessage() {
