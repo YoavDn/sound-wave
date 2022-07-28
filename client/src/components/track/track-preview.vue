@@ -33,7 +33,9 @@
         </div>
 
         <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
-            <three-dots />
+            <!-- <three-dots /> -->
+            <!-- <i class="bi bi-three-dots-vertical"></i> -->
+            <img src="../../assets/imgs/three-dots-vertical.svg">
         </div>
 
         <div class="track-time align-center sub-text">

@@ -1,4 +1,7 @@
 <template>
+    <track-options-mobile :track="track" @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions"
+        v-if="isMobileOptionsShown" />
+
     <section @click="enterFullScreen" v-bind:class="isInFullScreen">
 
         <div v-if="isFullScreen && currStation" class="flex full-screen-nav">
@@ -8,7 +11,7 @@
                 </span>
             </button>
             <h4>{{ currStation.name }}</h4>
-            <trackOptions></trackOptions>
+            <three-dots @click="toggleMobileOptions"></three-dots>
         </div>
 
         <div v-if="isFullScreen" class="curr-track-img-container">
@@ -138,11 +141,13 @@ import shuffle from '../icons/shuffle-btn.vue'
 import prev from '../icons/prev-btn.vue'
 import { eventBus } from '../../services/event-bus.js';
 import close from '../icons/close-btn.vue'
-import trackOptions from '../track/track-options.vue';
 import { socketService } from '../../services/socket.service.js'
+import threeDots from '../../assets/imgs/three-dots.svg'
+import trackOptionsMobile from '../track/track-options-mobile.vue';
+
 
 export default defineComponent({
-    components: { YouTube, shuffle, prev, eventBus, close, trackOptions },
+    components: { YouTube, shuffle, prev, eventBus, close, threeDots, trackOptionsMobile },
     data() {
         return {
             isFullScreen: false,
@@ -155,6 +160,8 @@ export default defineComponent({
             // isPlaying: false,
             isReady: false,
             w: window.innerWidth,
+            isMobileOptionsShown: false,
+            isReady: false
         }
     },
     created() {
@@ -259,6 +266,10 @@ export default defineComponent({
             this.player.playVideo()
             this.intervalForTrack()
         },
+        toggleMobileOptions() {
+            this.isMobileOptionsShown = !this.isMobileOptionsShown
+        },
+
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
             let station;
@@ -266,6 +277,10 @@ export default defineComponent({
             else station = this.$store.getters.getStation(loggedInUser.likedSongs)
             const data = { station, track: this.track, isNew: !this.isLiked }
 
+            this.$store.dispatch({ type: 'updateStation', data })
+        },
+        updateStation(data) {
+            console.log('data = ', data)
             this.$store.dispatch({ type: 'updateStation', data })
         },
 
@@ -284,7 +299,6 @@ export default defineComponent({
         },
         onReady() {
             this.isReady = true
-            console.log('ready');
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
@@ -383,7 +397,7 @@ export default defineComponent({
         isPlaying: {
             handler: function () {
                 if (!this.isReady) return
-                if (this.isPlaying && this.track) {
+                else if (this.isPlaying) {
                     this.play()
                 } else {
                     this.pause()
