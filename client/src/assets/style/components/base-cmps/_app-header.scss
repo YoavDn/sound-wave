@@ -7,7 +7,7 @@
     width: 100%;
     z-index: 10;
     // background: rgba($clr3, 0);
-    background-color: transparent;
+    background: linear-gradient($main-background, $dark-gray 23rem);
 
     .btns-container {
         gap: 1rem;

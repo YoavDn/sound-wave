@@ -10,6 +10,7 @@
 html {
     font-family: 'gotham', sans-serif;
     // overflow-y: hidden;
+    overflow: hidden;
 }
 
 button {
@@ -29,7 +30,6 @@ button {
 ::-webkit-scrollbar {
     // display: none;
     width: 10px;
-    z-index: 100;
 
 }
 
@@ -39,7 +39,10 @@ button {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: none;
+    background-color: transparent;
+    position: absolute;
+    display: none;
+
 }
 
 /* Handle */
