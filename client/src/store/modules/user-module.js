@@ -53,6 +53,7 @@ export default {
         async updateUser(ctx, { user }) {
             try {
                 const updatedUser = await userService.updateUser(user)
+                console.log(updatedUser);
                 ctx.commit({ type: 'setUser', user: updatedUser })
                 return updatedUser
             } catch (err) {
@@ -60,7 +61,9 @@ export default {
             }
         },
         async getLoggedInUser({ commit }) {
-            const user = await userService.getLoggedInUser()
+            let user = await userService.getLoggedInUser()
+            user = await userService.getUser(user)
+
             commit({ type: 'setUser', user })
         },
 
@@ -72,12 +75,13 @@ export default {
 
                 // when station already in user stations
                 if (user.stations.some(id => id === station)) {
+
                     const idx = user.stations.findIndex(id => id === station)
                     userToUpdate.stations.splice(idx, 1)
                 } else {
-                    userToUpdate.stations.push(station)
+                    userToUpdate.stations.unshift(station)
                 }
-                newUser = await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
+                await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
 
 
 
