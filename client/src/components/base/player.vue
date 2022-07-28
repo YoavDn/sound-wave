@@ -1,5 +1,6 @@
 <template>
-    <track-options-mobile :track="track" @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" v-if="isMobileOptionsShown" />
+    <track-options-mobile :track="track" @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions"
+        v-if="isMobileOptionsShown" />
 
     <section @click="enterFullScreen" v-bind:class="isInFullScreen">
 
@@ -157,6 +158,7 @@ export default defineComponent({
             trackInterval: null,
             player: null,
             // isPlaying: false,
+            isReady: false,
             w: window.innerWidth,
             isMobileOptionsShown: false,
             isReady: false
@@ -164,24 +166,24 @@ export default defineComponent({
     },
     created() {
         const { id } = this.$route.params
-        this.$store.dispatch({type:'setCurrStation',stationId:id })
-         socketService.on('load-track', (track) => {
+        this.$store.dispatch({ type: 'setCurrStation', stationId: id })
+        socketService.on('load-track', (track) => {
             this.sendTrack(track)
-         })
-         socketService.on('track-playing', (track) => {
+        })
+        socketService.on('track-playing', (track) => {
             console.log('im here 2')
             this.playTrack(track)
-         })
-         socketService.on('track-pausing', (track) => {
+        })
+        socketService.on('track-pausing', (track) => {
             console.log('im here')
             this.pauseTrack(track)
-         })
+        })
     },
     computed: {
         currStation() {
             const station = this.$store.getters.getCurrStation
 
-                if(station.name === 'jazz rap') {
+            if (station.name === 'jazz rap') {
                 socketService.emit('load-track', this.track)
             }
             return station
@@ -248,7 +250,7 @@ export default defineComponent({
     },
     methods: {
         sendTrack(track) {
-            this.$store.commit({type:'loadTrack', track})
+            this.$store.commit({ type: 'loadTrack', track })
             this.play()
         },
         pauseTrack() {
@@ -277,7 +279,7 @@ export default defineComponent({
 
             this.$store.dispatch({ type: 'updateStation', data })
         },
-        updateStation(data){
+        updateStation(data) {
             console.log('data = ', data)
             this.$store.dispatch({ type: 'updateStation', data })
         },
@@ -305,9 +307,12 @@ export default defineComponent({
         toggleSongPlay() {
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+                // this.play()
+
                 // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+                // this.pause()
             }
         },
         enterFullScreen() {
@@ -321,8 +326,8 @@ export default defineComponent({
             // this.isPlaying = false
 
             this.player.pauseVideo()
-            if(this.currStation.name === 'jazz rap') {
-            socketService.emit('track-pausing', this.track)
+            if (this.currStation.name === 'jazz rap') {
+                socketService.emit('track-pausing', this.track)
             }
         },
 
@@ -332,8 +337,8 @@ export default defineComponent({
             // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
-            if(this.currStation.name === 'jazz rap') {
-            socketService.emit('track-playing', this.track)
+            if (this.currStation.name === 'jazz rap') {
+                socketService.emit('track-playing', this.track)
             }
         },
 
@@ -391,7 +396,7 @@ export default defineComponent({
         },
         isPlaying: {
             handler: function () {
-                if(!this.isReady) return
+                if (!this.isReady) return
                 else if (this.isPlaying) {
                     this.play()
                 } else {
