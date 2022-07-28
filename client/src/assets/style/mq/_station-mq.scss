@@ -29,7 +29,9 @@
 }
 
 @media screen and (max-width: $mobile-width) {
-
+    .station-card img {
+        border-radius: 0;
+    }
     .station-header-container {
         height: auto;
         padding-inline: 30px;
@@ -66,7 +68,8 @@
         margin: 0;
         padding-block: 0;
         justify-content: space-between;
-        padding-inline-start: 1rem;
+        // padding-inline-start: 1rem;
+        padding-inline: .8rem;
 
 
         .station-options-share {

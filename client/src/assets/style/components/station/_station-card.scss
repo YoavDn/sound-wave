@@ -6,6 +6,10 @@
     transition: background .3s;
     background-color: #ffffff0a;
 
+    .station-name-container {
+        padding: 6px;
+    }
+
     .station-card-img {
         position: relative;
     }
@@ -15,7 +19,7 @@
         width: 100%;
         aspect-ratio: 1;
         // width: 200px;
-        border-radius: 5px;
+        border-radius: 15px;
         padding: 6px;
         object-fit: cover;
     }
@@ -70,7 +74,7 @@
             margin-block: 0px;
             font-size: 0.8125rem;
             font-weight: 600;
-            color:  #a7a7a7bd;
+            color: #a7a7a7bd;
         }
     }
 

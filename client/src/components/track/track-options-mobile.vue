@@ -41,11 +41,14 @@ export default {
     },
     methods: {
         toggleLikedSong() {
-            const likedTracks = this.$store.getters.getLikedStation
-            let isLike = this.isLiked
-            isLike = !isLike
+            const loggedInUser = this.$store.getters.getLoggedInUser
+            let station;
+            if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+            else station = this.$store.getters.getStation(loggedInUser.likedSongs)
 
-            const data = { station: likedTracks, track: this.track, isNew: isLike }
+
+            const data = { station, track: this.track, isNew: !this.isLiked }
+
             this.$emit('updateStation', data)
             this.$emit('toggleMobileOptions')
         },

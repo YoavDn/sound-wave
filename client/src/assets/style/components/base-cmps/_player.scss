@@ -35,12 +35,13 @@
         gap: 10px;
         min-width: 30%;
 
-        .song-info{
+        .song-info {
             max-width: 60%;
+
             .curr-track-singer {
                 font-size: 11px;
             }
-    
+
             .curr-track-name {
                 font-size: 14px;
                 color: #fff;
@@ -66,7 +67,7 @@
 
     .like-btn {
         margin-left: 16px;
-        left:35%;
+        left: 35%;
 
         .green-heart {
             filter: invert(61%) sepia(75%) saturate(531%) hue-rotate(87deg) brightness(98%) contrast(84%);
@@ -87,7 +88,7 @@
         span {
             display: flex;
             justify-content: center;
-        align-items: center;
+            align-items: center;
             filter: invert(0%)
         }
     }
@@ -129,6 +130,7 @@
         gap: 7px;
     }
 
+
     .progress-bar-range {
         -webkit-appearance: none;
         appearance: none;
@@ -141,9 +143,13 @@
 
         &:hover {
             opacity: 1;
-
-
+            
         }
+
+        &[value]:hover{
+            background-color: green;
+        }
+    
     }
 
     .progress-bar {
@@ -197,7 +203,6 @@
     }
 }
 
-.progress-bar-range:hover progress[value]::-webkit-progress-value {
-
-    background: green;
-}
+// .progress-bar-range:hover progress::-webkit-progress-value {
+//     background: green !important;
+// } 
