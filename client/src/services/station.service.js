@@ -10,25 +10,6 @@ const KEY = 'stationsDB'
 
 // const stationChannel = new BroadcastChannel('stationChannel')
 
-// ;(() => {
-//     // reviewChannel.addEventListener('message', (ev) => {
-//     //   console.log('msg event', ev)
-//     //   store.commit(ev.data)
-//     // })
-//     setTimeout(()=>{
-//       socketService.on(SOCKET_EMIT_UPDATE_STATION, (station) => {
-//         console.log('GOT from socket', station)
-//         store.dispatch({type: 'updateStation', station})
-//       })
-//       socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, (station) => {
-//         showSuccessMsg(`New station about me ${station.txt}`)
-//       })
-//     }, 0)
-
-//   })()
-
-
-
 export const stationService = {
     query,
     save,

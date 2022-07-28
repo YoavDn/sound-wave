@@ -154,9 +154,14 @@ export default defineComponent({
         }
     },
     created() {
+        const { id } = this.$route.params
+        this.$store.dispatch({type:'setCurrStation',stationId:id })
          socketService.on('track-playing', (track) => {
-            this.example(track)
-                // this.logTrack(trackId)
+            this.sendTrack(track)
+         })
+         socketService.on('track-pausing', (track) => {
+            console.log('im here')
+            this.pauseTrack(track)
          })
     },
     // watch:{
@@ -214,6 +219,9 @@ export default defineComponent({
         track() {
             return this.$store.getters.getTrack;
         },
+        // getIsPlaying() {
+        //     return this.$store.getters.getIsPlaying;
+        // },
         vidSrc() {
             return `https://www.youtube.com/watch?v=${this.track.id}`;
         },
@@ -225,15 +233,15 @@ export default defineComponent({
         },
     },
     methods: {
-        example(track) {
-            // console.log(JSON.stringify(trackId))
-            // console.log(`https://www.youtube.com/watch?v=${trackId.toString()}`)
+        sendTrack(track) {
             this.$store.commit({type:'loadTrack', track})
         },
-        logTrack(trackId){
-            console.log('trackId',trackId)
+        pauseTrack() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+            clearInterval(this.trackInterval);
+            this.isPlaying = false
+            this.player.pauseVideo()
         },
-
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
             if (!loggedInUser) return console.log('no logged in user');
@@ -287,14 +295,20 @@ export default defineComponent({
             clearInterval(this.trackInterval);
             this.isPlaying = false
             this.player.pauseVideo()
+            if(this.currStation.name === 'jazz rap') {
+            socketService.emit('track-pausing', this.track)
+            }
         },
 
         play() {
+            this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
             this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
-            socketService.emit('track-playing', this.track)
+            if(this.currStation.name === 'jazz rap') {
+                socketService.emit('track-playing', this.track)
+            }
         },
 
         intervalForTrack() {
@@ -330,8 +344,6 @@ export default defineComponent({
                 this.player.setShuffle(true);
             }
         },
-
-
 
 
     },
