@@ -52,7 +52,7 @@ export default {
             activePage: null,
             pagesLinks: [
                 { id: '', name: 'Home', icon: ['homeIcon', 'activeHomeIcon'] },
-                { id: 'search', name: 'search', icon: ['searchIcon', 'activeSearchIcon'] },
+                { id: 'search', name: 'Search', icon: ['searchIcon', 'activeSearchIcon'] },
                 { id: 'library', name: ' Your Library', icon: ["libraryIcon", 'activeLibraryIcon'] }
             ],
             activePage: null
