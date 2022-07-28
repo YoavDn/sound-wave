@@ -15,6 +15,8 @@
     height: 10px;
     position: relative;
     transform: translateY(50%);
+    transform: translateX(-3px);
+
 
     /* left: 50%; */
     /* margin: -30px 0 0 -20px; */

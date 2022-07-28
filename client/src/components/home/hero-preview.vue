@@ -1,7 +1,7 @@
 <template>
 
     <div class="hero-img ">
-        <img v-if="station?.tracks?.length" :src="station.imgUrl" alt="">
+        <img v-if="station.imgUrl" :src="station.imgUrl" alt="">
         <img v-else src="../../assets/imgs/playlist_cover2.webp" alt="">
         <button @click.stop="playStation" class="hero-play-btn"><i class="bi bi-play-circle-fill"></i></button>
     </div>
