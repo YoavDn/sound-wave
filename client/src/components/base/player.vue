@@ -262,7 +262,7 @@ export default defineComponent({
         playTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
-            this.isPlaying = true
+            // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
         },
