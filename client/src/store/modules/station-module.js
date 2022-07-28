@@ -35,7 +35,9 @@ export default {
 
         getStations: (state) => state.stations,
         getLocalStations: (state) => state.localStations,
-        getLikedStation: (state) => {
+        getLikedStation: (state, getters, rootState, rootGetters) => {
+            const user = rootGetters.getLoggedInUser
+            if (user) return state.stations.find(s => s._id === user.likedSongs)
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         getStation: (state) => (id) => {

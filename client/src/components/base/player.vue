@@ -234,11 +234,7 @@ export default defineComponent({
             let station;
             if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
             else station = this.$store.getters.getStation(loggedInUser.likedSongs)
-<<<<<<< HEAD
 
-
-=======
->>>>>>> e978f601652166719b91e69359f8533385b859f5
             const data = { station, track: this.track, isNew: !this.isLiked }
 
             this.$store.dispatch({ type: 'updateStation', data })
