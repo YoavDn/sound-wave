@@ -11,13 +11,14 @@
 
 .main-app {
     background: linear-gradient(rgba(68, 36, 48, 0) 4rem, $dark-gray 36rem);
+    margin-bottom: 3rem;
+
 }
 
 .main-view {
     // grid-row: 1/ span 2;
     overflow: scroll;
     overflow-x: hidden;
-    margin-bottom: 3rem;
 
     .background-1 {
         background: linear-gradient($main-background, $dark-gray 23rem);
