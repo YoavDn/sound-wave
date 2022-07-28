@@ -52,7 +52,7 @@ export default {
             activePage: null,
             pagesLinks: [
                 { id: '', name: 'Home', icon: ['homeIcon', 'activeHomeIcon'] },
-                { id: 'search', name: 'search', icon: ['searchIcon', 'activeSearchIcon'] },
+                { id: 'search', name: 'Search', icon: ['searchIcon', 'activeSearchIcon'] },
                 { id: 'library', name: ' Your Library', icon: ["libraryIcon", 'activeLibraryIcon'] }
             ],
             activePage: null
@@ -69,16 +69,17 @@ export default {
 
     computed: {
         stations() {
-            const user = this.$store.getters.getLoggedInUser
-            if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
-            else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+            // const user = this.$store.getters.getLoggedInUser
+            // if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
+            // else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
+
+            return this.$store.getters.getUserStations
 
         },
         likedSongsRoute() {
 
             if (!this.user) {
                 const station = this.$store.getters.getStation('likedSongs')
-                console.log(station);
                 return `station/${station._id}`
             }
             return `station/${this.user.likedSongs}`

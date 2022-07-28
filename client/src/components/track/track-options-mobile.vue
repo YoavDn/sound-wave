@@ -33,9 +33,7 @@ export default {
     props: {
         'track': Object
     },
-    created() {
-        console.log('this.track = ', this.track)
-    },
+
     data() {
         return {
             isListShown: false,
@@ -53,14 +51,18 @@ export default {
         },
 
         addTrackToStation(station, isNew) {
-            const data = { station, track: this.track , isNew }
+            const data = { station, track: this.track, isNew }
             this.$emit('updateStation', data)
             this.$emit('toggleMobileOptions')
         },
     },
     computed: {
         isLiked() {
-            return this.$store.getters.getLikedStation.tracks.some(t => t.id === this.track.id)
+            const loggedInUser = this.$store.getters.getLoggedInUser
+            let station
+            if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+            else station = this.$store.getters.getStation(loggedInUser.likedSongs)
+            return station?.tracks?.some(t => t.id === this.track?.id)
         },
         stations() {
             return this.$store.getters.getStations

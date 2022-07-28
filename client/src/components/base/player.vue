@@ -1,5 +1,5 @@
 <template>
-    <section @click="enterFullScreen" v-if="track" v-bind:class="isInFullScreen">
+    <section @click="enterFullScreen" v-bind:class="isInFullScreen">
 
         <div v-if="isFullScreen && currStation" class="flex full-screen-nav">
             <button class="close-btn" @click.stop="toggleFullScreen">
@@ -20,7 +20,7 @@
             <div class="flex like-name-container">
                 <div class="flex song-info">
                     <div class="curr-track-name">{{ track.title }}</div>
-                    <div class="curr-track-singer">Big Boss Vette</div>
+                    <!-- <div class="curr-track-singer">Big Boss Vette</div> -->
                 </div>
 
                 <button @click.stop="toggleLikedSong" class="like-btn">
@@ -65,18 +65,21 @@
                 </button>
             </div>
         </div>
+
         <!-- ------------------------------------------------------------------------------------------------------------------- -->
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+
+        <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+
         <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
-                <img class="curr-track-img" :src="track.imgUrl" />
-            </div>
-            <div class="song-info">
-                <div class="curr-track-name">{{ track.title }}</div>
-                <div class="curr-track-singer">Big Boss Vette</div>
+                <img class="curr-track-img" v-if="track" :src="track.imgUrl" />
             </div>
 
-            <button @click.stop="toggleLikedSong" class="like-btn">
+            <div class="song-info">
+                <div class="curr-track-name" v-if="track">{{ track.title }}</div>
+            </div>
+
+            <button @click.stop="toggleLikedSong" :disabled="!track" v-if="track" class="like-btn">
                 <span v-bind:class="greenHeart" v-html="isLiked ? like : unlike"></span>
             </button>
         </div>
@@ -84,27 +87,27 @@
         <div v-if="!isFullScreen" class="test1">
             <div class="track-controllers-container">
                 <div class="flex center player-track-controllers">
-                    <button @click.stop="shuffle">
+                    <button :disabled="!track" @click.stop="shuffle">
                         <span>
                             <shuffle></shuffle>
                         </span>
                     </button>
-                    <button @click.stop="onChangeSong(-1)">
+                    <button :disabled="!track" @click.stop="onChangeSong(-1)">
                         <span>
                             <prev></prev>
                         </span>
                     </button>
 
-                    <button class="btn-play" @click.stop="toggleSongPlay">
+                    <button class="btn-play" :disabled="!track" @click.stop="toggleSongPlay">
                         <span v-html="isPlaying ? pauseSvg : playSvg"></span>
                     </button>
 
-                    <button @click.stop="onChangeSong(1)">
+                    <button :disabled="!track" @click.stop="onChangeSong(1)">
                         <span v-html="next">
                         </span>
                     </button>
 
-                    <button>
+                    <button :disabled="!track">
                         <span v-html="repeatSvg">
                         </span>
                     </button>
@@ -113,16 +116,16 @@
                 <div v-if="!isFullScreen" class="flex progress-bar-container">
                     <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
                     <progress class="progress-bar " :value="currTime" :max="trackDuration"></progress>
-                    <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
-                        :max="trackDuration" />
+                    <input :disabled="!track" class="progress-bar-range" @change.stop="handleTime" type="range"
+                        v-model="currTime" :max="trackDuration" />
                     <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
                 </div>
             </div>
         </div>
         <div v-if="!isFullScreen" class="volume-container">
-            <button @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
+            <button :disabled="!track" @click.stop="mute"><span v-html="isMute ? muteSvg : volumeSvg"></span></button>
             <progress class="progress-bar-volume " :value="volume" max="100"></progress>
-            <input class="volume-bar" @input.stop="changeVolume" type="range" v-model="volume" />
+            <input class="volume-bar" :disabled="!track" @input.stop="changeVolume" type="range" v-model="volume" />
         </div>
     </section>
 </template>
@@ -136,7 +139,7 @@ import prev from '../icons/prev-btn.vue'
 import { eventBus } from '../../services/event-bus.js';
 import close from '../icons/close-btn.vue'
 import trackOptions from '../track/track-options.vue';
-import {socketService} from '../../services/socket.service.js'
+import { socketService } from '../../services/socket.service.js'
 
 export default defineComponent({
     components: { YouTube, shuffle, prev, eventBus, close, trackOptions },
@@ -154,6 +157,7 @@ export default defineComponent({
         }
     },
     created() {
+<<<<<<< HEAD
         const { id } = this.$route.params
         this.$store.dispatch({type:'setCurrStation',stationId:id })
          socketService.on('track-playing', (track) => {
@@ -163,18 +167,13 @@ export default defineComponent({
             console.log('im here')
             this.pauseTrack(track)
          })
+=======
+        socketService.on('track-playing', (track) => {
+            this.example(track)
+            // this.logTrack(trackId)
+        })
+>>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
     },
-    // watch:{
-
-    // w: {
-    //     if(w < 915) return
-    // //    this.toggleFullScreen()
-    // }
-    // exitFullScreen(w){
-    //     if(w < 915) return
-    //     this.toggleFullScreen()
-    // }
-    // },
     computed: {
         currStation() {
             return this.$store.getters.getCurrStation
@@ -223,7 +222,10 @@ export default defineComponent({
         //     return this.$store.getters.getIsPlaying;
         // },
         vidSrc() {
-            return `https://www.youtube.com/watch?v=${this.track.id}`;
+            if (this.track) {
+
+                return `https://www.youtube.com/watch?v=${this.track.id}`;
+            }
         },
         convertMinStart() {
             return utilService.convertSecToMin(Number(this.currTime).toFixed(0))
@@ -233,6 +235,7 @@ export default defineComponent({
         },
     },
     methods: {
+<<<<<<< HEAD
         sendTrack(track) {
             this.$store.commit({type:'loadTrack', track})
         },
@@ -241,16 +244,24 @@ export default defineComponent({
             clearInterval(this.trackInterval);
             this.isPlaying = false
             this.player.pauseVideo()
+=======
+        example(track) {
+            // console.log(JSON.stringify(trackId))
+            // console.log(`https://www.youtube.com/watch?v=${trackId.toString()}`)
+            this.$store.commit({ type: 'loadTrack', track })
+        },
+        logTrack(trackId) {
+            console.log('trackId', trackId)
+>>>>>>> e9e470ab6f97cc95982fd605488c49d5d7c46557
         },
         toggleLikedSong() {
             const loggedInUser = this.$store.getters.getLoggedInUser
-            if (!loggedInUser) return console.log('no logged in user');
-
-            const station = this.$store.getters.getStation(loggedInUser.likedSongs) // temp for now
+            let station;
+            if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+            else station = this.$store.getters.getStation(loggedInUser.likedSongs)
             const data = { station, track: this.track, isNew: !this.isLiked }
 
             this.$store.dispatch({ type: 'updateStation', data })
-            // this.$emit('updateStation', data)
         },
 
         toggleFullScreen() {

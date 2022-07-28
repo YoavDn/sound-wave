@@ -3,11 +3,11 @@
         <h2 class="library-title">Playlists</h2>
         <article class="station-list-container flex">
             <div @click="goToLikedSongs" class="library-liked-songs-card flex">
-                <div class="liked-tracks-names">{{likedTracksName.join(' ⚬ ')}}</div>
+                <div class="liked-tracks-names">{{ likedTracksName.join(' ⚬ ') }}</div>
                 <h1 class="liked-tracks-title">liked Songs</h1>
-                <div class="liked-tracks-count">{{likedTracksCount}} liked songs</div>
-                </div>
-                <stations-list :stations="stations" />
+                <div class="liked-tracks-count">{{ likedTracksCount }} liked songs</div>
+            </div>
+            <stations-list :stations="stations" />
         </article>
     </section>
 </template>
@@ -21,21 +21,28 @@ export default {
     },
     data() {
         return {
-            likedTracksCount:12,
-            likedTracksName:['נסרין תנשום', 'Hello Adele', 'Goodbye Russ', 'Timber Pitbull ', 'פלונטר התקווה 6'],
+            likedTracksCount: 12,
+            likedTracksName: ['נסרין תנשום', 'Hello Adele', 'Goodbye Russ', 'Timber Pitbull ', 'פלונטר התקווה 6'],
         }
     },
-    created(){
+    created() {
         // console.log('here', ['Hello Adele', 'Goodbye Russ'].join(' * '))
     },
     computed: {
         stations() {
-            return this.$store.getters.getStations
+            const stationToShow = this.$store.getters.getUserStations
+            const shift = stationToShow.shift()
+            return stationToShow
         }
-        },
+    },
     methods: {
         goToLikedSongs() {
-            this.$router.push('/station/likedSongs')
+            if (!this.user) {
+                const station = this.$store.getters.getStation('likedSongs')
+                console.log(station);
+                return this.$router.push(`station/${station._id}`)
+            }
+            return this.$router.push(`station/${this.user.likedSongs}`)
         },
     },
 }

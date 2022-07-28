@@ -17,12 +17,27 @@ export default {
     getters: {
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
-            if (user) return state.stations.filter(station => station.createdBy?._id === user._id)
-            else return state.stations.filter(station => station.createdBy?._id === 'u101')
+            let stationsToSend = state.stations
+            if (user) {
+                const userStation = stationsToSend.filter(station => station.createdBy?._id === user._id)
+                const userLikedStations = user.stations.map(id => {
+                    return getters.getStation(id)
+                })
+                return [...userStation, ...userLikedStations]
+
+            }
+            else if (state.localStations) {
+                stationsToSend = stationsToSend.filter(station => station.createdBy?._id === 'u101')
+                return [...state.localStations, ...stationsToSend]
+            }
+            else return stationsToSend.filter(station => station.createdBy?._id === 'u101')
         },
+
         getStations: (state) => state.stations,
         getLocalStations: (state) => state.localStations,
-        getLikedStation: (state) => {
+        getLikedStation: (state, getters, rootState, rootGetters) => {
+            const user = rootGetters.getLoggedInUser
+            if (user) return state.stations.find(s => s._id === user.likedSongs)
             return state.stations.find(s => s._id === '62deb26c4c8fc791056c4df6')
         },
         getStation: (state) => (id) => {
@@ -90,7 +105,6 @@ export default {
 
         async updateStation({ dispatch }, { data }) {
             try {
-                console.log('data = ', data)
                 const { station, track, isNew } = data
                 const user = userStore.state.loggedInUser
 
@@ -106,7 +120,6 @@ export default {
                 }
 
                 const stations = await stationService.save(stationToUpdate, user)
-                console.log(stations);
                 await dispatch({ type: 'loadStations', stations })
                 dispatch({ type: 'loadLocalStations' })
 

@@ -27,7 +27,6 @@ function _getUrl(id = '') {
 var gLocalStations
 (() => {
     gLocalStations = localStorageService.loadFromStorage(KEY)
-    console.log(gLocalStations);
     if (!gLocalStations || !gLocalStations.length) {
         gLocalStations = []
         const likedSongs = _createLikedSongs()
@@ -60,7 +59,6 @@ async function getById(stationId) {
 
 async function save(station, user) {
     const isLocal = gLocalStations.some(localStation => localStation._id === station._id)
-    console.log(gLocalStations);
 
     //when there is no user {
     if (!user && isLocal) {
