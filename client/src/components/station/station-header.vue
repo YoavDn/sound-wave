@@ -39,10 +39,6 @@ export default {
     components: {
         editStationModal
     },
-    created() {
-        console.log(this.station.imgUrl);
-
-    },
     data() {
         return {
             editModalOpen: false,

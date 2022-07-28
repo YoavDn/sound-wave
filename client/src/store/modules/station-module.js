@@ -18,7 +18,6 @@ export default {
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
             let stationsToSend = state.stations
-            console.log('state.localStations = ', state.localStations)
             if (user) { return stationsToSend.filter(station => station.createdBy?._id === user._id) }
             else if (state.localStations) {
                 stationsToSend = stationsToSend.filter(station => station.createdBy?._id === 'u101')
@@ -26,7 +25,7 @@ export default {
             }
             else return stationsToSend.filter(station => station.createdBy?._id === 'u101')
         },
-        
+
         getStations: (state) => state.stations,
         getLocalStations: (state) => state.localStations,
         getLikedStation: (state) => {
@@ -97,7 +96,6 @@ export default {
 
         async updateStation({ dispatch }, { data }) {
             try {
-                console.log('data = ', data)
                 const { station, track, isNew } = data
                 const user = userStore.state.loggedInUser
 
@@ -113,7 +111,6 @@ export default {
                 }
 
                 const stations = await stationService.save(stationToUpdate, user)
-                console.log(stations);
                 await dispatch({ type: 'loadStations', stations })
                 dispatch({ type: 'loadLocalStations' })
 

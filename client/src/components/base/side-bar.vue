@@ -80,7 +80,6 @@ export default {
 
             if (!this.user) {
                 const station = this.$store.getters.getStation('likedSongs')
-                console.log(station);
                 return `station/${station._id}`
             }
             return `station/${this.user.likedSongs}`

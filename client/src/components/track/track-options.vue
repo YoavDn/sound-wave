@@ -17,7 +17,7 @@
 
   </div>
 
-  <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" :style="modalPos"
+  <div v-if="isPlaylistsSubmodalOn" class="opt-dropdown-side" :style="sideModalPos"
     @mouseleave="isPlaylistsSubmodalOn = false">
     <button v-for="station in stations" class="clean-btn" @click="updateStation(track, station, true)">{{ station.name
     }}</button>
@@ -57,15 +57,17 @@ export default {
   },
   computed: {
     stations() {
-      // const user = this.$store.getters.getLoggedInUser
-      // if (user) return this.$store.getters.getStations.filter(station => station.createdBy?._id === user._id)
-      // else return this.$store.getters.getStations.filter(station => station.createdBy?._id === 'u101')
       return this.$store.getters.getUserStations
     },
     modalPos() {
       if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
       return 'bottom: 2.5rem'
+    },
+    sideModalPos(){
+      if (this.listLength - this.trackIdx > 3) return 'top: 2.5rem'
+      return 'bottom: 7.5rem'
     }
+
   },
 
   methods: {
