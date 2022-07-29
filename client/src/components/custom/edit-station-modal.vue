@@ -42,7 +42,7 @@ export default {
     },
 
     created() {
-        this.stationToUpdate = JSON.parse(JSON.stringify({ ...this.station, description: '' }))
+        this.stationToUpdate = JSON.parse(JSON.stringify({ ...this.station }))
     },
 
 
@@ -55,15 +55,6 @@ export default {
             this.$emit('updateStationDetails', this.stationToUpdate)
         },
 
-        // uploadImage(event) {
-        //     // this.$refs.uploadImg.src = URL.createObjectURL(event.target.files[0]);
-        //     this.stationToUpdate.imgUrl = URL.createObjectURL(event.target.files[0]);
-        //     this.$refs.stationImg.src = this.stationToUpdate.imgUrl
-        // },
-
-        // onLoadImg() {
-        //     this.isLoaded = true
-        // },
         handleFile(ev) {
             console.log(ev);
             var file
