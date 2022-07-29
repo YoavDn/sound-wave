@@ -3,7 +3,7 @@
 <template>
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
-            <div class="logo flex">
+            <div @click="goToPage('')" class="logo flex">
                 <img class="logo-svg" src="../../assets/imgs/logo.svg" alt="logo">
                 <h2>SoundWave</h2>
             </div>

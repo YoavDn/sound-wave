@@ -109,10 +109,16 @@ export default {
                 const user = userStore.state.loggedInUser
 
                 let stationToUpdate = JSON.parse(JSON.stringify(station))
+                const newTrack = JSON.parse(JSON.stringify(track))
 
                 if (track && isNew !== null) {  //if  changing tracks
                     if (station.tracks.some(t => t.id === track.id) && isNew) return // if track alreay in station
-                    if (isNew) stationToUpdate.tracks.unshift(track) // adding track
+                    if (isNew) {
+                        newTrack.addedBy = user.fullname
+                        newTrack.addedAt = Date.now()
+                        stationToUpdate.tracks.unshift(newTrack)
+                    } // adding track
+
                     else { //removing tracks
                         const idx = station.tracks.findIndex(t => t.id === track.id)
                         stationToUpdate.tracks.splice(idx, 1)
