@@ -5,6 +5,7 @@
     min-height: 15rem;
     transition: background .3s;
     background-color: #ffffff0a;
+    
 
     .station-name-container {
         padding: 6px;
@@ -19,7 +20,7 @@
         width: 100%;
         aspect-ratio: 1;
         // width: 200px;
-        border-radius: 15px;
+        border-radius: 12px;
         padding: 6px;
         object-fit: cover;
     }

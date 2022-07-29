@@ -1,9 +1,7 @@
 <template>
   <main v-if="stations" class="main-layout">
-    <div class="main-view">
-      <div class="background-1">
-        <appHeader />
-      </div>
+    <appHeader />
+    <div :class="mainViewStyle">
       <div class="main-app">
         <router-view />
         <popup-msg />
@@ -15,6 +13,7 @@
   <section>
 
   </section>
+  <pulse-loader class="loader" :loading="!stations"></pulse-loader>
 </template>
   
 <script>
@@ -29,6 +28,7 @@ export default {
   name: 'app',
   data() {
     return {
+      onStationPage: false,
     }
   },
   components: {
@@ -51,7 +51,20 @@ export default {
     demoStations() {
       return this.$store.getters.getDemoStations
     },
+    mainViewStyle() {
+      return { 'main-view': !this.onStationPage, 'main-view-station': this.onStationPage }
+
+    },
+
   },
+
+  watch: {
+    $route: {
+      handler: function (route) {
+        this.onStationPage = route.name === 'station' ? true : false
+      }
+    }
+  }
 
 }
 </script>

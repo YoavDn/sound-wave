@@ -1,13 +1,33 @@
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: none !important;
+}
+
+.el-select-dropdown {
+
+    background: #3E3E3E;
+
+    .el-select-dropdown__item.selected {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .el-select-dropdown__item {
+        color: white;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.187);
+        }
+    }
+}
+
 .station-update-modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 300;
-    width: 524px;
+    width: 650px;
     color: $clr3;
-
-    min-height: 384px;
+    z-index: 1200;
     background-color: #282828;
     border-radius: 8px;
 
@@ -17,6 +37,7 @@
 
         h2 {
             font-size: 24px;
+            font-weight: 400;
         }
 
         button {
@@ -34,17 +55,20 @@
     .main-modal-container {
         grid-gap: 16px;
         display: grid;
-        grid-template: 32px 132px 32px auto/180px 1fr;
+        grid-template: 32px 132px 32px 32px auto/225px 1fr;
         grid-template-areas:
             "album-image title"
             "album-image description"
+            "album-image tags"
             ". save-button"
             "disclaimer disclaimer";
         padding: 0 24px 24px;
     }
 
+
+
     .modal-img-container {
-        grid-row: 1 /span 2;
+        grid-row: 1 /span 3;
 
         img {
             width: 100%;
@@ -96,18 +120,37 @@
 
     }
 
+
+
+    .tags-select-container {
+        grid-area: tags;
+        width: 100% !important;
+
+        .el-input {
+            --el-input-bg-color: hsla(0, 0%, 100%, .1);
+        }
+
+
+
+        .el-select {
+            width: 100% !important;
+        }
+    }
+
+
+
     .save-btn {
         align-items: center;
         display: -webkit-box;
         display: -ms-flexbox;
-        padding-inline: 34px;
+        padding-inline: 30px;
 
         font-size: 16px;
         font-weight: 700;
         display: flex;
         grid-area: save-button;
         justify-self: flex-end;
-        min-block-size: 48px;
+        min-block-size: 40px;
         border: none;
         cursor: pointer;
         border-radius: 2em;
@@ -119,5 +162,7 @@
         grid-area: disclaimer;
         padding-top: 4px;
         font-size: 11px;
+        display: flex;
+        align-items: flex-end;
     }
 }

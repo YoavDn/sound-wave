@@ -7,13 +7,13 @@
 }
 
 body {
-    overflow: overlay;
+    background-color: $dark-gray;
 }
-
 
 html {
     font-family: 'gotham', sans-serif;
     // overflow-y: hidden;
+    overflow: hidden;
 }
 
 button {
@@ -26,14 +26,19 @@ button {
 }
 
 
+.loader {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
 // scrool bar 
-
-
 
 ::-webkit-scrollbar {
     // display: none;
     width: 10px;
-    z-index: 100;
 
 }
 
@@ -43,8 +48,10 @@ button {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: none;
-    width: 0 !important;
+    background-color: transparent;
+    position: absolute;
+    display: none;
+
 }
 
 /* Handle */
@@ -76,7 +83,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .pop-up-msg {
-    position: absolute;
+    position: fixed;
     bottom: 100px;
     padding-inline: 2em;
     border-radius: 10px;
@@ -94,6 +101,7 @@ input[type=range]::-webkit-slider-thumb {
         color: white;
     }
 }
+
 // progress:hover::-webkit-progress-value {background-color:green !important;}
 progress[value] {
     /* Reset the default appearance */

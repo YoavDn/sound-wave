@@ -17,7 +17,7 @@
                     }} Songs &#8226
                     {{ stationDetails }}
                 </h3>
-                <h3 v-if="station.createdBy">{{ station.createdBy.fullname }}</h3>
+                <h3 v-else-if="station.createdBy">{{ station.createdBy.fullname }}</h3>
 
 
             </div>

@@ -47,7 +47,7 @@ export default {
 
     data() {
         return {
-            tags: [,'test', 'hiphop', 'pop', 'party','shared playlist', 'rock', 'focus', 'jazz', 'album', 'mood']
+    
         }
     },
     methods: {
@@ -59,6 +59,9 @@ export default {
         },
     },
     computed: {
+        tags(){
+            return this.$store.getters.getTags
+        },
         stations() {
             return this.$store.getters.getStations
         },

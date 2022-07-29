@@ -13,7 +13,7 @@
             <button class="clean-btn mobile-opt-btn flex align-center"><img
                     src="../../assets/imgs/share.svg"><span>Share</span></button>
             <button class="clean-btn mobile-opt-btn flex align-center" @click="isListShown = !isListShown"><img
-                    src="../../assets/imgs/active-library.svg"><span>Add to album</span></button>
+                    src="../../assets/imgs/active-library.svg"><span>Add to Playlist</span></button>
         </div>
         <div v-if="isListShown" class="station-hidden-list flex flex-column">
             <button v-for="station in stations" @click="addTrackToStation(station, true)" class="clean-btn btn-album">
@@ -68,7 +68,7 @@ export default {
             return station?.tracks?.some(t => t.id === this.track?.id)
         },
         stations() {
-            return this.$store.getters.getStations
+            return this.$store.getters.getUserStations
         }
     },
 }

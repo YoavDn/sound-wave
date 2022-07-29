@@ -4,7 +4,7 @@
 
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation"
-            @toggleLikeStation="toggleLikeStation" />
+                @toggleLikeStation="toggleLikeStation" />
             <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 

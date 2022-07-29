@@ -1,13 +1,13 @@
 .player-container {
     grid-column: 1/-1;
-    grid-row: 2;
+    grid-row: 3;
     background: $player-gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: $light-gray;
     padding-inline: $base-padding;
-    z-index: 900;
+    // z-index: 600;
 
     .test1 {
         width: 33.5%;
@@ -134,6 +134,7 @@
     .progress-bar-container {
         position: relative;
         justify-content: center;
+        width: 100%;
         font-size: 0.6875rem;
         line-height: 1rem;
         gap: 7px;
@@ -141,30 +142,31 @@
 
 
     .progress-bar-range {
+        position: absolute;
         -webkit-appearance: none;
+        width: 100%;
         appearance: none;
         background-color: transparent;
-        width: 100%;
         opacity: 0;
         z-index: 1;
-        height: 4px;
+        height: 3px;
 
 
         &:hover {
             opacity: 1;
-            
+
         }
 
-        &[value]:hover{
+        &[value]:hover {
             background-color: green;
         }
-    
+
     }
 
     .progress-bar {
         position: absolute;
-        z-index: 1;
         width: 100%;
+        z-index: 1;
         height: 3px;
 
     }
