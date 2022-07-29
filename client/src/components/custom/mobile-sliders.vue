@@ -1,7 +1,7 @@
 <template>
     <swiper :slidesPerView="cardsToShow" :spaceBetween="0" :freeMode="true" :modules="modules" class="mySwiper">
         <swiper-slide v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
-            <station-preview :station="station" class="station-card" />
+            <station-preview :station="station" class="station-card no-hover" />
         </swiper-slide>
     </swiper>
 </template>
@@ -41,8 +41,7 @@ export default {
         const goToStation = (stationId) => router.push(`/station/${stationId}`)
 
 
-        const width = ref(window.innerWidth)
-        const cardsToShow = ref(4)
+        const cardsToShow = ref(2.5)
 
 
 

@@ -14,3 +14,7 @@
         transition: all 0.5s;
     }
 }
+
+.no-hover {
+    pointer-events: none;
+}
