@@ -75,7 +75,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .pop-up-msg {
-    position: absolute;
+    position: fixed;
     bottom: 100px;
     padding-inline: 2em;
     border-radius: 10px;
