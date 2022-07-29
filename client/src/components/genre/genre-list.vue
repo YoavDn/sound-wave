@@ -2,7 +2,7 @@
     <section class="genres-section">
         <h1>Browse all</h1>
         <div class="genres-container-grid">
-            <genre-preview v-for="genre in genres" :genre="genre" />
+            <genre-preview v-for="genre in genres" :genre="genre" @click="goToPage(genre.title)" />
         </div>
     </section>
 </template>
@@ -11,18 +11,21 @@
 import genrePreview from './genre-preview.vue'
 export default {
     props: {
-        genres:{
+        genres: {
             type: Array,
             required: true,
         }
     },
-    created(){
+    created() {
     },
     data() {
         return {
         }
     },
     methods: {
+        goToPage(genre) {
+            this.$router.push(`/genre/${genre}`)
+        }
     },
     computed: {
     },

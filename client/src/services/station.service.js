@@ -39,7 +39,56 @@ var gLocalStations
 })()
 
 
-const demoGenres = stationsData.demoGenres()
+const genres = [{
+    imgUrl: 'https://i.scdn.co/image/ab67706f00000003ca64210a23622427ec19c4a6',
+    background: 'background-color: rgb(119, 157, 195)',
+    title: 'Hits',
+},
+{
+    imgUrl: 'https://upload.wikimedia.org/wikipedia/he/2/21/Madvillainy.jpg',
+    background: 'background-color: rgb(30, 50, 100);',
+    title: 'Hip Hop',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f00000003fa8c71f4d9a74d9d3335577b',
+    background: 'background-color: rgb(27, 213, 127);',
+    title: 'Rock',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f000000029249b35f23fb596b6f006a15',
+    background: 'background-color: rgb(180, 180, 180);',
+    title: 'Workout',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f00000003306b33f37176b84b14058bfc',
+    background: 'background-color: rgb(232, 17, 91);',
+    title: 'Love',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f00000003e109bd481cb5fa0777511182',
+    background: 'background-color: rgb(238, 193, 201)',
+    title: 'Chill',
+},
+{
+    imgUrl: 'https://seed-mix-image.spotifycdn.com/v6/img/pop/6KImCVD70vtIoJWnq6nGn3/en/large',
+    background: 'background-color: rgb(180, 248, 200)',
+    title: 'Pop',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f0000000312cf5fd4624cce89f748ec99',
+    background: 'background-color: rgb(128, 67, 59)',
+    title: 'Meditation',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f000000033a0ea5755963e844eb4a5700',
+    background: 'background-color: rgb(4, 111, 188)',
+    title: 'Summer',
+},
+{
+    imgUrl: 'https://i.scdn.co/image/ab67706f000000032adb7ea2103f8ac7d2f06034',
+    background: 'background-color: rgb(141, 103, 171)',
+    title: 'Relax',
+},]
 
 async function query(demoStations = false) {
     return await httpService.get('station')
@@ -50,7 +99,7 @@ function queryLocalStations() {
 }
 
 function genresQuery() {
-    return demoGenres
+    return genres
 }
 
 async function getById(stationId) {

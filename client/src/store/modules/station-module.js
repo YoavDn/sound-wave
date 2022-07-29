@@ -4,7 +4,7 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-
+        tags: ['Shared Playlists','Recently Added', 'Hip Hop', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null
     },
@@ -15,6 +15,9 @@ export default {
     },
 
     getters: {
+        getTags(state){
+            return state.tags
+        },
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
             let stationsToSend = state.stations

@@ -20,6 +20,13 @@
                 <textarea v-model="stationToUpdate.description" name="" id="" cols="30" rows="10"
                     placeholder="Add an optional descriptions"></textarea>
             </div>
+            <div class="tags-select-container">
+                <el-select v-model="stationToUpdate.tags" class="tags-select" multiple placeholder="Select"
+                    style="background: transparent !important">
+                    <el-option v-for="tag in tags" :value="tag" />
+                    <!-- <el-option v-for="tag in tags" :value="tag">{{ tag }}</el-option> -->
+                </el-select>
+            </div>
             <button @click="updateStationDetails" class="save-btn">Save</button>
             <p class="modal-text-rights">By proceeding, you agree to give SoundWave access to the image you choose to
                 upload. Please make sure you
@@ -37,12 +44,18 @@ export default {
     data() {
         return {
             stationToUpdate: null,
-            isLoaded: false
+            isLoaded: false,
+            choosenTags: '',
         }
     },
 
     created() {
         this.stationToUpdate = JSON.parse(JSON.stringify({ ...this.station }))
+    },
+    computed: {
+        tags() {
+            return this.$store.getters.getTags
+        }
     },
 
 
