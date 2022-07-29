@@ -7,7 +7,7 @@
     align-items: center;
     color: $light-gray;
     padding-inline: $base-padding;
-    z-index: 900;
+    z-index: 600;
 
     .test1 {
         width: 33.5%;
@@ -143,13 +143,13 @@
 
         &:hover {
             opacity: 1;
-            
+
         }
 
-        &[value]:hover{
+        &[value]:hover {
             background-color: green;
         }
-    
+
     }
 
     .progress-bar {

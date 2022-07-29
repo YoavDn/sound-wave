@@ -1,11 +1,12 @@
 .station-update-modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 300;
     width: 524px;
     color: $clr3;
+    z-index: 1200;
 
     min-height: 384px;
     background-color: #282828;
