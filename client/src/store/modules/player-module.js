@@ -28,7 +28,7 @@ export default {
             state.currTrack = track
             state.isPlaying = true
             if (station) state.currStation = station
-            console.log('state.currTrack',state.currTrack)
+            console.log('state.currTrack', state.currTrack)
         },
         setIsPlaying: (state, { isPlaying }) => {
             state.isPlaying = isPlaying

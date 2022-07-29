@@ -69,7 +69,6 @@ export default {
     },
 
     methods: {
-        w
 
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
