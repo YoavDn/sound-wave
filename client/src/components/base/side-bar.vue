@@ -70,6 +70,8 @@ export default {
     computed: {
         stations() {
             return this.$store.getters.getUserStations
+
+
         },
 
         likedSongsRoute() {
