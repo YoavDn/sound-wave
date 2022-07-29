@@ -1,8 +1,8 @@
 <template>
   <main v-if="stations" class="main-layout">
-    <appHeader />
     <div :class="mainViewStyle">
       <div class="main-app">
+        <appHeader />
         <router-view />
         <popup-msg />
       </div>
