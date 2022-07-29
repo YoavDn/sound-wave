@@ -125,6 +125,7 @@
     .progress-bar-container {
         position: relative;
         justify-content: center;
+        width: 100%;
         font-size: 0.6875rem;
         line-height: 1rem;
         gap: 7px;
@@ -132,10 +133,10 @@
 
 
     .progress-bar-range {
+        position: absolute;
         -webkit-appearance: none;
         appearance: none;
         background-color: transparent;
-        width: 100%;
         opacity: 0;
         z-index: 1;
         height: 4px;
@@ -155,8 +156,7 @@
     .progress-bar {
         position: absolute;
         z-index: 1;
-        width: 100%;
-        height: 3px;
+        height: 31px;
 
     }
 

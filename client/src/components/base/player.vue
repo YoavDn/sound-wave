@@ -31,12 +31,13 @@
                 </button>
             </div>
 
-            <div v-if="isFullScreen" class="flex progress-bar-container">
-                <input class="progress-bar-range" @change.stop="handleTime" type="range" v-model="currTime"
+            <div v-if="isFullScreen" class="flex progress-bar-container-full">
+                <progress class="progress-bar-full" :value="currTime" :max="trackDuration"></progress>
+                <input class="progress-bar-range-full" @change.stop="handleTime" type="range" v-model="currTime"
                     :max="trackDuration" />
                 <div class="flex progress-bar-time">
-                    <div class="nums progress-bar-nums1">{{ convertMinStart }}</div>
-                    <div class="nums progress-bar-nums2">{{ convertMinEnd }}</div>
+                    <div class="nums progress-bar-nums1-full">{{ convertMinStart }}</div>
+                    <div class="nums progress-bar-nums2-full">{{ convertMinEnd }}</div>
                 </div>
             </div>
 
