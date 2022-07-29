@@ -18,16 +18,10 @@
     }
 }
 
-@media only screen and (max-width: $mobile-width) {
+@media (max-width: $tablet-width) {
     .search-page-container {
-        // padding-inline-start: 1rem;
-        // padding-inline-end: 0;
+        grid-column: 1;
+        grid-row: 1;
+        padding: $layout-padding-mobile;
     }
-
-
-    .station-container .station-search {
-        // padding-inline-start: 1rem;
-        // padding-inline-end: 0;
-    }
-
 }

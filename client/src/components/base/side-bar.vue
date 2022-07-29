@@ -69,9 +69,8 @@ export default {
 
     computed: {
         stations() {
-            return this.$store.getters.getUserStations
-
-
+            let stations = this.$store.getters.getUserStations
+            return stations
         },
 
         likedSongsRoute() {
@@ -87,10 +86,6 @@ export default {
             return this.$store.getters.getLoggedInUser
         },
     },
-
-
-
-
 
     methods: {
         goToPage(page) {
@@ -118,7 +113,6 @@ export default {
 
             const station = await this.$store.dispatch({ type: 'createNewStation', user })
             const updatedUser = JSON.parse(JSON.stringify(user))
-            console.log(station);
 
             updatedUser.stations.unshift(station.insertedId)
 

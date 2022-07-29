@@ -9,7 +9,7 @@
 
 .main-app {
     background: linear-gradient(rgba(68, 36, 48, 0) 4rem, $dark-gray 136rem);
-    margin-bottom: 3rem;
+    // margin-bottom: 1rem;
 }
 
 
@@ -21,7 +21,6 @@
     overflow: auto;
     z-index: 1;
     scrollbar-gutter: stable;
-    padding-bottom: 3rem;
 }
 
 .main-view::after {

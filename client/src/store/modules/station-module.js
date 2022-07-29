@@ -26,14 +26,15 @@ export default {
                 const userLikedStations = user.stations.map(id => {
                     return getters.getStation(id)
                 })
-                return [...userStation, ...userLikedStations]
+                let stations = [...userStation, ...userLikedStations]
+                return [...new Set(stations)]
 
             }
             else if (state.localStations) {
                 stationsToSend = stationsToSend.filter(station => station.createdBy?._id === 'u101')
                 return [...state.localStations, ...stationsToSend]
             }
-            else return stationsToSend.filter(station => station.createdBy?._id === 'u101')
+            else return [...new Set(stationsToSend.filter(station => station.createdBy?._id === 'u101'))]
         },
 
         getStations: (state) => state.stations,
@@ -74,7 +75,6 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
-                console.log('stations', stations)
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
@@ -153,9 +153,9 @@ export default {
                 const user = userStore.state.loggedInUser
 
                 console.log(user);
-                // const stations = await stationService.remove(station, user)
-                // await dispatch({ type: 'loadStations', stations })
-                // dispatch({ type: 'loadLocalStations' })
+                const stations = await stationService.remove(station, user)
+                await dispatch({ type: 'loadStations', stations })
+                dispatch({ type: 'loadLocalStations' })
 
             } catch {
 

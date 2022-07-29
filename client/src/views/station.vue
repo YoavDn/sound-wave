@@ -110,7 +110,7 @@ export default {
 
             await this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
             await this.$store.dispatch({ type: 'deleteStation', station: this.station })
-            // this.$router.push('/')
+            this.$router.push('/')
         },
 
         async updateStation(data) {

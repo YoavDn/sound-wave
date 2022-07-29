@@ -2,8 +2,7 @@
 
 
     .home-container {
-        padding-inline-start: 1rem;
-        padding-inline-end: 0;
+       padding: $layout-padding-mobile;
 
         .home-stations-desktop {
             display: none;
@@ -11,7 +10,7 @@
 
         .home-stations-mobile {
             display: block;
-            margin-bottom: 3rem;
+            // margin-bottom: 3rem;
             h1 {
                 text-transform: capitalize;
                 margin-block: 20px;
