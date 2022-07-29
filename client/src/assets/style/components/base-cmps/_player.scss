@@ -40,6 +40,12 @@
 
             .curr-track-singer {
                 font-size: 11px;
+                cursor: pointer;
+
+                &:hover{
+                    color: #fff;
+                    text-decoration: underline;
+                }
             }
 
             .curr-track-name {
@@ -82,8 +88,7 @@
         border-radius: 50%;
         justify-content: center;
         align-items: center;
-
-        // &:hover{}
+        cursor: default;
 
         span {
             display: flex;
@@ -99,6 +104,10 @@
         gap: 7px;
         min-width: 30%;
         justify-content: end;
+
+        span{
+            display: flex;
+        }
     }
 
     .volume-bar {

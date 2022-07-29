@@ -49,7 +49,10 @@ export default {
 
         async setCurrStation({ commit }, { stationId }) {
             try {
-                const station = await stationService.getById(stationId)
+                // const station = await stationService.getById(stationId)
+                const stations =  await stationService.query()
+                const station = stations.find(s => s._id === stationId)
+                console.log('station',station)
                 commit({ type: 'setCurrStation', station })
                 return station
             } catch {

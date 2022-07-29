@@ -47,7 +47,7 @@ export default {
 
     data() {
         return {
-            tags: ['Listening Together','test', 'hiphop', 'pop', 'party', 'rock', 'focus', 'jazz', 'album', 'mood']
+            tags: [,'test', 'hiphop', 'pop', 'party','shared playlist', 'rock', 'focus', 'jazz', 'album', 'mood']
         }
     },
     methods: {
