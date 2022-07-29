@@ -4,6 +4,7 @@ import search from '../views/search.vue'
 import library from '../views/library.vue'
 import station from '../views/station.vue'
 import login from '../views/login-signup.vue'
+import genre from '../views/genre.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/station/:id?',
       name: 'station',
       component: station
+    },
+    {
+      path: '/genre/:id?',
+      name: 'genre',
+      component: genre
     },
     {
       path: '/login',

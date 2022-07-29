@@ -1,0 +1,12 @@
+.genre-container {
+    padding-inline: $layout-padding;
+    gap: 1rem;
+    color: $clr3;
+
+    .genre-name {
+        font-size: 96px;
+        padding: 0.08em 0px;
+    }
+}
+
+

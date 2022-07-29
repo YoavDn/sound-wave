@@ -43,7 +43,7 @@
         props: {
             'track': Object,
             'trackIdx': Number,
-            'listLength':Number,
+            'listLength': Number,
         },
     
         components: {
@@ -68,7 +68,7 @@
                 let station
                 if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
                 else station = this.$store.getters.getStation(loggedInUser.likedSongs)
-                return station.tracks.some(t => t.id === this.track.id)
+                return station?.tracks?.some(t => t.id === this.track?.id)
             },
             loveIcon() {
                 return { 'bi bi-heart action-btn': !this.isLiked, "bi bi-heart-fill track-like": this.isLiked }
@@ -89,11 +89,12 @@
     
         methods: {
             toggleLikedSong() {
-                const likedTracks = this.$store.getters.getLikedStation
-                let isLike = this.isLiked
-                isLike = !isLike
+                const loggedInUser = this.$store.getters.getLoggedInUser
+                let station;
+                if (!loggedInUser) station = this.$store.getters.getStation("likedSongs")
+                else station = this.$store.getters.getStation(loggedInUser.likedSongs)
+                const data = { station, track: this.track, isNew: !this.isLiked }
     
-                const data = { station: likedTracks, track: this.track, isNew: isLike }
                 this.$emit('updateStation', data)
             },
     

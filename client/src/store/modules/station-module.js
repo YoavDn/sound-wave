@@ -4,7 +4,7 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-
+        tags: ['Shared Playlists','Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer','Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null
     },
@@ -15,6 +15,9 @@ export default {
     },
 
     getters: {
+        getTags(state){
+            return state.tags
+        },
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser
             let stationsToSend = state.stations
@@ -71,6 +74,7 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
+                console.log('stations',stations)
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');

@@ -11,7 +11,7 @@
             </div>
         </section>
         <article class="home-stations-desktop" style="color:white;" v-if="stations" v-for="tag in tags">
-            <h1>{{ tag }}</h1>
+            <h1 v-if="getFilterStations(tag).length">{{ tag }}</h1>
             <section class="station-list-container ">
                 <stations-list :stations="getFilterStations(tag)" />
             </section>
@@ -47,7 +47,7 @@ export default {
 
     data() {
         return {
-            tags: ['Listening Together','test', 'hiphop', 'pop', 'party', 'rock', 'focus', 'jazz', 'album', 'mood']
+    
         }
     },
     methods: {
@@ -59,6 +59,9 @@ export default {
         },
     },
     computed: {
+        tags(){
+            return this.$store.getters.getTags
+        },
         stations() {
             return this.$store.getters.getStations
         },

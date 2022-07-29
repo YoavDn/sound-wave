@@ -6,9 +6,11 @@
 
     .main-view {
         grid-column: 1;
+        position: absolute;
         grid-row: 1 / -1;
         overflow-y: scroll;
         margin-top: 5rem;
+        z-index: -1;
     }
 
     .main-view-station {
