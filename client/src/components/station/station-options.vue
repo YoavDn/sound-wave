@@ -1,12 +1,12 @@
 <template>
     <section class="station-option-container flex align-center">
         <button v-if="station.tracks.length > 0" @click="$emit('playStation')" class="play-btn">
-        <img style="height: 20px" src="../../assets/imgs/play.svg">
+            <img style="height: 20px" src="../../assets/imgs/play.svg">
         </button>
         <div class="like-share-container flex align-center">
             <button @click="toggleLikeStation" v-if="station.tracks.length > 0"><i :class="loveIcon"></i> </button>
             <button style="position: relative" class="clean-btn station-options">
-                <station-opt-dropdown :station="station" />
+                <station-opt-dropdown :station="station" @deleteStation="deleteStation" />
             </button>
         </div>
     </section>
@@ -20,6 +20,7 @@ import stationOptDropdown from '../custom/station-opt-dropdown.vue'
 
 export default {
     props: { 'station': Object },
+
     components: {
         threeDots,
         stationOptDropdown
@@ -40,6 +41,9 @@ export default {
     methods: {
         toggleLikeStation() {
             this.$emit('toggleLikeStation',)
+        },
+        deleteStation() {
+            this.$emit('deleteStation')
         }
     }
 }

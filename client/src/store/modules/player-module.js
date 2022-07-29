@@ -28,7 +28,6 @@ export default {
             state.currTrack = track
             state.isPlaying = true
             if (station) state.currStation = station
-            console.log('state.currTrack', state.currTrack)
         },
         setIsPlaying: (state, { isPlaying }) => {
             state.isPlaying = isPlaying
@@ -50,9 +49,9 @@ export default {
         async setCurrStation({ commit }, { stationId }) {
             try {
                 // const station = await stationService.getById(stationId)
-                const stations =  await stationService.query()
+                const stations = await stationService.query()
                 const station = stations.find(s => s._id === stationId)
-                console.log('station',station)
+                console.log('station', station)
                 commit({ type: 'setCurrStation', station })
                 return station
             } catch {

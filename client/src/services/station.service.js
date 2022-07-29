@@ -119,16 +119,22 @@ async function save(station, user) {
     else if (station._id) {
         await httpService.put(`station/${station._id}`, station)
         // socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
-        return await query()
+        remove
     } else return await httpService.post('station', station)
 }
 
-async function remove(station) {
-    // await httpService.delete(`station/${reviewId}`)
-    // stationChannel.postMessage({type: 'removeStation', reviewId})
+async function remove(station, user) {
 
-    await storageService.remove(KEY, station)
-    return storageService.query(KEY)
+    if (!user) {
+        await storageService.remove(KEY, station)
+        return storageService.query(KEY)
+
+    } else {
+        await httpService.delete(`station/${station._id}`)
+        return await query()
+        // stationChannel.postMessage({type: 'removeStation', reviewId})
+    }
+
 }
 
 
@@ -140,7 +146,7 @@ function getEmptyStation(user = null) {
         stations = localStorageService.loadFromStorage(KEY)
         newStation = _createEmptyStation(stations.length)
         newStation._id = utilService.makeId()
-        gLocalStations.push(newStation)
+        gLocalStations.unshift(newStation)
         localStorageService.saveToStorage(KEY, gLocalStations)
     } else { // when user logged in
         stations = user.stations

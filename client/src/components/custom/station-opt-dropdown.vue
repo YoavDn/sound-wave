@@ -7,7 +7,7 @@
                     class="bi bi-caret-right-fill"></i></span>
         </button>
 
-        <button @click="deleteStation" class="clean-btn track-opt-btn remove-from-station"
+        <button v-if="isUserStation" @click="deleteStation" class="clean-btn track-opt-btn remove-from-station"
             @mouseenter="isShareSubmodalOn = false">Delete
         </button>
 
@@ -27,6 +27,7 @@ import threeDots from '../../assets/imgs/three-dots.svg'
 import { eventBus } from '../../services/event-bus.js'
 export default {
     props: { 'station': Object },
+    emits: ['deleteStation'],
     data() {
         return {
             isModalOn: false,
@@ -41,6 +42,11 @@ export default {
     },
     computed: {
 
+        isUserStation() {
+            const user = this.$store.getters.getLoggedInUser
+            return user.stations.some(id => id === this.station._id)
+        },
+
     },
 
     methods: {
@@ -54,7 +60,6 @@ export default {
         },
         closeAllModals() {
             this.isShareSubmodalOn = false
-            this.isPlaylistsSubmodalOn = false
             this.isModalOn = false
         },
         openShareSubModal() {
@@ -67,14 +72,9 @@ export default {
         },
 
         deleteStation() {
-
+            this.closeAllModals()
+            this.$emit('deleteStation')
         }
-        // updateStation(track, station = this.currStation, isNew = true) {
-        //     this.closeAllModals()
-
-        //     const data = { track, station, isNew }
-        //     eventBus.emit('updateStation', data)
-        // }
     }
 
 }

@@ -115,7 +115,6 @@
                 const strDate = date.toLocaleDateString().split('/').splice(1, 2).join(', ')
     
                 const month = utilService.getStrMonth(this.track.addedAt)
-                console.log(strDate);
                 return month + ' ' + strDate
             }
     
@@ -145,10 +144,8 @@
             },
     
             addTrackToStation(track, isNew) {
-                console.log('hello = ', hello)
                 const { id } = this.$route.params
                 const station = this.$store.getters.getStation(id)
-    
     
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
