@@ -74,6 +74,7 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
+                console.log('stations',stations)
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');

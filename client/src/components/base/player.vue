@@ -23,7 +23,7 @@
             <div class="flex like-name-container">
                 <div class="flex song-info">
                     <div class="curr-track-name">{{ track.title }}</div>
-                    <!-- <div class="curr-track-singer">Big Boss Vette</div> -->
+                    <div class="curr-track-singer">Singer</div>
                 </div>
 
                 <button @click.stop="toggleLikedSong" class="like-btn">
@@ -81,6 +81,7 @@
 
             <div class="song-info">
                 <div class="curr-track-name" v-if="track">{{ track.title }}</div>
+                <div @click="goToStation(currStation._id)" class="curr-track-singer" v-if="track">{{ currStation.name }}</div>
             </div>
 
             <button @click.stop="toggleLikedSong" :disabled="!track" v-if="track" class="like-btn">
@@ -182,12 +183,7 @@ export default defineComponent({
     },
     computed: {
         currStation() {
-            const station = this.$store.getters.getCurrStation
-
-            if (station.name === 'jazz rap') {
-                socketService.emit('load-track', this.track)
-            }
-            return station
+            return this.$store.getters.getCurrStation 
         },
         isPlaying() {
             return this.$store.getters.getIsPlaying
@@ -233,12 +229,8 @@ export default defineComponent({
         track() {
             return this.$store.getters.getTrack;
         },
-        // getIsPlaying() {
-        //     return this.$store.getters.getIsPlaying;
-        // },
         vidSrc() {
             if (this.track) {
-
                 return `https://www.youtube.com/watch?v=${this.track.id}`;
             }
         },
@@ -249,7 +241,13 @@ export default defineComponent({
             return utilService.convertSecToMin(Number(this.trackDuration).toFixed(0))
         },
     },
+    //          if(station.name === 'jazz rap') {
+    //             socketService.emit('load-track', this.track)
+    //         }
     methods: {
+            goToStation(stationId) {
+            this.$router.push(`/station/${stationId}`)
+        },
         sendTrack(track) {
             this.$store.commit({ type: 'loadTrack', track })
             this.play()
@@ -257,7 +255,7 @@ export default defineComponent({
         pauseTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
             clearInterval(this.trackInterval);
-            this.isPlaying = false
+            // this.isPlaying = false
             this.player.pauseVideo()
         },
         playTrack() {
@@ -303,17 +301,19 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
+                if(this.currStation.name === 'jazz rap') {
+                socketService.emit('load-track', this.track)
+            }
         },
 
         toggleSongPlay() {
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
-                // this.play()
-
+                this.play()
                 // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
-                // this.pause()
+                this.pause()
             }
         },
         enterFullScreen() {
@@ -367,6 +367,9 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
+                if(this.currStation.name === 'jazz rap') {
+                socketService.emit('load-track', this.track)
+            }
             // this.pause()
             // this.play()
         },
