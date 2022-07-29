@@ -230,19 +230,13 @@
 
 
 .progress-bar-range-full {
-    -webkit-appearance: none;
+
     appearance: none;
     background-color: transparent;
     width: 100%;
-    opacity: 0;
+    opacity: 1;
     z-index: 1;
     height: 4px;
-
-
-    &:hover {
-        opacity: 1;
-
-    }
 
     &[value]:hover {
         background-color: green;
