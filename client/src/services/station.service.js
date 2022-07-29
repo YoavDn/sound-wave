@@ -153,7 +153,7 @@ function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
         name: user ? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length),
-        tags: ['test'],
+        tags: [],
         imgUrl: null,
         createdAt: Date.now(),
         createdBy: user ? user : 'Guest',
@@ -167,7 +167,7 @@ function _createLikedSongs() {
     return {
         _id: 'likedSongs',
         name: 'Liked Songs',
-        tags: ['test'],
+        tags: [],
         imgUrl: "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png",
         createdAt: Date.now(),
         createdBy: null,

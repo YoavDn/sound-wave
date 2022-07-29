@@ -21,7 +21,7 @@
                     placeholder="Add an optional descriptions"></textarea>
             </div>
             <div class="tags-select-container">
-                <el-select v-model="stationToUpdate.tags" class="tags-select" multiple placeholder="Select"
+                <el-select v-model="stationToUpdate.tags" class="tags-select" multiple placeholder="Select tags"
                     style="background: transparent !important">
                     <el-option v-for="tag in tags" :value="tag" />
                     <!-- <el-option v-for="tag in tags" :value="tag">{{ tag }}</el-option> -->
