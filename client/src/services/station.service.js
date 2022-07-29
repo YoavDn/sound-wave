@@ -119,16 +119,23 @@ async function save(station, user) {
     else if (station._id) {
         await httpService.put(`station/${station._id}`, station)
         // socketService.emit(SOCKET_EMIT_UPDATE_STATION, station)
-        return await query()
+        remove
     } else return await httpService.post('station', station)
 }
 
-async function remove(station) {
-    // await httpService.delete(`station/${reviewId}`)
-    // stationChannel.postMessage({type: 'removeStation', reviewId})
+async function remove(station, user) {
 
-    await storageService.remove(KEY, station)
-    return storageService.query(KEY)
+    if (!user) {
+        await storageService.remove(KEY, station)
+        return storageService.query(KEY)
+
+    } else {
+        console.log(station);
+        await httpService.delete(`station/${station._id}`)
+        return await query()
+        // stationChannel.postMessage({type: 'removeStation', reviewId})
+    }
+
 }
 
 
@@ -140,7 +147,7 @@ function getEmptyStation(user = null) {
         stations = localStorageService.loadFromStorage(KEY)
         newStation = _createEmptyStation(stations.length)
         newStation._id = utilService.makeId()
-        gLocalStations.push(newStation)
+        gLocalStations.unshift(newStation)
         localStorageService.saveToStorage(KEY, gLocalStations)
     } else { // when user logged in
         stations = user.stations
@@ -153,7 +160,7 @@ function _createEmptyStation(length, user = null) {
     return {
         // _id: isLikedSongs ? 'likedSongs' : null,
         name: user ? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length),
-        tags: ['test'],
+        tags: [],
         imgUrl: null,
         createdAt: Date.now(),
         createdBy: user ? user : 'Guest',
@@ -167,7 +174,7 @@ function _createLikedSongs() {
     return {
         _id: 'likedSongs',
         name: 'Liked Songs',
-        tags: ['test'],
+        tags: [],
         imgUrl: "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png",
         createdAt: Date.now(),
         createdBy: null,

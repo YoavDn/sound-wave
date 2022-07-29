@@ -47,7 +47,6 @@ export default {
 
 
         const cardsPerView = (e) => {
-            console.log(e.target.innerWidth);
             if (e.target.innerWidth > 700) {
                 cardsToShow.value = 4
             } else if (e.target.innerWidth > 600) {

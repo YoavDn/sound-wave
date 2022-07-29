@@ -27,6 +27,7 @@ import threeDots from '../../assets/imgs/three-dots.svg'
 import { eventBus } from '../../services/event-bus.js'
 export default {
     props: { 'station': Object },
+    emits: ['deleteStation'],
     data() {
         return {
             isModalOn: false,
@@ -54,7 +55,6 @@ export default {
         },
         closeAllModals() {
             this.isShareSubmodalOn = false
-            this.isPlaylistsSubmodalOn = false
             this.isModalOn = false
         },
         openShareSubModal() {
@@ -67,14 +67,9 @@ export default {
         },
 
         deleteStation() {
-
+            this.closeAllModals()
+            this.$emit('deleteStation')
         }
-        // updateStation(track, station = this.currStation, isNew = true) {
-        //     this.closeAllModals()
-
-        //     const data = { track, station, isNew }
-        //     eventBus.emit('updateStation', data)
-        // }
     }
 
 }

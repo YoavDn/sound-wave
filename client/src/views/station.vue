@@ -4,7 +4,7 @@
 
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation"
-                @toggleLikeStation="toggleLikeStation" />
+                @toggleLikeStation="toggleLikeStation" @deleteStation="deleteStation" />
             <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
@@ -104,6 +104,13 @@ export default {
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             this.station = this.$store.getters.getStation(id)
+        },
+
+        async deleteStation() {
+
+            await this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
+            await this.$store.dispatch({ type: 'deleteStation', station: this.station })
+            // this.$router.push('/')
         },
 
         async updateStation(data) {
