@@ -130,7 +130,6 @@ async function remove(station, user) {
         return storageService.query(KEY)
 
     } else {
-        console.log(station);
         await httpService.delete(`station/${station._id}`)
         return await query()
         // stationChannel.postMessage({type: 'removeStation', reviewId})

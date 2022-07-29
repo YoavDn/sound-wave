@@ -7,7 +7,7 @@
                     class="bi bi-caret-right-fill"></i></span>
         </button>
 
-        <button @click="deleteStation" class="clean-btn track-opt-btn remove-from-station"
+        <button v-if="isUserStation" @click="deleteStation" class="clean-btn track-opt-btn remove-from-station"
             @mouseenter="isShareSubmodalOn = false">Delete
         </button>
 
@@ -41,6 +41,11 @@ export default {
     created() {
     },
     computed: {
+
+        isUserStation() {
+            const user = this.$store.getters.getLoggedInUser
+            return user.stations.some(id => id === this.station._id)
+        },
 
     },
 

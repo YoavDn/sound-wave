@@ -152,7 +152,6 @@ export default {
 
                 const user = userStore.state.loggedInUser
 
-                console.log(user);
                 const stations = await stationService.remove(station, user)
                 await dispatch({ type: 'loadStations', stations })
                 dispatch({ type: 'loadLocalStations' })

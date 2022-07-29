@@ -108,7 +108,7 @@ export default {
 
         async deleteStation() {
 
-            await this.$store.dispatch({ type: 'toggleLikeStation', station: this.station._id })
+            await this.$store.dispatch({ type: 'removeStationFromUser', station: this.station._id })
             await this.$store.dispatch({ type: 'deleteStation', station: this.station })
             this.$router.push('/')
         },
