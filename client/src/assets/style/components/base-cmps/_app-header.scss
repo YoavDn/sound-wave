@@ -9,6 +9,12 @@
     width: 100%;
     background: linear-gradient($main-background 85px, $dark-gray 23rem);
 
+    &.on-station-page {
+        background: linear-gradient($main-background-station 85px, $dark-gray 23rem);
+    }
+
+
+
     .btns-container {
         gap: 1rem;
 

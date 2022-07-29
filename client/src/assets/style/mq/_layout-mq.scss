@@ -11,4 +11,11 @@
         margin-top: 5rem;
     }
 
+    .main-view-station {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        overflow-y: scroll;
+        margin-top: 5rem;
+    }
+
 }

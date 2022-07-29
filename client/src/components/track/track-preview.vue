@@ -29,7 +29,8 @@
         </div>
 
         <div class="track-date-added sub-text">
-            <p>Dec 25, 2019 </p>
+            <p v-if="track.addedAt">{{ addedAtToStr }}</p>
+            <p v-else>Dec 25, 2019 </p>
         </div>
 
         <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
@@ -53,6 +54,7 @@
     import playIcon from '../../assets/imgs/preview-play.svg'
     import pauseIcon from '../../assets/imgs/preview-pause.svg'
     import trackOptions from '../track/track-options.vue'
+    import { utilService } from '../../services/utils.service'
     import soundBar from '../custom/sound-bar.vue'
     import threeDots from '../../assets/imgs/three-dots.svg'
     
@@ -107,6 +109,15 @@
             isPlaying() {
                 return this.$store.getters.getIsPlaying
             },
+            addedAtToStr() {
+                const date = new Date(this.track.addedAt)
+    
+                const strDate = date.toLocaleDateString().split('/').splice(1, 2).join(', ')
+    
+                const month = utilService.getStrMonth(this.track.addedAt)
+                console.log(strDate);
+                return month + ' ' + strDate
+            }
     
         },
     
@@ -137,6 +148,7 @@
                 console.log('hello = ', hello)
                 const { id } = this.$route.params
                 const station = this.$store.getters.getStation(id)
+    
     
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
