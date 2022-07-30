@@ -44,7 +44,10 @@ export default {
 
         isUserStation() {
             const user = this.$store.getters.getLoggedInUser
-            return user.stations.some(id => id === this.station._id)
+            const stations = this.$store.getters.getStations
+            if (!user) return
+            const userStations = stations.filter(station => station.createdBy?._id === user._id)
+            return userStations.some(s => s._id === this.station._id)
         },
 
     },
