@@ -1,15 +1,18 @@
 <template>
-    <article class="home-stations-desktop" style="color:white;">
-        <section class="station-list-container ">
-            <stations-list :stations="stations" />
-        </section>
-    </article>
+    <section class="genre-container flex flex-column">
+        <h1 class="genre-name">{{ tag }}</h1>
+        <article class="home-stations-desktop" style="color:white;">
+            <section class="station-list-container ">
+                <stations-list :stations="stations" />
+            </section>
+        </article>
 
-    <article class="home-stations-mobile" style="color:white;" v-if="stations">
-        <section>
-            <mobile-sliders :stations="stations" />
-        </section>
-    </article>
+        <article class="home-stations-mobile" style="color:white;" v-if="stations">
+            <section>
+                <mobile-sliders :stations="stations" />
+            </section>
+        </article>
+    </section>
 </template>
 
 <script>

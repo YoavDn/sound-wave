@@ -1,7 +1,7 @@
 <template>
-    <swiper :slidesPerView="2.5" :spaceBetween="0" :freeMode="true" :modules="modules" class="mySwiper">
+    <swiper :slidesPerView="cardsToShow" :spaceBetween="0" :freeMode="true" :modules="modules" class="mySwiper">
         <swiper-slide v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
-            <station-preview :station="station" class="station-card" />
+            <station-preview :station="station" class="station-card no-hover" />
         </swiper-slide>
     </swiper>
 </template>
@@ -16,6 +16,8 @@ import 'swiper/css';
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
+import { ref, watch, computed } from 'vue'
+
 
 export default {
     components: {
@@ -24,14 +26,43 @@ export default {
         stationPreview
     },
 
+    data() {
+        return {
+            cardsToDisplay: 4,
+        }
+    },
+
+
+
     props: ['stations'],
     // props: ['stations'],
     setup(props) {
         const router = useRouter()
         const goToStation = (stationId) => router.push(`/station/${stationId}`)
 
+
+        const cardsToShow = ref(2.5)
+
+
+
+        const cardsPerView = (e) => {
+            if (e.target.innerWidth > 700) {
+                cardsToShow.value = 4
+            } else if (e.target.innerWidth > 600) {
+                cardsToShow.value = 3
+            } else {
+                cardsToShow.value = 2.5
+            }
+        }
+
+
+        window.addEventListener("resize", cardsPerView);
+
+
         return {
             props,
+            cardsPerView,
+            cardsToShow,
             goToStation,
             modules: [FreeMode, Pagination],
         };
@@ -72,7 +103,7 @@ export default {
         aspect-ratio: 1;
     }
 
-    
+
 
     p {
         color: rgb(181, 181, 181);
@@ -81,5 +112,7 @@ export default {
     .swiper-pagination {
         display: none;
     }
+
+
 }
 </style>

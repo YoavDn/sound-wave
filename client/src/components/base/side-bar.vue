@@ -4,7 +4,7 @@
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
             <div @click="goToPage('')" class="logo flex">
-                <img class="logo-svg" src="../../assets/imgs/logo.svg" alt="logo">
+                <img class="logo-svg" src="../../assets/imgs/logo.png" alt="logo">
                 <h2>SoundWave</h2>
             </div>
             <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
@@ -69,7 +69,8 @@ export default {
 
     computed: {
         stations() {
-            return this.$store.getters.getUserStations
+            let stations = this.$store.getters.getUserStations
+            return stations
         },
 
         likedSongsRoute() {
@@ -85,10 +86,6 @@ export default {
             return this.$store.getters.getLoggedInUser
         },
     },
-
-
-
-
 
     methods: {
         goToPage(page) {
@@ -116,7 +113,6 @@ export default {
 
             const station = await this.$store.dispatch({ type: 'createNewStation', user })
             const updatedUser = JSON.parse(JSON.stringify(user))
-            console.log(station);
 
             updatedUser.stations.unshift(station.insertedId)
 

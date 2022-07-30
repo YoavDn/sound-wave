@@ -4,7 +4,7 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-        tags: ['Shared Playlists','Recently Added', 'Hip Hop', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
+        tags: ['Shared Playlists', 'Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null
     },
@@ -15,7 +15,7 @@ export default {
     },
 
     getters: {
-        getTags(state){
+        getTags(state) {
             return state.tags
         },
         getUserStations(state, getters, rootState, rootGetters) {
@@ -26,14 +26,15 @@ export default {
                 const userLikedStations = user.stations.map(id => {
                     return getters.getStation(id)
                 })
-                return [...userStation, ...userLikedStations]
+                let stations = [...userStation, ...userLikedStations]
+                return [...new Set(stations)]
 
             }
             else if (state.localStations) {
                 stationsToSend = stationsToSend.filter(station => station.createdBy?._id === 'u101')
                 return [...state.localStations, ...stationsToSend]
             }
-            else return stationsToSend.filter(station => station.createdBy?._id === 'u101')
+            else return [...new Set(stationsToSend.filter(station => station.createdBy?._id === 'u101'))]
         },
 
         getStations: (state) => state.stations,
@@ -143,6 +144,20 @@ export default {
 
             } catch (err) {
                 return console.log('could not update liked Songs');
+            }
+        },
+
+        async deleteStation({ commit, dispatch }, { station }) {
+            try {
+
+                const user = userStore.state.loggedInUser
+
+                const stations = await stationService.remove(station, user)
+                await dispatch({ type: 'loadStations', stations })
+                dispatch({ type: 'loadLocalStations' })
+
+            } catch {
+
             }
         }
     }

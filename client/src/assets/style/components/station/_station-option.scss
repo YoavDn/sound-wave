@@ -15,15 +15,21 @@
 
     .play-btn {
         font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 56px;
         text-align: center;
         width: 56px;
         background: $clr1;
         border-radius: 50%;
-
-        color: black;
         margin-inline-end: 32px;
 
+        .btn-play-svg {
+            cursor: pointer;
+        }
+
+        ;
     }
 
     .heart-btn {

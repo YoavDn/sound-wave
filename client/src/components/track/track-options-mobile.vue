@@ -5,15 +5,20 @@
             <h1>{{ track.title }}</h1>
         </div>
         <div class="track-options-mobile">
-            <button class="clean-btn mobile-opt-btn flex align-center"><img src="../../assets/imgs/like.svg"
-                    @click="toggleLikedSong()">
+            <button @click="toggleLikedSong()" class="clean-btn mobile-opt-btn flex align-center">
+                <heart-svg />
                 <span v-if="!isLiked">Like</span>
                 <span v-else>Unlike</span>
             </button>
-            <button class="clean-btn mobile-opt-btn flex align-center"><img
-                    src="../../assets/imgs/share.svg"><span>Share</span></button>
-            <button class="clean-btn mobile-opt-btn flex align-center" @click="isListShown = !isListShown"><img
-                    src="../../assets/imgs/active-library.svg"><span>Add to Playlist</span></button>
+            <button class="clean-btn mobile-opt-btn flex align-center">
+                <share-svg />
+                <span>Share</span>
+            </button>
+            <button class="clean-btn mobile-opt-btn flex align-center" @click="isListShown = !isListShown">
+
+                <library-svg />
+                <span>Add to Playlist</span>
+            </button>
         </div>
         <div v-if="isListShown" class="station-hidden-list flex flex-column">
             <button v-for="station in stations" @click="addTrackToStation(station, true)" class="clean-btn btn-album">
@@ -29,9 +34,17 @@
 </template>
 
 <script>
+import heartSvg from '../../assets/imgs/like.svg'
+import shareSvg from '../../assets/imgs/share.svg'
+import librarySvg from '../../assets/imgs/active-library.svg'
 export default {
     props: {
         'track': Object
+    },
+    components: {
+        heartSvg,
+        shareSvg,
+        librarySvg,
     },
 
     data() {

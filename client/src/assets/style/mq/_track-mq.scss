@@ -3,6 +3,21 @@
         display: none;
     }
 
+    .track-preview {
+        .track-play {
+            display: none;
+
+        }
+
+        .track-img-title {
+            grid-column: 1;
+        }
+
+        .mobile-options {
+            grid-column: 2;
+        }
+    }
+
     .track-date-added,
     .track-added-by,
     .track-time {
@@ -16,15 +31,15 @@
 
     .track-list-row {
         padding: 0;
-        grid-template-columns: 16px 6fr 1fr;
+        grid-template-columns: 1fr 16px;
         width: 100%;
+
+        &:hover {
+            background: transparent;
+        }
     }
 
 
 }
 
-@media (min-width: $mobile-width)  {
-    .mobile-options {
-        justify-content: flex-end;
-    }
-}
+@media (min-width: $mobile-width) {}

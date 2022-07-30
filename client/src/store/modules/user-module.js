@@ -88,6 +88,24 @@ export default {
             } catch (err) {
                 return console.log('cant add station ', err);
             }
+        },
+
+        async removeStationFromUser(ctx, { station }) {
+            try {
+                if (!ctx.state.loggedInUser) return
+                const user = ctx.state.loggedInUser
+                const userToUpdate = JSON.parse(JSON.stringify(user))
+
+                if (user.stations.some(id => id === station)) {
+                    const idx = user.stations.findIndex(id => id === station)
+                    userToUpdate.stations.splice(idx, 1)
+                }
+
+                await ctx.dispatch({ type: 'updateUser', user: userToUpdate })
+
+            } catch {
+
+            }
         }
 
     }

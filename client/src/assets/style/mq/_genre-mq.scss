@@ -1,0 +1,14 @@
+@media (max-width: $tablet-width) {
+    .genre-container {
+        .genre-name {
+            font-size: 60px;
+        }
+    }
+}
+@media (max-width: $mobile-width) {
+    .genre-container {
+        .genre-name {
+            font-size: 40px;
+        }
+    }
+}

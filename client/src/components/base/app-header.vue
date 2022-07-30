@@ -11,8 +11,10 @@
             <!-- <h2 class="temp">{{ loggedInUser.fullname }}</h2> -->
             <img src="../../assets/imgs/default-avatar.svg" class="avatar-img">
             <span class="avatar-name"> {{ loggedInUser.fullname }}</span>
-            <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown"><img
-                    src="../../assets/imgs/avatar-arrow.svg"></button>
+            <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown">
+                <!-- <img src="../../assets/imgs/avatar-arrow.svg"> -->
+                <arrow-down />
+            </button>
         </div>
 
         <div v-else class="btns-container flex align-center">
@@ -28,10 +30,13 @@
 </template>
     
 <script >
-import { flatMap } from 'lodash'
+import arrowDown from '../../assets/imgs/avater-arrow.svg'
 
 
 export default {
+    components: {
+        arrowDown,
+    },
     data() {
         return {
             isUserModalShown: false,

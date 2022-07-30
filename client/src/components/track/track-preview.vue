@@ -1,5 +1,5 @@
 <template>
-    <section class="track-preview track-list-row align-center">
+    <section class="track-preview  track-list-row align-center" @click="setTrackIfMobile">
         <div class="track-play">
 
             <!-- <button @click="$emit('setTrack', track)" class="clean-btn action-btn play-pause">
@@ -34,9 +34,7 @@
         </div>
 
         <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
-            <!-- <three-dots /> -->
-            <!-- <i class="bi bi-three-dots-vertical"></i> -->
-            <img src="../../assets/imgs/three-dots-vertical.svg">
+            <three-dots-vertical />
         </div>
 
         <div class="track-time align-center sub-text">
@@ -56,7 +54,7 @@
     import trackOptions from '../track/track-options.vue'
     import { utilService } from '../../services/utils.service'
     import soundBar from '../custom/sound-bar.vue'
-    import threeDots from '../../assets/imgs/three-dots.svg'
+    import threeDotsVertical from '../../assets/imgs/three-dots-vertical.svg'
     
     
     export default {
@@ -65,7 +63,7 @@
             soundBar,
             playIcon,
             pauseIcon,
-            threeDots
+            threeDotsVertical
     
         },
         props: {
@@ -115,7 +113,6 @@
                 const strDate = date.toLocaleDateString().split('/').splice(1, 2).join(', ')
     
                 const month = utilService.getStrMonth(this.track.addedAt)
-                console.log(strDate);
                 return month + ' ' + strDate
             }
     
@@ -145,13 +142,17 @@
             },
     
             addTrackToStation(track, isNew) {
-                console.log('hello = ', hello)
                 const { id } = this.$route.params
                 const station = this.$store.getters.getStation(id)
     
-    
                 const data = { station, track, isNew }
                 this.$emit('updateStation', data)
+            },
+    
+            setTrackIfMobile() {
+                console.log(window.innerWidth);
+                if (window.innerWidth > 700) return
+                this.$emit('setTrack', this.track)
             }
         },
     

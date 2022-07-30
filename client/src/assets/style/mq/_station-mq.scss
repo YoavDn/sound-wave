@@ -8,6 +8,9 @@
     }
 
     .station-header-container {
+        padding-inline: $mobile-inilne-padding;
+        margin-top: 2rem;
+
         .station-text {
             .station-name {
                 font-size: 53px;
@@ -19,6 +22,9 @@
 @media screen and (max-width: $tablet-width) {
 
     .station-header-container {
+        padding-inline: $mobile-inilne-padding;
+        margin-top: 1rem;
+
         .station-text {
             .station-name {
                 font-size: 48px;
@@ -32,9 +38,10 @@
     .station-card img {
         border-radius: 0;
     }
+
     .station-header-container {
         height: auto;
-        padding-inline: 30px;
+        padding-inline: $mobile-inilne-padding;
         padding-block: 0;
         flex-direction: column;
         align-items: flex-start;
@@ -52,21 +59,24 @@
             }
 
             .station-name {
-                // line-height: 30px;
+                line-height: 30px;
                 font-size: 20px;
             }
         }
     }
 
     .station-tracks-container {
-        padding-inline-start: 1rem;
-        padding-inline-end: 0;
+        // padding-inline-start: 1rem;
+        padding-inline: $mobile-inilne-padding;
+        // padding-inline-end: 0;
     }
 
     // STATION OPTION 
     .station-option-container {
+        padding-top: 1rem;
         margin: 0;
-        padding-block: 0;
+        padding-bottom: 0;
+
         justify-content: space-between;
         // padding-inline-start: 1rem;
         padding-inline: .8rem;
