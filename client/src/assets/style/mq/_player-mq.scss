@@ -1,15 +1,10 @@
 @media (max-width: $tablet-width) {
     .player-container {
         position: relative;
-        grid-column: 1 /span 2;
-        grid-row: 2;
-        width: 100%;
-        // margin-top: 3rem;
         border-radius: 6px;
-        padding-inline: 10px;
+        padding-inline: 10px; 
+        margin-inline: 7px; 
         background-color: rgb(53 14 59);
-        // height: 56px;
-        // z-index: 34;
 
         .volume-container {
             display: none;

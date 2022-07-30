@@ -94,20 +94,12 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
 
-    h3{
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 120px;
-        white-space: nowrap;
-    }
-
     img {
         width: 100%;
         min-height: 143px;
         object-fit: cover;
         aspect-ratio: 1;
     }
-
 
 
     p {
@@ -120,4 +112,3 @@ export default {
 
 
 }
-</style>
