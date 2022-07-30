@@ -1,6 +1,7 @@
 @media (max-width: $tablet-width) {
     .app-header-container {
         grid-column: 1;
+        position: relative;
         // z-index: 10;
     }
     .avatar-name {
