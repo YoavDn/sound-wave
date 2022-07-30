@@ -8,15 +8,15 @@
 
 
 <script>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import stationPreview from "../station/station-preview.vue";
-import { useRouter } from "vue-router";
+import { Swiper, SwiperSlide } from "swiper/vue"
+import stationPreview from "../station/station-preview.vue"
+import { useRouter } from "vue-router"
 
 import 'swiper/css';
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import { FreeMode, Pagination } from "swiper";
+import "swiper/css/free-mode"
+import "swiper/css/pagination"
 import { ref, watch, computed } from 'vue'
+import { FreeMode, Pagination } from "swiper"
 
 
 export default {
@@ -63,8 +63,8 @@ export default {
             cardsToShow,
             goToStation,
             modules: [FreeMode, Pagination],
-        };
-    },
+        }
+    }
 };
 </script>
 
@@ -110,5 +110,4 @@ export default {
         display: none;
     }
 }
-
 </style>
