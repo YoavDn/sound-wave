@@ -98,7 +98,7 @@ export default {
 
     img {
         width: 100%;
-        height: 100%;
+        height: 143px;
         object-fit: cover;
         aspect-ratio: 1;
     }

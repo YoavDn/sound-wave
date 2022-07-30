@@ -16,7 +16,8 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: "../../sound-wave-backend/public",
+    // outDir: "../../sound-wave-backend/public",
+    outDir: "../../../heroku-final/sound-wave-project/public",
     emptyOutDir: true
   }
 
