@@ -3,9 +3,13 @@
     min-height: 20rem;
 }
 
+.mobile-tracklist-container {
+    display: none;
+}
+
 .station-list-container {
     display: grid;
-    grid-template-columns: repeat(var(--column-count), minmax(0,204px));
+    grid-template-columns: repeat(var(--column-count), minmax(0, 204px));
     // grid-template-rows: repeat(auto-fill, minmax(250px, 300px));
     gap: 24px
 }
