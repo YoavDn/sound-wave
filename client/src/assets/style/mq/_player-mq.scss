@@ -1,12 +1,19 @@
 @media (max-width: $tablet-width) {
+    // grid-column: 1/-1;
+    // grid-row: 2;
+    // background: $player-gray;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // color: $light-gray;
+    // padding-inline: $base-padding;
+    // z-index: 600;
+
     .player-container {
         position: relative;
-        grid-column: 1 /span 2;
-        grid-row: 2;
         width: 100%;
-        // margin-top: 3rem;
         border-radius: 6px;
-        padding-inline: 10px;
+        padding-inline: 10px; 
         background-color: rgb(53 14 59);
         // height: 56px;
         // z-index: 34;
