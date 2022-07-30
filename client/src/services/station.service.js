@@ -160,7 +160,7 @@ function _createEmptyStation(length, user = null) {
         // _id: isLikedSongs ? 'likedSongs' : null,
         name: user ? 'My Playlist #' + (length + 1) : 'My Playlist #' + (length),
         tags: [],
-        imgUrl: 'https://res.cloudinary.com/soundwave-4/image/upload/v1659184314/fwuupvlgbvopofstox22.svg',
+        imgUrl: 'https://res.cloudinary.com/soundwave-4/image/upload/v1659188905/pprozknxrinngu2gwxam.jpg',
         createdAt: Date.now(),
         createdBy: user ? user : 'Guest',
         likedByUsers: null,
