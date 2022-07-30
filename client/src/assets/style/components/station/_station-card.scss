@@ -5,6 +5,13 @@
     min-height: 15rem;
     transition: background .3s;
     background-color: #ffffff0a;
+
+    h3{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 90%;
+        white-space: nowrap;
+    }
     
 
     .station-name-container {

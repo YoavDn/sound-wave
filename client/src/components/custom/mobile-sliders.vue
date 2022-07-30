@@ -94,6 +94,7 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
 
+<<<<<<< HEAD
     h3 {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -101,6 +102,8 @@ export default {
         white-space: nowrap;
     }
 
+=======
+>>>>>>> 361c83ae9011dc60da841e115aef018ceb0b7064
     img {
         width: 100%;
         min-height: 143px;
