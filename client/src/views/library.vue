@@ -39,12 +39,13 @@ export default {
     },
     methods: {
         goToLikedSongs() {
-            if (!this.user) {
+            const user = this.$store.getters.getLoggedInUser
+            if (!user) {
                 const station = this.$store.getters.getStation('likedSongs')
                 console.log(station);
                 return this.$router.push(`station/${station._id}`)
             }
-            return this.$router.push(`station/${this.user.likedSongs}`)
+            return this.$router.push(`station/${user.likedSongs}`)
         },
     },
 }
