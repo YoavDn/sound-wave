@@ -69,7 +69,6 @@ export default {
         },
 
         handleFile(ev) {
-            console.log(ev);
             var file
             if (ev.type === "change") file = ev.target.files[0]
             else if (ev.type === "drop") file = ev.dataTransfer.files[0]
@@ -78,7 +77,8 @@ export default {
         async onUploadFile(file) {
             this.isLoading = true
             const res = await uploadImg(file)
-            this.stationToUpdate.imgUrl = res.secure_url
+            console.log(res);
+            this.stationToUpdate.imgUrl = res.url
             this.$refs.stationImg.src = this.stationToUpdate.imgUrl
             // this.$emit('save', res.url)
         }
