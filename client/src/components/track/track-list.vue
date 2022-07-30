@@ -34,7 +34,12 @@ export default {
         return {
             // enabled: true,
             // dragging: false,
+<<<<<<< HEAD
             // showDragContainer: false,
+=======
+            showDragContainer: false,
+            mobileWidth: 600,
+>>>>>>> 7e7eceb24d847ac8919487e224876117cf4b4639
         }
     },
     components: {
@@ -45,6 +50,9 @@ export default {
     },
     props: { 'tracks': Array },
     computed: {
+        isMobileWidth() {
+            return window.innerWidth > this.mobileWidth ? false : true
+        }
 
 
     },

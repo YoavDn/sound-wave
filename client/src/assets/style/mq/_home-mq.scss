@@ -1,8 +1,8 @@
-@media (max-width: $tablet-width) {
+@media only screen and (max-width: $tablet-width) {
 
 
     .home-container {
-       padding: $layout-padding-mobile;
+        padding: $layout-padding-mobile;
 
         .home-stations-desktop {
             display: none;
@@ -10,6 +10,7 @@
 
         .home-stations-mobile {
             display: block;
+
             // margin-bottom: 3rem;
             h1 {
                 text-transform: capitalize;
@@ -33,6 +34,7 @@
 
         .hero-list {
             display: grid;
+            width: 100%;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: repeat(3, 62px);
 
@@ -48,7 +50,8 @@
 
         .hero-img {
             img {
-                height: 100%;
+                height: 64px;
+                width: 64px;
 
                 border-top-left-radius: 3px;
                 border-bottom-left-radius: 3px;
