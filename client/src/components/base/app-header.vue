@@ -8,7 +8,7 @@
         </div>
 
         <div v-if="loggedInUser" class="user-avatar">
-            <avatar-svg />
+            <span class="flex align-center flex-column" style="width: 26px"><avatar-svg /></span>
             <span class="avatar-name"> {{ loggedInUser.fullname }}</span>
             <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown">
                 <arrow-down />
