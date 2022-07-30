@@ -38,8 +38,11 @@
         }
 
         .player-track-controllers {
-            justify-content: end;
+            // justify-content: end;
             margin-bottom: 0;
+            position: absolute;
+            right: 3%;
+            bottom:24%;
 
             svg {
                 width: 24px;
@@ -192,9 +195,9 @@
 
 
 
-    // .player-track-controllers {
-    //     justify-content: space-between;
-    // }
+    .player-track-controllers {
+        justify-content: space-between;
+    }
 }
 
 
