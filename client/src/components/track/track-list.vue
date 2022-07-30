@@ -9,6 +9,9 @@
                     @updateUser="updateUser" />
             </Draggable>
         </Container>
+        <!-- <section class="track-list"> -->
+
+        <!-- </section> -->
     </div>
 </template>
 
@@ -28,6 +31,7 @@ export default {
             // enabled: true,
             // dragging: false,
             showDragContainer: false,
+            mobileWidth: 600,
         }
     },
     components: {
@@ -39,6 +43,9 @@ export default {
     },
     props: { 'tracks': Array },
     computed: {
+        isMobileWidth() {
+            return window.innerWidth > this.mobileWidth ? false : true
+        }
 
 
     },

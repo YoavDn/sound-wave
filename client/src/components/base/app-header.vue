@@ -8,11 +8,8 @@
         </div>
 
         <div v-if="loggedInUser" class="user-avatar">
-            <!-- <h2 class="temp">{{ loggedInUser.fullname }}</h2> -->
-            <img src="../../assets/imgs/default-avatar.svg" class="avatar-img">
             <span class="avatar-name"> {{ loggedInUser.fullname }}</span>
             <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown">
-                <!-- <img src="../../assets/imgs/avatar-arrow.svg"> -->
                 <arrow-down />
             </button>
         </div>
@@ -31,11 +28,13 @@
     
 <script >
 import arrowDown from '../../assets/imgs/arrow-down.svg'
+import avatarSvg from '../../assets/imgs/default-avatar.svg'
 
 
 export default {
     components: {
         arrowDown,
+        avatarSvg,
     },
     data() {
         return {
