@@ -30,7 +30,7 @@
 </template>
     
 <script >
-import arrowDown from '../../assets/imgs/avater-arrow.svg'
+import arrowDown from '../../assets/imgs/arrow-down.svg'
 
 
 export default {
