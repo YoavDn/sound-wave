@@ -60,7 +60,6 @@ export default {
         },
         updateStation(data) {
             let msg;
-            console.log('data = ', data)
             if (data.isNew) msg = `Added ${data.track.title} to ${data.station.name}`
             if (!data.isNew) msg = `removed ${data.track.title} from ${data.station.name}`
 

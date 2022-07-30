@@ -17,7 +17,6 @@ export default {
     },
 
     created(){
-        console.log('station.imgUrl = ', this.station.imgUrl)
     },
 
     methods: {
