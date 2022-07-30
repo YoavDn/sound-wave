@@ -3,15 +3,15 @@
         <h2 class="library-title">Playlists</h2>
         <article class="station-list-container flex">
             <div @click="goToLikedSongs" class="library-liked-songs-card flex">
-                <div class="liked-tracks-names">{{ likedTracksName.join(' ⚬ ') }}</div>
-                <h1 class="liked-tracks-title">liked Songs</h1>
-                <div class="liked-tracks-count">{{ likedTracksCount }} liked songs</div>
+                <div class="liked-tracks-names"><span v-for="track in likedTracks.slice(0,4)">{{track.title}} ⚬ </span></div>
+                <h1 class="liked-tracks-title">Liked Songs</h1>
+                <div class="liked-tracks-count">{{ likedTracks.length }} Liked Songs</div>
             </div>
             <stations-list :stations="stations" />
         </article>
     </section>
 </template>
-
+<!-- ⚬ -->
 <script >
 import stationsList from '../components/station/stations-list.vue'
 export default {
@@ -21,18 +21,20 @@ export default {
     },
     data() {
         return {
-            likedTracksCount: 12,
-            likedTracksName: ['נסרין תנשום', 'Hello Adele', 'Goodbye Russ', 'Timber Pitbull ', 'פלונטר התקווה 6'],
+            // likedTracksName: this.likedTracks.slice(0, 5),
         }
     },
     created() {
-        // console.log('here', ['Hello Adele', 'Goodbye Russ'].join(' * '))
     },
     computed: {
         stations() {
             const stationToShow = this.$store.getters.getUserStations
             const shift = stationToShow.shift()
             return stationToShow
+        },
+        likedTracks(){
+            
+            return this.$store.getters.getLikedStation.tracks
         }
     },
     methods: {
