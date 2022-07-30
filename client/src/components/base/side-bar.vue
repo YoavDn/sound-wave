@@ -1,5 +1,3 @@
-
-
 <template>
     <section class="side-bar-container flex-column">
         <nav class="side-bar-nav">
