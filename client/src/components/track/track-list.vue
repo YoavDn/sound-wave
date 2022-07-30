@@ -1,17 +1,21 @@
 <template>
     <div class="station-tracks-container">
         <track-list-head />
-        <!-- <draggable v-model="trackList" class="clean-list station-list" :sort="true"> -->
-        <Container orientation="vertical" @drop="onDrop">
+        <Container class="desktop-tracklist-container" orientation="vertical" @drop="onDrop">
             <Draggable v-for="(track, idx) in tracks" :key="track.id">
                 <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :listLength="tracks.length"
                     :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation"
                     @updateUser="updateUser" />
             </Draggable>
         </Container>
-        <!-- <section class="track-list"> -->
 
-        <!-- </section> -->
+        <ul class="clean-list mobile-tracklist-container">
+            <li v-for="(track, idx) in tracks" :key="track.id">
+                <track-preview @toggleMobileOptions="$emit('toggleMobileOptions', track)" :listLength="tracks.length"
+                    :trackIdx="idx" :track="track" @setTrack="$emit('setTrack', track)" @updateStation="updateStation"
+                    @updateUser="updateUser" />
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -30,12 +34,10 @@ export default {
         return {
             // enabled: true,
             // dragging: false,
-            showDragContainer: false,
-            mobileWidth: 600,
+            // showDragContainer: false,
         }
     },
     components: {
-        // draggable: VueDraggableNext,
         trackPreview,
         trackListHead,
         Container,

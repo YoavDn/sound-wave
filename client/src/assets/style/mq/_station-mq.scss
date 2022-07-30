@@ -20,6 +20,13 @@
 }
 
 @media screen and (max-width: $tablet-width) {
+    .mobile-tracklist-container {
+        display: block;
+    }
+
+    .desktop-tracklist-container {
+        display: none;
+    }
 
     .station-header-container {
         padding-inline: $mobile-inilne-padding;
