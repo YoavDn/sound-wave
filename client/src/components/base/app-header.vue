@@ -30,7 +30,6 @@
 import arrowDown from '../../assets/imgs/arrow-down.svg'
 import avatarSvg from '../../assets/imgs/default-avatar.svg'
 
-
 export default {
     components: {
         arrowDown,
