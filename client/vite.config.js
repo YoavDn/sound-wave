@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
 import svgLoader from 'vite-svg-loader'
-import image from '@rollup/plugin-image';
 
 
 import { defineConfig } from 'vite'

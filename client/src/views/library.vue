@@ -3,9 +3,14 @@
         <h2 class="library-title">Playlists</h2>
         <article class="station-list-container flex">
             <div @click="goToLikedSongs" class="library-liked-songs-card flex">
-                <div class="liked-tracks-names"><span v-for="track in likedTracks.slice(0,4)">{{track.title}} ⚬ </span></div>
-                <h1 class="liked-tracks-title">Liked Songs</h1>
-                <div class="liked-tracks-count">{{ likedTracks.length }} Liked Songs</div>
+                <div v-if="likedTracks" class="liked-tracks-names"><span v-for="track in likedTracks.slice(0, 4)">{{
+                        track.title
+                }} ⚬
+                    </span>
+                </div>
+                <h2 v-else>No Liked Songs..</h2>
+                <h1 v-if="likedTracks" class="liked-tracks-title">Liked Songs</h1>
+                <div v-if="likedTracks" class="liked-tracks-count">{{ likedTracks.length }} Liked Songs</div>
             </div>
             <stations-list :stations="stations" />
         </article>
@@ -32,9 +37,12 @@ export default {
             const shift = stationToShow.shift()
             return stationToShow
         },
-        likedTracks(){
-            
-            return this.$store.getters.getLikedStation.tracks
+        likedTracks() {
+
+            const likedTracks = this.$store.getters.getLikedStation
+            if (!likedTracks) return false
+            return likedTracks.tracks
+
         }
     },
     methods: {
