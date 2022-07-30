@@ -15,6 +15,13 @@
         justify-content: center;
         gap: 10px;
         border-bottom: 1px solid #D9DADC;
+
+        .login-header-img {
+            img {
+                height: 30px;
+                width: 30px;
+            }
+        }
     }
 
     .login-main {
@@ -185,6 +192,8 @@
             justify-content: center;
             gap: 10px;
             border-bottom: 1px solid #D9DADC;
+
+
         }
 
         .login-main {

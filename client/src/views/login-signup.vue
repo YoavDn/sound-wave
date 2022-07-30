@@ -3,12 +3,11 @@
 <template>
     <section class="login-page">
         <header class="login-header flex  align-center">
-            <img src="../assets/imgs/soundWave-black.svg">
-            <h1>SoundWave</h1>
+            <logo-black />
         </header>
         <div class="login-main flex flex-column">
             <button class="clean-btn google-login-btn">
-                <img src="../assets/imgs/google.svg">
+                <img src="../assets/imgs/google.png">
                 <span>CONTINUE WITH GOOGLE</span>
             </button>
             <div>
@@ -24,7 +23,8 @@
                 <span v-if="!isNewUser">Don't have an account?</span>
                 <button v-if="!isNewUser" class="clean-btn" @click="isNewUser = !isNewUser"><span>SIGN UP FOR
                         SOUNDWAVE</span></button>
-                <span v-else>Already have an account - <span style="text-decoration:underline; cursor: pointer;" @click="isNewUser = false">click here</span></span>
+                <span v-else>Already have an account - <span style="text-decoration:underline; cursor: pointer;"
+                        @click="isNewUser = false">click here</span></span>
             </div>
         </div>
     </section>
@@ -32,12 +32,13 @@
 
 
 <script>
-
+import logoBlack from '../assets/imgs/logo-black.svg'
 import loginForm from '../components/custom/login-form.vue'
 export default {
     name: 'login',
     components: {
-        loginForm
+        loginForm,
+        logoBlack,
     },
     data() {
         return {
