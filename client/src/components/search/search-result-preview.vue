@@ -1,10 +1,11 @@
 
 <template>
-    <section class="track-preview track-row-search align-center">
-        <button @click="$emit('setTrack', track)" class="clean-btn flex align-center play-pause">
+    <section class="track-preview track-row-search align-center" @click="setTrackIfMobile">
+        <button @click="togglePlay" class="clean-btn action-btn flex align-center play-pause">
             <component :is="togglePlayBtn"></component>
             <!-- <sound-bar class="flex align-center sound-bar" v-if="isPlaying && currTrack" /> -->
         </button>
+        <sound-bar v-if="isPlaying && currTrack" class="sound-bar" />
         <div class="track-img-title flex">
             <div class="track-img">
                 <img :src="track.imgUrl" />
@@ -88,6 +89,15 @@
         },
     
         methods: {
+            togglePlay() {
+                if (!this.currTrack) return this.$emit('setTrack', this.track)
+    
+                if (this.isPlaying) {
+                    this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
+                } else {
+                    this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
+                }
+            },
             toggleLikedSong() {
                 const loggedInUser = this.$store.getters.getLoggedInUser
                 let station;
@@ -96,6 +106,11 @@
                 const data = { station, track: this.track, isNew: !this.isLiked }
     
                 this.$emit('updateStation', data)
+            },
+            setTrackIfMobile() {
+                console.log(window.innerWidth);
+                if (window.innerWidth > 700) return
+                this.$emit('setTrack', this.track)
             },
     
             addTrackToStation(track, isNew) {

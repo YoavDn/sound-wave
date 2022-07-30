@@ -4,15 +4,32 @@
         @include search-bar;
         color: $clr2;
         width: 100%;
-        margin-bottom: 1rem;   
+        margin-bottom: 1rem;
     }
+
     .track-row-search {
         padding: 0 4px;
-        
+        grid-template-columns: 1fr 65px;
+        .action-btn {
+            display: none !important;
+        }
+        .sound-bar {
+            display: none !important;
+        }
+        .play-pause {
+            display: none;
+        }
+
+        .track-search-options {
+            grid-column: 2;
+        }
+
         .track-img-title {
+            grid-column: 1;
             gap: 1rem;
         }
-        .play-btn-search{
+
+        .play-btn-search {
             color: $clr3;
         }
     }
