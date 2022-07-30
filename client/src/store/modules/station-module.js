@@ -74,7 +74,6 @@ export default {
         async loadStations({ commit }) {
             try {
                 const stations = await stationService.query()
-                console.log('stations',stations)
                 commit({ type: 'setStations', stations })
             } catch {
                 return console.log('cant load stations');
@@ -117,8 +116,9 @@ export default {
 
                 if (track && isNew !== null) {  //if  changing tracks
                     if (station.tracks.some(t => t.id === track.id) && isNew) return // if track alreay in station
+                    
                     if (isNew) {
-                        newTrack.addedBy = user.fullname
+                        newTrack.addedBy = user ? user.fullname : 'Guest'
                         newTrack.addedAt = Date.now()
                         stationToUpdate.tracks.unshift(newTrack)
                     } // adding track
