@@ -32,8 +32,6 @@ export default {
         }
     },
 
-
-
     props: ['stations'],
     // props: ['stations'],
     setup(props) {
@@ -95,6 +93,13 @@ export default {
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
+
+    h3{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 120px;
+        white-space: nowrap;
+    }
 
     img {
         width: 100%;
