@@ -7,15 +7,19 @@
         margin-bottom: 1rem;
     }
 
+
     .track-row-search {
         padding: 0 4px;
         grid-template-columns: 1fr 65px;
+
         .action-btn {
             display: none !important;
         }
+
         .sound-bar {
             display: none !important;
         }
+
         .play-pause {
             display: none;
         }

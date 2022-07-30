@@ -4,6 +4,10 @@
     }
 
     .track-preview {
+
+        &:hover {
+            background: none;
+        }
         .track-play {
             display: none;
 
