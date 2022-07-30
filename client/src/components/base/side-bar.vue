@@ -24,7 +24,7 @@
             </button>
             <button @click="goToPage(likedSongsRoute)" class=" liked-songs-link page-link-btn flex align-center">
                 <span class="page-link-svg">
-                    <i class="bi bi-heart-fill"></i>
+                    <img src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png" alt="">
                 </span>
                 Liked Songs
             </button>
@@ -45,6 +45,7 @@ import searchIcon from '../../assets/imgs/search.svg'
 import activeSearchIcon from '../../assets/imgs/active-search.svg'
 import activeHomeIcon from '../../assets/imgs/active-home.svg'
 import activeLibraryIcon from '../../assets/imgs/active-library.svg'
+import likedPage from '../../assets/imgs/likedPage.svg'
 
 export default {
     data() {
@@ -65,6 +66,7 @@ export default {
         activeHomeIcon,
         activeLibraryIcon,
         activeSearchIcon,
+        likedPage
     },
 
     computed: {
