@@ -40,6 +40,7 @@ export default {
         likedTracks() {
 
             const likedTracks = this.$store.getters.getLikedStation
+            console.log('likedTracks = ', likedTracks)
             if (!likedTracks) return false
             return likedTracks.tracks
 
