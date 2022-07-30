@@ -103,9 +103,14 @@ export default {
 
     img {
         width: 100%;
+<<<<<<< HEAD
         height: 143px;
 
         object-fit: contain;
+=======
+        min-height: 143px;
+        object-fit: cover;
+>>>>>>> 7efa4b87ecbd70972ea705b2d7f82df5c2900131
         aspect-ratio: 1;
     }
 
