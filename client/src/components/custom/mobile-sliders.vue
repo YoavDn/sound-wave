@@ -109,6 +109,6 @@ export default {
     .swiper-pagination {
         display: none;
     }
-
-
 }
+
+</style>
