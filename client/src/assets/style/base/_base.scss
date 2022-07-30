@@ -8,12 +8,14 @@
 
 body {
     background-color: $dark-gray;
+    min-height: 100vh;
+    min-height: --webkit-fill-available;
 }
 
 html {
     font-family: 'gotham', sans-serif;
-    // overflow-y: hidden;
-    overflow: hidden;
+    overflow-y: hidden;
+    // overflow: hidden;
 }
 
 button {
