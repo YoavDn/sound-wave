@@ -27,12 +27,14 @@
             aspect-ratio: 1;
             overflow: hidden;
             height: 40px;
+            width: 40px;
             margin-right: 16px;
 
             img {
-                width: 56px;
-                height: 100%;
+                width: 40px;
+                height: 40px;
                 object-fit: cover;
+                object-position: center;
                 transform: scale(1.4);
             }
         }
