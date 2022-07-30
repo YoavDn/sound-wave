@@ -34,7 +34,7 @@
         </div>
 
         <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
-            <three-dots-vertical />
+            <three-dots />
         </div>
 
         <div class="track-time align-center sub-text">
@@ -54,7 +54,7 @@
     import trackOptions from '../track/track-options.vue'
     import { utilService } from '../../services/utils.service'
     import soundBar from '../custom/sound-bar.vue'
-    import threeDotsVertical from '../../assets/imgs/three-dots-vertical.svg'
+    import threeDots from '../../assets/imgs/three-dots.svg'
     
     
     export default {
@@ -63,8 +63,7 @@
             soundBar,
             playIcon,
             pauseIcon,
-            threeDotsVertical
-    
+            threeDots
         },
         props: {
             'track': Object,

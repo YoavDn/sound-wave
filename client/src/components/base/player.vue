@@ -81,7 +81,7 @@
 
             <div class="song-info">
                 <div class="curr-track-name" v-if="track">{{ track.title }}</div>
-                <div @click="goToStation(currStation._id)" class="curr-track-singer" v-if="track">{{ currStation.name }}</div>
+                <div @click="goToStation(currStation._id)" class="curr-track-singer" v-if="track">{{ currStation?.name }}</div>
             </div>
 
             <button @click.stop="toggleLikedSong" :disabled="!track" v-if="track" class="like-btn">
@@ -301,7 +301,7 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
-                if(this.currStation.name === 'jazz rap') {
+                if(this.currStation?.name === 'jazz rap') {
                 socketService.emit('load-track', this.track)
             }
         },
@@ -327,7 +327,7 @@ export default defineComponent({
             // this.isPlaying = false
 
             this.player.pauseVideo()
-            if (this.currStation.name === 'jazz rap') {
+            if (this.currStation?.name === 'jazz rap') {
                 socketService.emit('track-pausing', this.track)
             }
         },
@@ -338,7 +338,7 @@ export default defineComponent({
             // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
-            if (this.currStation.name === 'jazz rap') {
+            if (this.currStation?.name === 'jazz rap') {
                 socketService.emit('track-playing', this.track)
             }
         },
@@ -367,7 +367,7 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
-                if(this.currStation.name === 'jazz rap') {
+                if(this.currStation?.name === 'jazz rap') {
                 socketService.emit('load-track', this.track)
             }
             // this.pause()
