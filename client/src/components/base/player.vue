@@ -312,7 +312,7 @@ export default defineComponent({
         },
         enterFullScreen() {
             const tabletWidth = window.innerWidth
-            if (tabletWidth > 915) return
+            if (tabletWidth > 965) return
             else if (!this.isFullScreen)
                 this.toggleFullScreen()
         },
@@ -377,7 +377,7 @@ export default defineComponent({
     },
     watch: {
         exitFullScreen(w) {
-            if (w < 915) return
+            if (w < 965) return
             this.toggleFullScreen()
         },
         currTime: {
