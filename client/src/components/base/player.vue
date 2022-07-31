@@ -169,7 +169,7 @@ export default defineComponent({
     },
     created() {
         const { id } = this.$route.params
-
+        this.$store.dispatch({ type: 'setCurrStation', stationId: id })
         socketService.on('load-track', ({ track, station }) => {
             this.sendTrack(track, station)
         })
