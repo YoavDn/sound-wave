@@ -6,7 +6,8 @@ export default {
         stations: null,
         tags: ['Shared Playlists', 'Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
-        player: null
+        player: null,
+        sharedStations: ['62e03b3ce6341e2b4e64e4f3', '62e253fa182a33ed054ba9fb']
     },
 
     mutations: {
@@ -17,6 +18,9 @@ export default {
     getters: {
         getTags(state) {
             return state.tags
+        },
+        getSharedStations(state){
+            return state.sharedStations
         },
         getUserStations(state, getters, rootState, rootGetters) {
             const user = rootGetters.getLoggedInUser

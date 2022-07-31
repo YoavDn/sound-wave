@@ -164,26 +164,27 @@ export default defineComponent({
             isReady: false,
             w: window.innerWidth,
             isMobileOptionsShown: false,
-            isReady: false
+            isReady: false,
+
         }
     },
     created() {
         const { id } = this.$route.params
-        this.$store.dispatch({ type: 'setCurrStation', stationId: id })
+        
         socketService.on('load-track', ({ track, station }) => {
-            if (id === '62e03b3ce6341e2b4e64e4f3') {
-                this.sendTrack(track, station)
-            }
+            this.sendTrack(track, station)
         })
         socketService.on('track-playing', (track) => {
             this.playTrack(track)
-
         })
         socketService.on('track-pausing', (track) => {
             this.pauseTrack(track)
         })
     },
     computed: {
+        sharedStations() {
+            return this.$store.getters.getSharedStations
+        },
         currStation() {
             return this.$store.getters.getCurrStation
         },
@@ -277,7 +278,6 @@ export default defineComponent({
             this.$store.dispatch({ type: 'updateStation', data })
         },
         updateStation(data) {
-            console.log('data = ', data)
             this.$store.dispatch({ type: 'updateStation', data })
         },
 
@@ -323,9 +323,12 @@ export default defineComponent({
             // this.isPlaying = false
 
             this.player.pauseVideo()
-            if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('track-pausing', this.track)
-            }
+            socketService.emit('track-pausing', { track: this.track, station: this.currStation })
+            // const { id } = this.$route.params
+            // const sharedStation = this.sharedStations.find(sId => sId === id)
+            // if (id === sharedStation) {
+            //     socketService.emit('track-pausing', { track: this.track, station: sharedStation })
+            // }
         },
 
         play() {
@@ -333,9 +336,11 @@ export default defineComponent({
             clearInterval(this.trackInterval);
             this.player.playVideo()
             this.intervalForTrack()
-            if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('track-playing', this.track)
-            }
+            socketService.emit('track-playing', { track: this.track, station: this.currStation })
+            // const { id } = this.$route.params
+            // const sharedStation = this.sharedStations.find(sId => sId === id)
+            // if (id === sharedStation) {
+            // }
         },
 
         intervalForTrack() {
@@ -394,7 +399,7 @@ export default defineComponent({
         },
         isPlaying: {
             handler: function () {
-                console.log('I work here');
+                const { id } = this.$route.params
                 if (!this.isReady) return
                 else if (this.isPlaying) {
                     this.play()

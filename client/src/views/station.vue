@@ -65,9 +65,8 @@ export default {
         const { id } = this.$route.params
         this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
-
+        this.$store.dispatch({ type: 'setCurrStation', stationId: id })
         socketService.on('update-station', (station) => {
-            console.log('station from back');
             this.sendStation(station)
         })
 
@@ -82,8 +81,9 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
             this.currTrack = track
+            const sharedStation = this.sharedStations.find(sId => sId === this.station._id)
+            if (this.station._id === sharedStation) {
 
-            if (this.station._id === '62e03b3ce6341e2b4e64e4f3') {
                 socketService.emit('load-track', { track, station: this.station })
             }
         },
@@ -160,13 +160,21 @@ export default {
 
     computed: {
         searchResults() { return this.$store.getters.searchResults },
-        user() { return this.$store.getters.getLoggedInUser }
+        user() { return this.$store.getters.getLoggedInUser },
+        sharedStations() {
+            return this.$store.getters.getSharedStations
+        }
     },
 
     watch: {
         '$route.params.id': {
             handler: function (id) {
                 this.station = this.$store.getters.getStation(id)
+                if (!id) return
+                const sharedStation = this.sharedStations.find(sId => sId === id)
+                if (this.station._id === sharedStation) {
+                    socketService.emit('enter-station', sharedStation)
+                }
             },
             deep: true,
             immediate: true,
