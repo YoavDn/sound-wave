@@ -33,7 +33,7 @@
     .track-details {
         align-items: center;
         gap: 10px;
-        min-width: 30%;
+        width: 30%;
 
         .song-info {
             max-width: 60%;
@@ -180,13 +180,13 @@
 
     .progress-bar-nums1 {
         position: absolute;
-        transform: translateX(-140%);
+        transform: translateX(-140%)
     }
 
     .progress-bar-nums2 {
         position: absolute;
         right: 0;
-        transform: translateX(140%);
+        transform: translateX(140%)
     }
 }
 
