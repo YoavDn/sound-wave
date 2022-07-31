@@ -171,11 +171,13 @@ export default defineComponent({
         const { id } = this.$route.params
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
         socketService.on('load-track', ({ track, station }) => {
-            console.log('this.player' === this.player)
-            this.sendTrack(track, station)
+            if (id === '62e03b3ce6341e2b4e64e4f3') {
+                this.sendTrack(track, station)
+            }
         })
         socketService.on('track-playing', (track) => {
             this.playTrack(track)
+
         })
         socketService.on('track-pausing', (track) => {
             this.pauseTrack(track)
@@ -297,7 +299,7 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
-            
+
         },
 
         toggleSongPlay() {
@@ -361,7 +363,7 @@ export default defineComponent({
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
             if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('load-track', {track: this.track, station: this.currStation})
+                socketService.emit('load-track', { track: this.track, station: this.currStation })
             }
             // this.pause()
             // this.play()
@@ -386,13 +388,13 @@ export default defineComponent({
                     this.$store.commit({ type: 'changeTrackInStation', diff: 1 })
                     this.play()
                 }
-
             },
             deep: true,
             immediate: false
         },
         isPlaying: {
             handler: function () {
+                console.log('I work here');
                 if (!this.isReady) return
                 else if (this.isPlaying) {
                     this.play()

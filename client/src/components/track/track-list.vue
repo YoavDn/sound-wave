@@ -30,7 +30,7 @@ export default {
     name: 'track-list',
     data() {
         return {
-
+            // tracks: this.station.tracks
         }
     },
     components: {
@@ -39,10 +39,13 @@ export default {
         Container,
         Draggable
     },
-    props: { 'tracks': Array },
+    props: { 'station': Object },
     computed: {
         isMobileWidth() {
             return window.innerWidth > this.mobileWidth ? false : true
+        },
+        tracks(){
+            return this.station.tracks
         }
 
 
@@ -50,11 +53,13 @@ export default {
     methods: {
         async onDrop(dropResult) {
             let updatedList = this.applyDrag(this.tracks, dropResult)
-            const { id } = this.$route.params
-            const station = JSON.parse(JSON.stringify(this.$store.getters.getStation(id)))
-            station.tracks = updatedList
+            // const { id } = this.$route.params
+            // const station = JSON.parse(JSON.stringify(this.$store.getters.getStation(id)))
+            const updateStation = JSON.parse(JSON.stringify(this.station))
+            console.log('updateStation = ', updateStation)
+            updateStation.tracks = updatedList
             const data = {
-                station,
+                station: updateStation,
                 track: null,
                 isNew: null,
             }

@@ -43,8 +43,6 @@ export default {
                 trackIdx = state.currStation.tracks.length - 1
             }
             state.currTrack = state.currStation.tracks[trackIdx]
-
-            
         }
     },
     actions: {

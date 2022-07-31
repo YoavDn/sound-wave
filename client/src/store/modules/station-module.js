@@ -4,7 +4,7 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-        tags: ['Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Shared Playlists', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
+        tags: ['Shared Playlists', 'Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null
     },
@@ -117,7 +117,7 @@ export default {
 
                 if (track && isNew !== null) {  //if  changing tracks
                     if (station.tracks.some(t => t.id === track.id) && isNew) return // if track alreay in station
-                    
+
                     if (isNew) {
                         newTrack.addedBy = user ? user.fullname : 'Guest'
                         newTrack.addedAt = Date.now()
@@ -133,6 +133,8 @@ export default {
                 const stations = await stationService.save(stationToUpdate, user)
                 await dispatch({ type: 'loadStations', stations })
                 dispatch({ type: 'loadLocalStations' })
+
+                return stationToUpdate
 
             } catch (err) {
                 console.log(err);

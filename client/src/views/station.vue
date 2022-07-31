@@ -5,11 +5,11 @@
         <main class="station-main-container">
             <station-options :station="station" @playStation="playStation" @setStation="setStation"
                 @toggleLikeStation="toggleLikeStation" @deleteStation="deleteStation" />
-            <track-list v-if="station?.tracks.length > 0" :tracks="station.tracks" @setTrack="setTrack"
+            <track-list v-if="station?.tracks.length > 0" :station="station" @setTrack="setTrack"
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
             <div v-if="!station?.tracks?.length > 0" class="station-search">
-                <h2 class='station-seaerch-main-txt'>Let's find somethimg for your playlist</h2>
+                <h2 class='station-seaerch-main-txt'>Let's find something for your playlist</h2>
 
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
 
@@ -76,9 +76,7 @@ export default {
     methods: {
         async sendStation(station) {
             const data = { station, track: null, isNew: null }
-            await this.$store.dispatch({ type: 'updateStation', data })
-            const { id } = this.$route.params
-            this.station = this.$store.getters.getStation(id)
+            this.station = await this.$store.dispatch({ type: 'updateStation', data })
         },
 
         setTrack(track) {
@@ -130,7 +128,7 @@ export default {
 
         async updateStation(data) {
             if (!data) return
-            await this.$store.dispatch({ type: 'updateStation', data })
+            this.station = await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
 
@@ -140,7 +138,7 @@ export default {
             }
 
             eventBus.emit('show-msg', msg)
-            this.station = this.$store.getters.getStation(id)
+            // this.station = this.$store.getters.getStation(id)
 
             socketService.emit('update-station', this.station)
         },
