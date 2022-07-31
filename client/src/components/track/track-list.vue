@@ -21,8 +21,6 @@
 
 <script>
 import { Container, Draggable } from "vue3-smooth-dnd";
-// import { Container, Draggable } from "vue-smooth-dnd";
-// import { applyDrag, generateItems } from '../utils/helpers'
 import trackPreview from './track-preview.vue'
 import trackListHead from '../custom/track-list-head.vue'
 import { socketService } from "../../services/socket.service";
@@ -32,9 +30,7 @@ export default {
     name: 'track-list',
     data() {
         return {
-            // enabled: true,
-            // dragging: false,
-            // showDragContainer: false,
+
         }
     },
     components: {

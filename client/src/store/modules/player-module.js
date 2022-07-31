@@ -1,4 +1,5 @@
 import stationModule from "./station-module"
+import { socketService } from '../../services/socket.service'
 
 export default {
     state: {
@@ -42,6 +43,8 @@ export default {
                 trackIdx = state.currStation.tracks.length - 1
             }
             state.currTrack = state.currStation.tracks[trackIdx]
+
+            
         }
     },
     actions: {

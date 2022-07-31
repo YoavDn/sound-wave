@@ -54,7 +54,6 @@ export default {
   created() {
     const { id } = this.$route.params
     if (id) this.currStation = this.$store.getters.getStation(id)
-
   },
   computed: {
     stations() {

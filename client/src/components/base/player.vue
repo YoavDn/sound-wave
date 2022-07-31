@@ -72,7 +72,7 @@
 
         <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
-        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
 
         <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
@@ -171,8 +171,7 @@ export default defineComponent({
         const { id } = this.$route.params
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
         socketService.on('load-track', ({ track, station }) => {
-            // this.currStation = station
-            this.$store.commit({ type: 'loadTrack', track, station })
+            console.log('this.player' === this.player)
             this.sendTrack(track, station)
         })
         socketService.on('track-playing', (track) => {
@@ -248,7 +247,6 @@ export default defineComponent({
         },
         sendTrack(track, station) {
             this.$store.commit({ type: 'loadTrack', track, station })
-            // this.$store.commit({ type: 'setCurrStation', station })
             this.play()
         },
         pauseTrack() {
@@ -260,7 +258,6 @@ export default defineComponent({
         playTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
-            // this.isPlaying = true
             this.player.playVideo()
             this.intervalForTrack()
         },
@@ -300,9 +297,7 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
-            if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('load-track', { track: this.track, station: this.currStation })
-            }
+            
         },
 
         toggleSongPlay() {
@@ -334,7 +329,6 @@ export default defineComponent({
         play() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
-            console.log('this.player = ', this.player)
             this.player.playVideo()
             this.intervalForTrack()
             if (this.currStation?.name === 'jazz rap') {
@@ -367,7 +361,7 @@ export default defineComponent({
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
             if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('load-track', this.track)
+                socketService.emit('load-track', {track: this.track, station: this.currStation})
             }
             // this.pause()
             // this.play()

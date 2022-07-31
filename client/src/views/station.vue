@@ -32,7 +32,7 @@ import trackList from '../components/track/track-list.vue'
 import searchResultList from '../components/search/search-result-list.vue'
 import stationOptions from '../components/station/station-options.vue'
 import trackOptionsMobile from '../components/track/track-options-mobile.vue'
-
+import { socketService } from '../services/socket.service'
 
 export default {
     name: 'station',
@@ -73,6 +73,10 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
             this.currTrack = track
+            
+            if(this.station._id === '62e03b3ce6341e2b4e64e4f3'){
+                socketService.emit('load-track', {track, station: this.station})
+            }
         },
 
         playStation() {
