@@ -4,7 +4,7 @@ import userStore from './user-module'
 export default {
     state: {
         stations: null,
-        tags: ['Shared Playlists','Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
+        tags: ['Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Shared Playlists', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null
     },
