@@ -90,7 +90,7 @@
         </div>
 
         <div v-if="!isFullScreen" class="test1">
-            <div class="track-controllers-container">
+            <div v-if="!isFullScreen" class="track-controllers-container">
                 <div class="flex center player-track-controllers">
                     <button :disabled="!track" @click.stop="shuffle">
                         <span>
