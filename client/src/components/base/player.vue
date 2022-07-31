@@ -72,7 +72,7 @@
 
         <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
-        <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <YouTube hidden v-if="vidSrc" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
 
         <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
@@ -81,7 +81,8 @@
 
             <div class="song-info">
                 <div class="curr-track-name" v-if="track">{{ track.title }}</div>
-                <div @click="goToStation(currStation._id)" class="curr-track-singer" v-if="track">{{ currStation?.name }}</div>
+                <div @click="goToStation(currStation._id)" class="curr-track-singer" v-if="track">{{ currStation?.name
+                }}</div>
             </div>
 
             <button @click.stop="toggleLikedSong" :disabled="!track" v-if="track" class="like-btn">
@@ -169,21 +170,21 @@ export default defineComponent({
     created() {
         const { id } = this.$route.params
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
-        socketService.on('load-track', (track) => {
-            this.sendTrack(track)
+        socketService.on('load-track', ({ track, station }) => {
+            // this.currStation = station
+            this.$store.commit({ type: 'loadTrack', track, station })
+            this.sendTrack(track, station)
         })
         socketService.on('track-playing', (track) => {
-            console.log('im here 2')
             this.playTrack(track)
         })
         socketService.on('track-pausing', (track) => {
-            console.log('im here')
             this.pauseTrack(track)
         })
     },
     computed: {
         currStation() {
-            return this.$store.getters.getCurrStation 
+            return this.$store.getters.getCurrStation
         },
         isPlaying() {
             return this.$store.getters.getIsPlaying
@@ -231,7 +232,7 @@ export default defineComponent({
         },
         vidSrc() {
             if (this.track) {
-                return `https://www.youtube.com/watch?v=${this.track.id}`;
+                return `https://www.youtube.com/watch?v=${this.track.id}`
             }
         },
         convertMinStart() {
@@ -241,15 +242,13 @@ export default defineComponent({
             return utilService.convertSecToMin(Number(this.trackDuration).toFixed(0))
         },
     },
-    //          if(station.name === 'jazz rap') {
-    //             socketService.emit('load-track', this.track)
-    //         }
     methods: {
-            goToStation(stationId) {
+        goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
         },
-        sendTrack(track) {
-            this.$store.commit({ type: 'loadTrack', track })
+        sendTrack(track, station) {
+            this.$store.commit({ type: 'loadTrack', track, station })
+            // this.$store.commit({ type: 'setCurrStation', station })
             this.play()
         },
         pauseTrack() {
@@ -301,8 +300,8 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
-                if(this.currStation?.name === 'jazz rap') {
-                socketService.emit('load-track', this.track)
+            if (this.currStation?.name === 'jazz rap') {
+                socketService.emit('load-track', { track: this.track, station: this.currStation })
             }
         },
 
@@ -335,7 +334,7 @@ export default defineComponent({
         play() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
-            // this.isPlaying = true
+            console.log('this.player = ', this.player)
             this.player.playVideo()
             this.intervalForTrack()
             if (this.currStation?.name === 'jazz rap') {
@@ -367,7 +366,7 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
-                if(this.currStation?.name === 'jazz rap') {
+            if (this.currStation?.name === 'jazz rap') {
                 socketService.emit('load-track', this.track)
             }
             // this.pause()
