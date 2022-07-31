@@ -367,9 +367,7 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
-            if (this.currStation?.name === 'jazz rap') {
-                socketService.emit('load-track', { track: this.track, station: this.currStation })
-            }
+                socketService.emit('track-playing', { track: this.track, station: this.currStation })
             // this.pause()
             // this.play()
         },
