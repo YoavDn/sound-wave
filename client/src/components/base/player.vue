@@ -160,7 +160,6 @@ export default defineComponent({
             trackDuration: 0,
             trackInterval: null,
             player: null,
-            // isPlaying: false,
             isReady: false,
             w: window.innerWidth,
             isMobileOptionsShown: false,
@@ -255,7 +254,6 @@ export default defineComponent({
         pauseTrack() {
             this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
             clearInterval(this.trackInterval);
-            // this.isPlaying = false
             this.player.pauseVideo()
         },
         playTrack() {
@@ -306,7 +304,6 @@ export default defineComponent({
             if (!this.isPlaying) {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
                 this.play()
-                // socketService.emit('track-playing', this.track.id)
             } else {
                 this.$store.commit({ type: 'setIsPlaying', isPlaying: false })
                 this.pause()
@@ -320,15 +317,9 @@ export default defineComponent({
         },
         pause() {
             clearInterval(this.trackInterval);
-            // this.isPlaying = false
 
             this.player.pauseVideo()
             socketService.emit('track-pausing', { track: this.track, station: this.currStation })
-            // const { id } = this.$route.params
-            // const sharedStation = this.sharedStations.find(sId => sId === id)
-            // if (id === sharedStation) {
-            //     socketService.emit('track-pausing', { track: this.track, station: sharedStation })
-            // }
         },
 
         play() {
@@ -337,10 +328,6 @@ export default defineComponent({
             this.player.playVideo()
             this.intervalForTrack()
             socketService.emit('track-playing', { track: this.track, station: this.currStation })
-            // const { id } = this.$route.params
-            // const sharedStation = this.sharedStations.find(sId => sId === id)
-            // if (id === sharedStation) {
-            // }
         },
 
         intervalForTrack() {
@@ -368,8 +355,6 @@ export default defineComponent({
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
                 socketService.emit('track-playing', { track: this.track, station: this.currStation })
-            // this.pause()
-            // this.play()
         },
 
         shuffle() {
