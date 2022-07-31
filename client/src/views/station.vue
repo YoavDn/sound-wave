@@ -66,9 +66,20 @@ export default {
         this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
 
+        socketService.on('update-station', (station) => {
+            console.log('station from back');
+            this.sendStation(station)
+        })
+
     },
 
     methods: {
+        async sendStation(station) {
+            const data = { station, track: null, isNew: null }
+            await this.$store.dispatch({ type: 'updateStation', data })
+            const { id } = this.$route.params
+            this.station = this.$store.getters.getStation(id)
+        },
 
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
@@ -130,6 +141,8 @@ export default {
 
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
+
+            socketService.emit('update-station', this.station)
         },
 
         async updateUser(data) {
