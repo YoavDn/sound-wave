@@ -9,7 +9,7 @@
                 @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" @updateUser="updateUser" />
 
             <div v-if="!station?.tracks?.length > 0" class="station-search">
-                <h2 class='station-seaerch-main-txt'>Let's find Somethimg for you playlist</h2>
+                <h2 class='station-seaerch-main-txt'>Let's find somethimg for your playlist</h2>
 
                 <search-bar class="station-search-bar flex align-center" @searchTrack="searchTrack" />
 
@@ -73,9 +73,9 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
             this.currTrack = track
-            
-            if(this.station._id === '62e03b3ce6341e2b4e64e4f3'){
-                socketService.emit('load-track', {track, station: this.station})
+
+            if (this.station._id === '62e03b3ce6341e2b4e64e4f3') {
+                socketService.emit('load-track', { track, station: this.station })
             }
         },
 

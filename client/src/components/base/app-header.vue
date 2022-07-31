@@ -2,13 +2,15 @@
     <section class="app-header-container flex align-center space-between" :class="headerBgStyle">
         <div class="page-btn-container flex align-center">
             <button class="pages-btn flex align-center" @click="$router.back()"><i
-                    class="bi bi-chevron-left"></i></button>
+                    class="left-arrow bi bi-chevron-left"></i></button>
             <button class="pages-btn flex align-center" @click="$router.go(1)"><i
-                    class="bi bi-chevron-right"></i></button>
+                    class="right-arrow bi bi-chevron-right"></i></button>
         </div>
 
         <div v-if="loggedInUser" class="user-avatar">
-            <span class="flex align-center flex-column" style="width: 26px"><avatar-svg /></span>
+            <span class="flex align-center flex-column" style="width: 26px">
+                <avatar-svg />
+            </span>
             <span class="avatar-name"> {{ loggedInUser.fullname }}</span>
             <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown">
                 <arrow-down />

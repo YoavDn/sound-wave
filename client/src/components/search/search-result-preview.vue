@@ -109,7 +109,7 @@
             },
             setTrackIfMobile() {
                 console.log(window.innerWidth);
-                if (window.innerWidth > 700) return
+                if (window.innerWidth > 965) return
                 this.$emit('setTrack', this.track)
             },
     
