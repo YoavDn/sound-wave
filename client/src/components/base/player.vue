@@ -170,7 +170,7 @@ export default defineComponent({
     },
     created() {
         const { id } = this.$route.params
-        
+
         socketService.on('load-track', ({ track, station }) => {
             this.sendTrack(track, station)
         })
@@ -367,7 +367,7 @@ export default defineComponent({
 
         onChangeSong(diff) {
             this.$store.commit({ type: 'changeTrackInStation', diff })
-                socketService.emit('track-playing', { track: this.track, station: this.currStation })
+            socketService.emit('load-track', { track: this.track, station: this.currStation })
             // this.pause()
             // this.play()
         },
