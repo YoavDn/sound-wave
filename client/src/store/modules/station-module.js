@@ -16,10 +16,11 @@ export default {
     },
 
     getters: {
+
         getTags(state) {
             return state.tags
         },
-        getSharedStations(state){
+        getSharedStations(state) {
             return state.sharedStations
         },
         getUserStations(state, getters, rootState, rootGetters) {

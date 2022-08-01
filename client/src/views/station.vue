@@ -88,6 +88,7 @@ export default {
             }
         },
 
+
         playStation() {
             const firstTrack = this.station.tracks[0]
             this.currTrack = firstTrack
