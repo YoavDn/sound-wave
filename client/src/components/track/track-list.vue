@@ -44,7 +44,7 @@ export default {
         isMobileWidth() {
             return window.innerWidth > this.mobileWidth ? false : true
         },
-        tracks(){
+        tracks() {
             return this.station.tracks
         }
 
