@@ -77,6 +77,7 @@ export default {
             const data = { station, track: null, isNew: null }
             await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
+            //test
             this.station = this.$store.getters.getStation(id)
         },
 
