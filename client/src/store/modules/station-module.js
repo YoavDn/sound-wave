@@ -7,7 +7,7 @@ export default {
         tags: ['Shared Playlists', 'Recently Added', 'Hip Hop', 'Hits', 'Workout', 'Love', 'Chill', 'Meditation', 'Summer', 'Relax', 'Pop', 'Party', 'Rock', 'Focus', 'Jazz', 'Album', 'Mood'],
         localStations: null,
         player: null,
-        sharedStations: ['62e03b3ce6341e2b4e64e4f3', '62e253fa182a33ed054ba9fb']
+        sharedStations: ['62e03b3ce6341e2b4e64e4f3', '62e253fa182a33ed054ba9fb', '62e7a394f448d4579511803b']
     },
 
     mutations: {
