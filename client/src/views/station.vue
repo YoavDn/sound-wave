@@ -75,7 +75,9 @@ export default {
     methods: {
         async sendStation(station) {
             const data = { station, track: null, isNew: null }
-            this.station = await this.$store.dispatch({ type: 'updateStation', data })
+            await this.$store.dispatch({ type: 'updateStation', data })
+            const { id } = this.$route.params
+            this.station = this.$store.getters.getStation(id)
         },
 
         setTrack(track) {
@@ -129,7 +131,7 @@ export default {
 
         async updateStation(data) {
             if (!data) return
-            this.station = await this.$store.dispatch({ type: 'updateStation', data })
+            await this.$store.dispatch({ type: 'updateStation', data })
             const { id } = this.$route.params
             let msg;
 
@@ -139,8 +141,8 @@ export default {
             }
 
             eventBus.emit('show-msg', msg)
-            // this.station = this.$store.getters.getStation(id)
-
+            this.station = this.$store.getters.getStation(id)
+            console.log(this.station);
             socketService.emit('update-station', this.station)
         },
 
