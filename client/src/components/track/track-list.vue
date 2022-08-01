@@ -40,6 +40,8 @@ export default {
         Draggable
     },
     props: { 'station': Object },
+
+
     computed: {
         isMobileWidth() {
             return window.innerWidth > this.mobileWidth ? false : true
