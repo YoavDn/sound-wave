@@ -1,4 +1,5 @@
 import { youtubeService } from '../../services/youtube.service'
+import _ from 'lodash'
 
 export default {
 
@@ -26,7 +27,7 @@ export default {
   actions: {
     async searchTracks({ commit }, { query }) {
       if (!query || !query.length) return commit({ type: "setSearchResults", tracks: null })
-      const tracks = await youtubeService.searchTracks(query)
+      const tracks = _.debounce(await youtubeService.searchTracks(query), 4400, { 'maxWait': 2000 })
       commit({ type: "setSearchResults", tracks })
     }
   },
