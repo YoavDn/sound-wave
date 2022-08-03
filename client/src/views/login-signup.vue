@@ -6,12 +6,12 @@
             <logo-black />
         </header>
         <div class="login-main flex flex-column">
-            <button class="clean-btn google-login-btn">
+            <button v-if="!isNewUser" class="clean-btn google-login-btn">
                 <img src="../assets/imgs/google.png">
                 <span>CONTINUE WITH GOOGLE</span>
             </button>
             <div>
-                <div class="flex align-center">
+                <div v-if="!isNewUser" class="flex align-center">
                     <hr class="hr">
                     <span class="span-hr">OR</span>
                     <hr class="hr">
