@@ -23,8 +23,8 @@
 
         <div v-if="isUserModalShown" class="user-modal flex flex-column" v-click-outside="closeModal">
             <button class="clean-btn" @click="logout"><span>Log Out</span></button>
-            <button class="clean-btn"><span>Profile</span></button>
-            <button class="clean-btn"><span>Account</span></button>
+            <!-- <button class="clean-btn"><span>Profile</span></button>
+            <button class="clean-btn"><span>Account</span></button> -->
         </div>
     </section>
 </template>
