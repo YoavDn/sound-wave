@@ -74,7 +74,7 @@
 
     .side-bar-station-list {
         overflow-y: scroll;
-        flex-basis: 58%;
+        flex-basis: calc(58% - 60px);
         border-top: .5px solid rgba($clr3, 0.3);
         padding: 8px 0px;
 
