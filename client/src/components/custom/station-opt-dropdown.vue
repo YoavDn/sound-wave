@@ -15,7 +15,7 @@
 
     <div v-if="isShareSubmodalOn" class="station-share-modal">
         <button @click="copyToClipboard" class="share-link-btn clean-btn">Copy link</button>
-        <button class="share-link-btn clean-btn">Copy on whatsapp</button>
+        <button @click="whatsupShare" class="share-link-btn clean-btn">Copy on whatsapp</button>
     </div>
 
 
@@ -70,13 +70,17 @@ export default {
         },
 
         copyToClipboard() {
-            navigator.clipboard.writeText(this.$route.fullPath);
+            navigator.clipboard.writeText(window.location.href);
             eventBus.emit('show-msg', "Link copied to clipboard")
         },
 
         deleteStation() {
             this.closeAllModals()
             this.$emit('deleteStation')
+        },
+        whatsupShare() {
+            const link = window.location.href
+            window.open(`whatsapp://send?text=${link}`)
         }
     }
 

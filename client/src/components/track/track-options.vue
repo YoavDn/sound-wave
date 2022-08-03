@@ -27,7 +27,7 @@
 
   <div v-if="isShareSubmodalOn" class="opt-dropdown-side" :style="modalPos" @mouseleave="isPlaylistsSubmodalOn = false">
     <button @click="copyToClipboard" class="clean-btn">Copy link</button>
-    <button class="clean-btn">Copy on whatsapp</button>
+    <button @click="whatsupShare" class="clean-btn">Copy on whatsapp</button>
   </div>
 
 
@@ -100,6 +100,11 @@ export default {
     copyToClipboard() {
       navigator.clipboard.writeText(window.location.href);
       eventBus.emit('show-msg', "Link copied to clipboard")
+    },
+
+    whatsupShare() {
+      const link = window.location.href
+      window.open(`whatsapp://send?text=${link}`)
     }
   }
 
