@@ -72,7 +72,8 @@
 
         <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
-        <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube" />
+        <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube"
+            :autoplay="autoplay" />
 
         <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
@@ -164,6 +165,7 @@ export default defineComponent({
             w: window.innerWidth,
             isMobileOptionsShown: false,
             isReady: false,
+            autoplay: 1,
 
         }
     },
@@ -297,7 +299,6 @@ export default defineComponent({
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
             this.play()
-
         },
 
         toggleSongPlay() {
@@ -384,11 +385,10 @@ export default defineComponent({
             handler: function () {
                 const { id } = this.$route.params
                 if (!this.isReady) return
-                else if (this.isPlaying) {
-                    this.play()
-                } else {
-                    this.pause()
-                }
+
+                if (this.isPlaying) this.play()
+                else this.pause()
+
             }
         }
 

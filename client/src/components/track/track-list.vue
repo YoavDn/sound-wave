@@ -28,11 +28,6 @@ import { socketService } from "../../services/socket.service";
 
 export default {
     name: 'track-list',
-    data() {
-        // return {
-        //     tracks: this.station.tracks
-        // }
-    },
     components: {
         trackPreview,
         trackListHead,
