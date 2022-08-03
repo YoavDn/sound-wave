@@ -20,7 +20,6 @@ export default {
             try {
                 const user = await userService.login(userInfo)
                 commit({ type: 'setUser', user })
-                console.log(user);
                 return user
 
             } catch (err) {
@@ -42,7 +41,6 @@ export default {
 
         async logout({ commit }) {
             try {
-                console.log('gothere');
                 await userService.logout()
                 commit({ type: 'setLogout' })
             } catch (err) {
@@ -53,7 +51,6 @@ export default {
         async updateUser(ctx, { user }) {
             try {
                 const updatedUser = await userService.updateUser(user)
-                console.log(updatedUser);
                 ctx.commit({ type: 'setUser', user: updatedUser })
                 return updatedUser
             } catch (err) {
