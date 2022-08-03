@@ -2,7 +2,8 @@
   <i class="bi bi-three-dots action-btn" @click="toggleModal"></i>
   <div v-if="isModalOn" :style="modalPos" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
-    <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
+    <button :disabled="stations.length < 1" class="clean-btn" @mouseover="openPlayListSubModal"><span
+        class="flex space-between align-center">Add to
         playlist <i class="bi bi-caret-right-fill"></i></span>
     </button>
 
