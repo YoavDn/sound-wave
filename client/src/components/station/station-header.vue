@@ -1,8 +1,13 @@
 <template>
     <header class='station-header-container'>
-        <div @click="openEditModal" class="header-img-container">
+        <div @click="openEditModal" class="header-img-container" @mouseenter="mouseOnImg = true"
+            @mouseleave="mouseOnImg = false">
             <img class="shadow" v-if="station.imgUrl !== null" :src="station.imgUrl" alt="">
             <img class="shadow" v-else src="../../assets/imgs/defaultCover.svg" alt="default cover">
+            <div v-if="mouseOnImg" class="img-overlay">
+                <i class="bi bi-pencil-square"></i>
+                <p>Edit</p>
+            </div>
         </div>
         <div class="station-text">
             <p>PLAYIST</p>
@@ -42,6 +47,7 @@ export default {
     data() {
         return {
             editModalOpen: false,
+            mouseOnImg: false
         }
     },
 
