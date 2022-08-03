@@ -97,7 +97,7 @@ export default {
       eventBus.emit('updateStation', data)
     },
     copyToClipboard() {
-      navigator.clipboard.writeText(this.$route.fullPath);
+      navigator.clipboard.writeText(window.location.href);
       eventBus.emit('show-msg', "Link copied to clipboard")
     }
   }
