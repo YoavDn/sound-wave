@@ -73,7 +73,7 @@
         <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
         <YouTube hidden v-if="vidSrc && track" @stateChange="state" :src="vidSrc" @ready="onReady" ref="youtube"
-            :autoplay="autoplay" />
+            :autoplay="autoplay" enablejsapi="1" />
 
         <div v-if="!isFullScreen" class="flex track-details">
             <div class="curr-track-img-container">
@@ -235,7 +235,8 @@ export default defineComponent({
         },
         vidSrc() {
             if (this.track) {
-                return `https://www.youtube.com/watch?v=${this.track.id}`
+                // return `https://www.youtube.com/watch?v=${this.track.id}`
+                return `https://www.youtube.com/embed/${this.track.id}?autoplay=1&amp;mute=1`
             }
         },
         convertMinStart() {
