@@ -23,13 +23,11 @@
 
         <div v-if="isUserModalShown" class="user-modal flex flex-column" v-click-outside="closeModal">
             <button class="clean-btn" @click="logout"><span>Log Out</span></button>
-            <!-- <button class="clean-btn"><span>Profile</span></button>
-            <button class="clean-btn"><span>Account</span></button> -->
         </div>
     </section>
 </template>
     
-<script >
+<script>
 import arrowDown from '../../assets/imgs/arrow-down.svg'
 import avatarSvg from '../../assets/imgs/default-avatar.svg'
 

@@ -1,9 +1,11 @@
-.side-bar-container {
+.side-bar-container, .side-bar-container-mobile {
     grid-column: 1;
     grid-row: 1/span 2;
     background-color: $clr2;
     padding-inline: $base-padding;
     gap: 1rem;
+
+
 
     .logo {
         color: $clr3;
@@ -96,7 +98,9 @@
         }
     }
 }
-
+.mobile-menu-btn {
+    display: none;
+}
 // @media (max-width: $tablet-width) {
 
 //     .side-bar-container {

@@ -3,7 +3,12 @@
         grid-column: 1;
         position: relative;
         // z-index: 10;
+
+        .btns-container .login {
+            display: none;
+        }
     }
+
     .avatar-name {
         display: none;
     }

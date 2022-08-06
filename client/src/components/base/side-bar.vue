@@ -33,6 +33,46 @@
                 {{ station.name }}</p>
         </div>
     </section>
+
+    <!------------------------------------------------------------- SIDE-BAR-MOBILE -------------------------------------------------------------------->
+    <button class="clean-btn mobile-menu-btn" @click="toggleMobileMenu"><i class="bi bi-list"></i></button>
+    <section  class="side-bar-container-mobile flex-column" :class="{ mobileActive: isMenuMobileOn }">
+        <nav class="side-bar-nav">
+            <div @click="goToPage('')" class="logo flex">
+                <img class="logo-svg" src="../../assets/imgs/logo.png" alt="logo">
+                <h2>SoundWave</h2>
+            </div>
+            <button v-for="pageLink in pagesLinks" :key="pageLink" @click="goToPage(pageLink.id)"
+                :class="activeStyle(pageLink.id)" class=" page-link-btn flex align-center">
+                <span class="page-link-svg">
+                    <component v-if="activePage === pageLink.id" :is="pageLink.icon[1]" />
+                    <component class="page-svg" v-else :is="pageLink.icon[0]" />
+                </span>
+                {{ pageLink.name }}
+            </button>
+
+            <button @click="createNewPlaylist" class=" create-playlist-link page-link-btn flex align-center ">
+                <span class=" page-link-svg">
+                    <i class="bi bi-plus-square-fill"></i>
+                </span>
+                Create Playlist
+            </button>
+            <button @click="goToPage(likedSongsRoute)" class=" liked-songs-link page-link-btn flex align-center">
+                <span class="page-link-svg">
+                    <img src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png" alt="">
+                </span>
+                Liked Songs
+            </button>
+        </nav>
+        <div class="side-bar-station-list" v-if="stations" style="color:white;">
+            <p class="station-side-link" v-for="station in stations" :key="station._id"
+                @click="goToStation(station._id)">
+                {{ station.name }}</p>
+        </div>
+        <div><button class="clean-btn cancel-opt-mobile" @click="toggleMobileMenu">
+                <span>Cancel</span>
+            </button></div>
+    </section>
 </template>
 
     
@@ -54,7 +94,8 @@ export default {
                 { id: 'search', name: 'Search', icon: ['searchIcon', 'activeSearchIcon'] },
                 { id: 'library', name: ' Your Library', icon: ["libraryIcon", 'activeLibraryIcon'] }
             ],
-            activePage: null
+            activePage: null,
+            isMenuMobileOn: false,
         }
     },
     components: {
@@ -88,6 +129,9 @@ export default {
     },
 
     methods: {
+        toggleMobileMenu() {
+            this.isMenuMobileOn = !this.isMenuMobileOn
+        },
         goToPage(page) {
             this.$router.push(`/${page}`)
 
