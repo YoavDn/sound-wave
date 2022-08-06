@@ -36,7 +36,26 @@
 
     <!------------------------------------------------------------- SIDE-BAR-MOBILE -------------------------------------------------------------------->
     <button class="clean-btn mobile-menu-btn" @click="toggleMobileMenu"><i class="bi bi-list"></i></button>
-    <section  class="side-bar-container-mobile flex-column" :class="{ mobileActive: isMenuMobileOn }">
+    <section class="side-bar-container-mobile flex-column" :class="{ mobileActive: isMenuMobileOn }">
+
+        <div v-if="loggedInUser" class="user-avatar">
+            <span class="flex align-center flex-column" style="width: 26px">
+                <avatar-svg />
+            </span>
+            <span class="avatar-name"> {{ loggedInUser.fullname }}</span>
+            <button class="clean-btn" style="margin-inline-end: 6px;" @click="isUserModalShown = !isUserModalShown">
+                <arrow-down />
+            </button>
+        </div>
+
+        <div v-else class="btns-container flex align-center">
+            <button @click="goToLoginPage" class="clean-btn login">Log In</button>
+        </div>
+
+        <div v-if="isUserModalShown" class="user-modal flex flex-column" v-click-outside="closeModal">
+            <button class="clean-btn" @click="logout"><span>Log Out</span></button>
+        </div>
+
         <nav class="side-bar-nav">
             <div @click="goToPage('')" class="logo flex">
                 <img class="logo-svg" src="../../assets/imgs/logo.png" alt="logo">
@@ -84,6 +103,8 @@ import activeSearchIcon from '../../assets/imgs/active-search.svg'
 import activeHomeIcon from '../../assets/imgs/active-home.svg'
 import activeLibraryIcon from '../../assets/imgs/active-library.svg'
 import likedPage from '../../assets/imgs/likedPage.svg'
+import avatarSvg from '../../assets/imgs/default-avatar.svg'
+import arrowDown from '../../assets/imgs/arrow-down.svg'
 
 export default {
     data() {
@@ -96,6 +117,7 @@ export default {
             ],
             activePage: null,
             isMenuMobileOn: false,
+            isUserModalShown: false,
         }
     },
     components: {
@@ -105,7 +127,9 @@ export default {
         activeHomeIcon,
         activeLibraryIcon,
         activeSearchIcon,
-        likedPage
+        likedPage,
+        avatarSvg,
+        arrowDown
     },
 
     computed: {
@@ -113,7 +137,9 @@ export default {
             let stations = this.$store.getters.getUserStations
             return stations
         },
-
+        loggedInUser() {
+            return this.$store.getters.getLoggedInUser
+        },
         likedSongsRoute() {
 
             if (!this.user) {
@@ -132,13 +158,28 @@ export default {
         toggleMobileMenu() {
             this.isMenuMobileOn = !this.isMenuMobileOn
         },
+        closeModal() {
+            this.isUserModalShown = false
+        },
+        logout() {
+            if (!this.loggedInUser) return
+            this.$store.dispatch({ type: 'logout' })
+            this.isUserModalShown = false
+        },
+
+        goToLoginPage() {
+            this.$router.push('/login')
+            this.isMenuMobileOn = false
+        },
+
         goToPage(page) {
             this.$router.push(`/${page}`)
-
+            this.isMenuMobileOn = false
         },
 
         goToStation(stationId) {
             this.$router.push(`/station/${stationId}`)
+            this.isMenuMobileOn = false
             // this.$router.go()
         },
 

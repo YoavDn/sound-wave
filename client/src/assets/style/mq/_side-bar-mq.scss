@@ -37,6 +37,47 @@
         z-index: 9999;
         transition: all 0.5s;
         gap: 1rem;
+
+        .side-bar-station-list::-webkit-scrollbar {
+            display: block;
+            width: 10px;
+        } 
+
+        .side-bar-station-list {
+            flex-basis: calc(68% - 60px);
+        }
+            
+        
+        .btns-container .login {
+            display: flex;
+            color: black;
+            position: absolute;
+            border-radius: 5rem;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 13px;
+            top: 35px;
+            right: 23px;
+            background: white;
+        }
+
+        .user-avatar {
+            display: flex;
+            @include user-avatar;
+            position: absolute;
+            top: 35px;
+            right: 23px;
+
+            .avatar-name {
+                display: flex;
+            }
+        }
+
+        .user-modal {
+            @include user-modal;
+            right: 2rem;
+            top: 4.3rem;
+        }
     }
 
     .mobileActive {

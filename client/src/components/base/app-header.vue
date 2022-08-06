@@ -24,6 +24,7 @@
         <div v-if="isUserModalShown" class="user-modal flex flex-column" v-click-outside="closeModal">
             <button class="clean-btn" @click="logout"><span>Log Out</span></button>
         </div>
+        
     </section>
 </template>
     
