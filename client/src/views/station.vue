@@ -50,7 +50,6 @@ export default {
             newStation: null,
             // station: null,
             unsubscribe: null,
-            currTrack: null,
             isPlaying: null,
             isMobileOptionsOn: false
         }
@@ -84,7 +83,6 @@ export default {
 
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track, station: this.station })
-            this.currTrack = track
             const sharedStation = this.sharedStations.find(sId => sId === this.station._id)
             if (this.station._id === sharedStation) {
                 socketService.emit('load-track', { track, station: this.station })
@@ -94,7 +92,6 @@ export default {
 
         playStation() {
             const firstTrack = this.station.tracks[0]
-            this.currTrack = firstTrack
             this.setTrack(firstTrack)
         },
 
@@ -167,6 +164,9 @@ export default {
         user() { return this.$store.getters.getLoggedInUser },
         sharedStations() {
             return this.$store.getters.getSharedStations
+        },
+        currTrack() {
+            return this.$store.getters.getTrack
         }
     },
 

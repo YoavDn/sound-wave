@@ -14,6 +14,7 @@ import 'element-plus/dist/index.css'
 import './assets/style/main.scss'
 import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
+//test
 console.log(process.env.NODE_ENV);
 
 const app = createApp(App)
