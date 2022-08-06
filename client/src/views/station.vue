@@ -87,7 +87,6 @@ export default {
             this.currTrack = track
             const sharedStation = this.sharedStations.find(sId => sId === this.station._id)
             if (this.station._id === sharedStation) {
-
                 socketService.emit('load-track', { track, station: this.station })
             }
         },
@@ -144,7 +143,7 @@ export default {
 
             eventBus.emit('show-msg', msg)
             this.station = this.$store.getters.getStation(id)
-            console.log('hellohello');
+            console.log(this.station);
             socketService.emit('update-station', this.station)
         },
 

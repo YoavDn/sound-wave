@@ -5,12 +5,16 @@
     height: 270px;
     padding-bottom: 24px;
 
+    .header-img-container {
+        position: relative;
+    }
+
     img {
+        position: relative;
         cursor: pointer;
         height: 230px;
         object-fit: cover;
         aspect-ratio: 1;
-
     }
 
     .station-text {

@@ -6,12 +6,12 @@
             <logo-black />
         </header>
         <div class="login-main flex flex-column">
-            <button class="clean-btn google-login-btn">
+            <button @click="handleGoogleLogIn" v-if="!isNewUser" class="clean-btn google-login-btn">
                 <img src="../assets/imgs/google.png">
-                <span>CONTINUE WITH GOOGLE</span>
+                <span>CONTINUE WITH GOOGLE </span>
             </button>
             <div>
-                <div class="flex align-center">
+                <div v-if="!isNewUser" class="flex align-center">
                     <hr class="hr">
                     <span class="span-hr">OR</span>
                     <hr class="hr">
@@ -34,17 +34,25 @@
 <script>
 import logoBlack from '../assets/imgs/logo-black.svg'
 import loginForm from '../components/custom/login-form.vue'
+import { eventBus } from '../services/event-bus';
 export default {
     name: 'login',
     components: {
         loginForm,
         logoBlack,
     },
+    inject: [''],
     data() {
         return {
             isNewUser: false,
+            googleUser: null
         }
     },
+    created() {
+        console.log(this.$gAuth);
+
+    },
+
 
     methods: {
         async login(userInfo) {
@@ -57,10 +65,11 @@ export default {
             const user = await this.$store.dispatch({ type: 'signup', newUser })
             if (user) return this.$router.go()
             //else some msg about being Unauthorized
+        },
+        handleGoogleLogIn() {
+            console.log('hii');
+            eventBus.emit('show-msg', 'this feature in under development')
         }
     }
-
-
-
 }
 </script>

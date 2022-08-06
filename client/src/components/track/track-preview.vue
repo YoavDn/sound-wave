@@ -33,7 +33,7 @@
             <p v-else>Dec 25, 2019 </p>
         </div>
 
-        <div class="mobile-options" @click="$emit('toggleMobileOptions', track)">
+        <div class="mobile-options" @click.stop="$emit('toggleMobileOptions', track)">
             <three-dots />
         </div>
 
@@ -149,7 +149,6 @@
             },
     
             setTrackIfMobile() {
-                console.log(window.innerWidth);
                 if (window.innerWidth > 965) return
                 this.$emit('setTrack', this.track)
             }

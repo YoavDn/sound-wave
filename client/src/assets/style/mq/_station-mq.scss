@@ -127,3 +127,19 @@
         }
     }
 }
+
+
+@media screen and (min-width: 1000px) and(max-width: 1550px) {
+    .station-header-container {
+        img {
+            height: 190px;
+        }
+
+        .station-text {
+            .station-name {
+                font-size: 75px;
+                // line-height: 130px;
+            }
+        }
+    }
+}

@@ -29,9 +29,9 @@ import { socketService } from "../../services/socket.service";
 export default {
     name: 'track-list',
     data() {
-        return {
-            // tracks: this.station.tracks
-        }
+        // return {
+        //     tracks: this.station.tracks
+        // }
     },
     components: {
         trackPreview,
@@ -60,14 +60,13 @@ export default {
             const updateStation = JSON.parse(JSON.stringify(this.station))
             console.log('updateStation = ', updateStation)
             updateStation.tracks = updatedList
+            // this.tracks = updatedList
             const data = {
                 station: updateStation,
                 track: null,
                 isNew: null,
             }
             this.$emit('updateStation', data)
-
-
         },
 
         updateStation(data) {

@@ -2,10 +2,12 @@
     <section class="search-page-container">
         <search-bar class="search-input-container flex align-center" @searchTrack="searchTrack" />
         <div v-if="tracks">
-            <search-result-list @setTrack="setTrack" @toggleMobileOptions="toggleMobileOptions" @updateStation="updateStation" :tracks="tracks" :currentPreivew="'trackPreview'" />
+            <search-result-list @setTrack="setTrack" @toggleMobileOptions="toggleMobileOptions"
+                @updateStation="updateStation" :tracks="tracks" :currentPreivew="'trackPreview'" />
         </div>
         <genre-list v-if="!tracks" :genres="genres" />
-        <track-options-mobile @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" :track="track" v-if="isMobileOptionsOn"/>
+        <track-options-mobile @updateStation="updateStation" @toggleMobileOptions="toggleMobileOptions" :track="track"
+            v-if="isMobileOptionsOn" />
     </section>
 </template>
     
@@ -15,6 +17,7 @@ import searchResultList from '../components/search/search-result-list.vue'
 import searchBar from '../components/search/search-bar.vue'
 import genreList from '../components/genre/genre-list.vue'
 import trackOptionsMobile from '../components/track/track-options-mobile.vue'
+
 
 export default {
     data() {
@@ -54,7 +57,7 @@ export default {
         setTrack(track) {
             this.$store.commit({ type: 'loadTrack', track })
         },
-        toggleMobileOptions(track = null){
+        toggleMobileOptions(track = null) {
             this.track = track
             this.isMobileOptionsOn = !this.isMobileOptionsOn
         },

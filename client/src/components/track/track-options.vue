@@ -2,7 +2,8 @@
   <i class="bi bi-three-dots action-btn" @click="toggleModal"></i>
   <div v-if="isModalOn" :style="modalPos" class="opt-dropdown flex flex-column" v-click-outside="closeAllModals">
 
-    <button class="clean-btn" @mouseover="openPlayListSubModal"><span class="flex space-between align-center">Add to
+    <button :disabled="stations.length < 1" class="clean-btn" @mouseover="openPlayListSubModal"><span
+        class="flex space-between align-center">Add to
         playlist <i class="bi bi-caret-right-fill"></i></span>
     </button>
 
@@ -26,7 +27,7 @@
 
   <div v-if="isShareSubmodalOn" class="opt-dropdown-side" :style="modalPos" @mouseleave="isPlaylistsSubmodalOn = false">
     <button @click="copyToClipboard" class="clean-btn">Copy link</button>
-    <button class="clean-btn">Copy on whatsapp</button>
+    <button @click="whatsupShare" class="clean-btn">Copy on whatsapp</button>
   </div>
 
 
@@ -97,8 +98,13 @@ export default {
       eventBus.emit('updateStation', data)
     },
     copyToClipboard() {
-      navigator.clipboard.writeText(this.$route.fullPath);
+      navigator.clipboard.writeText(window.location.href);
       eventBus.emit('show-msg', "Link copied to clipboard")
+    },
+
+    whatsupShare() {
+      const link = window.location.href
+      window.open(`whatsapp://send?text=${link}`)
     }
   }
 
