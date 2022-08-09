@@ -1,5 +1,6 @@
 :root {
     --column-count: 7;
+    --vh: 100vh;
 }
 
 // @media (min-width: $medium-width) {
@@ -7,17 +8,19 @@
 //         --coulmn-count: 6;
 //     }
 // }
-@media (max-width: 1450px){
+@media (max-width: 1450px) {
     :root {
         --column-count: 5;
     }
 }
-@media (max-width: $medium-width){
+
+@media (max-width: $medium-width) {
     :root {
         --column-count: 4;
     }
 }
-@media (max-width: 1120px){
+
+@media (max-width: 1120px) {
     :root {
         --column-count: 3;
     }
