@@ -48,7 +48,7 @@ export default {
     data() {
         return {
             newStation: null,
-            // station: null,
+            station: null,
             unsubscribe: null,
             isPlaying: null,
             isMobileOptionsOn: false
@@ -62,7 +62,7 @@ export default {
 
     created() {
         const { id } = this.$route.params
-        this.station =  this.$store.getters.getStation(id)
+        this.station = this.$store.getters.getStation(id)
         this.unsubscribe = eventBus.on('updateStation', this.updateStation)
         this.$store.dispatch({ type: 'setCurrStation', stationId: id })
         socketService.on('update-station', (station) => {
@@ -139,8 +139,8 @@ export default {
             }
 
             eventBus.emit('show-msg', msg)
+
             this.station = this.$store.getters.getStation(id)
-            console.log(this.station);
             socketService.emit('update-station', this.station)
         },
 
