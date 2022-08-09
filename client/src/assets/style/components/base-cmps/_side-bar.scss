@@ -1,4 +1,5 @@
-.side-bar-container, .side-bar-container-mobile {
+.side-bar-container,
+.side-bar-container-mobile {
     grid-column: 1;
     grid-row: 1/span 2;
     background-color: $clr2;
@@ -98,9 +99,11 @@
         }
     }
 }
+
 .mobile-menu-btn {
     display: none;
 }
+
 // @media (max-width: $tablet-width) {
 
 //     .side-bar-container {

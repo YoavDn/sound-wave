@@ -1,5 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import svgLoader from 'vite-svg-loader'
+import postcssNesting from 'postcss-nesting';
+import postcss100vhFix from 'postcss-100vh-fix'
 
 
 import { defineConfig } from 'vite'
@@ -18,6 +20,14 @@ export default defineConfig({
     outDir: "../../sound-wave-backend/public",
     // outDir: "../../../heroku-final/sound-wave-project/public",
     emptyOutDir: true
-  }
+  },
+  css: {
+    postcss: {
+      plugins: [
+        postcssNesting,
+        postcss100vhFix
+      ],
+    },
+  },
 
 })

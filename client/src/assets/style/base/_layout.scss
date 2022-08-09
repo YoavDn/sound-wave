@@ -1,9 +1,9 @@
 .main-layout {
+    height: 100vh;
     display: grid;
     grid-template-columns: 280px 1fr;
     grid-template-rows: 1fr 90px;
     // background: linear-gradient($main-background, $dark-gray 24rem);
-    height: 100vh;
     overflow: hidden;
 }
 
@@ -20,6 +20,7 @@
     grid-row: 1;
     background-color: $dark-gray;
     z-index: 1;
+    overflow-y: scroll;
     scrollbar-gutter: stable;
 }
 
