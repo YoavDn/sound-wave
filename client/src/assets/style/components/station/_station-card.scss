@@ -6,13 +6,12 @@
     transition: background .3s;
     background-color: #ffffff0a;
 
-    h3{
+    h3 {
         text-overflow: ellipsis;
         overflow: hidden;
         width: 90%;
         white-space: nowrap;
     }
-    
 
     .station-name-container {
         padding: 6px;
@@ -20,16 +19,23 @@
 
     .station-card-img {
         position: relative;
+
+
     }
 
     img {
+        display: block;
         width: 100%;
-        aspect-ratio: 1;
         max-height: 220px;
+        max-width: 220px;
         border-radius: 12px;
         padding: 6px;
         object-fit: cover;
+        aspect-ratio: 1;
+        height: auto;
     }
+
+
 
     .station-preview-play-btn {
         position: relative;
@@ -86,7 +92,6 @@
     }
 
 
-
     p {
         color: $clr3 ;
         padding-inline-start: 6px;
@@ -106,19 +111,4 @@
             transform: translateY(0);
         }
     }
-
-    ;
 }
-
-
-// @media (max-width: 780px) {
-//     .station-card {
-//         background: none;
-//     }
-
-//     .station-preview-play-btn {
-//         display: none;
-
-
-//     }
-// }

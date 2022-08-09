@@ -75,18 +75,13 @@ export default {
 }
 
 .swiper-slide {
-    width: 140px;
-
     // background-color: rgba(255, 255, 255, 0.1);
     // padding: 10px;
     display: flex;
     flex-direction: column;
-    width: 10px;
-    font-size: 16px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -94,12 +89,13 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
 
-    img {
-        width: 100%;
-        // min-height: 143px;
-        object-fit: cover;
-        aspect-ratio: 1;
-    }
+    // img {
+    //     display: block;
+    //     width: 100%;
+    //     height: 100%;
+    //     object-fit: cover;
+    //     aspect-ratio: 1;
+    // }
 
 
     p {

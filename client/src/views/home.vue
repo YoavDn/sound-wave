@@ -47,7 +47,7 @@ export default {
 
     data() {
         return {
-    
+
         }
     },
     methods: {
@@ -59,7 +59,7 @@ export default {
         },
     },
     computed: {
-        tags(){
+        tags() {
             return this.$store.getters.getTags
         },
         stations() {

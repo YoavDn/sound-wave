@@ -25,7 +25,7 @@ export default defineConfig({
     postcss: {
       plugins: [
         postcssNesting,
-        postcss100vhFix
+        postcss100vhFix,
       ],
     },
   },

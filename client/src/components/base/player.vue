@@ -298,7 +298,8 @@ export default defineComponent({
             this.isReady = true
             this.player = this.$refs.youtube
             this.player.setVolume(this.volume)
-            this.play()
+            this.player.loadVideoById(this.track.id)
+            // this.play()
         },
 
         toggleSongPlay() {
@@ -328,6 +329,7 @@ export default defineComponent({
             this.$store.commit({ type: 'setIsPlaying', isPlaying: true })
             clearInterval(this.trackInterval);
             this.player.playVideo()
+
             this.intervalForTrack()
             socketService.emit('track-playing', { track: this.track, station: this.currStation })
         },

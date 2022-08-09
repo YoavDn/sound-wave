@@ -2,7 +2,7 @@
     .mobile-menu-btn {
         position: absolute;
         display: flex;
-        top: 23px;
+        top: 15px;
         right: 32px;
         font-size: 33px;
         color: white;
@@ -41,13 +41,13 @@
         .side-bar-station-list::-webkit-scrollbar {
             display: block;
             width: 10px;
-        } 
+        }
 
         .side-bar-station-list {
             flex-basis: calc(68% - 60px);
         }
-            
-        
+
+
         .btns-container .login {
             display: flex;
             color: black;
