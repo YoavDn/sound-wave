@@ -1,7 +1,7 @@
 @media (max-width: $tablet-width) {
     .main-layout {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 60px 70px;
+        grid-template-rows: 1fr 60px;
     }
 
     .main-view {
