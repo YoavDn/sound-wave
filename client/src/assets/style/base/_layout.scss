@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: 280px 1fr;
     grid-template-rows: 1fr 90px;
-    // height: 100vh;
-    // background: linear-gradient($main-background, $dark-gray 24rem);
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -19,7 +18,6 @@
     position: relative;
     grid-row: 1;
     background-color: $dark-gray;
-    overflow: auto;
     z-index: 1;
     scrollbar-gutter: stable;
 }

@@ -1,9 +1,10 @@
 @media (max-width: $tablet-width) {
     .player-container {
+        grid-row: 2;
         position: relative;
         border-radius: 6px;
-        padding-inline: 10px; 
-        margin-inline: 7px; 
+        padding-inline: 10px;
+        margin-inline: 7px;
         background-color: rgb(53 14 59);
 
         .volume-container {
@@ -42,7 +43,7 @@
             margin-bottom: 0;
             position: absolute;
             right: 3%;
-            bottom:24%;
+            bottom: 24%;
 
             svg {
                 width: 24px;

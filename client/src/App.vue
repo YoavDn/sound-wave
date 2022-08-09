@@ -1,5 +1,5 @@
 <template>
-  <main v-if="stations" class="main-layout" :style="{height: vh}">
+  <main v-if="stations" class="main-layout">
     <div :class="mainViewStyle">
       <div class="main-app">
         <appHeader />
