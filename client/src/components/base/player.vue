@@ -235,8 +235,7 @@ export default defineComponent({
         },
         vidSrc() {
             if (this.track) {
-                // return `https://www.youtube.com/watch?v=${this.track.id}`
-                return `https://www.youtube.com/embed/${this.track.id}?autoplay=1&amp;mute=1`
+                return `https://www.youtube.com/watch?v=${this.track.id}`
             }
         },
         convertMinStart() {
@@ -312,6 +311,7 @@ export default defineComponent({
             }
         },
         enterFullScreen() {
+            if (!track) return
             const tabletWidth = window.innerWidth
             if (tabletWidth > 965) return
             else if (!this.isFullScreen)
