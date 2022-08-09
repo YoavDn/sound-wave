@@ -384,12 +384,9 @@ export default defineComponent({
         },
         isPlaying: {
             handler: function () {
-                const { id } = this.$route.params
                 if (!this.isReady) return
-
                 if (this.isPlaying) this.play()
                 else this.pause()
-
             }
         }
 

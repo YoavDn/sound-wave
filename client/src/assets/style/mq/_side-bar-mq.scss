@@ -41,13 +41,16 @@
         .side-bar-station-list::-webkit-scrollbar {
             display: block;
             width: 10px;
-        } 
+        }
 
         .side-bar-station-list {
             flex-basis: calc(68% - 60px);
         }
-            
-        
+
+        .btns-container {
+            display: flex;
+        }
+
         .btns-container .login {
             display: flex;
             color: black;
