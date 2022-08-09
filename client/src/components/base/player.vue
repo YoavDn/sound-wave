@@ -311,7 +311,7 @@ export default defineComponent({
             }
         },
         enterFullScreen() {
-            if (!track) return
+            if (!this.track) return
             const tabletWidth = window.innerWidth
             if (tabletWidth > 965) return
             else if (!this.isFullScreen)
