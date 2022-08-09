@@ -1,5 +1,5 @@
 <template>
-  <main v-if="stations" class="main-layout">
+  <main v-if="stations" class="main-layout" :style="{height: vh}">
     <div :class="mainViewStyle">
       <div class="main-app">
         <appHeader />
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       onStationPage: false,
+      // vh: null,
     }
   },
   components: {
@@ -53,8 +54,12 @@ export default {
     },
     mainViewStyle() {
       return { 'main-view': !this.onStationPage, 'main-view-station': this.onStationPage }
-
     },
+    vh() {
+      let vh = window.innerHeight * 0.01
+
+      return `calc((${vh}px, 1vh)*100)`
+    }
 
   },
 
