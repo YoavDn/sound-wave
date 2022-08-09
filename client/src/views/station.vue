@@ -48,7 +48,7 @@ export default {
     data() {
         return {
             newStation: null,
-            // station: null,
+            station: null,
             unsubscribe: null,
             isPlaying: null,
             isMobileOptionsOn: false
